@@ -2,7 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Quel Pro Te Ressemble ?</title>
+<title>9MM — L'ADN du Combattant | Quel Boxeur Pro Te Ressemble ?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -13,19 +13,20 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 @keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
 @keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes cardReveal{0%{opacity:0;transform:scale(.8) rotateY(15deg)}100%{opacity:1;transform:scale(1) rotateY(0deg)}}
+@keyframes punchIn{0%{opacity:0;transform:scale(1.5) translateX(-20px)}100%{opacity:1;transform:scale(1) translateX(0)}}
 .fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
 .delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
 .card-reveal{animation:cardReveal .8s cubic-bezier(.16,1,.3,1) both}
+.punch-in{animation:punchIn .6s cubic-bezier(.16,1,.3,1) both}
 *,*::before,*::after{box-sizing:border-box}
 .form-group{display:flex;flex-direction:column;gap:6px}
 .form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
 .form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
 .form-group input::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.form-group input:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
 .glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
-.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
-.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
 @media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
 
 .answer-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
@@ -39,60 +40,64 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </head>
 <body>
 <div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
-<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
-<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
 </div>
 
 <header class="relative z-10 text-center pt-10 pb-4">
-<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span></div>
+<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond &#9733; Energy</span></div>
 <div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
 </header>
 
 <main class="max-w-2xl mx-auto px-5 pb-16 relative z-10">
-<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 
-<!-- INTRO -->
+<!-- ============ INTRO ============ -->
 <div id="intro-screen" class="text-center fade-in">
-<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:linear-gradient(135deg,rgba(255,23,23,.08),rgba(0,237,239,.08));color:#fff;border:1px solid rgba(255,255,255,.1)">QUIZ PERSONNALITE</span>
-<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-4">Quel Pro<br/><span style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Te Ressemble ?</span></h1>
-<p class="text-white/45 max-w-md mx-auto mb-8">10 questions pour decouvrir ton archetype de performer. Strategiste, Clutcher, Tank... quel est ton style ?</p>
-<div class="flex gap-4 justify-center flex-wrap mb-8">
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🎯</span><p class="text-[10px] text-white/30 mt-1">Le Sniper</p></div>
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🧠</span><p class="text-[10px] text-white/30 mt-1">Le Stratege</p></div>
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🛡️</span><p class="text-[10px] text-white/30 mt-1">Le Tank</p></div>
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🔥</span><p class="text-[10px] text-white/30 mt-1">Le Clutcher</p></div>
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🏃</span><p class="text-[10px] text-white/30 mt-1">Le Marathon</p></div>
-<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">⚡</span><p class="text-[10px] text-white/30 mt-1">Le Hybrid</p></div>
-</div>
-<button onclick="startQuiz()" class="btn-dual" style="max-width:280px;margin:0 auto;display:block">DECOUVRIR MON PROFIL →</button>
-<p class="text-white/20 text-xs mt-4">⏱️ 2 min • 10 questions • 100% gratuit</p>
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">QUIZ BOXE &amp; PERFORMANCE</span>
+<h1 class="font-oswald text-4xl md:text-6xl font-bold uppercase leading-[.85] mb-4">Quel Boxeur Pro<br/><span style="color:var(--red)">Te Ressemble ?</span></h1>
+<p class="text-white/45 max-w-md mx-auto mb-3 text-base">L'ADN du Combattant &mdash; 1-minute quiz pour identifier ton style sur le ring.</p>
+<p class="text-white/30 text-sm mb-8">Slugger, Styliste, Contre-attaquant... quel est ton ADN de guerrier ?</p>
+
+<div class="flex gap-3 justify-center flex-wrap mb-8">
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">🎯</span><p class="text-[10px] text-white/30 mt-1">Le Sniper</p><p class="text-[8px] text-white/15">Usyk</p></div>
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">🧠</span><p class="text-[10px] text-white/30 mt-1">Le Maestro</p><p class="text-[8px] text-white/15">Mayweather</p></div>
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">🛡️</span><p class="text-[10px] text-white/30 mt-1">Le Destroyer</p><p class="text-[8px] text-white/15">GGG</p></div>
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">🔥</span><p class="text-[10px] text-white/30 mt-1">Le Puncheur</p><p class="text-[8px] text-white/15">Tyson</p></div>
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">🏃</span><p class="text-[10px] text-white/30 mt-1">Le Marathon</p><p class="text-[8px] text-white/15">Crawford</p></div>
+<div class="glass-card p-3 px-4 text-center"><span style="font-size:20px">&#9889;</span><p class="text-[10px] text-white/30 mt-1">L'Instinctif</p><p class="text-[8px] text-white/15">Roy Jones</p></div>
 </div>
 
-<!-- QUIZ -->
+<button onclick="startQuiz()" class="btn-red" style="max-width:300px;margin:0 auto;display:block">DECOUVRIR MON PROFIL &rarr;</button>
+<p class="text-white/20 text-xs mt-4">&#9201; 3 min &bull; 12 questions &bull; 100% gratuit</p>
+</div>
+
+<!-- ============ QUIZ ============ -->
 <div id="quiz-screen" style="display:none">
 <div class="flex items-center gap-3 mb-6">
-<div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width:0%;background:linear-gradient(90deg,var(--red),var(--cyan))"></div></div>
-<span class="text-xs text-white/30 font-oswald" id="q-counter">1/10</span>
+<div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width:0%;background:linear-gradient(90deg,var(--red),#cc1212)"></div></div>
+<span class="text-xs text-white/30 font-oswald" id="q-counter">1/12</span>
 </div>
 <div id="question-container"></div>
 </div>
 
-<!-- RESULTS -->
+<!-- ============ RESULTS ============ -->
 <div id="result-screen" style="display:none">
 <div class="card-reveal">
-<div class="archetype-card" id="archetype-card" style="background:rgba(0,237,239,.04);border:2px solid rgba(0,237,239,.15)">
-<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 30%,rgba(0,237,239,.06),transparent);pointer-events:none"></div>
-<span id="result-emoji" style="font-size:64px;display:block;margin-bottom:12px;position:relative;z-index:2">🎯</span>
-<span class="text-[10px] tracking-[.3em] uppercase text-white/30 block mb-2" style="position:relative;z-index:2">Ton archetype</span>
-<h2 class="font-oswald text-4xl md:text-5xl font-bold uppercase mb-2" id="result-name" style="position:relative;z-index:2;color:var(--cyan)">Le Sniper</h2>
-<p class="text-white/45 text-sm max-w-sm mx-auto mb-6" id="result-desc" style="position:relative;z-index:2">—</p>
+<div class="archetype-card" id="archetype-card" style="background:rgba(255,23,23,.04);border:2px solid rgba(255,23,23,.15)">
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 30%,rgba(255,23,23,.06),transparent);pointer-events:none"></div>
+<span id="result-emoji" style="font-size:64px;display:block;margin-bottom:8px;position:relative;z-index:2">🥊</span>
+<span class="text-[10px] tracking-[.3em] uppercase text-white/30 block mb-1" style="position:relative;z-index:2">Ton archetype</span>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-1" id="result-name" style="position:relative;z-index:2;color:var(--red)">-</h2>
+<p class="text-white/60 text-base font-semibold mb-2" id="result-boxer" style="position:relative;z-index:2">-</p>
+<p class="text-white/40 text-sm max-w-sm mx-auto mb-6" id="result-desc" style="position:relative;z-index:2">-</p>
 
 <div class="max-w-xs mx-auto text-left space-y-3 mb-6" id="result-stats" style="position:relative;z-index:2"></div>
 
 <div class="glass-card p-4 text-left mb-6" style="position:relative;z-index:2">
-<strong class="text-sm block mb-2" id="result-strength-title">Tes forces</strong>
+<strong class="text-sm block mb-2">Tes forces</strong>
 <div id="result-strengths" class="flex flex-wrap gap-2"></div>
 </div>
 
@@ -103,32 +108,56 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </div>
 </div>
 
-<div class="glass-card p-8 mt-6 text-center" style="border-color:rgba(0,237,239,.1);box-shadow:0 0 40px rgba(0,237,239,.05)">
-<div id="email-gate">
-<p class="font-oswald text-lg font-bold uppercase mb-1">Recois ta carte de profil en HD</p>
-<p class="text-white/35 text-sm mb-6">+ Tips adaptes a ton archetype</p>
+<!-- Email gate for personalized plan -->
+<div class="glass-card p-8 mt-6" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
+<div id="email-gate" class="text-center">
+<span style="font-size:28px">🥊</span>
+<p class="font-oswald text-xl font-bold uppercase mt-2 mb-1">Passe au niveau pro</p>
+<p class="text-white/40 text-sm mb-1" id="plan-subtitle">"Pret a boxer comme une legende ?"</p>
+<p class="text-white/35 text-sm mb-6">Recois ton <strong class="text-white/60">Plan de Boxe Personnalise</strong> base sur les routines et secrets d'entrainement de ton boxeur.</p>
 <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
 <div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
 <div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<button type="submit" class="btn-cyan">RECEVOIR MA CARTE →</button>
+<button type="submit" class="btn-red">RECEVOIR MON PLAN PERSONNALISE &rarr;</button>
 </form>
 </div>
-<div id="success-msg" style="display:none" class="mt-4">
-<span style="font-size:40px">✅</span>
-<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Envoye !</h4>
-<p class="text-white/45 text-sm">Ta carte de profil arrive dans ta boite mail.</p>
+<div id="success-msg" style="display:none" class="text-center mt-4">
+<span style="font-size:40px">&#10003;</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--red)">Envoye !</h4>
+<p class="text-white/45 text-sm">Ton plan d'entrainement personnalise arrive dans ta boite mail.</p>
 </div>
 </div>
 
 <div class="flex items-center gap-3 mt-6 justify-center">
 <div class="flex -space-x-2">
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🥊</div>
 <div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">💪</div>
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🔥</div>
 </div>
-<span class="text-white/25 text-xs">8,200+ profils decouverts</span>
+<span class="text-white/25 text-xs">6,400+ profils decouverts</span>
 </div>
 </div>
+
+<!-- Product section -->
+<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10">
+<div class="text-center mb-6">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)">ENERGIE DE COMBAT</span>
+<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase leading-[.9]">Endurance. Puissance.<br/><span style="color:var(--red)">Zero Crash.</span></h2>
+</div>
+<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & energie sur le ring</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5 mb-2">
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Vitamines B</span>
+</div>
+<p class="text-[10px] text-white/25">250ml &middot; 0g sucre &middot; Made in Switzerland</p>
+</div>
+</section>
 </main>
 
 <footer class="relative z-10 text-center py-8 mt-8">
@@ -136,96 +165,242 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </footer>
 
 <script>
-const archetypes={
-  sniper:{emoji:'🎯',name:'Le Sniper',color:'var(--cyan)',bg:'rgba(0,237,239,.04)',border:'rgba(0,237,239,.15)',desc:'Precision chirurgicale. Tu vises, tu tires, tu touches. Chaque action est calculee, chaque mouvement est optimise.',stats:{Precision:95,Focus:90,Patience:85,Explosivite:40,Endurance:55},strengths:['Precision','Calme sous pression','Analyse rapide','Patience'],product:'Active Mind — pour une clarte mentale absolue'},
-  strategist:{emoji:'🧠',name:'Le Stratege',color:'var(--cyan)',bg:'rgba(0,237,239,.04)',border:'rgba(0,237,239,.15)',desc:'Tu vois 3 coups d\'avance. La victoire se gagne dans la tete avant de se jouer sur le terrain.',stats:{Strategie:95,Analyse:92,Adaptabilite:85,Vitesse:50,Force:45},strengths:['Vision macro','Decision-making','Lecture du jeu','Adaptabilite'],product:'Active Mind — pour une concentration strategique'},
-  tank:{emoji:'🛡️',name:'Le Tank',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'Indestructible. Tu encaisses, tu tiens la ligne, tu ne recules jamais. La resilience est ton arme.',stats:{Endurance:95,Resilience:92,Force:88,Vitesse:45,Precision:55},strengths:['Resilience extreme','Force mentale','Regularite','Leadership'],product:'Active Body — pour une endurance indestructible'},
-  clutcher:{emoji:'🔥',name:'Le Clutcher',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'Plus la pression monte, plus tu brilles. Les situations impossibles sont ton terrain de jeu.',stats:{Clutch:95,Explosivite:90,Instinct:88,Regularite:40,Patience:45},strengths:['Performance sous pression','Instinct killer','Explosivite','Courage'],product:'Active Body — pour l\'energie explosive des moments clutch'},
-  marathon:{emoji:'🏃',name:'Le Marathonien',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'La regularite est ta force. Tu ne faiblis jamais, tu progresses chaque jour, tu joues le long terme.',stats:{Endurance:95,Regularite:92,Discipline:90,Explosivite:35,Clutch:40},strengths:['Discipline incroyable','Progression constante','Pas de fatigue','Mindset long-terme'],product:'Active Body — pour une energie qui dure des heures'},
-  hybrid:{emoji:'⚡',name:'Le Hybrid',color:'#fff',bg:'linear-gradient(135deg,rgba(255,23,23,.03),rgba(0,237,239,.03))',border:'rgba(255,255,255,.12)',desc:'Le meilleur des deux mondes. Tu combines force physique et acuite mentale. Polyvalent et imprevisible.',stats:{Polyvalence:95,Adaptabilite:90,Equilibre:85,Specialisation:50,Prediction:60},strengths:['Ultra polyvalent','Surprise tactique','Corps et esprit','Adaptabilite'],product:'Active Body + Active Mind — alterne selon le defi'}
+const archetypes = {
+  sniper: {
+    emoji: '🎯', name: 'Le Sniper', boxer: 'Oleksandr Usyk',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'Precision chirurgicale et timing parfait. Tu ne gaspilles aucun mouvement. Chaque coup est calcule, chaque ouverture exploitee. Tu gagnes avec l\'intelligence du ring.',
+    stats: { Precision: 98, Timing: 95, 'Jeu de jambes': 90, 'Force de frappe': 60, Endurance: 70 },
+    strengths: ['Precision', 'Timing parfait', 'Contre-attaque', 'Lecture du jeu'],
+    product: 'Active Body — pour maintenir cette precision round apres round'
+  },
+  maestro: {
+    emoji: '🧠', name: 'Le Maestro', boxer: 'Floyd Mayweather',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'La boxe est un jeu d\'echecs et tu es le Grand Maitre. Defense hermetique, jeu de jambes impeccable, tu fais boxer l\'adversaire dans le vide. La classe a l\'etat pur.',
+    stats: { Tactique: 98, Defense: 96, 'Jeu de jambes': 95, 'Force de frappe': 50, Agressivite: 35 },
+    strengths: ['Defense impenetrable', 'QI boxistique', 'Jeu de jambes', 'Gestion du rythme'],
+    product: 'Active Body — pour un cardio et une lucidite de champion'
+  },
+  destroyer: {
+    emoji: '🛡️', name: 'Le Destroyer', boxer: 'Gennady "GGG" Golovkin',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'Indestructible. Tu es la definition du "Iron Chin". Tu ne recules jamais, tu brises le moral de l\'adversaire par ta pression constante et tes coups lourds.',
+    stats: { Pression: 98, Resilience: 95, 'Force de frappe': 92, 'Vitesse de pied': 45, Precision: 70 },
+    strengths: ['Encaissement legendaire', 'Coups lourds', 'Rouleau compresseur', 'Mental indestructible'],
+    product: 'Active Body — pour maintenir cette intensite et cette endurance de buffle round apres round'
+  },
+  puncheur: {
+    emoji: '🔥', name: 'Le Puncheur', boxer: 'Mike Tyson',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'Explosivite pure. Tu rentres dans la zone, tu frappes, c\'est fini. Ton style est simple mais devastateur : toucher l\'adversaire avant qu\'il ne te touche.',
+    stats: { Explosivite: 98, 'Force de frappe': 96, Agressivite: 92, Endurance: 45, Defense: 50 },
+    strengths: ['KO power', 'Explosivite', 'Peek-a-boo style', 'Intimidation naturelle'],
+    product: 'Active Body — pour l\'energie explosive des premiers rounds decisifs'
+  },
+  marathon: {
+    emoji: '🏃', name: 'Le Marathonien', boxer: 'Terence Crawford',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'Volume et cardio infini. Tu uses l\'adversaire coup par coup, round par round. Ta regularite et ton endurance sont tes armes fatales.',
+    stats: { Endurance: 98, Volume: 95, Regularite: 92, Explosivite: 55, 'Force de frappe': 60 },
+    strengths: ['Cardio infini', 'Volume de coups', 'Regularite', 'Adaptabilite au switch'],
+    product: 'Active Body — pour une energie qui dure 12 rounds et au-dela'
+  },
+  instinctif: {
+    emoji: '&#9889;', name: "L'Instinctif", boxer: 'Roy Jones Jr.',
+    color: 'var(--red)', bg: 'rgba(255,23,23,.04)', border: 'rgba(255,23,23,.15)',
+    desc: 'Vitesse et reflexes surnaturels. Tu frappes sous des angles impossibles, tu esquives ce qui est inévitable. Ton style est unique, imprevisible, spectaculaire.',
+    stats: { Vitesse: 98, Reflexes: 96, Angles: 92, Defense: 55, Regularite: 50 },
+    strengths: ['Vitesse surhumaine', 'Angles uniques', 'Reflexes innes', 'Spectacle permanent'],
+    product: 'Active Body — pour des reflexes et une vitesse au top de chaque round'
+  }
 };
 
-const questions=[
-  {q:'En competition, tu preferes...',a:[{t:'Analyser puis frapper au moment parfait',s:{sniper:3,strategist:2}},{t:'Foncer et imposer ton rythme',s:{tank:3,clutcher:2}},{t:'Tenir la distance et user l\'adversaire',s:{marathon:3,tank:1}},{t:'T\'adapter a chaque situation',s:{hybrid:3,strategist:1}}]},
-  {q:'Quel mot te decrit le mieux ?',a:[{t:'Precis',s:{sniper:3,strategist:1}},{t:'Intense',s:{clutcher:3,tank:1}},{t:'Resilient',s:{marathon:3,tank:2}},{t:'Strategique',s:{strategist:3,hybrid:1}}]},
-  {q:'Quand la pression monte...',a:[{t:'Je deviens plus calme et concentre',s:{sniper:3,strategist:2}},{t:'Je m\'enflamme et je donne tout',s:{clutcher:3}},{t:'Je continue comme si de rien n\'etait',s:{marathon:3,tank:1}},{t:'Je change de strategie',s:{hybrid:3,strategist:1}}]},
-  {q:'Ton entrainement ideal ?',a:[{t:'Precision et technique pure',s:{sniper:3}},{t:'Haute intensite, depassement total',s:{clutcher:2,tank:2}},{t:'Long et regulier, progression lente',s:{marathon:3}},{t:'Varie, jamais la meme chose',s:{hybrid:3}}]},
-  {q:'En equipe, tu es plutot...',a:[{t:'Le carry silencieux qui fait la diff',s:{sniper:3,clutcher:1}},{t:'Le leader qui guide et motive',s:{tank:3,strategist:1}},{t:'Le cerveau qui donne les calls',s:{strategist:3}},{t:'Le joker qui s\'adapte au besoin',s:{hybrid:3}}]},
-  {q:'Ton plus gros defaut ?',a:[{t:'Trop prudent, j\'attends trop',s:{sniper:2,strategist:2}},{t:'Trop impulsif dans les moments chauds',s:{clutcher:3}},{t:'Pas assez explosif quand il faut',s:{marathon:3}},{t:'Pas assez specialise',s:{hybrid:3}}]},
-  {q:'Tu preferes gagner comment ?',a:[{t:'Un move parfait au bon moment',s:{sniper:3,clutcher:1}},{t:'En dominant du debut a la fin',s:{tank:3}},{t:'Grace a un plan execute parfaitement',s:{strategist:3}},{t:'En surpassant tout le monde sur la duree',s:{marathon:3}}]},
-  {q:'Ton alimentation avant une session ?',a:[{t:'Legere et precise, juste ce qu\'il faut',s:{sniper:2,strategist:2}},{t:'Copieuse, j\'ai besoin d\'energie max',s:{tank:3,marathon:1}},{t:'Je mange pas trop, je veux etre alerte',s:{clutcher:2,sniper:1}},{t:'Equilibree, un peu de tout',s:{hybrid:3}}]},
-  {q:'Ce qui te frustre le plus ?',a:[{t:'Rater un tir/move que j\'aurais du reussir',s:{sniper:3}},{t:'Perdre alors que j\'ai tout donne',s:{clutcher:3,tank:1}},{t:'Ne pas avoir de plan clair',s:{strategist:3}},{t:'Faire la meme chose trop longtemps',s:{hybrid:3}}]},
-  {q:'Ton reve de performance ?',a:[{t:'Le headshot/move parfait en finale',s:{sniper:3,clutcher:1}},{t:'Etre inarretable physiquement',s:{tank:3,marathon:1}},{t:'Gagner grace a mon cerveau',s:{strategist:3}},{t:'Etre bon dans absolument tout',s:{hybrid:3}}]}
+const questions = [
+  {
+    q: 'Ta distance de confort sur le ring ?',
+    a: [
+      { t: 'Hors de portee — je choisis quand je frappe', s: { sniper: 3, maestro: 2 } },
+      { t: 'A mi-distance — assez pres pour toucher, assez loin pour esquiver', s: { marathon: 2, instinctif: 2 } },
+      { t: 'Colle au plastron — dans la poche, toujours', s: { destroyer: 3, puncheur: 2 } }
+    ]
+  },
+  {
+    q: 'Ton premier reflexe face a un jab ?',
+    a: [
+      { t: 'Le chasser d\'un contre en cross', s: { sniper: 3, puncheur: 1 } },
+      { t: 'Un retrait de buste elegant', s: { maestro: 3, instinctif: 1 } },
+      { t: 'Le prendre dans la garde et avancer', s: { destroyer: 3, marathon: 1 } }
+    ]
+  },
+  {
+    q: 'Ta priorite a l\'entrainement ?',
+    a: [
+      { t: 'La lecon aux pattes d\'ours — technique et timing', s: { sniper: 2, maestro: 2 } },
+      { t: 'Le sac lourd — puissance brute et enchainements', s: { puncheur: 3, destroyer: 1 } },
+      { t: 'La corde a sauter et la course — cardio d\'abord', s: { marathon: 3, instinctif: 1 } }
+    ]
+  },
+  {
+    q: 'Comment tu gagnes tes combats ?',
+    a: [
+      { t: 'Aux points, avec classe et maitrise', s: { maestro: 3, sniper: 1 } },
+      { t: 'Par abandon de l\'autre — usure physique et mentale', s: { destroyer: 3, marathon: 1 } },
+      { t: 'Par extinction des feux — KO, point final', s: { puncheur: 3, instinctif: 1 } }
+    ]
+  },
+  {
+    q: 'Ton coup "signature" ?',
+    a: [
+      { t: 'Le contre en cross — timing chirurgical', s: { sniper: 3, maestro: 1 } },
+      { t: 'Le crochet au foie — coupe le souffle', s: { destroyer: 2, marathon: 2 } },
+      { t: 'L\'uppercut en sortie de clinch — devastateur', s: { puncheur: 3, instinctif: 1 } }
+    ]
+  },
+  {
+    q: 'Ta gestion du stress en combat ?',
+    a: [
+      { t: 'Calme olympien — je ne montre rien', s: { maestro: 3, sniper: 1 } },
+      { t: 'Determination froide — focus total sur l\'objectif', s: { marathon: 2, destroyer: 2 } },
+      { t: 'Agressivite controlee — je transforme le stress en fuel', s: { puncheur: 2, instinctif: 2 } }
+    ]
+  },
+  {
+    q: 'Ton mouvement de jambes ?',
+    a: [
+      { t: 'Je tourne sans cesse — toujours en mouvement', s: { maestro: 3, instinctif: 1 } },
+      { t: 'Je ne fais que bondir — explosif et imprevisible', s: { instinctif: 3, puncheur: 1 } },
+      { t: 'Je marche sur l\'adversaire — pression constante', s: { destroyer: 3, marathon: 1 } }
+    ]
+  },
+  {
+    q: 'Ta garde ?',
+    a: [
+      { t: 'Basse ou tres mobile — je compte sur mes reflexes', s: { instinctif: 3, sniper: 1 } },
+      { t: 'Haute et hermetique — rien ne passe', s: { maestro: 3, marathon: 1 } },
+      { t: 'En "Peek-a-boo" ou serree — pret a exploser', s: { puncheur: 3, destroyer: 1 } }
+    ]
+  },
+  {
+    q: 'L\'adversaire te touche dur. Ta reaction ?',
+    a: [
+      { t: 'Je double mon jeu de jambes et reprends le controle', s: { maestro: 2, instinctif: 2 } },
+      { t: 'Je replique immediatement plus fort', s: { puncheur: 3, sniper: 1 } },
+      { t: 'Je souris et j\'avance — ca ne me fait rien', s: { destroyer: 3 } }
+    ]
+  },
+  {
+    q: 'Ton idole de jeunesse ?',
+    a: [
+      { t: 'Ali / Mayweather — la classe et la maitrise', s: { maestro: 3, sniper: 1 } },
+      { t: 'Mike Tyson / Foreman — la puissance brute', s: { puncheur: 3, destroyer: 1 } },
+      { t: 'Canelo / Hagler — le combat total', s: { marathon: 2, destroyer: 1, instinctif: 1 } }
+    ]
+  },
+  {
+    q: 'La fin du 10eme round. Ton etat ?',
+    a: [
+      { t: 'Je ne suis pas essouffle — pace parfait', s: { maestro: 2, marathon: 2 } },
+      { t: 'J\'ai les mains lourdes — chaque coup fait mal', s: { puncheur: 2, destroyer: 2 } },
+      { t: 'Je suis pret pour 5 rounds de plus — endurance infinie', s: { marathon: 3, instinctif: 1 } }
+    ]
+  },
+  {
+    q: 'Ton plus gros atout ?',
+    a: [
+      { t: 'Mon oeil — je vois tout avant que ca arrive', s: { sniper: 3, maestro: 1 } },
+      { t: 'Ma puissance brute — un seul coup peut tout changer', s: { puncheur: 3, destroyer: 1 } },
+      { t: 'Mon menton — rien ne me fait reculer', s: { destroyer: 3, marathon: 1 } }
+    ]
+  }
 ];
 
-let currentQ=0;
-const scores={sniper:0,strategist:0,tank:0,clutcher:0,marathon:0,hybrid:0};
+let currentQ = 0;
+const scores = { sniper: 0, maestro: 0, destroyer: 0, puncheur: 0, marathon: 0, instinctif: 0 };
 
-function startQuiz(){
-  document.getElementById('intro-screen').style.display='none';
-  document.getElementById('quiz-screen').style.display='block';
+function startQuiz() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
   showQuestion();
 }
 
-function showQuestion(){
-  const q=questions[currentQ];
-  document.getElementById('q-counter').textContent=(currentQ+1)+'/10';
-  document.getElementById('progress-bar').style.width=((currentQ)/10*100)+'%';
-  const c=document.getElementById('question-container');
-  c.style.opacity='0';c.style.transform='translateY(20px)';
-  setTimeout(()=>{
-    c.innerHTML='<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6">'+q.q+'</h2><div class="space-y-3">'+
-      q.a.map((a,i)=>'<button class="answer-btn" onclick="answer('+i+')"><span class="letter">'+String.fromCharCode(65+i)+'</span>'+a.t+'</button>').join('')+'</div>';
-    c.style.transition='all .4s ease';c.style.opacity='1';c.style.transform='translateY(0)';
-  },200);
+function showQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('q-counter').textContent = (currentQ + 1) + '/12';
+  document.getElementById('progress-bar').style.width = ((currentQ) / 12 * 100) + '%';
+  const c = document.getElementById('question-container');
+  c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+  setTimeout(() => {
+    c.innerHTML = '<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6">' + q.q + '</h2><div class="space-y-3">' +
+      q.a.map((a, i) => '<button class="answer-btn" onclick="answer(' + i + ')"><span class="letter">' + String.fromCharCode(65 + i) + '</span>' + a.t + '</button>').join('') + '</div>';
+    c.style.transition = 'all .4s ease'; c.style.opacity = '1'; c.style.transform = 'translateY(0)';
+  }, 200);
 }
 
-function answer(idx){
-  const q=questions[currentQ];
-  const s=q.a[idx].s;
-  for(const k in s)scores[k]=(scores[k]||0)+s[k];
+function answer(idx) {
+  const q = questions[currentQ];
+  const s = q.a[idx].s;
+  for (const k in s) scores[k] = (scores[k] || 0) + s[k];
   currentQ++;
-  if(currentQ<10){showQuestion();}
-  else{showResult();}
+  if (currentQ < 12) { showQuestion(); }
+  else { showResult(); }
 }
 
-function showResult(){
-  document.getElementById('quiz-screen').style.display='none';
-  document.getElementById('progress-bar').style.width='100%';
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  document.getElementById('progress-bar').style.width = '100%';
 
-  const winner=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
-  const arch=archetypes[winner];
+  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const arch = archetypes[winner];
 
-  document.getElementById('result-screen').style.display='block';
-  document.getElementById('result-emoji').textContent=arch.emoji;
-  document.getElementById('result-name').textContent=arch.name;
-  document.getElementById('result-name').style.color=arch.color;
-  document.getElementById('result-desc').textContent=arch.desc;
+  document.getElementById('result-screen').style.display = 'block';
+  document.getElementById('result-emoji').innerHTML = arch.emoji;
+  document.getElementById('result-name').textContent = arch.name;
+  document.getElementById('result-name').style.color = arch.color;
+  document.getElementById('result-boxer').textContent = arch.boxer;
+  document.getElementById('result-desc').textContent = arch.desc;
 
-  const card=document.getElementById('archetype-card');
-  card.style.background=arch.bg;card.style.borderColor=arch.border;
+  const card = document.getElementById('archetype-card');
+  card.style.background = arch.bg; card.style.borderColor = arch.border;
 
   // Stats
-  const statsHtml=Object.entries(arch.stats).map(([k,v])=>'<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">'+k+'</span><span style="color:'+arch.color+';font-weight:600">'+v+'%</span></div><div class="stat-bar"><div class="stat-fill" style="width:0%;background:'+arch.color+'"></div></div></div>').join('');
-  document.getElementById('result-stats').innerHTML=statsHtml;
-  setTimeout(()=>{document.querySelectorAll('.stat-fill').forEach((el,i)=>{const v=Object.values(arch.stats)[i];el.style.width=v+'%';});},400);
+  const statsHtml = Object.entries(arch.stats).map(([k, v]) =>
+    '<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">' + k + '</span><span style="color:' + arch.color + ';font-weight:600">' + v + '%</span></div><div class="stat-bar"><div class="stat-fill" style="width:0%;background:' + arch.color + '"></div></div></div>'
+  ).join('');
+  document.getElementById('result-stats').innerHTML = statsHtml;
+  setTimeout(() => {
+    document.querySelectorAll('.stat-fill').forEach((el, i) => {
+      const v = Object.values(arch.stats)[i];
+      el.style.width = v + '%';
+    });
+  }, 400);
 
   // Strengths
-  const isRed=arch.color==='var(--red)';
-  document.getElementById('result-strengths').innerHTML=arch.strengths.map(s=>'<span style="font-size:11px;padding:5px 12px;border-radius:99px;background:'+(isRed?'rgba(255,23,23,.06)':'rgba(0,237,239,.06)')+';color:'+arch.color+';border:1px solid '+(isRed?'rgba(255,23,23,.1)':'rgba(0,237,239,.1)')+'">'+s+'</span>').join('');
+  document.getElementById('result-strengths').innerHTML = arch.strengths.map(s =>
+    '<span style="font-size:11px;padding:5px 12px;border-radius:99px;background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)">' + s + '</span>'
+  ).join('');
 
   // Product
-  document.getElementById('result-product').innerHTML='<div style="width:40px;height:65px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:'+(isRed?'rgba(255,23,23,.08)':'rgba(0,237,239,.08)')+';border:1px solid '+(isRed?'rgba(255,23,23,.12)':'rgba(0,237,239,.12)')+';flex-shrink:0"><span class="font-oswald text-sm font-bold" style="color:'+arch.color+'">9MM</span></div><div><strong class="text-sm">'+arch.product+'</strong></div>';
+  document.getElementById('result-product').innerHTML = '<div style="width:40px;height:65px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12);flex-shrink:0"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div><div><strong class="text-sm">' + arch.product + '</strong></div>';
+
+  // Update email section subtitle
+  document.getElementById('plan-subtitle').textContent = 'Decouvre les routines et secrets d\'entrainement de ' + arch.boxer;
 }
 
-function captureEmail(e){
+function captureEmail(e) {
   e.preventDefault();
-  const fd=new FormData(e.target);const data={};fd.forEach((v,k)=>data[k]=v);
-  const winner=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
-  data.source='pro-match-quiz';data.archetype=winner;data.scores=JSON.stringify(scores);data.timestamp=new Date().toISOString();
-  console.log('9MM Lead captured:',data);
-  document.getElementById('email-gate').style.display='none';
-  document.getElementById('success-msg').style.display='block';
+  const fd = new FormData(e.target);
+  const data = {}; fd.forEach((v, k) => data[k] = v);
+  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  data.source = 'quiz-boxe-adn-combattant';
+  data.archetype = winner;
+  data.boxer = archetypes[winner].boxer;
+  data.scores = JSON.stringify(scores);
+  data.timestamp = new Date().toISOString();
+  console.log('9MM Lead captured:', data);
+  // TODO: API call
+  document.getElementById('email-gate').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
 }
 </script>
 </body>

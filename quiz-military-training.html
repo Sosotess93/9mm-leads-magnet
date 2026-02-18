@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Programme Militaire | Quel Special Forces Training Te Correspond ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a;--military:#8B9A46}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cardReveal{0%{opacity:0;transform:scale(.85) rotateY(10deg)}100%{opacity:1;transform:scale(1) rotateY(0deg)}}
+@keyframes stampIn{0%{opacity:0;transform:scale(2) rotate(-15deg)}40%{opacity:1;transform:scale(.9) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}
+.card-reveal{animation:cardReveal .8s cubic-bezier(.16,1,.3,1) both}
+.stamp-in{animation:stampIn .5s cubic-bezier(.16,1,.3,1) both}
+*,*::before,*::after{box-sizing:border-box}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+
+.answer-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
+.answer-btn:hover{background:rgba(255,23,23,.04);border-color:rgba(255,23,23,.15);transform:translateX(4px)}
+.answer-btn .letter{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);flex-shrink:0}
+
+.profile-card{border-radius:20px;padding:30px;text-align:center;position:relative;overflow:hidden}
+.stat-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.stat-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+
+.mil-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)}
+</style>
+</head>
+<body>
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond &#9733; Energy</span></div>
+<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-2xl mx-auto px-5 pb-16 relative z-10">
+<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<!-- ============ INTRO ============ -->
+<div id="intro-screen" class="text-center fade-in">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">&#9733; QUIZ MILITARY TRAINING &#9733;</span>
+<h1 class="font-oswald text-4xl md:text-6xl font-bold uppercase leading-[.85] mb-4">Quel Programme<br/><span style="color:var(--red)">Militaire</span><br/><span class="text-white/40 text-3xl md:text-4xl">Te Correspond ?</span></h1>
+<p class="text-white/45 max-w-md mx-auto mb-3 text-base">Navy SEALs, SAS, Legion Etrangere... Decouvre le programme d'elite qui match ton profil.</p>
+<p class="text-white/25 text-sm mb-8">Recois ton plan d'entrainement militaire personnalise.</p>
+
+<div class="grid grid-cols-3 gap-2 mb-8 max-w-sm mx-auto">
+<div class="glass-card p-3 text-center"><span style="font-size:24px">🦅</span><p class="text-[9px] text-white/30 mt-1 font-bold">Navy SEALs</p></div>
+<div class="glass-card p-3 text-center"><span style="font-size:24px">&#9876;️</span><p class="text-[9px] text-white/30 mt-1 font-bold">SAS</p></div>
+<div class="glass-card p-3 text-center"><span style="font-size:24px">🗡️</span><p class="text-[9px] text-white/30 mt-1 font-bold">Legion</p></div>
+<div class="glass-card p-3 text-center"><span style="font-size:24px">🎯</span><p class="text-[9px] text-white/30 mt-1 font-bold">Spetsnaz</p></div>
+<div class="glass-card p-3 text-center"><span style="font-size:24px">🏔️</span><p class="text-[9px] text-white/30 mt-1 font-bold">Chasseurs Alpins</p></div>
+<div class="glass-card p-3 text-center"><span style="font-size:24px">🔥</span><p class="text-[9px] text-white/30 mt-1 font-bold">Marines</p></div>
+</div>
+
+<button onclick="startQuiz()" class="btn-red" style="max-width:320px;margin:0 auto;display:block">TROUVER MON PROGRAMME &rarr;</button>
+<p class="text-white/20 text-xs mt-4">&#9201; 3 min &bull; 10 questions &bull; 100% gratuit</p>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div id="quiz-screen" style="display:none">
+<div class="flex items-center gap-3 mb-6">
+<div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width:0%;background:linear-gradient(90deg,var(--red),#cc1212)"></div></div>
+<span class="text-xs text-white/30 font-oswald" id="q-counter">1/10</span>
+</div>
+<div id="question-container"></div>
+</div>
+
+<!-- ============ RESULTS ============ -->
+<div id="result-screen" style="display:none">
+<div class="card-reveal">
+<div class="profile-card" id="profile-card" style="background:rgba(255,23,23,.04);border:2px solid rgba(255,23,23,.15)">
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 20%,rgba(255,23,23,.06),transparent);pointer-events:none"></div>
+<span id="result-emoji" style="font-size:64px;display:block;margin-bottom:8px;position:relative;z-index:2">🦅</span>
+<div class="mil-badge mx-auto mb-3 stamp-in" style="position:relative;z-index:2" id="result-badge">CLASSIFIED</div>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-1" id="result-name" style="position:relative;z-index:2;color:var(--red)">-</h2>
+<p class="text-white/60 text-base font-semibold mb-2" id="result-unit" style="position:relative;z-index:2">-</p>
+<p class="text-white/40 text-sm max-w-sm mx-auto mb-6" id="result-desc" style="position:relative;z-index:2">-</p>
+
+<div class="max-w-xs mx-auto text-left space-y-3 mb-6" id="result-stats" style="position:relative;z-index:2"></div>
+
+<div class="glass-card p-4 text-left mb-4" style="position:relative;z-index:2">
+<strong class="text-sm block mb-2">Ton programme inclut</strong>
+<div id="result-program" class="space-y-2"></div>
+</div>
+
+<div class="glass-card p-4 text-left" style="position:relative;z-index:2">
+<strong class="text-sm block mb-2">Ton 9MM recommande</strong>
+<div class="flex items-center gap-3" id="result-product"></div>
+</div>
+</div>
+</div>
+
+<!-- Email gate -->
+<div class="glass-card p-8 mt-6" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
+<div id="email-gate" class="text-center">
+<span style="font-size:28px">&#9733;</span>
+<p class="font-oswald text-xl font-bold uppercase mt-2 mb-1">Mission Acceptee ?</p>
+<p class="text-white/35 text-sm mb-6">Recois ton <strong class="text-white/60">Plan d'Entrainement Militaire Personnalise</strong> de 4 semaines base sur le programme <span id="plan-unit-name" class="text-white/60">-</span>.</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-red">RECEVOIR MON PROGRAMME &rarr;</button>
+</form>
+</div>
+<div id="success-msg" style="display:none" class="text-center mt-4">
+<span style="font-size:40px">&#10003;</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--red)">Mission Lancee !</h4>
+<p class="text-white/45 text-sm">Ton programme d'entrainement militaire arrive dans ta boite mail. Prepare-toi.</p>
+</div>
+</div>
+
+<div class="flex items-center gap-3 mt-6 justify-center">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">💪</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎖️</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🔥</div>
+</div>
+<span class="text-white/25 text-xs">4,800+ recrues enrolees</span>
+</div>
+</div>
+
+<!-- Product section -->
+<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10">
+<div class="text-center mb-6">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)">ENERGIE TACTIQUE</span>
+<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase leading-[.9]">Endurance. Resistance.<br/><span style="color:var(--red)">Zero Compromis.</span></h2>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & performance physique</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5"><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span></div>
+</div>
+<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Focus & lucidite tactique</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5"><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">The Vert</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6"><span class="font-oswald text-lg font-bold text-white/40">9MM</span><span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span><p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p></div>
+</footer>
+
+<script>
+const profiles = {
+  seals: {
+    emoji: '🦅', name: 'Navy SEALs', unit: 'United States Navy Sea, Air, and Land Teams',
+    badge: 'BUDS CLASS',
+    desc: 'Le programme d\'elite ultime. Tu es fait pour le mental warfare : entrainements sous pression extreme, endurance mentale superieure et adaptabilite en milieu hostile. L\'echec n\'est pas une option.',
+    stats: { 'Mental Toughness': 98, Endurance: 95, Natation: 90, 'Combat rapproche': 85, Adaptabilite: 92 },
+    program: ['Hell Week simulation (5 jours haute intensite)', 'Natation combat 2km + course 8km', 'Log PT & exercices en equipe', 'Cold water conditioning', 'HIIT tactique 45 min/jour'],
+    product: 'Active Body + Active Mind — endurance physique ET lucidite mentale pour les missions les plus dures'
+  },
+  sas: {
+    emoji: '&#9876;️', name: 'SAS', unit: 'Special Air Service — British Army',
+    badge: 'WHO DARES WINS',
+    desc: 'Discret, letal, strategique. Tu excelles dans les missions d\'infiltration et la survie en conditions extremes. Ton mental est ta premiere arme, ta discretion ta seconde.',
+    stats: { Tactique: 96, Survie: 95, Discretion: 92, Endurance: 88, 'Force brute': 70 },
+    program: ['Fan Dance simulation (marche 24km en montagne)', 'Survie en milieu hostile 48h', 'Navigation nocturne sans GPS', 'Resistance a la privation de sommeil', 'Circuit training fonctionnel 60 min'],
+    product: 'Active Mind — pour la lucidite tactique et la concentration en conditions de fatigue extreme'
+  },
+  legion: {
+    emoji: '🗡️', name: 'Legion Etrangere', unit: 'Legion Etrangere — Armee Francaise',
+    badge: 'LEGIO PATRIA NOSTRA',
+    desc: 'La resilience incarnee. Tu supportes ce que les autres ne peuvent meme pas imaginer. La souffrance est un outil, la discipline une religion. Marche ou creve.',
+    stats: { Resilience: 98, Discipline: 96, 'Marche forcee': 95, Mental: 90, 'Combat': 85 },
+    program: ['Marche commando 40km avec sac 25kg', 'Kepi blanc circuit (pompes, abdos, burpees x100)', 'Course en rangers 10km', 'Combat rapproche et krav-maga', 'Entrainement au desert / jungle'],
+    product: 'Active Body — pour une endurance de legionnaire qui ne faiblit jamais'
+  },
+  spetsnaz: {
+    emoji: '🎯', name: 'Spetsnaz', unit: 'Forces Speciales Russes',
+    badge: 'SYSTEMA WARRIOR',
+    desc: 'Puissance brute et agressivite controlee. Tu crois en la force physique comme arme premiere. Ton entrainement est brutal, tes methodes directes, tes resultats implacables.',
+    stats: { 'Force brute': 98, Agressivite: 95, 'Combat': 92, Endurance: 80, Tactique: 70 },
+    program: ['Circuits de force extreme (deadlift, squat, press)', 'Systema — art martial russe complet', 'Kettlebell complexes 30 min non-stop', 'Sparring pieds-poings intensif', 'Course obstacle militaire'],
+    product: 'Active Body — pour la puissance brute et la force explosive des Spetsnaz'
+  },
+  alpins: {
+    emoji: '🏔️', name: 'Chasseurs Alpins', unit: '27e Brigade d\'Infanterie de Montagne — Armee Francaise',
+    badge: 'EN AVANT',
+    desc: 'L\'endurance d\'altitude. Tu excelles dans les environnements extremes ou le cardio et la resistance au froid font la difference. L\'altitude ne t\'arrete pas, elle te renforce.',
+    stats: { Endurance: 98, 'Resistance froid': 95, Cardio: 94, 'Force fonctionnelle': 85, Mental: 88 },
+    program: ['Trail running montagne 15-20km denivelees', 'Cold exposure progressif (douches froides → glace)', 'Rucking 20kg sur sentiers escarpes', 'Ski de fond / alpinisme', 'Yoga & respiration Wim Hof'],
+    product: 'Active Body — pour un cardio d\'altitude et une endurance de montagnard'
+  },
+  marines: {
+    emoji: '🔥', name: 'Marines', unit: 'United States Marine Corps',
+    badge: 'SEMPER FIDELIS',
+    desc: 'Polyvalent et explosif. Tu es le premier sur le terrain, le dernier a partir. Force, vitesse, endurance — tu refuses de choisir, tu veux tout.',
+    stats: { Polyvalence: 95, Explosivite: 92, Endurance: 88, Discipline: 90, 'Force': 85 },
+    program: ['PFT Marine standard (tractions max, abdos, 5km)', 'Crossfit militaire WOD quotidien', 'Sprint intervals + course 8km', 'Pompes/Tractions programme progressif', 'Ruck march 15km charge tactique'],
+    product: 'Active Body — pour l\'energie polyvalente et l\'explosivite des Marines'
+  }
+};
+
+const questions = [
+  {
+    q: 'Ton environnement d\'entrainement ideal ?',
+    a: [
+      { t: 'L\'ocean — eau froide, natation, plage', s: { seals: 3, marines: 1 } },
+      { t: 'La montagne — altitude, froid, isolation', s: { alpins: 3, sas: 1 } },
+      { t: 'La salle de musculation — fer, sueur, poids lourds', s: { spetsnaz: 3, marines: 1 } },
+      { t: 'N\'importe ou — je m\'adapte a tout terrain', s: { legion: 2, sas: 2 } }
+    ]
+  },
+  {
+    q: 'Ta plus grande force ?',
+    a: [
+      { t: 'Mon mental — rien ne me brise psychologiquement', s: { seals: 3, legion: 1 } },
+      { t: 'Mon cardio — je peux courir des heures', s: { alpins: 3, marines: 1 } },
+      { t: 'Ma puissance physique — je suis fort, point', s: { spetsnaz: 3, marines: 1 } },
+      { t: 'Ma discretion — j\'agis sans etre vu', s: { sas: 3, legion: 1 } }
+    ]
+  },
+  {
+    q: 'Quelle duree d\'entrainement tu preferes ?',
+    a: [
+      { t: '30-45 min intenses — HIIT, tout donner', s: { marines: 3, spetsnaz: 1 } },
+      { t: '60-90 min methodiques — travail complet', s: { sas: 2, seals: 2 } },
+      { t: '2h+ endurants — longue distance, mental', s: { legion: 3, alpins: 1 } },
+      { t: 'Ca depend du jour — je varie', s: { alpins: 2, marines: 2 } }
+    ]
+  },
+  {
+    q: 'Face a la souffrance physique...',
+    a: [
+      { t: 'Je l\'embrasse — c\'est la que je me forge', s: { legion: 3, seals: 1 } },
+      { t: 'Je la gere — technique de respiration, focus', s: { sas: 3, alpins: 1 } },
+      { t: 'Je la domine — ma volonte est plus forte', s: { spetsnaz: 3, marines: 1 } },
+      { t: 'Je la canalise — elle devient du fuel', s: { seals: 2, marines: 2 } }
+    ]
+  },
+  {
+    q: 'Ton type d\'exercice prefere ?',
+    a: [
+      { t: 'Natation & exercices aquatiques', s: { seals: 3 } },
+      { t: 'Course de fond & trail', s: { alpins: 3, legion: 1 } },
+      { t: 'Musculation & force pure', s: { spetsnaz: 3 } },
+      { t: 'Circuits fonctionnels & CrossFit', s: { marines: 3, sas: 1 } }
+    ]
+  },
+  {
+    q: 'Le froid glacial, ca te fait quoi ?',
+    a: [
+      { t: 'J\'adore — douches froides, bains glaces, immersion', s: { alpins: 3, seals: 1 } },
+      { t: 'Je le supporte — c\'est un outil de trempe', s: { legion: 2, sas: 2 } },
+      { t: 'Je prefere la chaleur et la sueur', s: { spetsnaz: 2, marines: 2 } },
+      { t: 'Peu importe — je m\'adapte', s: { seals: 2, marines: 1 } }
+    ]
+  },
+  {
+    q: 'Ta philosophie en une phrase ?',
+    a: [
+      { t: 'L\'impossible n\'existe pas pour celui qui ose', s: { sas: 3, seals: 1 } },
+      { t: 'La douleur est temporaire, la fierte est eternelle', s: { legion: 3 } },
+      { t: 'La force resout tout', s: { spetsnaz: 3 } },
+      { t: 'Toujours fidele, toujours pret', s: { marines: 3, alpins: 1 } }
+    ]
+  },
+  {
+    q: 'En equipe, tu es plutot...',
+    a: [
+      { t: 'Le leader qui pousse tout le monde au-dela de ses limites', s: { seals: 3, marines: 1 } },
+      { t: 'L\'eclaireur discret qui ouvre la voie', s: { sas: 3, alpins: 1 } },
+      { t: 'Le pilier indestructible sur qui on peut compter', s: { legion: 3 } },
+      { t: 'Le warrior polyvalent qui comble les manques', s: { marines: 3, spetsnaz: 1 } }
+    ]
+  },
+  {
+    q: 'Ton heure d\'entrainement ideale ?',
+    a: [
+      { t: '5h du matin — avant que le monde se reveille', s: { seals: 3, marines: 1 } },
+      { t: 'En pleine nuit — quand personne ne regarde', s: { sas: 3 } },
+      { t: 'L\'heure n\'a pas d\'importance — je m\'entraine quand il faut', s: { legion: 3, alpins: 1 } },
+      { t: 'En fin de journee — quand je suis deja fatigue', s: { spetsnaz: 2, marines: 2 } }
+    ]
+  },
+  {
+    q: 'Si tu devais survivre 72h en nature sauvage...',
+    a: [
+      { t: 'Facile — j\'ai les skills de survie et le mental', s: { sas: 3, alpins: 1 } },
+      { t: 'Je construis un abri et je tiens — resilience pure', s: { legion: 3 } },
+      { t: 'Je cours jusqu\'a la civilisation — endurance max', s: { seals: 2, alpins: 2 } },
+      { t: 'Je chasse, je domine l\'environnement', s: { spetsnaz: 3, marines: 1 } }
+    ]
+  }
+];
+
+let currentQ = 0;
+const scores = { seals: 0, sas: 0, legion: 0, spetsnaz: 0, alpins: 0, marines: 0 };
+
+function startQuiz() {
+  document.getElementById('intro-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('q-counter').textContent = (currentQ + 1) + '/10';
+  document.getElementById('progress-bar').style.width = ((currentQ) / 10 * 100) + '%';
+  const c = document.getElementById('question-container');
+  c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
+  setTimeout(() => {
+    c.innerHTML = '<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6">' + q.q + '</h2><div class="space-y-3">' +
+      q.a.map((a, i) => '<button class="answer-btn" onclick="answer(' + i + ')"><span class="letter">' + String.fromCharCode(65 + i) + '</span>' + a.t + '</button>').join('') + '</div>';
+    c.style.transition = 'all .4s ease'; c.style.opacity = '1'; c.style.transform = 'translateY(0)';
+  }, 200);
+}
+
+function answer(idx) {
+  const q = questions[currentQ];
+  const s = q.a[idx].s;
+  for (const k in s) scores[k] = (scores[k] || 0) + s[k];
+  currentQ++;
+  if (currentQ < 10) { showQuestion(); }
+  else { showResult(); }
+}
+
+function showResult() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  document.getElementById('progress-bar').style.width = '100%';
+
+  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const prof = profiles[winner];
+
+  document.getElementById('result-screen').style.display = 'block';
+  document.getElementById('result-emoji').innerHTML = prof.emoji;
+  document.getElementById('result-badge').textContent = prof.badge;
+  document.getElementById('result-name').textContent = prof.name;
+  document.getElementById('result-unit').textContent = prof.unit;
+  document.getElementById('result-desc').textContent = prof.desc;
+  document.getElementById('plan-unit-name').textContent = prof.name;
+
+  // Stats
+  const statsHtml = Object.entries(prof.stats).map(([k, v]) =>
+    '<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">' + k + '</span><span style="color:var(--red);font-weight:600">' + v + '%</span></div><div class="stat-bar"><div class="stat-fill" style="width:0%;background:var(--red)"></div></div></div>'
+  ).join('');
+  document.getElementById('result-stats').innerHTML = statsHtml;
+  setTimeout(() => {
+    document.querySelectorAll('.stat-fill').forEach((el, i) => {
+      const v = Object.values(prof.stats)[i];
+      el.style.width = v + '%';
+    });
+  }, 400);
+
+  // Program
+  document.getElementById('result-program').innerHTML = prof.program.map(p =>
+    '<div class="flex items-start gap-2"><span style="color:var(--red);font-size:11px;margin-top:2px">&#9733;</span><span class="text-white/50 text-sm">' + p + '</span></div>'
+  ).join('');
+
+  // Product
+  document.getElementById('result-product').innerHTML = '<div style="width:40px;height:65px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12);flex-shrink:0"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div><div><strong class="text-sm">' + prof.product + '</strong></div>';
+}
+
+function captureEmail(e) {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const data = {}; fd.forEach((v, k) => data[k] = v);
+  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  data.source = 'quiz-military-training';
+  data.profile = winner;
+  data.unit = profiles[winner].name;
+  data.scores = JSON.stringify(scores);
+  data.timestamp = new Date().toISOString();
+  console.log('9MM Lead captured:', data);
+  // TODO: API call
+  document.getElementById('email-gate').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
+</script>
+</body>
+</html>
