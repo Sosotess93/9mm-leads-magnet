@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Reaction Time Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes pulseCyan{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.2)}50%{box-shadow:0 0 40px rgba(0,237,239,.4)}}
+@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
+*,*::before,*::after{box-sizing:border-box}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+
+/* Game Zone */
+#game-zone{width:100%;height:340px;border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;user-select:none;-webkit-user-select:none;position:relative;overflow:hidden}
+#game-zone.waiting{background:rgba(255,23,23,.08);border:2px solid rgba(255,23,23,.15)}
+#game-zone.ready{background:rgba(0,237,239,.15);border:2px solid rgba(0,237,239,.3)}
+#game-zone.too-early{background:rgba(255,100,50,.1);border:2px solid rgba(255,100,50,.2)}
+#game-zone.idle{background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.08)}
+
+.result-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.result-fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.16,1,.3,1)}
+.attempt-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
+.attempt-dot.done{background:var(--cyan)}
+.attempt-dot.active{background:var(--cyan);animation:countPulse 1s ease infinite}
+</style>
+</head>
+<body>
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3">
+<span class="font-oswald text-3xl font-bold tracking-wider">9MM</span>
+<span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span>
+</div>
+<div style="width:50px;height:3px;background:var(--cyan);margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<div class="text-center fade-in mb-8">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">TEST INTERACTIF</span>
+<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">
+<span class="text-white">Reaction</span> <span style="color:var(--cyan)">Time</span>
+</h1>
+<p class="text-white/45 max-w-md mx-auto">Teste ton temps de reaction et compare-toi aux gamers pro. 5 essais, pas de triche.</p>
+</div>
+
+<!-- GAME AREA -->
+<div id="game-container" class="fade-in delay-1">
+<!-- Attempt indicators -->
+<div class="flex items-center justify-center gap-3 mb-4">
+<div class="attempt-dot active" id="dot-0"></div>
+<div class="attempt-dot" id="dot-1"></div>
+<div class="attempt-dot" id="dot-2"></div>
+<div class="attempt-dot" id="dot-3"></div>
+<div class="attempt-dot" id="dot-4"></div>
+<span class="text-white/20 text-xs ml-2" id="attempt-label">Essai 1/5</span>
+</div>
+
+<div id="game-zone" class="idle">
+<div id="game-text" class="text-center px-6">
+<p class="font-oswald text-2xl font-bold uppercase mb-2">Pret ?</p>
+<p class="text-white/40 text-sm">Clique pour commencer le test</p>
+</div>
+</div>
+
+<!-- Live result -->
+<div id="live-result" class="text-center mt-4" style="display:none">
+<span class="font-oswald text-5xl font-bold" style="color:var(--cyan)" id="live-ms">0</span>
+<span class="text-white/30 text-sm ml-1">ms</span>
+</div>
+
+<!-- Attempts history -->
+<div id="attempts-history" class="flex justify-center gap-3 mt-4" style="display:none"></div>
+</div>
+
+<!-- RESULTS (hidden until complete) -->
+<div id="results-section" style="display:none" class="mt-8">
+<div class="glass-card p-8 md:p-10 text-center" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 60px rgba(0,237,239,.08)">
+<span class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">TON RESULTAT</span>
+<div class="font-oswald text-7xl md:text-8xl font-bold" style="color:var(--cyan)" id="final-ms">0</div>
+<p class="text-white/30 text-sm mb-1">millisecondes (moyenne)</p>
+<p class="font-oswald text-xl font-bold uppercase mt-3 mb-6" id="rank-label" style="color:var(--cyan)">—</p>
+
+<!-- Comparison bars -->
+<div class="max-w-sm mx-auto text-left space-y-4 mb-8">
+<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Pro Gamer</span><span style="color:var(--cyan)">&lt; 180ms</span></div><div class="result-bar"><div class="result-fill" style="width:95%;background:var(--cyan)"></div></div></div>
+<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Tres bon</span><span style="color:rgba(0,237,239,.6)">&lt; 220ms</span></div><div class="result-bar"><div class="result-fill" style="width:78%;background:rgba(0,237,239,.6)"></div></div></div>
+<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Bon</span><span style="color:rgba(0,237,239,.4)">&lt; 280ms</span></div><div class="result-bar"><div class="result-fill" style="width:60%;background:rgba(0,237,239,.4)"></div></div></div>
+<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Moyen</span><span style="color:rgba(255,255,255,.2)">&lt; 350ms</span></div><div class="result-bar"><div class="result-fill" style="width:40%;background:rgba(255,255,255,.15)"></div></div></div>
+<div id="your-bar"><div class="flex justify-between text-xs mb-1"><span class="text-white font-bold">Toi</span><span class="font-bold" style="color:var(--cyan)" id="your-bar-ms">—</span></div><div class="result-bar" style="border:1px solid rgba(0,237,239,.2)"><div class="result-fill" id="your-bar-fill" style="width:0%;background:linear-gradient(90deg,var(--cyan),#00b8ba)"></div></div></div>
+</div>
+
+<!-- Email gate -->
+<div id="email-gate">
+<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.15),transparent);margin:24px 0"></div>
+<p class="font-oswald text-lg font-bold uppercase mb-1">Recois tes resultats detailles</p>
+<p class="text-white/35 text-sm mb-6">+ Tips personnalises pour ameliorer ton temps de reaction</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-cyan">RECEVOIR MON ANALYSE →</button>
+</form>
+</div>
+<div id="success-msg" style="display:none" class="mt-6">
+<span style="font-size:40px">✅</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyee !</h4>
+<p class="text-white/45 text-sm">Verifie ta boite mail pour tes resultats detailles.</p>
+<button onclick="resetGame()" class="btn-cyan mt-4" style="max-width:200px;margin:16px auto 0;display:block;padding:12px">REJOUER</button>
+</div>
+</div>
+
+<div class="flex items-center gap-3 mt-6 justify-center">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🧠</div>
+</div>
+<span class="text-white/25 text-xs">12,400+ tests effectues</span>
+</div>
+</div>
+
+<!-- Product Section -->
+<section class="max-w-3xl mx-auto mt-16 mb-8 scroll-animate" data-delay=".2s" id="product-section">
+<div class="text-center mb-8">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">BOOST TES REFLEXES</span>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase leading-[.9]">Ameliore ton<br/><span style="color:var(--cyan)">temps de reaction</span></h2>
+</div>
+<div class="glass-card p-6 md:p-8" style="border-color:rgba(0,237,239,.1)">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="shrink-0 w-[120px] h-[200px] rounded-2xl flex items-center justify-center" style="background:linear-gradient(180deg,rgba(0,237,239,.08),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)">
+<div class="text-center"><span class="font-oswald text-3xl font-bold block" style="color:var(--cyan)">9MM</span><span class="text-[9px] tracking-[.15em] uppercase text-white/30 block mt-1">Active Mind</span><span class="text-[8px] text-white/20 block mt-2">250ml</span></div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="font-oswald text-xl font-bold uppercase mb-1">9MM Active Mind</h3>
+<p class="text-white/40 text-sm mb-4">Le Guarana + The Vert ameliorent la vitesse de traitement cognitif. Resultat : des temps de reaction plus rapides, naturellement.</p>
+<div class="flex flex-wrap gap-2 justify-center md:justify-start">
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Guarana</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Green Tea</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Ginseng</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6">
+<span class="font-oswald text-lg font-bold text-white/40">9MM</span>
+<span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span>
+<p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p>
+</div>
+</footer>
+
+<script>
+const zone=document.getElementById('game-zone');
+const gameText=document.getElementById('game-text');
+const liveResult=document.getElementById('live-result');
+const liveMsEl=document.getElementById('live-ms');
+const attemptsHistory=document.getElementById('attempts-history');
+const attemptLabel=document.getElementById('attempt-label');
+let state='idle'; // idle, waiting, ready, result, too-early, done
+let attempts=[];
+let currentAttempt=0;
+let startTime=0;
+let timeoutId=null;
+
+zone.addEventListener('click',handleClick);
+zone.addEventListener('touchstart',function(e){e.preventDefault();handleClick();},{passive:false});
+
+function handleClick(){
+  if(state==='idle'){startRound();}
+  else if(state==='waiting'){tooEarly();}
+  else if(state==='ready'){recordReaction();}
+  else if(state==='result'||state==='too-early'){startRound();}
+}
+
+function startRound(){
+  state='waiting';
+  zone.className='waiting';
+  gameText.innerHTML='<p class="font-oswald text-3xl font-bold uppercase" style="color:var(--red)">Attends le vert...</p><p class="text-white/30 text-sm mt-2">Ne clique pas encore !</p>';
+  liveResult.style.display='none';
+  const delay=1500+Math.random()*3500;
+  timeoutId=setTimeout(()=>{
+    state='ready';
+    zone.className='ready';
+    gameText.innerHTML='<p class="font-oswald text-4xl font-bold uppercase" style="color:var(--cyan)">CLIQUE !</p>';
+    startTime=performance.now();
+  },delay);
+}
+
+function tooEarly(){
+  clearTimeout(timeoutId);
+  state='too-early';
+  zone.className='too-early';
+  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase" style="color:rgba(255,150,50,1)">Trop tot !</p><p class="text-white/30 text-sm mt-2">Clique pour reessayer</p>';
+}
+
+function recordReaction(){
+  const ms=Math.round(performance.now()-startTime);
+  attempts.push(ms);
+  currentAttempt++;
+  state='result';
+  zone.className='idle';
+
+  // Show live result
+  liveResult.style.display='block';
+  liveMsEl.textContent=ms;
+  liveMsEl.style.color=ms<200?'var(--cyan)':ms<280?'rgba(0,237,239,.7)':ms<350?'rgba(255,255,255,.5)':'rgba(255,100,100,.6)';
+
+  // Update dots
+  for(let i=0;i<5;i++){
+    const d=document.getElementById('dot-'+i);
+    d.className='attempt-dot'+(i<currentAttempt?' done':'')+(i===currentAttempt?' active':'');
+  }
+  attemptLabel.textContent=currentAttempt<5?'Essai '+(currentAttempt+1)+'/5':'Termine !';
+
+  // Show attempt history
+  attemptsHistory.style.display='flex';
+  attemptsHistory.innerHTML=attempts.map((a,i)=>'<div class="text-center"><span class="text-[10px] text-white/30">E'+(i+1)+'</span><br><span class="font-oswald text-sm font-bold" style="color:var(--cyan)">'+a+'ms</span></div>').join('');
+
+  if(currentAttempt<5){
+    gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase"><span style="color:var(--cyan)">'+ms+'ms</span></p><p class="text-white/30 text-sm mt-2">Clique pour l\'essai suivant</p>';
+  }else{
+    showFinalResults();
+  }
+}
+
+function showFinalResults(){
+  state='done';
+  zone.style.display='none';
+  attemptsHistory.style.display='none';
+  liveResult.style.display='none';
+
+  const avg=Math.round(attempts.reduce((a,b)=>a+b,0)/attempts.length);
+  document.getElementById('results-section').style.display='block';
+  document.getElementById('final-ms').textContent=avg;
+  document.getElementById('your-bar-ms').textContent=avg+'ms';
+
+  // Calculate bar width (inverse: lower = better = wider)
+  const pct=Math.max(5,Math.min(100,((500-avg)/500)*100));
+  setTimeout(()=>{document.getElementById('your-bar-fill').style.width=pct+'%';},200);
+
+  // Rank
+  let rank='';
+  if(avg<180)rank='🏆 Niveau Pro Gamer !';
+  else if(avg<220)rank='⚡ Tres bon — Top 15%';
+  else if(avg<280)rank='🎯 Bon — Au-dessus de la moyenne';
+  else if(avg<350)rank='💪 Moyen — Tu peux progresser';
+  else rank='🔄 A ameliorer — Entraine-toi !';
+  document.getElementById('rank-label').textContent=rank;
+}
+
+function captureEmail(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const data={};fd.forEach((v,k)=>data[k]=v);
+  const avg=Math.round(attempts.reduce((a,b)=>a+b,0)/attempts.length);
+  data.source='reaction-time-test';
+  data.result_ms=avg;
+  data.attempts=attempts.join(',');
+  data.timestamp=new Date().toISOString();
+  console.log('9MM Lead captured:',data);
+  document.getElementById('email-gate').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+}
+
+function resetGame(){
+  attempts=[];currentAttempt=0;state='idle';
+  zone.style.display='flex';zone.className='idle';
+  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase mb-2">Pret ?</p><p class="text-white/40 text-sm">Clique pour commencer le test</p>';
+  liveResult.style.display='none';attemptsHistory.style.display='none';
+  document.getElementById('results-section').style.display='none';
+  document.getElementById('email-gate').style.display='block';
+  document.getElementById('success-msg').style.display='none';
+  for(let i=0;i<5;i++){document.getElementById('dot-'+i).className='attempt-dot'+(i===0?' active':'');}
+  attemptLabel.textContent='Essai 1/5';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Quel Pro Te Ressemble ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes cardReveal{0%{opacity:0;transform:scale(.8) rotateY(15deg)}100%{opacity:1;transform:scale(1) rotateY(0deg)}}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
+.card-reveal{animation:cardReveal .8s cubic-bezier(.16,1,.3,1) both}
+*,*::before,*::after{box-sizing:border-box}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+
+.answer-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
+.answer-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);transform:translateX(4px)}
+.answer-btn .letter{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);flex-shrink:0}
+
+.archetype-card{border-radius:20px;padding:30px;text-align:center;position:relative;overflow:hidden}
+.stat-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
+.stat-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+</style>
+</head>
+<body>
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span></div>
+<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-2xl mx-auto px-5 pb-16 relative z-10">
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<!-- INTRO -->
+<div id="intro-screen" class="text-center fade-in">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:linear-gradient(135deg,rgba(255,23,23,.08),rgba(0,237,239,.08));color:#fff;border:1px solid rgba(255,255,255,.1)">QUIZ PERSONNALITE</span>
+<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-4">Quel Pro<br/><span style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Te Ressemble ?</span></h1>
+<p class="text-white/45 max-w-md mx-auto mb-8">10 questions pour decouvrir ton archetype de performer. Strategiste, Clutcher, Tank... quel est ton style ?</p>
+<div class="flex gap-4 justify-center flex-wrap mb-8">
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🎯</span><p class="text-[10px] text-white/30 mt-1">Le Sniper</p></div>
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🧠</span><p class="text-[10px] text-white/30 mt-1">Le Stratege</p></div>
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🛡️</span><p class="text-[10px] text-white/30 mt-1">Le Tank</p></div>
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🔥</span><p class="text-[10px] text-white/30 mt-1">Le Clutcher</p></div>
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">🏃</span><p class="text-[10px] text-white/30 mt-1">Le Marathon</p></div>
+<div class="glass-card p-3 px-5 text-center"><span style="font-size:20px">⚡</span><p class="text-[10px] text-white/30 mt-1">Le Hybrid</p></div>
+</div>
+<button onclick="startQuiz()" class="btn-dual" style="max-width:280px;margin:0 auto;display:block">DECOUVRIR MON PROFIL →</button>
+<p class="text-white/20 text-xs mt-4">⏱️ 2 min • 10 questions • 100% gratuit</p>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-screen" style="display:none">
+<div class="flex items-center gap-3 mb-6">
+<div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width:0%;background:linear-gradient(90deg,var(--red),var(--cyan))"></div></div>
+<span class="text-xs text-white/30 font-oswald" id="q-counter">1/10</span>
+</div>
+<div id="question-container"></div>
+</div>
+
+<!-- RESULTS -->
+<div id="result-screen" style="display:none">
+<div class="card-reveal">
+<div class="archetype-card" id="archetype-card" style="background:rgba(0,237,239,.04);border:2px solid rgba(0,237,239,.15)">
+<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 30%,rgba(0,237,239,.06),transparent);pointer-events:none"></div>
+<span id="result-emoji" style="font-size:64px;display:block;margin-bottom:12px;position:relative;z-index:2">🎯</span>
+<span class="text-[10px] tracking-[.3em] uppercase text-white/30 block mb-2" style="position:relative;z-index:2">Ton archetype</span>
+<h2 class="font-oswald text-4xl md:text-5xl font-bold uppercase mb-2" id="result-name" style="position:relative;z-index:2;color:var(--cyan)">Le Sniper</h2>
+<p class="text-white/45 text-sm max-w-sm mx-auto mb-6" id="result-desc" style="position:relative;z-index:2">—</p>
+
+<div class="max-w-xs mx-auto text-left space-y-3 mb-6" id="result-stats" style="position:relative;z-index:2"></div>
+
+<div class="glass-card p-4 text-left mb-6" style="position:relative;z-index:2">
+<strong class="text-sm block mb-2" id="result-strength-title">Tes forces</strong>
+<div id="result-strengths" class="flex flex-wrap gap-2"></div>
+</div>
+
+<div class="glass-card p-4 text-left" style="position:relative;z-index:2">
+<strong class="text-sm block mb-2">Ton 9MM recommande</strong>
+<div class="flex items-center gap-3" id="result-product"></div>
+</div>
+</div>
+</div>
+
+<div class="glass-card p-8 mt-6 text-center" style="border-color:rgba(0,237,239,.1);box-shadow:0 0 40px rgba(0,237,239,.05)">
+<div id="email-gate">
+<p class="font-oswald text-lg font-bold uppercase mb-1">Recois ta carte de profil en HD</p>
+<p class="text-white/35 text-sm mb-6">+ Tips adaptes a ton archetype</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-cyan">RECEVOIR MA CARTE →</button>
+</form>
+</div>
+<div id="success-msg" style="display:none" class="mt-4">
+<span style="font-size:40px">✅</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Envoye !</h4>
+<p class="text-white/45 text-sm">Ta carte de profil arrive dans ta boite mail.</p>
+</div>
+</div>
+
+<div class="flex items-center gap-3 mt-6 justify-center">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">💪</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div>
+</div>
+<span class="text-white/25 text-xs">8,200+ profils decouverts</span>
+</div>
+</div>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6"><span class="font-oswald text-lg font-bold text-white/40">9MM</span><span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span><p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p></div>
+</footer>
+
+<script>
+const archetypes={
+  sniper:{emoji:'🎯',name:'Le Sniper',color:'var(--cyan)',bg:'rgba(0,237,239,.04)',border:'rgba(0,237,239,.15)',desc:'Precision chirurgicale. Tu vises, tu tires, tu touches. Chaque action est calculee, chaque mouvement est optimise.',stats:{Precision:95,Focus:90,Patience:85,Explosivite:40,Endurance:55},strengths:['Precision','Calme sous pression','Analyse rapide','Patience'],product:'Active Mind — pour une clarte mentale absolue'},
+  strategist:{emoji:'🧠',name:'Le Stratege',color:'var(--cyan)',bg:'rgba(0,237,239,.04)',border:'rgba(0,237,239,.15)',desc:'Tu vois 3 coups d\'avance. La victoire se gagne dans la tete avant de se jouer sur le terrain.',stats:{Strategie:95,Analyse:92,Adaptabilite:85,Vitesse:50,Force:45},strengths:['Vision macro','Decision-making','Lecture du jeu','Adaptabilite'],product:'Active Mind — pour une concentration strategique'},
+  tank:{emoji:'🛡️',name:'Le Tank',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'Indestructible. Tu encaisses, tu tiens la ligne, tu ne recules jamais. La resilience est ton arme.',stats:{Endurance:95,Resilience:92,Force:88,Vitesse:45,Precision:55},strengths:['Resilience extreme','Force mentale','Regularite','Leadership'],product:'Active Body — pour une endurance indestructible'},
+  clutcher:{emoji:'🔥',name:'Le Clutcher',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'Plus la pression monte, plus tu brilles. Les situations impossibles sont ton terrain de jeu.',stats:{Clutch:95,Explosivite:90,Instinct:88,Regularite:40,Patience:45},strengths:['Performance sous pression','Instinct killer','Explosivite','Courage'],product:'Active Body — pour l\'energie explosive des moments clutch'},
+  marathon:{emoji:'🏃',name:'Le Marathonien',color:'var(--red)',bg:'rgba(255,23,23,.04)',border:'rgba(255,23,23,.15)',desc:'La regularite est ta force. Tu ne faiblis jamais, tu progresses chaque jour, tu joues le long terme.',stats:{Endurance:95,Regularite:92,Discipline:90,Explosivite:35,Clutch:40},strengths:['Discipline incroyable','Progression constante','Pas de fatigue','Mindset long-terme'],product:'Active Body — pour une energie qui dure des heures'},
+  hybrid:{emoji:'⚡',name:'Le Hybrid',color:'#fff',bg:'linear-gradient(135deg,rgba(255,23,23,.03),rgba(0,237,239,.03))',border:'rgba(255,255,255,.12)',desc:'Le meilleur des deux mondes. Tu combines force physique et acuite mentale. Polyvalent et imprevisible.',stats:{Polyvalence:95,Adaptabilite:90,Equilibre:85,Specialisation:50,Prediction:60},strengths:['Ultra polyvalent','Surprise tactique','Corps et esprit','Adaptabilite'],product:'Active Body + Active Mind — alterne selon le defi'}
+};
+
+const questions=[
+  {q:'En competition, tu preferes...',a:[{t:'Analyser puis frapper au moment parfait',s:{sniper:3,strategist:2}},{t:'Foncer et imposer ton rythme',s:{tank:3,clutcher:2}},{t:'Tenir la distance et user l\'adversaire',s:{marathon:3,tank:1}},{t:'T\'adapter a chaque situation',s:{hybrid:3,strategist:1}}]},
+  {q:'Quel mot te decrit le mieux ?',a:[{t:'Precis',s:{sniper:3,strategist:1}},{t:'Intense',s:{clutcher:3,tank:1}},{t:'Resilient',s:{marathon:3,tank:2}},{t:'Strategique',s:{strategist:3,hybrid:1}}]},
+  {q:'Quand la pression monte...',a:[{t:'Je deviens plus calme et concentre',s:{sniper:3,strategist:2}},{t:'Je m\'enflamme et je donne tout',s:{clutcher:3}},{t:'Je continue comme si de rien n\'etait',s:{marathon:3,tank:1}},{t:'Je change de strategie',s:{hybrid:3,strategist:1}}]},
+  {q:'Ton entrainement ideal ?',a:[{t:'Precision et technique pure',s:{sniper:3}},{t:'Haute intensite, depassement total',s:{clutcher:2,tank:2}},{t:'Long et regulier, progression lente',s:{marathon:3}},{t:'Varie, jamais la meme chose',s:{hybrid:3}}]},
+  {q:'En equipe, tu es plutot...',a:[{t:'Le carry silencieux qui fait la diff',s:{sniper:3,clutcher:1}},{t:'Le leader qui guide et motive',s:{tank:3,strategist:1}},{t:'Le cerveau qui donne les calls',s:{strategist:3}},{t:'Le joker qui s\'adapte au besoin',s:{hybrid:3}}]},
+  {q:'Ton plus gros defaut ?',a:[{t:'Trop prudent, j\'attends trop',s:{sniper:2,strategist:2}},{t:'Trop impulsif dans les moments chauds',s:{clutcher:3}},{t:'Pas assez explosif quand il faut',s:{marathon:3}},{t:'Pas assez specialise',s:{hybrid:3}}]},
+  {q:'Tu preferes gagner comment ?',a:[{t:'Un move parfait au bon moment',s:{sniper:3,clutcher:1}},{t:'En dominant du debut a la fin',s:{tank:3}},{t:'Grace a un plan execute parfaitement',s:{strategist:3}},{t:'En surpassant tout le monde sur la duree',s:{marathon:3}}]},
+  {q:'Ton alimentation avant une session ?',a:[{t:'Legere et precise, juste ce qu\'il faut',s:{sniper:2,strategist:2}},{t:'Copieuse, j\'ai besoin d\'energie max',s:{tank:3,marathon:1}},{t:'Je mange pas trop, je veux etre alerte',s:{clutcher:2,sniper:1}},{t:'Equilibree, un peu de tout',s:{hybrid:3}}]},
+  {q:'Ce qui te frustre le plus ?',a:[{t:'Rater un tir/move que j\'aurais du reussir',s:{sniper:3}},{t:'Perdre alors que j\'ai tout donne',s:{clutcher:3,tank:1}},{t:'Ne pas avoir de plan clair',s:{strategist:3}},{t:'Faire la meme chose trop longtemps',s:{hybrid:3}}]},
+  {q:'Ton reve de performance ?',a:[{t:'Le headshot/move parfait en finale',s:{sniper:3,clutcher:1}},{t:'Etre inarretable physiquement',s:{tank:3,marathon:1}},{t:'Gagner grace a mon cerveau',s:{strategist:3}},{t:'Etre bon dans absolument tout',s:{hybrid:3}}]}
+];
+
+let currentQ=0;
+const scores={sniper:0,strategist:0,tank:0,clutcher:0,marathon:0,hybrid:0};
+
+function startQuiz(){
+  document.getElementById('intro-screen').style.display='none';
+  document.getElementById('quiz-screen').style.display='block';
+  showQuestion();
+}
+
+function showQuestion(){
+  const q=questions[currentQ];
+  document.getElementById('q-counter').textContent=(currentQ+1)+'/10';
+  document.getElementById('progress-bar').style.width=((currentQ)/10*100)+'%';
+  const c=document.getElementById('question-container');
+  c.style.opacity='0';c.style.transform='translateY(20px)';
+  setTimeout(()=>{
+    c.innerHTML='<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6">'+q.q+'</h2><div class="space-y-3">'+
+      q.a.map((a,i)=>'<button class="answer-btn" onclick="answer('+i+')"><span class="letter">'+String.fromCharCode(65+i)+'</span>'+a.t+'</button>').join('')+'</div>';
+    c.style.transition='all .4s ease';c.style.opacity='1';c.style.transform='translateY(0)';
+  },200);
+}
+
+function answer(idx){
+  const q=questions[currentQ];
+  const s=q.a[idx].s;
+  for(const k in s)scores[k]=(scores[k]||0)+s[k];
+  currentQ++;
+  if(currentQ<10){showQuestion();}
+  else{showResult();}
+}
+
+function showResult(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('progress-bar').style.width='100%';
+
+  const winner=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+  const arch=archetypes[winner];
+
+  document.getElementById('result-screen').style.display='block';
+  document.getElementById('result-emoji').textContent=arch.emoji;
+  document.getElementById('result-name').textContent=arch.name;
+  document.getElementById('result-name').style.color=arch.color;
+  document.getElementById('result-desc').textContent=arch.desc;
+
+  const card=document.getElementById('archetype-card');
+  card.style.background=arch.bg;card.style.borderColor=arch.border;
+
+  // Stats
+  const statsHtml=Object.entries(arch.stats).map(([k,v])=>'<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">'+k+'</span><span style="color:'+arch.color+';font-weight:600">'+v+'%</span></div><div class="stat-bar"><div class="stat-fill" style="width:0%;background:'+arch.color+'"></div></div></div>').join('');
+  document.getElementById('result-stats').innerHTML=statsHtml;
+  setTimeout(()=>{document.querySelectorAll('.stat-fill').forEach((el,i)=>{const v=Object.values(arch.stats)[i];el.style.width=v+'%';});},400);
+
+  // Strengths
+  const isRed=arch.color==='var(--red)';
+  document.getElementById('result-strengths').innerHTML=arch.strengths.map(s=>'<span style="font-size:11px;padding:5px 12px;border-radius:99px;background:'+(isRed?'rgba(255,23,23,.06)':'rgba(0,237,239,.06)')+';color:'+arch.color+';border:1px solid '+(isRed?'rgba(255,23,23,.1)':'rgba(0,237,239,.1)')+'">'+s+'</span>').join('');
+
+  // Product
+  document.getElementById('result-product').innerHTML='<div style="width:40px;height:65px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:'+(isRed?'rgba(255,23,23,.08)':'rgba(0,237,239,.08)')+';border:1px solid '+(isRed?'rgba(255,23,23,.12)':'rgba(0,237,239,.12)')+';flex-shrink:0"><span class="font-oswald text-sm font-bold" style="color:'+arch.color+'">9MM</span></div><div><strong class="text-sm">'+arch.product+'</strong></div>';
+}
+
+function captureEmail(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);const data={};fd.forEach((v,k)=>data[k]=v);
+  const winner=Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+  data.source='pro-match-quiz';data.archetype=winner;data.scores=JSON.stringify(scores);data.timestamp=new Date().toISOString();
+  console.log('9MM Lead captured:',data);
+  document.getElementById('email-gate').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+}
+</script>
+</body>
+</html>

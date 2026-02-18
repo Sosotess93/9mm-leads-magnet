@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Comparateur Energy Drinks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes barGrow{0%{width:0%}100%{width:var(--target-width)}}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
+*,*::before,*::after{box-sizing:border-box}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}.comp-grid{grid-template-columns:1fr!important}}
+
+.drink-select{padding:12px 16px;border-radius:12px;cursor:pointer;transition:all .2s;text-align:center;user-select:none;-webkit-user-select:none}
+.drink-select.unselected{background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.06)}
+.drink-select.unselected:hover{border-color:rgba(255,255,255,.15)}
+.drink-select.selected{border:2px solid var(--cyan);background:rgba(0,237,239,.05)}
+.drink-select.selected-9mm{border:2px solid var(--cyan);background:rgba(0,237,239,.08)}
+
+.comp-bar{height:10px;border-radius:99px;background:rgba(255,255,255,.04);overflow:hidden;position:relative}
+.comp-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+.winner-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:99px;font-weight:700;background:rgba(0,237,239,.1);color:var(--cyan);border:1px solid rgba(0,237,239,.15)}
+.loser{opacity:.4}
+</style>
+</head>
+<body>
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span></div>
+<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-4xl mx-auto px-5 pb-16 relative z-10">
+<div class="text-center fade-in mb-8">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:linear-gradient(135deg,rgba(255,23,23,.08),rgba(0,237,239,.08));color:#fff;border:1px solid rgba(255,255,255,.1)">COMPARATEUR</span>
+<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">Energy Drinks<br/><span style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Face a Face</span></h1>
+<p class="text-white/45 max-w-lg mx-auto">Selectionne jusqu'a 2 boissons et compare-les a 9MM. Ingredients, sucre, cafeine — les chiffres parlent.</p>
+</div>
+
+<!-- DRINK SELECTOR -->
+<div class="fade-in delay-1 mb-8">
+<p class="text-white/30 text-xs uppercase tracking-widest mb-3 text-center">Selectionne 1 ou 2 concurrents</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="drink-selector">
+<div class="drink-select selected-9mm" style="pointer-events:none"><span style="font-size:24px">⚡</span><p class="font-oswald text-sm font-bold mt-1" style="color:var(--cyan)">9MM Active Mind</p><p class="text-[10px] text-white/25">Toujours inclus</p></div>
+<div class="drink-select unselected" data-drink="redbull" onclick="toggleDrink(this)"><span style="font-size:24px">🥫</span><p class="font-oswald text-sm font-bold mt-1">Red Bull</p><p class="text-[10px] text-white/25">250ml</p></div>
+<div class="drink-select unselected" data-drink="monster" onclick="toggleDrink(this)"><span style="font-size:24px">🥫</span><p class="font-oswald text-sm font-bold mt-1">Monster</p><p class="text-[10px] text-white/25">500ml</p></div>
+<div class="drink-select unselected" data-drink="gfuel" onclick="toggleDrink(this)"><span style="font-size:24px">🥤</span><p class="font-oswald text-sm font-bold mt-1">G-Fuel</p><p class="text-[10px] text-white/25">473ml</p></div>
+</div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div id="comparison" style="display:none" class="space-y-4">
+<div class="glass-card p-5 md:p-6" id="comp-table"></div>
+
+<!-- VERDICT -->
+<div class="glass-card p-6 text-center" id="verdict-card" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 40px rgba(0,237,239,.06)">
+<span class="font-oswald text-lg font-bold uppercase" style="color:var(--cyan)">Verdict</span>
+<p class="text-white/40 text-sm mt-2 mb-6" id="verdict-text">—</p>
+
+<div id="email-gate">
+<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.12),transparent);margin:16px 0"></div>
+<p class="font-oswald text-lg font-bold uppercase mb-1">Recois le rapport complet</p>
+<p class="text-white/35 text-sm mb-6">Analyse detaillee + recommandations personnalisees</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-cyan">RECEVOIR LE RAPPORT →</button>
+</form>
+</div>
+<div id="success-msg" style="display:none" class="mt-4">
+<span style="font-size:40px">✅</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Envoye !</h4>
+<p class="text-white/45 text-sm">Verifie ta boite mail pour le rapport complet.</p>
+</div>
+</div>
+</div>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6"><span class="font-oswald text-lg font-bold text-white/40">9MM</span><span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span><p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p></div>
+</footer>
+
+<script>
+const drinks={
+  '9mm':{name:'9MM Active Mind',sugar:0,calories:5,caffeine:80,natural:100,crash:0,ingredients:['Guarana','The Vert','Ginseng','Vitamines B','Cafeine naturelle'],origin:'Suisse 🇨🇭',color:'var(--cyan)',colorBg:'rgba(0,237,239,.1)'},
+  redbull:{name:'Red Bull',sugar:27,calories:112,caffeine:80,natural:20,crash:70,ingredients:['Taurine','Cafeine synthetique','Sucre','Colorants'],origin:'Autriche',color:'rgba(255,200,50,.7)',colorBg:'rgba(255,200,50,.08)'},
+  monster:{name:'Monster Energy',sugar:54,calories:220,caffeine:160,natural:15,crash:80,ingredients:['Taurine','Cafeine synthetique','Sucre','Colorants','Benzoate de sodium'],origin:'USA',color:'rgba(100,255,100,.6)',colorBg:'rgba(100,255,100,.06)'},
+  gfuel:{name:'G-Fuel',sugar:0,calories:25,caffeine:140,natural:40,crash:45,ingredients:['Cafeine synthetique','Vitamines','Antioxydants','Aromes artificiels'],origin:'USA',color:'rgba(200,100,255,.6)',colorBg:'rgba(200,100,255,.06)'}
+};
+
+let selected=[];
+
+function toggleDrink(el){
+  const id=el.dataset.drink;
+  if(el.classList.contains('selected')){
+    el.className='drink-select unselected';
+    selected=selected.filter(s=>s!==id);
+  }else{
+    if(selected.length>=2){
+      const old=document.querySelector('[data-drink="'+selected[0]+'"]');
+      if(old)old.className='drink-select unselected';
+      selected.shift();
+    }
+    el.className='drink-select selected';
+    selected.push(id);
+  }
+  if(selected.length>0)buildComparison();
+  else document.getElementById('comparison').style.display='none';
+}
+
+function buildComparison(){
+  document.getElementById('comparison').style.display='block';
+  const all=['9mm',...selected];
+  const criteria=[
+    {key:'sugar',label:'Sucre (g)',unit:'g',lower:true},
+    {key:'calories',label:'Calories',unit:'kcal',lower:true},
+    {key:'caffeine',label:'Cafeine (mg)',unit:'mg',lower:false},
+    {key:'natural',label:'Ingredients naturels',unit:'%',lower:false},
+    {key:'crash',label:'Risque de crash',unit:'%',lower:true}
+  ];
+
+  let html='<div class="comp-grid" style="display:grid;grid-template-columns:140px repeat('+all.length+',1fr);gap:8px;align-items:center">';
+
+  // Header
+  html+='<div></div>';
+  all.forEach(id=>{
+    const d=drinks[id];
+    html+='<div class="text-center"><span class="font-oswald text-sm font-bold" style="color:'+d.color+'">'+d.name+'</span></div>';
+  });
+
+  // Rows
+  criteria.forEach(c=>{
+    const vals=all.map(id=>drinks[id][c.key]);
+    const best=c.lower?Math.min(...vals):Math.max(...vals);
+    const maxVal=Math.max(...vals,1);
+
+    html+='<div class="text-xs text-white/40 py-3" style="border-top:1px solid rgba(255,255,255,.04)">'+c.label+'</div>';
+    all.forEach(id=>{
+      const d=drinks[id];
+      const v=d[c.key];
+      const isBest=v===best;
+      const pct=(v/maxVal)*100||2;
+      html+='<div class="py-3" style="border-top:1px solid rgba(255,255,255,.04)"><div class="flex items-center justify-between mb-1"><span class="font-oswald text-sm font-bold '+(isBest?'':'loser')+'" style="color:'+(isBest?d.color:'rgba(255,255,255,.3)')+'">'+v+c.unit+'</span>'+(isBest?'<span class="winner-badge">BEST</span>':'')+'</div><div class="comp-bar"><div class="comp-fill" style="width:'+pct+'%;background:'+d.color+'"></div></div></div>';
+    });
+  });
+
+  // Ingredients row
+  html+='<div class="text-xs text-white/40 py-3" style="border-top:1px solid rgba(255,255,255,.04)">Ingredients</div>';
+  all.forEach(id=>{
+    const d=drinks[id];
+    html+='<div class="py-3" style="border-top:1px solid rgba(255,255,255,.04)"><div class="flex flex-wrap gap-1">'+d.ingredients.map(i=>'<span style="font-size:9px;padding:2px 6px;border-radius:99px;background:'+d.colorBg+';color:'+d.color+';border:1px solid '+d.colorBg+'">'+i+'</span>').join('')+'</div></div>';
+  });
+
+  // Origin
+  html+='<div class="text-xs text-white/40 py-3" style="border-top:1px solid rgba(255,255,255,.04)">Origine</div>';
+  all.forEach(id=>{html+='<div class="py-3 text-xs text-white/30" style="border-top:1px solid rgba(255,255,255,.04)">'+drinks[id].origin+'</div>';});
+
+  html+='</div>';
+  document.getElementById('comp-table').innerHTML=html;
+
+  // Verdict
+  const wins9mm=criteria.filter(c=>{
+    const vals=all.map(id=>drinks[id][c.key]);
+    const best=c.lower?Math.min(...vals):Math.max(...vals);
+    return drinks['9mm'][c.key]===best;
+  }).length;
+  const total=criteria.length;
+  const names=selected.map(s=>drinks[s].name).join(' et ');
+  document.getElementById('verdict-text').textContent='9MM Active Mind remporte '+wins9mm+'/'+total+' categories face a '+names+'. Ingredients 100% naturels, zero sucre, zero crash. Made in Switzerland.';
+}
+
+function captureEmail(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);const data={};fd.forEach((v,k)=>data[k]=v);
+  data.source='comparateur-energy';data.compared=selected.join(',');data.timestamp=new Date().toISOString();
+  console.log('9MM Lead captured:',data);
+  document.getElementById('email-gate').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+}
+</script>
+</body>
+</html>

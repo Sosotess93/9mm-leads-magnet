@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Focus Score Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
+*,*::before,*::after{box-sizing:border-box}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+
+#game-area{width:100%;min-height:380px;position:relative;border-radius:16px;background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.06);overflow:hidden}
+.target-btn{position:absolute;border:none;border-radius:12px;cursor:pointer;font-family:'Oswald',sans-serif;font-weight:700;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .15s;user-select:none;-webkit-user-select:none}
+.target-btn.correct{background:rgba(0,237,239,.15);border:2px solid rgba(0,237,239,.3);color:var(--cyan)}
+.target-btn.correct:hover{background:rgba(0,237,239,.25);transform:scale(1.05)}
+.target-btn.decoy{background:rgba(255,23,23,.08);border:2px solid rgba(255,23,23,.12);color:rgba(255,23,23,.5)}
+.target-btn.decoy:hover{background:rgba(255,23,23,.15)}
+.progress-ring{transform:rotate(-90deg)}
+.progress-ring circle{transition:stroke-dashoffset .5s ease}
+</style>
+</head>
+<body>
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span></div>
+<div style="width:50px;height:3px;background:var(--cyan);margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<div class="text-center fade-in mb-8">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">TEST DE CONCENTRATION</span>
+<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">Focus <span style="color:var(--cyan)">Score</span></h1>
+<p class="text-white/45 max-w-md mx-auto">Clique uniquement sur le bon chiffre. La vitesse augmente. Combien de points tu tiens ?</p>
+</div>
+
+<!-- HUD -->
+<div class="flex justify-between items-center mb-4 fade-in delay-1">
+<div class="flex items-center gap-4">
+<div class="text-center"><span class="text-[10px] text-white/30 uppercase block">Score</span><span class="font-oswald text-2xl font-bold" style="color:var(--cyan)" id="score-display">0</span></div>
+<div class="text-center"><span class="text-[10px] text-white/30 uppercase block">Niveau</span><span class="font-oswald text-2xl font-bold text-white" id="level-display">1</span></div>
+</div>
+<div class="text-center"><span class="text-[10px] text-white/30 uppercase block">Vies</span><div id="lives-display" class="flex gap-1 mt-1"><span>💚</span><span>💚</span><span>💚</span></div></div>
+<div class="text-center"><span class="text-[10px] text-white/30 uppercase block">Temps</span><span class="font-oswald text-2xl font-bold text-white" id="timer-display">0s</span></div>
+</div>
+
+<!-- GAME AREA -->
+<div id="game-area" class="fade-in delay-1">
+<div id="game-start-screen" class="flex items-center justify-center h-full" style="min-height:380px">
+<div class="text-center px-6">
+<p class="font-oswald text-3xl font-bold uppercase mb-2" style="color:var(--cyan)">Focus Test</p>
+<p class="text-white/40 text-sm mb-4">Un chiffre cible apparait en haut. Clique UNIQUEMENT sur ce chiffre parmi les leurres.</p>
+<p class="text-white/25 text-xs mb-6">3 vies • Vitesse croissante • Pas de second chance</p>
+<button onclick="startGame()" class="btn-cyan" style="max-width:220px;margin:0 auto;display:block;padding:14px">COMMENCER LE TEST</button>
+</div>
+</div>
+<div id="target-indicator" style="display:none" class="absolute top-4 left-1/2 transform -translate-x-1/2 z-10 text-center">
+<span class="text-[10px] text-white/30 uppercase tracking-widest">Trouve le</span>
+<span class="font-oswald text-4xl font-bold block" style="color:var(--cyan)" id="target-number">0</span>
+</div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-section" style="display:none" class="mt-8">
+<div class="glass-card p-8 md:p-10 text-center" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 60px rgba(0,237,239,.08)">
+<span class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">TON FOCUS SCORE</span>
+<div class="flex justify-center mb-4">
+<svg class="progress-ring" width="160" height="160"><circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/><circle id="score-ring" cx="80" cy="80" r="70" fill="none" stroke="var(--cyan)" stroke-width="8" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="440"/></svg>
+<div style="position:absolute;margin-top:48px"><span class="font-oswald text-5xl font-bold" style="color:var(--cyan)" id="final-score">0</span><span class="text-white/30 text-sm block">/100</span></div>
+</div>
+<p class="font-oswald text-xl font-bold uppercase mt-2 mb-1" id="focus-rank" style="color:var(--cyan)">—</p>
+<p class="text-white/30 text-sm mb-6" id="focus-stats">—</p>
+
+<div class="max-w-sm mx-auto grid grid-cols-3 gap-3 mb-8">
+<div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold" style="color:var(--cyan)" id="stat-hits">0</span><p class="text-[10px] text-white/30 mt-1">Cibles</p></div>
+<div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold text-white" id="stat-level">0</span><p class="text-[10px] text-white/30 mt-1">Niveau max</p></div>
+<div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold text-white" id="stat-time">0s</span><p class="text-[10px] text-white/30 mt-1">Duree</p></div>
+</div>
+
+<div id="email-gate">
+<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.15),transparent);margin:20px 0"></div>
+<p class="font-oswald text-lg font-bold uppercase mb-1">Recois ton analyse focus</p>
+<p class="text-white/35 text-sm mb-6">+ Programme personnalise pour ameliorer ta concentration</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-cyan">RECEVOIR MON ANALYSE →</button>
+</form>
+</div>
+<div id="success-msg" style="display:none" class="mt-6">
+<span style="font-size:40px">✅</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyee !</h4>
+<p class="text-white/45 text-sm mb-4">Verifie ta boite mail.</p>
+<button onclick="location.reload()" class="btn-cyan" style="max-width:200px;margin:0 auto;display:block;padding:12px">REJOUER</button>
+</div>
+</div>
+</div>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6">
+<span class="font-oswald text-lg font-bold text-white/40">9MM</span>
+<span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span>
+<p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p>
+</div>
+</footer>
+
+<script>
+let score=0,lives=3,level=1,hits=0,gameActive=false,targetNum=0,spawnInterval=null,gameTimer=null,seconds=0;
+const area=document.getElementById('game-area');
+
+function startGame(){
+  document.getElementById('game-start-screen').style.display='none';
+  document.getElementById('target-indicator').style.display='block';
+  score=0;lives=3;level=1;hits=0;seconds=0;gameActive=true;
+  updateHUD();
+  nextTarget();
+  spawnInterval=setInterval(spawnButtons,getSpeed());
+  gameTimer=setInterval(()=>{seconds++;document.getElementById('timer-display').textContent=seconds+'s';},1000);
+}
+
+function getSpeed(){return Math.max(600,2000-level*150);}
+
+function nextTarget(){
+  targetNum=Math.floor(Math.random()*9)+1;
+  document.getElementById('target-number').textContent=targetNum;
+}
+
+function spawnButtons(){
+  if(!gameActive)return;
+  // Clear old
+  area.querySelectorAll('.target-btn').forEach(b=>{if(parseFloat(b.style.opacity)<=0)b.remove();});
+  // Spawn correct + decoys
+  const count=Math.min(3+level,8);
+  const hasCorrect=Math.random()>0.3;
+  for(let i=0;i<count;i++){
+    const isCorrect=i===0&&hasCorrect;
+    const num=isCorrect?targetNum:getDecoyNum();
+    const btn=document.createElement('button');
+    btn.className='target-btn '+(isCorrect?'correct':'decoy');
+    btn.textContent=num;
+    const size=50+Math.random()*20;
+    btn.style.width=size+'px';btn.style.height=size+'px';
+    btn.style.left=Math.random()*(area.offsetWidth-size-20)+10+'px';
+    btn.style.top=Math.random()*(area.offsetHeight-size-60)+50+'px';
+    btn.onclick=()=>handleTap(btn,isCorrect);
+    area.appendChild(btn);
+    // Auto remove after a while
+    setTimeout(()=>{btn.style.opacity='0';setTimeout(()=>btn.remove(),200);},getSpeed()*1.5);
+  }
+}
+
+function getDecoyNum(){let n;do{n=Math.floor(Math.random()*9)+1;}while(n===targetNum);return n;}
+
+function handleTap(btn,isCorrect){
+  if(!gameActive)return;
+  btn.remove();
+  if(isCorrect){
+    score+=level*10;hits++;
+    if(hits%5===0){level++;clearInterval(spawnInterval);spawnInterval=setInterval(spawnButtons,getSpeed());}
+    nextTarget();
+  }else{
+    lives--;
+    if(lives<=0)endGame();
+  }
+  updateHUD();
+}
+
+function updateHUD(){
+  document.getElementById('score-display').textContent=score;
+  document.getElementById('level-display').textContent=level;
+  const hearts=['💚','💚','💚'];
+  for(let i=2;i>=lives;i--)hearts[i]='🖤';
+  document.getElementById('lives-display').innerHTML=hearts.map(h=>'<span>'+h+'</span>').join('');
+}
+
+function endGame(){
+  gameActive=false;
+  clearInterval(spawnInterval);clearInterval(gameTimer);
+  area.querySelectorAll('.target-btn').forEach(b=>b.remove());
+  document.getElementById('target-indicator').style.display='none';
+
+  // Calculate focus score (0-100)
+  const focusScore=Math.min(100,Math.round((score/500)*100));
+  document.getElementById('results-section').style.display='block';
+  document.getElementById('final-score').textContent=focusScore;
+  document.getElementById('stat-hits').textContent=hits;
+  document.getElementById('stat-level').textContent=level;
+  document.getElementById('stat-time').textContent=seconds+'s';
+
+  // Animate ring
+  const offset=440-(440*(focusScore/100));
+  setTimeout(()=>{document.getElementById('score-ring').style.strokeDashoffset=offset;},300);
+
+  let rank='',stats='';
+  if(focusScore>=85){rank='🧠 Focus Elite';stats='Concentration exceptionnelle. Tu es dans le top 5%.';}
+  else if(focusScore>=65){rank='⚡ Focus Sharp';stats='Tres bonne concentration. Quelques ajustements et tu atteins l\'elite.';}
+  else if(focusScore>=40){rank='🎯 Focus Moyen';stats='Concentration correcte. Le potentiel est la, il faut l\'entrainer.';}
+  else{rank='🔄 Focus Debutant';stats='La concentration se travaille ! Suis nos tips pour progresser vite.';}
+  document.getElementById('focus-rank').textContent=rank;
+  document.getElementById('focus-stats').textContent=stats;
+
+  area.style.display='none';
+}
+
+function captureEmail(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);const data={};fd.forEach((v,k)=>data[k]=v);
+  const focusScore=Math.min(100,Math.round((score/500)*100));
+  data.source='focus-score-test';data.focus_score=focusScore;data.level=level;data.hits=hits;data.time=seconds;data.timestamp=new Date().toISOString();
+  console.log('9MM Lead captured:',data);
+  document.getElementById('email-gate').style.display='none';
+  document.getElementById('success-msg').style.display='block';
+}
+</script>
+</body>
+</html>
