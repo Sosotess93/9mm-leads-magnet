@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Quel est ton profil de performance ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a;--dark:#111;--mid:#1a1a1a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+
+/* Border beam animation (from Klark template) */
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes slideDownClip{0%{transform:translateY(-105%)}100%{transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,23,23,.2)}50%{box-shadow:0 0 40px rgba(255,23,23,.4)}}
+@keyframes pulseCyan{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.2)}50%{box-shadow:0 0 40px rgba(0,237,239,.4)}}
+.scroll-animate{opacity:0}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+
+/* Global box-sizing */
+*,*::before,*::after{box-sizing:border-box}
+
+/* Form inputs - label above */
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input,.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus,.form-group select:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
+.form-group select{color:rgba(255,255,255,.5);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-group select option{background:#1a1a1a;color:#fff}
+
+/* Disabled state for buttons */
+button:disabled,.btn-dual:disabled,.btn-red:disabled,.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important;box-shadow:none!important;pointer-events:none}
+
+/* Mobile optimizations */
+@media(max-width:640px){
+  .glass-card{border-radius:12px}
+  main{padding-left:16px;padding-right:16px}
+}
+
+/* CTA buttons */
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;position:relative;overflow:hidden}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-dual:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.2),0 8px 30px rgba(0,237,239,.2)}
+
+/* Card styles */
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.glass-card:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.05)}
+
+/* Success message */
+.success-msg{display:none;text-align:center;padding:30px}
+</style>
+</head>
+<body>
+<!-- Background grid lines (from Klark) -->
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3">
+<span class="font-oswald text-3xl font-bold tracking-wider">9MM</span>
+<span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span>
+</div>
+<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+</header>
+<main class="max-w-2xl mx-auto px-5 pb-20 relative z-10">
+
+<!-- Ambient glow -->
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+<div class="fixed bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<!-- Intro -->
+<section id="intro" class="text-center fade-in">
+<h1 class="font-oswald text-[10vw] md:text-6xl font-bold uppercase tracking-tight leading-[.9] mb-4 select-none">
+<span class="block">
+<span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[400ms]">Q</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[450ms]">U</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[500ms]">E</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[550ms]">L</span></span>
+</span>
+<span class="block" style="color:var(--red)">
+<span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[600ms]">P</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[650ms]">R</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[700ms]">O</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[750ms]">F</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[800ms]">I</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[850ms]">L</span></span>
+</span>
+<span class="block text-white/20">
+<span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[900ms]">D</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[950ms]">E</span></span>
+</span>
+<span class="block bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-cyan-400">
+<span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1000ms]">P</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1050ms]">E</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1100ms]">R</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1150ms]">F</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1200ms]">O</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1250ms]">R</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1300ms]">M</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1350ms]">A</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1400ms]">N</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1450ms]">C</span></span><span class="inline-block overflow-hidden py-1 -my-1"><span class="inline-block animate-[slideDownClip_.8s_cubic-bezier(.16,1,.3,1)_backwards] delay-[1500ms]">E</span></span>
+</span>
+</h1>
+<p class="text-white/50 text-lg mb-8 max-w-lg mx-auto fade-in delay-2">8 questions pour découvrir si tu es plutôt <strong style="color:var(--red)">Active Body</strong>, <strong style="color:var(--cyan)">Active Mind</strong> ou les deux.</p>
+<button onclick="startQuiz()" class="btn-dual text-lg max-w-xs mx-auto block fade-in delay-3">COMMENCER LE QUIZ →</button>
+<p class="text-white/25 text-xs mt-4 fade-in delay-4">⏱ 2 minutes • 100% gratuit</p>
+</section>
+
+<!-- Quiz -->
+<section id="quiz" class="hidden">
+<div class="flex items-center justify-between mb-2"><span id="q-counter" class="text-white/40 text-sm font-medium"></span><span id="q-tag" class="text-xs px-3 py-1 rounded-full bg-white/5 text-white/40"></span></div>
+<div class="h-1 bg-white/5 rounded-full mb-8 overflow-hidden"><div id="progress" class="h-full rounded-full transition-all duration-500" style="width:12.5%;background:linear-gradient(90deg,var(--red),var(--cyan))"></div></div>
+<h2 id="q-text" class="font-oswald text-2xl md:text-3xl font-semibold mb-6 leading-tight"></h2>
+<div id="q-options" class="space-y-3"></div>
+<div class="flex justify-between items-center mt-8">
+<button id="btn-prev" onclick="prevQ()" class="text-white/30 hover:text-white transition text-sm hidden">← Précédent</button>
+<button id="btn-next" onclick="nextQ()" class="btn-dual ml-auto max-w-[200px]" disabled>Suivant →</button>
+</div>
+</section>
+
+<!-- Email -->
+<section id="email-section" class="hidden text-center">
+<div class="glass-card p-10 fade-in">
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-3">Ton profil est prêt</h2>
+<p class="text-white/40 mb-8">Entre ton email pour recevoir ton résultat détaillé + le guide adapté.</p>
+<form onsubmit="showResult(event)" class="max-w-sm mx-auto space-y-4">
+<div class="form-group"><label>Ton prenom</label><input type="text" id="lead-name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton adresse email</label><input type="email" id="lead-email" placeholder="Ton adresse email" required/></div>
+<button type="submit" class="btn-dual">DECOUVRIR MON PROFIL</button>
+</form>
+<p class="text-white/20 text-xs mt-4">🔒 Données confidentielles. Pas de spam.</p>
+</div>
+</section>
+
+<!-- Result -->
+<section id="result" class="hidden"></section>
+<!-- Product Section -->
+<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10 scroll-animate" data-delay=".2s">
+<div class="text-center mb-8">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)">LA GAMME 9MM</span>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase leading-[.9]">Deux formules.<br/><span class="bg-clip-text text-transparent" style="background-image:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text">Un objectif.</span></h2>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & energie physique</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5 mb-2">
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Vitamines B</span>
+</div>
+<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
+</div>
+<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Concentration & clarte mentale</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5 mb-2">
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Green Tea</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Vitamines B</span>
+</div>
+<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6">
+<span class="font-oswald text-lg font-bold text-white/40">9MM</span>
+<span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span>
+<p class="text-white/20 text-xs mt-2">© 2026 9MM Suisse SA • 9mm-energy.com</p>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeSlideBlurIn 1s cubic-bezier(.16,1,.3,1) both';e.target.style.animationDelay=e.target.dataset.delay||'0s';obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.scroll-animate').forEach(el=>obs.observe(el));
+});
+</script>
+<script>
+const questions=[
+{q:"Quand tu as un objectif, tu préfères :",tag:"Mindset",opts:[{t:"Établir un plan d'action physique et m'y tenir",s:"body"},{t:"Analyser la situation et trouver la meilleure stratégie",s:"mind"},{t:"Combiner action physique et réflexion stratégique",s:"hybrid"}]},
+{q:"Ta façon idéale de te défouler :",tag:"Lifestyle",opts:[{t:"Une session de sport intense (running, muscu, boxe...)",s:"body"},{t:"Une session de gaming compétitif ou un puzzle complexe",s:"mind"},{t:"Un sport technique : escalade, arts martiaux, surf...",s:"hybrid"}]},
+{q:"Ce qui te motive le plus :",tag:"Motivation",opts:[{t:"Repousser mes limites physiques, battre mes records",s:"body"},{t:"Résoudre des problèmes, apprendre des choses nouvelles",s:"mind"},{t:"Me dépasser sur tous les fronts, corps et esprit",s:"hybrid"}]},
+{q:"Ton moment le plus productif :",tag:"Routine",opts:[{t:"Le matin, après une session sport",s:"body"},{t:"Le soir, quand tout est calme et que je peux focus",s:"mind"},{t:"Ça dépend du jour, je m'adapte",s:"hybrid"}]},
+{q:"Quand tu es fatigué(e), tu as besoin de :",tag:"Énergie",opts:[{t:"Bouger, un peu de mouvement me recharge",s:"body"},{t:"Du calme et de la concentration",s:"mind"},{t:"Un mix des deux selon le moment",s:"hybrid"}]},
+{q:"Ton type de défi préféré :",tag:"Challenge",opts:[{t:"Marathon, Tough Mudder, défi physique",s:"body"},{t:"Tournoi esport, hackathon, challenge intellectuel",s:"mind"},{t:"N'importe quoi qui me sort de ma zone de confort",s:"hybrid"}]},
+{q:"Ta boisson idéale avant un moment clé :",tag:"Produit",opts:[{t:"Un boost d'énergie physique et d'endurance",s:"body"},{t:"Un boost de concentration et clarté mentale",s:"mind"},{t:"Un boost complet corps et esprit",s:"hybrid"}]},
+{q:"Ta philosophie en une phrase :",tag:"Philosophie",opts:[{t:"Le corps est une machine, il faut la pousser",s:"body"},{t:"L\u2019esprit m\u00e8ne, le reste suit",s:"mind"},{t:"L\u2019impact se joue quand corps et esprit s\u2019alignent",s:"hybrid"}]}
+];
+let cur=0,ans=[];
+function startQuiz(){document.getElementById('intro').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');render()}
+function render(){const q=questions[cur];document.getElementById('q-counter').textContent=`Question ${cur+1}/${questions.length}`;document.getElementById('q-tag').textContent=q.tag;document.getElementById('progress').style.width=`${((cur+1)/questions.length)*100}%`;document.getElementById('q-text').textContent=q.q;document.getElementById('btn-prev').style.display=cur>0?'block':'none';const o=document.getElementById('q-options');o.innerHTML='';q.opts.forEach((op,i)=>{const d=document.createElement('div');d.className='glass-card p-4 flex items-center gap-4 cursor-pointer transition-all hover:border-white/20 hover:translate-y-[-2px]';d.innerHTML=`<span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-sm font-bold shrink-0 text-white/50">${String.fromCharCode(65+i)}</span><span class="text-white/70 text-sm">${op.t}</span>`;d.onclick=()=>sel(i,op.s,d);if(ans[cur]&&ans[cur].i===i)applySel(d,op.s);o.appendChild(d)});document.getElementById('btn-next').disabled=!ans[cur]}
+function applySel(el,s){el.style.borderColor=s==='body'?'var(--red)':s==='mind'?'var(--cyan)':'var(--red)';el.style.background=s==='body'?'rgba(255,23,23,.08)':s==='mind'?'rgba(0,237,239,.08)':'linear-gradient(135deg,rgba(255,23,23,.06),rgba(0,237,239,.06))';el.style.boxShadow=s==='body'?'0 0 30px rgba(255,23,23,.1)':s==='mind'?'0 0 30px rgba(0,237,239,.1)':'0 0 20px rgba(255,23,23,.08),0 0 20px rgba(0,237,239,.08)'}
+function sel(i,s,el){ans[cur]={i,s};[...document.getElementById('q-options').children].forEach(c=>{c.style.borderColor='';c.style.background='';c.style.boxShadow=''});applySel(el,s);document.getElementById('btn-next').disabled=false}
+function nextQ(){if(!ans[cur])return;if(cur<questions.length-1){cur++;render()}else{document.getElementById('quiz').classList.add('hidden');document.getElementById('email-section').classList.remove('hidden')}}
+function prevQ(){if(cur>0){cur--;render()}}
+function showResult(e){e.preventDefault();const nm=document.getElementById('lead-name').value,em=document.getElementById('lead-email').value;
+let b=0,m=0,h=0;ans.forEach(a=>{if(a.s==='body')b++;else if(a.s==='mind')m++;else h++});
+let pf,cl,desc,prod,guide;
+if(b>m&&b>=h){pf='ACTIVE BODY';cl='result-body';desc=`${nm}, tu es un profil <strong>physique</strong>. Tu vis pour le mouvement et le dépassement corporel.`;prod='9MM Active Body';guide='Le Protocole Impact'}
+else if(m>b&&m>=h){pf='ACTIVE MIND';cl='result-mind';desc=`${nm}, tu es un profil <strong>mental</strong>. Stratégie, concentration, lucidité — ton esprit est ton arme.`;prod='9MM Active Mind';guide='Le Protocole Focus'}
+else{pf='HYBRID';cl='result-hybrid';desc=`${nm}, tu es un profil <strong>hybride</strong>. Corps et esprit alignés — l'état d'esprit 9MM dans sa forme la plus pure.`;prod='9MM Active Body + Active Mind';guide='Les deux protocoles'}
+console.log('9MM Lead:',{name:nm,email:em,profile:pf,answers:ans.map(a=>a.s),source:'quiz-profil'});
+document.getElementById('email-section').classList.add('hidden');
+const r=document.getElementById('result');r.classList.remove('hidden');
+const border=b>m&&b>=h?'var(--red)':m>b&&m>=h?'var(--cyan)':'';
+const grad=b>m&&b>=h?'from-red-500/10 to-transparent':m>b&&m>=h?'from-cyan-500/10 to-transparent':'from-red-500/5 via-transparent to-cyan-500/5';
+r.innerHTML=`<div class="glass-card p-10 fade-in text-center" style="${border?'border-color:'+border:''}">
+<span class="text-xs tracking-[.3em] uppercase text-white/30">Ton profil 9MM</span>
+<h2 class="font-oswald text-5xl font-bold uppercase mt-2 mb-4 bg-clip-text text-transparent bg-gradient-to-r ${b>m&&b>=h?'from-red-500 to-red-400':m>b&&m>=h?'from-cyan-400 to-cyan-300':'from-red-500 to-cyan-400'}">${pf}</h2>
+<p class="text-white/60 mb-8 leading-relaxed">${desc}</p>
+<div class="space-y-3 text-left max-w-sm mx-auto mb-8">
+<div class="bg-white/5 rounded-xl p-4 border border-white/8"><span class="text-[10px] text-white/30 uppercase tracking-wider">Produit recommandé</span><p class="text-white font-semibold mt-1 text-sm">${prod}</p></div>
+<div class="bg-white/5 rounded-xl p-4 border border-white/8"><span class="text-[10px] text-white/30 uppercase tracking-wider">Guide offert</span><p class="text-white font-semibold mt-1 text-sm">${guide}</p></div>
+</div>
+<p class="text-white/30 text-xs mb-6">📧 Profil détaillé + guide envoyés à <strong class="text-white/60">${em}</strong></p>
+<a href="https://9mm-energy.com" class="btn-dual inline-block px-8">DÉCOUVRIR 9MM →</a>
+</div>`}
+</script>
+</body></html>

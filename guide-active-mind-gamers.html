@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Le Protocole Focus | Gamers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a;--dark:#111;--mid:#1a1a1a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+
+/* Border beam animation (from Klark template) */
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes slideDownClip{0%{transform:translateY(-105%)}100%{transform:translateY(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,23,23,.2)}50%{box-shadow:0 0 40px rgba(255,23,23,.4)}}
+@keyframes pulseCyan{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.2)}50%{box-shadow:0 0 40px rgba(0,237,239,.4)}}
+.scroll-animate{opacity:0}
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+
+/* Global box-sizing */
+*,*::before,*::after{box-sizing:border-box}
+
+/* Form inputs - label above */
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input,.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus,.form-group select:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.form-group select{color:rgba(255,255,255,.5);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-group select option{background:#1a1a1a;color:#fff}
+
+/* Disabled state for buttons */
+button:disabled,.btn-dual:disabled,.btn-red:disabled,.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important;box-shadow:none!important;pointer-events:none}
+
+/* Mobile optimizations */
+@media(max-width:640px){
+  .glass-card{border-radius:12px}
+  main{padding-left:16px;padding-right:16px}
+}
+
+/* CTA buttons */
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;position:relative;overflow:hidden}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-dual:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.2),0 8px 30px rgba(0,237,239,.2)}
+
+/* Card styles */
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.glass-card:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.05)}
+
+/* Success message */
+.success-msg{display:none;text-align:center;padding:30px}
+</style>
+</head>
+<body>
+<!-- Background grid lines (from Klark) -->
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3">
+<span class="font-oswald text-3xl font-bold tracking-wider">9MM</span>
+<span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span>
+</div>
+<div style="width:50px;height:3px;background:var(--cyan);margin:10px auto 0;border-radius:99px"></div>
+</header>
+<main class="max-w-5xl mx-auto px-5 pb-16 relative z-10">
+<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<div class="grid md:grid-cols-2 gap-12 items-center min-h-[75vh]">
+<div class="fade-in">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">GUIDE GRATUIT — GAMERS</span>
+<h1 class="font-oswald text-5xl md:text-6xl font-bold uppercase leading-[.85] mb-4 select-none">
+<span class="block text-white">Le Protocole</span>
+<span class="block" style="color:var(--cyan)">Focus</span>
+</h1>
+<p class="text-white/45 text-lg mb-8">7 techniques concrètes pour dominer tes sessions. Concentration, réaction, récupération.</p>
+
+<div class="space-y-3 scroll-animate" data-delay=".2s">
+<div class="glass-card p-4 flex items-start gap-3 transition-all"><span style="color:var(--cyan)" class="text-lg mt-0.5">⚡</span><div><strong class="text-white text-sm">Setup & Ergonomie</strong><p class="text-white/35 text-xs mt-1">Optimise ton environnement pour des sessions longues</p></div></div>
+<div class="glass-card p-4 flex items-start gap-3 transition-all"><span style="color:var(--cyan)" class="text-lg mt-0.5">🎯</span><div><strong class="text-white text-sm">Warm-up Gaming</strong><p class="text-white/35 text-xs mt-1">Routine mains/yeux/cerveau avant chaque game</p></div></div>
+<div class="glass-card p-4 flex items-start gap-3 transition-all"><span style="color:var(--cyan)" class="text-lg mt-0.5">🧠</span><div><strong class="text-white text-sm">Nutrition & Focus</strong><p class="text-white/35 text-xs mt-1">Ce que tu manges impacte tes temps de réaction</p></div></div>
+<div class="glass-card p-4 flex items-start gap-3 transition-all"><span style="color:var(--cyan)" class="text-lg mt-0.5">🔥</span><div><strong class="text-white text-sm">Gestion du Tilt</strong><p class="text-white/35 text-xs mt-1">4 étapes pour reprendre le contrôle</p></div></div>
+</div>
+<p class="text-white/20 text-xs mt-6">📄 8 pages • PDF • Téléchargement instantané</p>
+</div>
+
+<div class="fade-in delay-2">
+<div class="glass-card p-8 md:p-10" style="border-color:rgba(0,237,239,.1);box-shadow:0 0 60px rgba(0,237,239,.08)">
+<h3 class="font-oswald text-2xl font-bold uppercase text-center mb-2">Télécharge le guide</h3>
+<p class="text-white/35 text-sm text-center mb-6">Gratuit. Pas de spam. Du contenu qui fait la diff.</p>
+<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton adresse email</label><input type="email" name="email" placeholder="Ton adresse email" required/></div>
+<button type="submit" class="btn-cyan">RECEVOIR LE GUIDE →</button>
+</form>
+<div id="success" class="success-msg glass-card p-6 mt-4" style="border-color:rgba(0,237,239,.2)">
+<span style="font-size:40px">✅</span>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">C'est envoyé !</h4>
+<p class="text-white/45 text-sm">Vérifie ta boîte mail pour le Protocole Focus.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-6 justify-center"><div class="flex -space-x-2"><div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div><div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🏆</div><div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div></div><span class="text-white/25 text-xs">Rejoint par 2,400+ gamers</span></div>
+</div>
+</div>
+<!-- Product Section -->
+<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10 scroll-animate" data-delay=".2s">
+<div class="text-center mb-8">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">LE PRODUIT</span>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase leading-[.9]">Ton carburant<br/><span style="color:var(--cyan)">gaming</span></h2>
+</div>
+<div class="glass-card p-6 md:p-8" style="border-color:rgba(0,237,239,.1)">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<!-- Can visual -->
+<div class="shrink-0 w-[120px] h-[200px] rounded-2xl flex items-center justify-center" style="background:linear-gradient(180deg,rgba(0,237,239,.08),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)">
+<div class="text-center">
+<span class="font-oswald text-3xl font-bold block" style="color:var(--cyan)">9MM</span>
+<span class="text-[9px] tracking-[.15em] uppercase text-white/30 block mt-1">Active Mind</span>
+<span class="text-[8px] text-white/20 block mt-2">250ml</span>
+</div>
+</div>
+<!-- Info -->
+<div class="flex-1 text-center md:text-left">
+<h3 class="font-oswald text-xl font-bold uppercase mb-1">9MM Active Mind</h3>
+<p class="text-white/40 text-sm mb-4">Formule concentration & clarte mentale. Concu pour les sessions longues ou chaque milliseconde compte.</p>
+<div class="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Guarana</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Green Tea</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Ginseng</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Vitamines B</span>
+<span class="text-[11px] px-3 py-1.5 rounded-full font-medium" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">Cafeine</span>
+</div>
+<div class="flex items-center gap-4 justify-center md:justify-start text-[11px] text-white/30">
+<span>Energie progressive</span><span class="w-1 h-1 rounded-full bg-white/20"></span>
+<span>Pas de crash</span><span class="w-1 h-1 rounded-full bg-white/20"></span>
+<span>Made in Switzerland</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6">
+<span class="font-oswald text-lg font-bold text-white/40">9MM</span>
+<span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span>
+<p class="text-white/20 text-xs mt-2">© 2026 9MM Suisse SA • 9mm-energy.com</p>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.animation='fadeSlideBlurIn 1s cubic-bezier(.16,1,.3,1) both';e.target.style.animationDelay=e.target.dataset.delay||'0s';obs.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.scroll-animate').forEach(el=>obs.observe(el));
+});
+</script>
+<script>
+function captureEmail(e){
+e.preventDefault();
+const fd=new FormData(e.target);
+const data={};fd.forEach((v,k)=>data[k]=v);
+data.source='guide-active-mind';data.timestamp=new Date().toISOString();
+console.log('9MM Lead captured:',data);
+// TODO: API call here
+// fetch('https://api.9mm-energy.com/v1/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) });
+e.target.style.display='none';
+document.getElementById('success').style.display='block';
+}
+</script></body></html>

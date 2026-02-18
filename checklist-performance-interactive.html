@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Checklist Performance Interactive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a;--dark:#111;--mid:#1a1a1a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(255,23,23,.15)}50%{box-shadow:0 0 40px rgba(255,23,23,.3)}}
+@keyframes pulseCyan{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.15)}50%{box-shadow:0 0 40px rgba(0,237,239,.3)}}
+@keyframes progressPulse{0%,100%{filter:drop-shadow(0 0 4px rgba(0,237,239,.3))}50%{filter:drop-shadow(0 0 12px rgba(0,237,239,.5))}}
+@keyframes slideUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes modalIn{0%{opacity:0;transform:scale(.92) translateY(10px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+
+.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
+.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}.delay-4{animation-delay:.6s}
+*,*::before,*::after{box-sizing:border-box}
+
+/* Glass card */
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative;transition:all .3s}
+.glass-card:hover{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.04)}
+
+/* Form inputs - label above */
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none}
+.form-group input::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+
+/* CTA buttons */
+.btn-dual{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
+.btn-dual:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.2),0 8px 30px rgba(0,237,239,.2)}
+
+/* Email gate modal */
+.modal-overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .4s}
+.modal-overlay.active{opacity:1;visibility:visible}
+.modal-box{background:rgba(18,18,18,.98);border:1px solid rgba(255,255,255,.1);border-radius:20px;max-width:420px;width:100%;padding:40px 32px;position:relative;animation:modalIn .5s cubic-bezier(.16,1,.3,1) both}
+.modal-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));border-radius:20px 20px 0 0}
+
+/* Checklist items */
+.check-item{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:12px;cursor:pointer;transition:all .25s;border:1px solid transparent;-webkit-user-select:none;user-select:none}
+.check-item:hover{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06)}
+.check-item.checked{opacity:.5}
+.check-item.checked .check-label{text-decoration:line-through;color:rgba(255,255,255,.3)}
+
+/* Custom checkbox */
+.check-box{width:22px;height:22px;min-width:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:all .25s;margin-top:1px}
+.check-item.checked .check-box{border-color:var(--cyan);background:var(--cyan)}
+.check-box svg{opacity:0;transform:scale(.5);transition:all .2s}
+.check-item.checked .check-box svg{opacity:1;transform:scale(1)}
+
+.check-label{font-size:14px;color:rgba(255,255,255,.7);line-height:1.4;transition:all .3s}
+.check-sublabel{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+
+/* Category card */
+.cat-card{padding:24px;border-radius:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);transition:all .3s}
+.cat-card:hover{border-color:rgba(255,255,255,.1)}
+
+/* Progress ring */
+.progress-ring{transition:stroke-dashoffset .6s cubic-bezier(.4,0,.2,1)}
+
+/* Global progress bar */
+.global-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;position:relative}
+.global-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .5s cubic-bezier(.4,0,.2,1);position:relative}
+.global-fill::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3));border-radius:99px}
+
+/* Confetti */
+.confetti-container{position:fixed;inset:0;z-index:200;pointer-events:none;overflow:hidden}
+.confetti-piece{position:absolute;width:10px;height:10px;top:-20px;animation:confettiFall 3s ease-in forwards}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}100%{transform:translateY(100vh) rotate(720deg) scale(.3);opacity:0}}
+
+@media(max-width:640px){
+  .glass-card{border-radius:12px}
+  main{padding-left:16px!important;padding-right:16px!important}
+  .modal-box{padding:32px 24px}
+  .cat-card{padding:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- Background grid lines -->
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<!-- Ambient glows -->
+<div style="position:fixed;top:0;right:0;width:500px;height:500px;background:rgba(255,23,23,.03);border-radius:50%;filter:blur(200px);pointer-events:none"></div>
+<div style="position:fixed;bottom:0;left:0;width:500px;height:500px;background:rgba(0,237,239,.03);border-radius:50%;filter:blur(200px);pointer-events:none"></div>
+
+<!-- EMAIL GATE MODAL -->
+<div id="email-modal" class="modal-overlay active">
+<div class="modal-box">
+<div class="text-center mb-6">
+<span class="font-oswald text-3xl font-bold tracking-wider">9MM</span>
+<div class="flex items-center justify-center gap-2 mt-1">
+<span class="text-[10px] text-white/30 tracking-[.3em] uppercase">Beyond ★ Energy</span>
+</div>
+</div>
+<h2 class="font-oswald text-2xl font-bold uppercase text-center leading-tight mb-2">Checklist<br/><span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-cyan-400">Performance</span></h2>
+<p class="text-white/40 text-sm text-center mb-6">25 actions concrètes pour optimiser tes performances gaming & sport. Progresse visuellement, sauvegarde ton avancement.</p>
+<div class="flex items-center justify-center gap-4 mb-6">
+<div class="text-center"><span class="font-oswald text-2xl font-bold" style="color:var(--cyan)">25</span><span class="block text-[10px] text-white/30 uppercase tracking-wider">Actions</span></div>
+<div class="w-px h-8 bg-white/10"></div>
+<div class="text-center"><span class="font-oswald text-2xl font-bold" style="color:var(--red)">5</span><span class="block text-[10px] text-white/30 uppercase tracking-wider">Categories</span></div>
+<div class="w-px h-8 bg-white/10"></div>
+<div class="text-center"><span class="font-oswald text-2xl font-bold text-white/60">∞</span><span class="block text-[10px] text-white/30 uppercase tracking-wider">Sauvegarde</span></div>
+</div>
+<form id="gate-form" onsubmit="unlockChecklist(event)" class="space-y-3">
+<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
+<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<button type="submit" class="btn-dual font-oswald text-lg tracking-wider">DEBLOQUER LA CHECKLIST →</button>
+</form>
+<p class="text-[11px] text-white/20 text-center mt-4">Gratuit • Pas de spam • Progression sauvegardee</p>
+</div>
+</div>
+
+<!-- MAIN CONTENT (hidden until email gate) -->
+<div id="app-content" style="display:none">
+
+<header class="relative z-10 text-center pt-10 pb-4">
+<div class="inline-flex items-center gap-3">
+<span class="font-oswald text-3xl font-bold tracking-wider">9MM</span>
+<span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond ★ Energy</span>
+</div>
+<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+</header>
+
+<main class="max-w-5xl mx-auto px-5 pb-16 relative z-10">
+
+<!-- Title + Global Progress -->
+<div class="text-center fade-in mb-10">
+<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.08)">CHECKLIST INTERACTIVE</span>
+<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">Performance<br/><span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-cyan-400">Dashboard</span></h1>
+<p class="text-white/40 max-w-lg mx-auto mb-6">25 actions pour devenir une machine. Coche, progresse, domine.</p>
+
+<!-- Global progress -->
+<div class="max-w-md mx-auto">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs text-white/30 uppercase tracking-wider">Progression globale</span>
+<span id="global-pct" class="font-oswald text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-cyan-400">0%</span>
+</div>
+<div class="global-bar"><div id="global-fill" class="global-fill" style="width:0%"></div></div>
+<div class="flex justify-between mt-1">
+<span id="global-count" class="text-[11px] text-white/25">0/25 completees</span>
+<span id="global-status" class="text-[11px] text-white/25">Debutant</span>
+</div>
+</div>
+</div>
+
+<!-- Category overview cards (compact) -->
+<div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-10 fade-in delay-1">
+<div onclick="scrollToCat(0)" class="glass-card p-4 text-center cursor-pointer hover:scale-[1.02] transition-transform">
+<svg class="mx-auto mb-2" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/><circle class="progress-ring" id="ring-0" cx="26" cy="26" r="22" fill="none" stroke="url(#grad-cyan)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" transform="rotate(-90 26 26)"/><text x="26" y="29" text-anchor="middle" class="font-oswald" fill="white" font-size="13" font-weight="700"><tspan id="ring-txt-0">0</tspan></text></svg>
+<span class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Setup</span>
+</div>
+<div onclick="scrollToCat(1)" class="glass-card p-4 text-center cursor-pointer hover:scale-[1.02] transition-transform">
+<svg class="mx-auto mb-2" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/><circle class="progress-ring" id="ring-1" cx="26" cy="26" r="22" fill="none" stroke="url(#grad-red)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" transform="rotate(-90 26 26)"/><text x="26" y="29" text-anchor="middle" class="font-oswald" fill="white" font-size="13" font-weight="700"><tspan id="ring-txt-1">0</tspan></text></svg>
+<span class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Physique</span>
+</div>
+<div onclick="scrollToCat(2)" class="glass-card p-4 text-center cursor-pointer hover:scale-[1.02] transition-transform">
+<svg class="mx-auto mb-2" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/><circle class="progress-ring" id="ring-2" cx="26" cy="26" r="22" fill="none" stroke="url(#grad-cyan)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" transform="rotate(-90 26 26)"/><text x="26" y="29" text-anchor="middle" class="font-oswald" fill="white" font-size="13" font-weight="700"><tspan id="ring-txt-2">0</tspan></text></svg>
+<span class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Mental</span>
+</div>
+<div onclick="scrollToCat(3)" class="glass-card p-4 text-center cursor-pointer hover:scale-[1.02] transition-transform">
+<svg class="mx-auto mb-2" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/><circle class="progress-ring" id="ring-3" cx="26" cy="26" r="22" fill="none" stroke="url(#grad-red)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" transform="rotate(-90 26 26)"/><text x="26" y="29" text-anchor="middle" class="font-oswald" fill="white" font-size="13" font-weight="700"><tspan id="ring-txt-3">0</tspan></text></svg>
+<span class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Nutrition</span>
+</div>
+<div onclick="scrollToCat(4)" class="glass-card p-4 text-center cursor-pointer hover:scale-[1.02] transition-transform col-span-2 md:col-span-1">
+<svg class="mx-auto mb-2" width="52" height="52" viewBox="0 0 52 52"><circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="4"/><circle class="progress-ring" id="ring-4" cx="26" cy="26" r="22" fill="none" stroke="url(#grad-dual)" stroke-width="4" stroke-linecap="round" stroke-dasharray="138.23" stroke-dashoffset="138.23" transform="rotate(-90 26 26)"/><text x="26" y="29" text-anchor="middle" class="font-oswald" fill="white" font-size="13" font-weight="700"><tspan id="ring-txt-4">0</tspan></text></svg>
+<span class="text-[10px] text-white/40 uppercase tracking-wider font-semibold">Recup</span>
+</div>
+</div>
+
+<!-- SVG Gradients -->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<linearGradient id="grad-cyan" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00EDEF"/><stop offset="100%" stop-color="#00b8ba"/></linearGradient>
+<linearGradient id="grad-red" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FF1717"/><stop offset="100%" stop-color="#cc1212"/></linearGradient>
+<linearGradient id="grad-dual" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FF1717"/><stop offset="100%" stop-color="#00EDEF"/></linearGradient>
+</defs>
+</svg>
+
+<!-- Categories -->
+<div class="space-y-6" id="categories">
+
+<!-- Cat 0: Setup & Environnement -->
+<div class="cat-card fade-in delay-1" id="cat-0" style="border-color:rgba(0,237,239,.08)">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="text-lg">🎮</span>
+<div>
+<h2 class="font-oswald text-xl font-bold uppercase" style="color:var(--cyan)">Setup & Environnement</h2>
+<p class="text-[11px] text-white/30 mt-0.5">Ton espace, tes armes. Optimise avant de jouer.</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background:rgba(0,237,239,.08);color:var(--cyan)" id="cat-count-0">0/5</span>
+</div>
+<div class="space-y-1" id="items-0">
+<div class="check-item" data-cat="0" data-idx="0" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Nettoie ta zone de jeu / entrainement</span><div class="check-sublabel">Bureau range = esprit range. Zero distraction visuelle.</div></div>
+</div>
+<div class="check-item" data-cat="0" data-idx="1" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Verifie ton materiel (souris, clavier, chaussures)</span><div class="check-sublabel">Tes outils doivent etre prets avant toi.</div></div>
+</div>
+<div class="check-item" data-cat="0" data-idx="2" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Desactive les notifications (telephone, PC)</span><div class="check-sublabel">Mode focus ON. Le monde exterieur attendra.</div></div>
+</div>
+<div class="check-item" data-cat="0" data-idx="3" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Ajuste luminosite et ergonomie</span><div class="check-sublabel">Ecran a bonne hauteur, luminosite adaptee, temperature de couleur.</div></div>
+</div>
+<div class="check-item" data-cat="0" data-idx="4" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Prepare ta 9MM Active Mind a portee</span><div class="check-sublabel">Concentration & clarte — pret a ouvrir quand tu en as besoin.</div></div>
+</div>
+</div>
+</div>
+
+<!-- Cat 1: Physique & Echauffement -->
+<div class="cat-card fade-in delay-2" id="cat-1" style="border-color:rgba(255,23,23,.08)">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="text-lg">💪</span>
+<div>
+<h2 class="font-oswald text-xl font-bold uppercase" style="color:var(--red)">Physique & Echauffement</h2>
+<p class="text-[11px] text-white/30 mt-0.5">Ton corps est ton premier outil de performance.</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background:rgba(255,23,23,.08);color:var(--red)" id="cat-count-1">0/5</span>
+</div>
+<div class="space-y-1" id="items-1">
+<div class="check-item" data-cat="1" data-idx="0" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Etirements poignets, doigts, avant-bras</span><div class="check-sublabel">Prevention blessures + meilleure precision. 5 min suffisent.</div></div>
+</div>
+<div class="check-item" data-cat="1" data-idx="1" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Mobilisation epaules et nuque</span><div class="check-sublabel">Rotations lentes, inclinaisons. Debloque les tensions.</div></div>
+</div>
+<div class="check-item" data-cat="1" data-idx="2" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">30 secondes de jumping jacks ou marche rapide</span><div class="check-sublabel">Active la circulation. Ton cerveau a besoin d'oxygene.</div></div>
+</div>
+<div class="check-item" data-cat="1" data-idx="3" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Posture check : dos droit, pieds au sol</span><div class="check-sublabel">Une bonne posture = meilleure endurance pendant la session.</div></div>
+</div>
+<div class="check-item" data-cat="1" data-idx="4" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Exercices oculaires (methode 20-20-20)</span><div class="check-sublabel">Toutes les 20 min, regarde a 20 pieds pendant 20 sec.</div></div>
+</div>
+</div>
+</div>
+
+<!-- Cat 2: Mental & Focus -->
+<div class="cat-card fade-in delay-3" id="cat-2" style="border-color:rgba(0,237,239,.08)">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="text-lg">🧠</span>
+<div>
+<h2 class="font-oswald text-xl font-bold uppercase" style="color:var(--cyan)">Mental & Focus</h2>
+<p class="text-[11px] text-white/30 mt-0.5">Le mindset qui fait la difference entre bon et elite.</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background:rgba(0,237,239,.08);color:var(--cyan)" id="cat-count-2">0/5</span>
+</div>
+<div class="space-y-1" id="items-2">
+<div class="check-item" data-cat="2" data-idx="0" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Fixe un objectif precis pour ta session</span><div class="check-sublabel">Pas "jouer bien" — un objectif mesurable. Ex: +15% headshot.</div></div>
+</div>
+<div class="check-item" data-cat="2" data-idx="1" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">2 minutes de respiration carree (4-4-4-4)</span><div class="check-sublabel">Inspire 4s, retiens 4s, expire 4s, retiens 4s. Calme le systeme nerveux.</div></div>
+</div>
+<div class="check-item" data-cat="2" data-idx="2" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Visualise ton gameplay ideal pendant 60 sec</span><div class="check-sublabel">Technique pro : imagine tes mouvements avant de les executer.</div></div>
+</div>
+<div class="check-item" data-cat="2" data-idx="3" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Auto-talk positif : "Je suis pret, je suis sharp"</span><div class="check-sublabel">Ton dialogue interne programme ta performance.</div></div>
+</div>
+<div class="check-item" data-cat="2" data-idx="4" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Identifie tes triggers de tilt et prepare ton plan</span><div class="check-sublabel">Si X arrive, je fais Y. Anticipation = controle.</div></div>
+</div>
+</div>
+</div>
+
+<!-- Cat 3: Nutrition & Hydratation -->
+<div class="cat-card fade-in delay-4" id="cat-3" style="border-color:rgba(255,23,23,.08)">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="text-lg">🥗</span>
+<div>
+<h2 class="font-oswald text-xl font-bold uppercase" style="color:var(--red)">Nutrition & Hydratation</h2>
+<p class="text-[11px] text-white/30 mt-0.5">Le carburant qui alimente la machine.</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full" style="background:rgba(255,23,23,.08);color:var(--red)" id="cat-count-3">0/5</span>
+</div>
+<div class="space-y-1" id="items-3">
+<div class="check-item" data-cat="3" data-idx="0" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Bois 500ml d'eau dans la derniere heure</span><div class="check-sublabel">La deshydratation reduit tes reflexes de 15%. Bois maintenant.</div></div>
+</div>
+<div class="check-item" data-cat="3" data-idx="1" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Repas equilibre 1h-2h avant (pas de fast food)</span><div class="check-sublabel">Proteines + glucides complexes = energie stable.</div></div>
+</div>
+<div class="check-item" data-cat="3" data-idx="2" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Evite le sucre rapide (crash garanti en 30 min)</span><div class="check-sublabel">Pas de bonbons, pas de soda classique. Energie propre uniquement.</div></div>
+</div>
+<div class="check-item" data-cat="3" data-idx="3" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Prepare un snack sain pour la mi-session</span><div class="check-sublabel">Amandes, banane, barre proteinee. Energie de secours.</div></div>
+</div>
+<div class="check-item" data-cat="3" data-idx="4" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">9MM Active Body pret pour le boost physique</span><div class="check-sublabel">Endurance & energie — quand ton corps a besoin de plus.</div></div>
+</div>
+</div>
+</div>
+
+<!-- Cat 4: Recuperation & Progression -->
+<div class="cat-card fade-in" id="cat-4" style="animation-delay:.75s;border-color:rgba(255,255,255,.1);background:rgba(255,255,255,.02)">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="text-lg">🔄</span>
+<div>
+<h2 class="font-oswald text-xl font-bold uppercase"><span class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-cyan-400">Recuperation & Progression</span></h2>
+<p class="text-[11px] text-white/30 mt-0.5">Apres le combat, prepare le suivant.</p>
+</div>
+</div>
+<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-white/5 text-white/50" id="cat-count-4">0/5</span>
+</div>
+<div class="space-y-1" id="items-4">
+<div class="check-item" data-cat="4" data-idx="0" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Pause de 5 min toutes les heures (non negociable)</span><div class="check-sublabel">Leve-toi, marche, regarde au loin. Reset ton focus.</div></div>
+</div>
+<div class="check-item" data-cat="4" data-idx="1" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Note 3 choses a ameliorer apres chaque session</span><div class="check-sublabel">Pas de progres sans analyse. Le journal est ton coach.</div></div>
+</div>
+<div class="check-item" data-cat="4" data-idx="2" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Etirements post-session (5 min minimum)</span><div class="check-sublabel">Decompresse le corps. Tu le remercieras demain.</div></div>
+</div>
+<div class="check-item" data-cat="4" data-idx="3" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Planifie ton sommeil (7-9h, pas de screen 30 min avant)</span><div class="check-sublabel">Le sommeil est ton plus gros multiplicateur de performance.</div></div>
+</div>
+<div class="check-item" data-cat="4" data-idx="4" onclick="toggleCheck(this)">
+<div class="check-box"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<div><span class="check-label">Celebre ta progression (meme 1 case cochee = victoire)</span><div class="check-sublabel">La discipline se construit un petit win a la fois.</div></div>
+</div>
+</div>
+</div>
+
+</div><!-- /categories -->
+
+<!-- Reset button -->
+<div class="text-center mt-8">
+<button onclick="resetAll()" class="text-xs text-white/20 hover:text-white/40 transition-colors underline underline-offset-4 cursor-pointer bg-transparent border-none">Reinitialiser toute la checklist</button>
+</div>
+
+<!-- Product Section -->
+<section class="mt-16 mb-8 relative z-10 fade-in" style="animation-delay:.9s">
+<div class="text-center mb-8">
+<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)">LA GAMME 9MM</span>
+<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase leading-[.9]">Deux formules.<br/><span class="bg-clip-text text-transparent" style="background-image:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text">Un objectif.</span></h2>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & energie physique</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5 mb-2">
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Vitamines B</span>
+</div>
+<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
+</div>
+<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
+<div class="flex items-center gap-4 mb-3">
+<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
+<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Concentration & clarte mentale</p></div>
+</div>
+<div class="flex flex-wrap gap-1.5 mb-2">
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Green Tea</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span>
+<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Vitamines B</span>
+</div>
+<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="relative z-10 text-center py-8 mt-8">
+<div class="max-w-md mx-auto border-t border-white/5 pt-6">
+<span class="font-oswald text-lg font-bold text-white/40">9MM</span>
+<span class="text-[9px] text-white/20 tracking-[.2em] uppercase ml-2">Beyond Energy</span>
+<p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA &bull; 9mm-energy.com</p>
+</div>
+</footer>
+
+</div><!-- /app-content -->
+
+<!-- Confetti container -->
+<div id="confetti" class="confetti-container" style="display:none"></div>
+
+<script>
+const TOTAL=25;
+const CATS=5;
+const PER_CAT=5;
+const CIRCUMFERENCE=2*Math.PI*22; // ~138.23
+const STORAGE_KEY='9mm-checklist-v1';
+const STORAGE_EMAIL='9mm-checklist-email';
+
+// State
+let state=Array.from({length:CATS},()=>Array(PER_CAT).fill(false));
+
+// Load state
+function loadState(){
+  try{
+    const s=localStorage.getItem(STORAGE_KEY);
+    if(s){state=JSON.parse(s);applyState()}
+  }catch(e){}
+}
+
+function saveState(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}
+}
+
+function applyState(){
+  for(let c=0;c<CATS;c++){
+    const items=document.querySelectorAll(`#items-${c} .check-item`);
+    items.forEach((item,i)=>{
+      if(state[c][i])item.classList.add('checked');
+      else item.classList.remove('checked');
+    });
+  }
+  updateProgress();
+}
+
+// Toggle
+function toggleCheck(el){
+  const c=parseInt(el.dataset.cat);
+  const i=parseInt(el.dataset.idx);
+  state[c][i]=!state[c][i];
+  el.classList.toggle('checked');
+  saveState();
+  updateProgress();
+
+  // Check if all done
+  const total=state.flat().filter(Boolean).length;
+  if(total===TOTAL)celebrate();
+}
+
+// Update all progress indicators
+function updateProgress(){
+  let totalChecked=0;
+
+  for(let c=0;c<CATS;c++){
+    const checked=state[c].filter(Boolean).length;
+    totalChecked+=checked;
+
+    // Category counter
+    const counter=document.getElementById(`cat-count-${c}`);
+    if(counter)counter.textContent=`${checked}/${PER_CAT}`;
+
+    // SVG ring
+    const ring=document.getElementById(`ring-${c}`);
+    if(ring){
+      const pct=checked/PER_CAT;
+      const offset=CIRCUMFERENCE*(1-pct);
+      ring.style.strokeDashoffset=offset;
+    }
+
+    // Ring text
+    const txt=document.getElementById(`ring-txt-${c}`);
+    if(txt)txt.textContent=checked;
+  }
+
+  // Global
+  const pct=Math.round(totalChecked/TOTAL*100);
+  const pctEl=document.getElementById('global-pct');
+  const fillEl=document.getElementById('global-fill');
+  const countEl=document.getElementById('global-count');
+  const statusEl=document.getElementById('global-status');
+
+  if(pctEl)pctEl.textContent=pct+'%';
+  if(fillEl)fillEl.style.width=pct+'%';
+  if(countEl)countEl.textContent=`${totalChecked}/${TOTAL} completees`;
+
+  // Status label
+  let status='Debutant';
+  if(pct>=100)status='Machine \u{1F525}';
+  else if(pct>=80)status='Elite';
+  else if(pct>=60)status='Avance';
+  else if(pct>=40)status='Intermediaire';
+  else if(pct>=20)status='En route';
+  if(statusEl)statusEl.textContent=status;
+}
+
+// Scroll to category
+function scrollToCat(idx){
+  const el=document.getElementById(`cat-${idx}`);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Reset
+function resetAll(){
+  if(!confirm('Reinitialiser toute ta progression ?'))return;
+  state=Array.from({length:CATS},()=>Array(PER_CAT).fill(false));
+  saveState();
+  applyState();
+}
+
+// Email gate
+function unlockChecklist(e){
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  const data={};fd.forEach((v,k)=>data[k]=v);
+  data.source='checklist-performance-interactive';
+  data.timestamp=new Date().toISOString();
+  console.log('9MM Lead captured:',data);
+  // TODO: API call here
+
+  try{localStorage.setItem(STORAGE_EMAIL,JSON.stringify(data))}catch(ex){}
+
+  document.getElementById('email-modal').classList.remove('active');
+  document.getElementById('app-content').style.display='block';
+
+  // Trigger fade in animations
+  setTimeout(()=>loadState(),100);
+}
+
+// Check if already unlocked
+function checkAccess(){
+  try{
+    const email=localStorage.getItem(STORAGE_EMAIL);
+    if(email){
+      document.getElementById('email-modal').classList.remove('active');
+      document.getElementById('app-content').style.display='block';
+      loadState();
+    }
+  }catch(e){}
+}
+
+// Celebration confetti
+function celebrate(){
+  const container=document.getElementById('confetti');
+  container.style.display='block';
+  container.innerHTML='';
+  const colors=['#FF1717','#00EDEF','#fff','#FF1717','#00EDEF'];
+  for(let i=0;i<60;i++){
+    const piece=document.createElement('div');
+    piece.className='confetti-piece';
+    piece.style.left=Math.random()*100+'%';
+    piece.style.animationDelay=Math.random()*2+'s';
+    piece.style.animationDuration=(2+Math.random()*2)+'s';
+    piece.style.background=colors[Math.floor(Math.random()*colors.length)];
+    piece.style.borderRadius=Math.random()>.5?'50%':'2px';
+    piece.style.width=(6+Math.random()*8)+'px';
+    piece.style.height=(6+Math.random()*8)+'px';
+    container.appendChild(piece);
+  }
+  setTimeout(()=>{container.style.display='none';container.innerHTML=''},5000);
+}
+
+// Init
+document.addEventListener('DOMContentLoaded',checkAccess);
+</script>
+</body>
+</html>
