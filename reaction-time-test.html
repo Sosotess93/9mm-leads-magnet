@@ -27,6 +27,19 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
 @media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
 
+/* Sticky CTA Bar */
+@keyframes slideUpCTA{0%{transform:translateY(100%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes slideDownCTA{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
+#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,237,239,.15);padding:14px 20px;display:none;align-items:center;justify-content:center;gap:16px;animation:slideUpCTA .5s cubic-bezier(.16,1,.3,1) both}
+#sticky-cta.hiding{animation:slideDownCTA .35s cubic-bezier(.7,0,.84,0) both}
+#sticky-cta .cta-text{color:rgba(255,255,255,.7);font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#sticky-cta .cta-text strong{color:#fff;font-weight:700}
+#sticky-cta .cta-btn{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;transition:all .3s;flex-shrink:0}
+#sticky-cta .cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 25px rgba(0,237,239,.35)}
+#sticky-cta .cta-close{background:none;border:none;color:rgba(255,255,255,.35);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;flex-shrink:0}
+#sticky-cta .cta-close:hover{color:rgba(255,255,255,.7)}
+@media(max-width:640px){#sticky-cta{flex-wrap:wrap;gap:10px;padding:12px 16px}#sticky-cta .cta-text{width:100%;text-align:center;font-size:13px}#sticky-cta .cta-btn{flex:1;text-align:center;font-size:13px;padding:10px 16px}}
+
 /* Game Zone */
 #game-zone{width:100%;height:340px;border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;user-select:none;-webkit-user-select:none;position:relative;overflow:hidden}
 #game-zone.waiting{background:rgba(255,23,23,.08);border:2px solid rgba(255,23,23,.15)}
@@ -66,6 +79,16 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <span class="text-white">Reaction</span> <span style="color:var(--cyan)">Time</span>
 </h1>
 <p class="text-white/45 max-w-md mx-auto">Teste ton temps de reaction et compare-toi aux gamers pro. 5 essais, pas de triche.</p>
+</div>
+
+<!-- Social proof (trust signal) -->
+<div class="flex items-center gap-3 justify-center mb-6 fade-in delay-1">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div>
+<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🧠</div>
+</div>
+<span class="text-white/25 text-xs">12,400+ tests effectues</span>
 </div>
 
 <!-- GAME AREA -->
@@ -133,14 +156,6 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </div>
 </div>
 
-<div class="flex items-center gap-3 mt-6 justify-center">
-<div class="flex -space-x-2">
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎮</div>
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">⚡</div>
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🧠</div>
-</div>
-<span class="text-white/25 text-xs">12,400+ tests effectues</span>
-</div>
 </div>
 
 <!-- Product Section -->
@@ -175,6 +190,13 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p>
 </div>
 </footer>
+
+<!-- STICKY CTA BAR -->
+<div id="sticky-cta">
+<span class="cta-text"><strong>Recois ton analyse detaillee</strong> + tips pro</span>
+<button class="cta-btn" onclick="scrollToEmailForm()">RECEVOIR MON ANALYSE &rarr;</button>
+<button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">&times;</button>
+</div>
 
 <script>
 const zone=document.getElementById('game-zone');
@@ -273,6 +295,34 @@ function showFinalResults(){
   else if(avg<350)rank='💪 Moyen — Tu peux progresser';
   else rank='🔄 A ameliorer — Entraine-toi !';
   document.getElementById('rank-label').textContent=rank;
+
+  // Show sticky CTA bar after a short delay
+  setTimeout(showStickyBar,1200);
+}
+
+// --- Sticky CTA Bar logic ---
+let stickyBarDismissed=false;
+function showStickyBar(){
+  if(stickyBarDismissed)return;
+  const bar=document.getElementById('sticky-cta');
+  bar.classList.remove('hiding');
+  bar.style.display='flex';
+}
+function closeStickyBar(){
+  const bar=document.getElementById('sticky-cta');
+  bar.classList.add('hiding');
+  stickyBarDismissed=true;
+  setTimeout(()=>{bar.style.display='none';},350);
+}
+function hideStickyBar(){
+  const bar=document.getElementById('sticky-cta');
+  bar.classList.add('hiding');
+  setTimeout(()=>{bar.style.display='none';bar.classList.remove('hiding');},350);
+}
+function scrollToEmailForm(){
+  const gate=document.getElementById('email-gate');
+  if(gate){gate.scrollIntoView({behavior:'smooth',block:'center'});}
+  hideStickyBar();
 }
 
 function captureEmail(e){
@@ -287,6 +337,9 @@ function captureEmail(e){
   console.log('9MM Lead captured:',data);
   document.getElementById('email-gate').style.display='none';
   document.getElementById('success-msg').style.display='block';
+  // Hide sticky CTA since form was submitted
+  hideStickyBar();
+  stickyBarDismissed=true;
 }
 
 function resetGame(){
@@ -299,6 +352,9 @@ function resetGame(){
   document.getElementById('success-msg').style.display='none';
   for(let i=0;i<5;i++){document.getElementById('dot-'+i).className='attempt-dot'+(i===0?' active':'');}
   attemptLabel.textContent='Essai 1/5';
+  // Reset sticky bar
+  stickyBarDismissed=false;
+  hideStickyBar();
 }
 </script>
 </body>

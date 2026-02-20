@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Lead Magnets Hub</title>
+<title>9MM — Teste-toi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
@@ -51,9 +51,34 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 
 .animate-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
 
+/* Category headings */
+.category-heading{display:flex;align-items:center;gap:12px;margin:0 0 20px;padding:0}
+.category-heading .category-line{flex:1;height:1px}
+.category-heading .category-label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;white-space:nowrap}
+.category-heading.cyan .category-line{background:linear-gradient(90deg,rgba(0,237,239,.3),transparent)}
+.category-heading.cyan .category-label{color:var(--cyan)}
+.category-heading.red .category-line{background:linear-gradient(90deg,rgba(255,23,23,.3),transparent)}
+.category-heading.red .category-label{color:var(--red)}
+.category-heading.dual .category-line{background:linear-gradient(90deg,rgba(255,23,23,.3),rgba(0,237,239,.3),transparent)}
+.category-heading.dual .category-label{background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* CTA section */
+.cta-section{text-align:center;padding:64px 24px 32px;position:relative;z-index:10}
+.cta-section .cta-title{font-size:clamp(22px,4vw,32px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 8px;color:rgba(255,255,255,.7)}
+.cta-section .cta-sub{font-size:14px;color:rgba(255,255,255,.35);margin:0 0 28px;max-width:400px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;border-radius:99px;font-family:'Oswald',sans-serif;font-size:16px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--red),var(--cyan));position:relative;overflow:hidden;transition:all .35s cubic-bezier(.4,0,.2,1);border:none;cursor:pointer}
+.cta-btn::before{content:'';position:absolute;inset:1px;border-radius:99px;background:var(--black);transition:opacity .35s}
+.cta-btn:hover::before{opacity:.85}
+.cta-btn span{position:relative;z-index:1}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,23,23,.15),0 8px 32px rgba(0,237,239,.15)}
+
+/* Section divider */
+.section-divider{width:60px;height:1px;margin:0 auto 48px;background:rgba(255,255,255,.08);border-radius:99px}
+
 @media(max-width:640px){
   .card{padding:22px 20px;border-radius:12px}
   main{padding-left:16px!important;padding-right:16px!important}
+  .cta-section{padding:48px 16px 24px}
 }
 </style>
 </head>
@@ -71,6 +96,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div style="position:fixed;top:0;right:0;width:500px;height:500px;background:rgba(239,68,68,.04);border-radius:50%;filter:blur(200px);pointer-events:none"></div>
 <div style="position:fixed;bottom:0;left:0;width:500px;height:500px;background:rgba(0,237,239,.04);border-radius:50%;filter:blur(200px);pointer-events:none"></div>
 
+<!-- Header / Branding -->
 <header style="position:relative;z-index:10;text-align:center;padding:60px 20px 20px">
 <div class="animate-in">
 <span class="font-oswald" style="font-size:48px;font-weight:700;letter-spacing:.08em">9MM</span>
@@ -81,29 +107,31 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </div>
 </header>
 
-<main style="max-width:72rem;margin:0 auto;padding:20px 24px 80px;position:relative;z-index:10">
-
-<div class="animate-in" style="text-align:center;margin-bottom:48px;animation-delay:.15s">
-<h1 class="font-oswald" style="font-size:clamp(28px,5vw,42px);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:.95;margin:0 0 12px">
-Lead Magnets<br/>
-<span style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Hub</span>
+<!-- Hero -->
+<section style="position:relative;z-index:10;text-align:center;padding:24px 24px 48px;max-width:72rem;margin:0 auto">
+<div class="animate-in" style="animation-delay:.15s">
+<h1 class="font-oswald" style="font-size:clamp(48px,10vw,80px);font-weight:700;text-transform:uppercase;letter-spacing:-.02em;line-height:.9;margin:0 0 16px">
+<span style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Teste-toi</span>
 </h1>
-<p style="color:rgba(255,255,255,.4);font-size:15px;max-width:480px;margin:0 auto">6 landing pages pretes a deployer. Clique pour preview.</p>
+<p style="color:rgba(255,255,255,.45);font-size:clamp(15px,2.5vw,18px);max-width:520px;margin:0 auto;line-height:1.5">Quiz, challenges et mini-jeux pour mesurer ta performance. 100% gratuit.</p>
+<p style="color:rgba(255,255,255,.2);font-size:12px;margin:20px 0 0;letter-spacing:.1em;text-transform:uppercase">6 experiences interactives</p>
+</div>
+</section>
+
+<main style="max-width:72rem;margin:0 auto;padding:0 24px 40px;position:relative;z-index:10">
+
+<!-- ======================== GAMERS ======================== -->
+<div class="animate-in" style="animation-delay:.25s;margin-bottom:12px">
+<div class="category-heading cyan">
+<span class="category-label font-oswald">Gamers</span>
+<div class="category-line"></div>
+</div>
 </div>
 
-<!-- Grid -->
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
-
-<!-- Quiz -->
-<a href="quiz-profil-performance.html" class="card dual animate-in" style="animation-delay:.2s">
-<span class="tag dual">Quiz interactif</span>
-<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Quiz Profil Performance</h3>
-<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">8 questions pour decouvrir ton profil : Active Body, Active Mind ou Hybrid.</p>
-<span class="card-arrow">Ouvrir &rarr;</span>
-</a>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px">
 
 <!-- Reaction Time Test -->
-<a href="reaction-time-test.html" class="card mind animate-in" style="animation-delay:.25s">
+<a href="reaction-time-test.html" class="card mind animate-in" style="animation-delay:.3s">
 <span class="tag mind">Test interactif</span>
 <h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Reaction Time Test</h3>
 <p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">Teste ton temps de reaction en 5 essais. Compare-toi aux pros.</p>
@@ -111,18 +139,10 @@ Lead Magnets<br/>
 </a>
 
 <!-- Focus Score Test -->
-<a href="focus-score-test.html" class="card mind animate-in" style="animation-delay:.3s">
+<a href="focus-score-test.html" class="card mind animate-in" style="animation-delay:.35s">
 <span class="tag mind">Mini-jeu</span>
 <h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Focus Score Test</h3>
 <p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">Mini-jeu de concentration. Clique les cibles, evite les leurres, bats ton score.</p>
-<span class="card-arrow">Ouvrir &rarr;</span>
-</a>
-
-<!-- Quiz Boxe ADN du Combattant -->
-<a href="pro-match-quiz.html" class="card body animate-in" style="animation-delay:.35s">
-<span class="tag body">Quiz Boxe</span>
-<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">L'ADN du Combattant</h3>
-<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">12 questions pour decouvrir quel boxeur pro te ressemble. Usyk, Tyson, Mayweather...</p>
 <span class="card-arrow">Ouvrir &rarr;</span>
 </a>
 
@@ -134,22 +154,73 @@ Lead Magnets<br/>
 <span class="card-arrow">Ouvrir &rarr;</span>
 </a>
 
+</div>
+
+<!-- ======================== SPORTIFS ======================== -->
+<div class="animate-in" style="animation-delay:.45s;margin-bottom:12px">
+<div class="category-heading red">
+<span class="category-label font-oswald">Sportifs</span>
+<div class="category-line"></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:48px">
+
+<!-- Quiz Boxe Morphologique -->
+<a href="pro-match-quiz.html" class="card body animate-in" style="animation-delay:.5s">
+<span class="tag body">Analyse Morphologique</span>
+<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Ton Style de Boxe</h3>
+<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">Decouvre ton style de boxe ideal base sur ton physique. Analyse complete + plan 3 mois.</p>
+<span class="card-arrow">Ouvrir &rarr;</span>
+</a>
+
 <!-- Quiz Military Training -->
-<a href="quiz-military-training.html" class="card body animate-in" style="animation-delay:.45s">
-<span class="tag body">Quiz Militaire</span>
-<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Programme Militaire</h3>
-<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">Navy SEALs, SAS, Legion... Quel programme d'elite te correspond ? + Plan 4 semaines.</p>
+<a href="quiz-military-training.html" class="card body animate-in" style="animation-delay:.55s">
+<span class="tag body">Funnel Militaire</span>
+<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Challenge Militaire</h3>
+<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">22 etapes pour creer ton programme d'entrainement militaire. IMC, fitness score + plan personnalise.</p>
 <span class="card-arrow">Ouvrir &rarr;</span>
 </a>
 
 </div>
+
+<!-- ======================== DECOUVRE TON PROFIL ======================== -->
+<div class="animate-in" style="animation-delay:.6s;margin-bottom:12px">
+<div class="category-heading dual">
+<span class="category-label font-oswald">Decouvre ton profil</span>
+<div class="category-line"></div>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:16px">
+
+<!-- Quiz Profil Performance -->
+<a href="quiz-profil-performance.html" class="card dual animate-in" style="animation-delay:.65s">
+<span class="tag dual">Quiz interactif</span>
+<h3 class="font-oswald" style="font-size:20px;font-weight:700;text-transform:uppercase;margin:0 0 6px;line-height:1.1">Quiz Profil Performance</h3>
+<p style="color:rgba(255,255,255,.4);font-size:13px;margin:0;line-height:1.5">8 questions pour decouvrir ton profil : Active Body, Active Mind ou Hybrid.</p>
+<span class="card-arrow">Ouvrir &rarr;</span>
+</a>
+
+</div>
+
 </main>
 
-<footer style="position:relative;z-index:10;text-align:center;padding:24px 20px 40px">
+<!-- Bottom CTA -->
+<section class="cta-section animate-in" style="animation-delay:.7s">
+<div class="section-divider"></div>
+<h2 class="font-oswald cta-title">Tu veux aller plus loin ?</h2>
+<p class="cta-sub">Decouvre 9MM Energy et passe au niveau superieur.</p>
+<a href="https://9mm-energy.com" target="_blank" rel="noopener" class="cta-btn">
+<span>Decouvrir 9MM &rarr;</span>
+</a>
+</section>
+
+<footer style="position:relative;z-index:10;text-align:center;padding:48px 20px 40px">
 <div style="max-width:28rem;margin:0 auto;border-top:1px solid rgba(255,255,255,.05);padding-top:20px">
 <span class="font-oswald" style="font-size:18px;font-weight:700;color:rgba(255,255,255,.4)">9MM</span>
 <span style="font-size:9px;color:rgba(255,255,255,.2);letter-spacing:.2em;text-transform:uppercase;margin-left:8px">Beyond Energy</span>
-<p style="color:rgba(255,255,255,.2);font-size:11px;margin:8px 0 0">Hub interne - Deploy via Vercel</p>
+<p style="color:rgba(255,255,255,.2);font-size:11px;margin:8px 0 0">&copy; 2026 9MM Suisse SA</p>
 </div>
 </footer>
 

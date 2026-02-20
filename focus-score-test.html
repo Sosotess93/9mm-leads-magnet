@@ -33,6 +33,30 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .target-btn.decoy:hover{background:rgba(255,23,23,.15)}
 .progress-ring{transform:rotate(-90deg)}
 .progress-ring circle{transition:stroke-dashoffset .5s ease}
+
+/* Social proof avatar pills */
+.avatar-pill{width:32px;height:32px;border-radius:50%;border:2px solid rgba(0,237,239,.3);display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:rgba(0,237,239,.08);color:var(--cyan);flex-shrink:0}
+.avatar-stack{display:flex;align-items:center}
+.avatar-stack .avatar-pill:not(:first-child){margin-left:-8px}
+
+/* Sticky CTA bar */
+@keyframes slideUpIn{0%{transform:translateY(100%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes slideDownOut{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
+#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,237,239,.15);padding:16px 20px;display:none;align-items:center;justify-content:center;gap:16px;box-shadow:0 -8px 40px rgba(0,0,0,.5)}
+#sticky-cta.show{display:flex;animation:slideUpIn .5s cubic-bezier(.16,1,.3,1) both}
+#sticky-cta.hiding{animation:slideDownOut .35s cubic-bezier(.7,0,.84,0) both}
+#sticky-cta .cta-text{font-size:13px;color:rgba(255,255,255,.7);max-width:260px;line-height:1.3}
+#sticky-cta .cta-text strong{color:#fff;font-weight:600}
+#sticky-cta .cta-btn{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;transition:all .3s;flex-shrink:0}
+#sticky-cta .cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,237,239,.35)}
+#sticky-cta .cta-close{position:absolute;top:8px;right:12px;background:none;border:none;color:rgba(255,255,255,.35);font-size:18px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s}
+#sticky-cta .cta-close:hover{color:rgba(255,255,255,.7)}
+@media(max-width:640px){
+  #sticky-cta{flex-direction:column;gap:10px;padding:14px 16px 18px;text-align:center}
+  #sticky-cta .cta-text{max-width:100%;font-size:12px}
+  #sticky-cta .cta-btn{width:100%;padding:14px 20px}
+  #sticky-cta .cta-close{top:6px;right:8px}
+}
 </style>
 </head>
 <body>
@@ -55,6 +79,21 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">TEST DE CONCENTRATION</span>
 <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">Focus <span style="color:var(--cyan)">Score</span></h1>
 <p class="text-white/45 max-w-md mx-auto">Clique uniquement sur le bon chiffre. La vitesse augmente. Combien de points tu tiens ?</p>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="flex items-center justify-center gap-3 fade-in mb-8" style="margin-top:-12px">
+<div class="avatar-stack">
+<span class="avatar-pill" style="background:rgba(0,237,239,.12)">S</span>
+<span class="avatar-pill" style="background:rgba(255,23,23,.12);border-color:rgba(255,23,23,.3);color:var(--red)">M</span>
+<span class="avatar-pill" style="background:rgba(0,237,239,.12)">A</span>
+<span class="avatar-pill" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.5)">K</span>
+<span class="avatar-pill" style="background:rgba(0,237,239,.12)">J</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:1px">
+<span class="font-oswald text-sm font-bold" style="color:var(--cyan);letter-spacing:.02em">8,247+ joueurs testes</span>
+<span style="font-size:11px;color:rgba(255,255,255,.3)">Score moyen : 42/100</span>
+</div>
 </div>
 
 <!-- HUD -->
@@ -119,6 +158,13 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </div>
 </div>
 </main>
+
+<!-- STICKY CTA BAR -->
+<div id="sticky-cta">
+<button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">&times;</button>
+<div class="cta-text"><strong>Recois ton analyse focus</strong> + programme personnalise pour ameliorer ta concentration</div>
+<button class="cta-btn" onclick="scrollToEmailForm()">RECEVOIR MON ANALYSE →</button>
+</div>
 
 <footer class="relative z-10 text-center py-8 mt-8">
 <div class="max-w-md mx-auto border-t border-white/5 pt-6">
@@ -224,6 +270,48 @@ function endGame(){
   document.getElementById('focus-stats').textContent=stats;
 
   area.style.display='none';
+
+  // Show sticky CTA bar after a short delay
+  setTimeout(showStickyBar, 1500);
+}
+
+/* Sticky CTA bar logic */
+let stickyBarDismissed=false;
+
+function showStickyBar(){
+  if(stickyBarDismissed)return;
+  const bar=document.getElementById('sticky-cta');
+  bar.classList.remove('hiding');
+  bar.classList.add('show');
+}
+
+function closeStickyBar(){
+  stickyBarDismissed=true;
+  const bar=document.getElementById('sticky-cta');
+  bar.classList.add('hiding');
+  bar.addEventListener('animationend',function handler(){
+    bar.classList.remove('show','hiding');
+    bar.style.display='none';
+    bar.removeEventListener('animationend',handler);
+  });
+}
+
+function scrollToEmailForm(){
+  const emailGate=document.getElementById('email-gate');
+  if(emailGate){
+    emailGate.scrollIntoView({behavior:'smooth',block:'center'});
+    // Flash highlight on the form briefly
+    const form=document.getElementById('lead-form');
+    if(form){
+      form.style.transition='box-shadow .3s ease';
+      form.style.boxShadow='0 0 0 2px rgba(0,237,239,.4), 0 0 30px rgba(0,237,239,.15)';
+      form.style.borderRadius='16px';
+      form.style.padding='16px';
+      setTimeout(()=>{form.style.boxShadow='none';form.style.padding='0';},2000);
+    }
+  }
+  // Close the sticky bar after clicking
+  closeStickyBar();
 }
 
 function captureEmail(e){
@@ -234,6 +322,8 @@ function captureEmail(e){
   console.log('9MM Lead captured:',data);
   document.getElementById('email-gate').style.display='none';
   document.getElementById('success-msg').style.display='block';
+  // Hide sticky bar when email is captured
+  closeStickyBar();
 }
 </script>
 </body>

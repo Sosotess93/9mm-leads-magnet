@@ -2,45 +2,84 @@
 <html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Programme Militaire | Quel Special Forces Training Te Correspond ?</title>
+<title>9MM — Challenge Militaire Avance</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a;--military:#8B9A46}
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
 body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
 .font-oswald{font-family:'Oswald',sans-serif}
 @keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
 @keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes cardReveal{0%{opacity:0;transform:scale(.85) rotateY(10deg)}100%{opacity:1;transform:scale(1) rotateY(0deg)}}
-@keyframes stampIn{0%{opacity:0;transform:scale(2) rotate(-15deg)}40%{opacity:1;transform:scale(.9) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
-.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
-.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}
-.card-reveal{animation:cardReveal .8s cubic-bezier(.16,1,.3,1) both}
-.stamp-in{animation:stampIn .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes pulseDot{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes progressFill{0%{width:0}100%{width:100%}}
+.fade-in{animation:fadeSlideBlurIn .6s cubic-bezier(.16,1,.3,1) both}
 *,*::before,*::after{box-sizing:border-box}
+
+/* Shared UI */
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-red:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
+.btn-red:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
 .form-group{display:flex;flex-direction:column;gap:6px}
 .form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
+.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px)}
 .form-group input::placeholder{color:rgba(255,255,255,.25)}
 .form-group input:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
-.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
-.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
-@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
 
-.answer-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
-.answer-btn:hover{background:rgba(255,23,23,.04);border-color:rgba(255,23,23,.15);transform:translateX(4px)}
-.answer-btn .letter{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.3);flex-shrink:0}
+/* Option buttons */
+.opt-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .25s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
+.opt-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);transform:translateX(4px)}
+.opt-btn.selected{background:rgba(255,23,23,.08);border-color:rgba(255,23,23,.25);box-shadow:0 0 20px rgba(255,23,23,.08)}
+.opt-btn.multi.selected{background:rgba(255,23,23,.08);border-color:rgba(255,23,23,.25)}
+.opt-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(255,255,255,.06);flex-shrink:0}
+.opt-btn.selected .opt-icon{background:rgba(255,23,23,.15)}
 
-.profile-card{border-radius:20px;padding:30px;text-align:center;position:relative;overflow:hidden}
+/* Slider */
+.slider-track{width:100%;height:8px;border-radius:99px;background:rgba(255,255,255,.06);position:relative;cursor:pointer}
+.slider-fill{height:100%;border-radius:99px;background:var(--red);transition:width .15s}
+.slider-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--red);position:absolute;top:50%;transform:translate(-50%,-50%);cursor:grab;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:left .15s}
+.slider-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:rgba(255,255,255,.3)}
+
+/* Score dots */
+.score-dots{display:flex;gap:4px;align-items:center}
+.score-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);transition:background .3s}
+.score-dot.filled{background:var(--red)}
+
+/* Loading screen */
+.loading-step{display:flex;align-items:center;gap:12px;padding:12px 0;opacity:.3;transition:opacity .5s}
+.loading-step.active{opacity:1}
+.loading-step.done{opacity:.5}
+.loading-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .3s}
+.loading-step.active .loading-dot{background:var(--red);animation:pulseDot 1s ease infinite}
+.loading-step.done .loading-dot{background:var(--red)}
+.loading-bar{width:100%;height:4px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;margin-bottom:24px}
+.loading-bar-fill{height:100%;border-radius:99px;background:var(--red);transition:width .8s cubic-bezier(.16,1,.3,1)}
+
+/* Comparison table */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0}
+.compare-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
+.compare-table td:first-child{color:rgba(255,255,255,.3);width:30%}
+.compare-col-gym{color:rgba(255,255,255,.4)}
+.compare-col-mil{color:var(--red);font-weight:600}
+
+/* Progress bar */
+.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
+.quiz-progress-fill{height:100%;background:var(--red);transition:width .5s cubic-bezier(.16,1,.3,1)}
+
+/* Stat bar */
 .stat-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-.stat-fill{height:100%;border-radius:99px;transition:width 1s cubic-bezier(.16,1,.3,1)}
+.stat-fill{height:100%;border-radius:99px;background:var(--red);transition:width 1s cubic-bezier(.16,1,.3,1)}
 
-.mil-badge{display:inline-flex;align-items:center;gap:4px;font-size:9px;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)}
+@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px!important;padding-right:16px!important}}
 </style>
 </head>
 <body>
+<div class="quiz-progress"><div class="quiz-progress-fill" id="top-progress" style="width:0%"></div></div>
+
 <div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
 <div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
 <div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
@@ -48,120 +87,16 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
 </div>
 
-<header class="relative z-10 text-center pt-10 pb-4">
-<div class="inline-flex items-center gap-3"><span class="font-oswald text-3xl font-bold tracking-wider">9MM</span><span class="text-[10px] text-white/30 tracking-[.3em] uppercase mt-1">Beyond &#9733; Energy</span></div>
-<div style="width:50px;height:3px;background:linear-gradient(90deg,var(--red),var(--cyan));margin:10px auto 0;border-radius:99px"></div>
+<header class="relative z-10 text-center pt-6 pb-1" id="site-header">
+<div class="inline-flex items-center gap-2"><span class="font-oswald text-xl font-bold tracking-wider text-white/50">9MM</span><span class="text-[8px] text-white/20 tracking-[.3em] uppercase mt-0.5">Beyond Energy</span></div>
 </header>
 
-<main class="max-w-2xl mx-auto px-5 pb-16 relative z-10">
+<main class="max-w-lg mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
 <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 
-<!-- ============ INTRO ============ -->
-<div id="intro-screen" class="text-center fade-in">
-<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">&#9733; QUIZ MILITARY TRAINING &#9733;</span>
-<h1 class="font-oswald text-4xl md:text-6xl font-bold uppercase leading-[.85] mb-4">Quel Programme<br/><span style="color:var(--red)">Militaire</span><br/><span class="text-white/40 text-3xl md:text-4xl">Te Correspond ?</span></h1>
-<p class="text-white/45 max-w-md mx-auto mb-3 text-base">Navy SEALs, SAS, Legion Etrangere... Decouvre le programme d'elite qui match ton profil.</p>
-<p class="text-white/25 text-sm mb-8">Recois ton plan d'entrainement militaire personnalise.</p>
+<!-- Container for all steps -->
+<div id="step-container" class="flex-1 flex flex-col justify-center py-8"></div>
 
-<div class="grid grid-cols-3 gap-2 mb-8 max-w-sm mx-auto">
-<div class="glass-card p-3 text-center"><span style="font-size:24px">🦅</span><p class="text-[9px] text-white/30 mt-1 font-bold">Navy SEALs</p></div>
-<div class="glass-card p-3 text-center"><span style="font-size:24px">&#9876;️</span><p class="text-[9px] text-white/30 mt-1 font-bold">SAS</p></div>
-<div class="glass-card p-3 text-center"><span style="font-size:24px">🗡️</span><p class="text-[9px] text-white/30 mt-1 font-bold">Legion</p></div>
-<div class="glass-card p-3 text-center"><span style="font-size:24px">🎯</span><p class="text-[9px] text-white/30 mt-1 font-bold">Spetsnaz</p></div>
-<div class="glass-card p-3 text-center"><span style="font-size:24px">🏔️</span><p class="text-[9px] text-white/30 mt-1 font-bold">Chasseurs Alpins</p></div>
-<div class="glass-card p-3 text-center"><span style="font-size:24px">🔥</span><p class="text-[9px] text-white/30 mt-1 font-bold">Marines</p></div>
-</div>
-
-<button onclick="startQuiz()" class="btn-red" style="max-width:320px;margin:0 auto;display:block">TROUVER MON PROGRAMME &rarr;</button>
-<p class="text-white/20 text-xs mt-4">&#9201; 3 min &bull; 10 questions &bull; 100% gratuit</p>
-</div>
-
-<!-- ============ QUIZ ============ -->
-<div id="quiz-screen" style="display:none">
-<div class="flex items-center gap-3 mb-6">
-<div class="flex-1 h-1.5 rounded-full bg-white/5 overflow-hidden"><div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width:0%;background:linear-gradient(90deg,var(--red),#cc1212)"></div></div>
-<span class="text-xs text-white/30 font-oswald" id="q-counter">1/10</span>
-</div>
-<div id="question-container"></div>
-</div>
-
-<!-- ============ RESULTS ============ -->
-<div id="result-screen" style="display:none">
-<div class="card-reveal">
-<div class="profile-card" id="profile-card" style="background:rgba(255,23,23,.04);border:2px solid rgba(255,23,23,.15)">
-<div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 20%,rgba(255,23,23,.06),transparent);pointer-events:none"></div>
-<span id="result-emoji" style="font-size:64px;display:block;margin-bottom:8px;position:relative;z-index:2">🦅</span>
-<div class="mil-badge mx-auto mb-3 stamp-in" style="position:relative;z-index:2" id="result-badge">CLASSIFIED</div>
-<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-1" id="result-name" style="position:relative;z-index:2;color:var(--red)">-</h2>
-<p class="text-white/60 text-base font-semibold mb-2" id="result-unit" style="position:relative;z-index:2">-</p>
-<p class="text-white/40 text-sm max-w-sm mx-auto mb-6" id="result-desc" style="position:relative;z-index:2">-</p>
-
-<div class="max-w-xs mx-auto text-left space-y-3 mb-6" id="result-stats" style="position:relative;z-index:2"></div>
-
-<div class="glass-card p-4 text-left mb-4" style="position:relative;z-index:2">
-<strong class="text-sm block mb-2">Ton programme inclut</strong>
-<div id="result-program" class="space-y-2"></div>
-</div>
-
-<div class="glass-card p-4 text-left" style="position:relative;z-index:2">
-<strong class="text-sm block mb-2">Ton 9MM recommande</strong>
-<div class="flex items-center gap-3" id="result-product"></div>
-</div>
-</div>
-</div>
-
-<!-- Email gate -->
-<div class="glass-card p-8 mt-6" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
-<div id="email-gate" class="text-center">
-<span style="font-size:28px">&#9733;</span>
-<p class="font-oswald text-xl font-bold uppercase mt-2 mb-1">Mission Acceptee ?</p>
-<p class="text-white/35 text-sm mb-6">Recois ton <strong class="text-white/60">Plan d'Entrainement Militaire Personnalise</strong> de 4 semaines base sur le programme <span id="plan-unit-name" class="text-white/60">-</span>.</p>
-<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
-<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
-<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<button type="submit" class="btn-red">RECEVOIR MON PROGRAMME &rarr;</button>
-</form>
-</div>
-<div id="success-msg" style="display:none" class="text-center mt-4">
-<span style="font-size:40px">&#10003;</span>
-<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--red)">Mission Lancee !</h4>
-<p class="text-white/45 text-sm">Ton programme d'entrainement militaire arrive dans ta boite mail. Prepare-toi.</p>
-</div>
-</div>
-
-<div class="flex items-center gap-3 mt-6 justify-center">
-<div class="flex -space-x-2">
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">💪</div>
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🎖️</div>
-<div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">🔥</div>
-</div>
-<span class="text-white/25 text-xs">4,800+ recrues enrolees</span>
-</div>
-</div>
-
-<!-- Product section -->
-<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10">
-<div class="text-center mb-6">
-<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.1)">ENERGIE TACTIQUE</span>
-<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase leading-[.9]">Endurance. Resistance.<br/><span style="color:var(--red)">Zero Compromis.</span></h2>
-</div>
-<div class="grid sm:grid-cols-2 gap-4">
-<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
-<div class="flex items-center gap-4 mb-3">
-<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
-<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & performance physique</p></div>
-</div>
-<div class="flex flex-wrap gap-1.5"><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span></div>
-</div>
-<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
-<div class="flex items-center gap-4 mb-3">
-<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
-<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Focus & lucidite tactique</p></div>
-</div>
-<div class="flex flex-wrap gap-1.5"><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">The Vert</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span><span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span></div>
-</div>
-</div>
-</section>
 </main>
 
 <footer class="relative z-10 text-center py-8 mt-8">
@@ -169,232 +104,408 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </footer>
 
 <script>
-const profiles = {
-  seals: {
-    emoji: '🦅', name: 'Navy SEALs', unit: 'United States Navy Sea, Air, and Land Teams',
-    badge: 'BUDS CLASS',
-    desc: 'Le programme d\'elite ultime. Tu es fait pour le mental warfare : entrainements sous pression extreme, endurance mentale superieure et adaptabilite en milieu hostile. L\'echec n\'est pas une option.',
-    stats: { 'Mental Toughness': 98, Endurance: 95, Natation: 90, 'Combat rapproche': 85, Adaptabilite: 92 },
-    program: ['Hell Week simulation (5 jours haute intensite)', 'Natation combat 2km + course 8km', 'Log PT & exercices en equipe', 'Cold water conditioning', 'HIIT tactique 45 min/jour'],
-    product: 'Active Body + Active Mind — endurance physique ET lucidite mentale pour les missions les plus dures'
-  },
-  sas: {
-    emoji: '&#9876;️', name: 'SAS', unit: 'Special Air Service — British Army',
-    badge: 'WHO DARES WINS',
-    desc: 'Discret, letal, strategique. Tu excelles dans les missions d\'infiltration et la survie en conditions extremes. Ton mental est ta premiere arme, ta discretion ta seconde.',
-    stats: { Tactique: 96, Survie: 95, Discretion: 92, Endurance: 88, 'Force brute': 70 },
-    program: ['Fan Dance simulation (marche 24km en montagne)', 'Survie en milieu hostile 48h', 'Navigation nocturne sans GPS', 'Resistance a la privation de sommeil', 'Circuit training fonctionnel 60 min'],
-    product: 'Active Mind — pour la lucidite tactique et la concentration en conditions de fatigue extreme'
-  },
-  legion: {
-    emoji: '🗡️', name: 'Legion Etrangere', unit: 'Legion Etrangere — Armee Francaise',
-    badge: 'LEGIO PATRIA NOSTRA',
-    desc: 'La resilience incarnee. Tu supportes ce que les autres ne peuvent meme pas imaginer. La souffrance est un outil, la discipline une religion. Marche ou creve.',
-    stats: { Resilience: 98, Discipline: 96, 'Marche forcee': 95, Mental: 90, 'Combat': 85 },
-    program: ['Marche commando 40km avec sac 25kg', 'Kepi blanc circuit (pompes, abdos, burpees x100)', 'Course en rangers 10km', 'Combat rapproche et krav-maga', 'Entrainement au desert / jungle'],
-    product: 'Active Body — pour une endurance de legionnaire qui ne faiblit jamais'
-  },
-  spetsnaz: {
-    emoji: '🎯', name: 'Spetsnaz', unit: 'Forces Speciales Russes',
-    badge: 'SYSTEMA WARRIOR',
-    desc: 'Puissance brute et agressivite controlee. Tu crois en la force physique comme arme premiere. Ton entrainement est brutal, tes methodes directes, tes resultats implacables.',
-    stats: { 'Force brute': 98, Agressivite: 95, 'Combat': 92, Endurance: 80, Tactique: 70 },
-    program: ['Circuits de force extreme (deadlift, squat, press)', 'Systema — art martial russe complet', 'Kettlebell complexes 30 min non-stop', 'Sparring pieds-poings intensif', 'Course obstacle militaire'],
-    product: 'Active Body — pour la puissance brute et la force explosive des Spetsnaz'
-  },
-  alpins: {
-    emoji: '🏔️', name: 'Chasseurs Alpins', unit: '27e Brigade d\'Infanterie de Montagne — Armee Francaise',
-    badge: 'EN AVANT',
-    desc: 'L\'endurance d\'altitude. Tu excelles dans les environnements extremes ou le cardio et la resistance au froid font la difference. L\'altitude ne t\'arrete pas, elle te renforce.',
-    stats: { Endurance: 98, 'Resistance froid': 95, Cardio: 94, 'Force fonctionnelle': 85, Mental: 88 },
-    program: ['Trail running montagne 15-20km denivelees', 'Cold exposure progressif (douches froides → glace)', 'Rucking 20kg sur sentiers escarpes', 'Ski de fond / alpinisme', 'Yoga & respiration Wim Hof'],
-    product: 'Active Body — pour un cardio d\'altitude et une endurance de montagnard'
-  },
-  marines: {
-    emoji: '🔥', name: 'Marines', unit: 'United States Marine Corps',
-    badge: 'SEMPER FIDELIS',
-    desc: 'Polyvalent et explosif. Tu es le premier sur le terrain, le dernier a partir. Force, vitesse, endurance — tu refuses de choisir, tu veux tout.',
-    stats: { Polyvalence: 95, Explosivite: 92, Endurance: 88, Discipline: 90, 'Force': 85 },
-    program: ['PFT Marine standard (tractions max, abdos, 5km)', 'Crossfit militaire WOD quotidien', 'Sprint intervals + course 8km', 'Pompes/Tractions programme progressif', 'Ruck march 15km charge tactique'],
-    product: 'Active Body — pour l\'energie polyvalente et l\'explosivite des Marines'
-  }
-};
+const TOTAL_STEPS = 22;
+let currentStep = 0;
+const answers = {};
 
-const questions = [
-  {
-    q: 'Ton environnement d\'entrainement ideal ?',
-    a: [
-      { t: 'L\'ocean — eau froide, natation, plage', s: { seals: 3, marines: 1 } },
-      { t: 'La montagne — altitude, froid, isolation', s: { alpins: 3, sas: 1 } },
-      { t: 'La salle de musculation — fer, sueur, poids lourds', s: { spetsnaz: 3, marines: 1 } },
-      { t: 'N\'importe ou — je m\'adapte a tout terrain', s: { legion: 2, sas: 2 } }
-    ]
+// ===================== STEP DEFINITIONS =====================
+const steps = [
+  // 0 — LANDING
+  { type:'landing', render: () => `
+    <div class="text-center fade-in">
+      <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">&#9733; PROGRAMME MILITAIRE &#9733;</span>
+      <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Challenge<br/>d'entrainement<br/><span style="color:var(--red)">militaire avance</span></h1>
+      <p class="text-white/40 text-sm mb-8">SELECTIONNEZ VOTRE AGE</p>
+      <div class="grid grid-cols-2 gap-3 max-w-xs mx-auto">
+        <button class="opt-btn justify-center" onclick="pick(0,'age','18-29')"><span>18-29</span></button>
+        <button class="opt-btn justify-center" onclick="pick(0,'age','30-39')"><span>30-39</span></button>
+        <button class="opt-btn justify-center" onclick="pick(0,'age','40-49')"><span>40-49</span></button>
+        <button class="opt-btn justify-center" onclick="pick(0,'age','50+')"><span>50+</span></button>
+      </div>
+    </div>`
   },
-  {
-    q: 'Ta plus grande force ?',
-    a: [
-      { t: 'Mon mental — rien ne me brise psychologiquement', s: { seals: 3, legion: 1 } },
-      { t: 'Mon cardio — je peux courir des heures', s: { alpins: 3, marines: 1 } },
-      { t: 'Ma puissance physique — je suis fort, point', s: { spetsnaz: 3, marines: 1 } },
-      { t: 'Ma discretion — j\'agis sans etre vu', s: { sas: 3, legion: 1 } }
-    ]
+  // 1 — Genre
+  { type:'single', q:'Choisissez votre genre', opts:[
+    {t:'Homme',icon:'♂️'},{t:'Femme',icon:'♀️'}
+  ], key:'genre' },
+  // 2 — Objectif
+  { type:'single', q:'Quel est votre objectif principal ?', opts:[
+    {t:'Prendre du muscle et de la force',icon:'💪'},{t:'Perdre du poids',icon:'🔥'},{t:'Ameliorer la mobilite',icon:'🧘'},{t:'Developper la flexibilite',icon:'🤸'},{t:'Ameliorer la forme generale',icon:'⚡'},{t:'Tester de nouvelles facons de s\'entrainer',icon:'🆕'}
+  ], key:'objectif' },
+  // 3 — Zones problematiques (multi)
+  { type:'multi', q:'Selectionnez les zones problematiques', opts:[
+    {t:'Poitrine faible',icon:'🫁'},{t:'Bras fins',icon:'💪'},{t:'Ventre a biere',icon:'🍺'},{t:'Jambes fines',icon:'🦵'}
+  ], key:'zones' },
+  // 4 — Experience militaire
+  { type:'single', q:'Connaissez-vous les methodes d\'entrainement de style militaire ?', opts:[
+    {t:'Oui, j\'ai un peu d\'experience',icon:'✅'},{t:'Je m\'y connais un peu',icon:'🤔'},{t:'Non, pas du tout',icon:'❌'}
+  ], key:'experience' },
+  // 5 — Slide educative
+  { type:'slide', render: () => `
+    <div class="fade-in">
+      <div class="glass-card p-6 text-center" style="border-color:rgba(255,23,23,.1)">
+        <span style="font-size:40px">🎖️</span>
+        <h2 class="font-oswald text-xl font-bold uppercase mt-3 mb-3">Entrainez-vous comme les meilleurs</h2>
+        <p class="text-white/50 text-sm leading-relaxed mb-4">Un programme d'entrainement inspire par l'armee suit un systeme eprouve qui developpe :</p>
+        <div class="space-y-2 text-left max-w-xs mx-auto mb-6">
+          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">La force fonctionnelle</span></div>
+          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">L'endurance</span></div>
+          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">La resilience mentale</span></div>
+        </div>
+        <button class="btn-red" onclick="goNext()" style="max-width:260px;margin:0 auto">COMPRIS &rarr;</button>
+      </div>
+    </div>`
   },
-  {
-    q: 'Quelle duree d\'entrainement tu preferes ?',
-    a: [
-      { t: '30-45 min intenses — HIIT, tout donner', s: { marines: 3, spetsnaz: 1 } },
-      { t: '60-90 min methodiques — travail complet', s: { sas: 2, seals: 2 } },
-      { t: '2h+ endurants — longue distance, mental', s: { legion: 3, alpins: 1 } },
-      { t: 'Ca depend du jour — je varie', s: { alpins: 2, marines: 2 } }
-    ]
+  // 6 — Meilleure forme
+  { type:'single', q:'Il y a combien de temps etiez-vous en meilleure forme de votre vie ?', opts:[
+    {t:'Il y a moins d\'un an',icon:'📅'},{t:'Il y a 1 a 3 ans',icon:'📆'},{t:'Il y a plus de 3 ans',icon:'⏳'},{t:'Jamais',icon:'🤷'}
+  ], key:'best_shape' },
+  // 7 — Pompes
+  { type:'single', q:'Combien de pompes pouvez-vous faire en une serie ?', opts:[
+    {t:'Moins de 10 💪',icon:'1️⃣',score:5},{t:'10 a 20 💪💪',icon:'2️⃣',score:10},{t:'21 a 30 💪💪💪',icon:'3️⃣',score:20},{t:'Plus de 30 😤',icon:'4️⃣',score:30}
+  ], key:'pompes' },
+  // 8 — Tractions
+  { type:'single', q:'Combien de tractions pouvez-vous faire en une serie ?', opts:[
+    {t:'Je ne peux pas en faire une seule',icon:'0️⃣',score:0},{t:'Moins de 5 🔥',icon:'1️⃣',score:8},{t:'5 a 10 🔥🔥',icon:'2️⃣',score:18},{t:'Plus de 10 🔥🔥🔥',icon:'3️⃣',score:30}
+  ], key:'tractions' },
+  // 9 — Score intermediaire
+  { type:'score', render: () => {
+    const p = answers.pompes_score || 0;
+    const t = answers.tractions_score || 0;
+    const total = p + t;
+    const maxScore = 60;
+    const pct = Math.round((total/maxScore)*100);
+    let level = 'Debutant';
+    if(pct >= 80) level = 'Avance';
+    else if(pct >= 50) level = 'Intermediaire';
+    answers.fitness_score = total;
+    answers.fitness_level = level;
+    const forceScore = Math.min(30, Math.round(p * 1));
+    const endScore = Math.min(30, Math.round(t * 1.1 + 5));
+    return `
+    <div class="fade-in text-center">
+      <div class="glass-card p-8" style="border-color:rgba(255,23,23,.12);box-shadow:0 0 40px rgba(255,23,23,.05)">
+        <span class="text-[10px] tracking-[.2em] uppercase text-white/30">Votre niveau de forme physique</span>
+        <div class="mt-3 mb-2"><span class="font-oswald text-5xl font-bold" style="color:var(--red)">${total}</span><span class="text-white/30 text-lg ml-1">/${maxScore}</span></div>
+        <p class="font-oswald text-lg font-bold uppercase mb-1" style="color:var(--red)">${level}</p>
+        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 50 ? 'Grand potentiel ! Vous allez recevoir un programme concu pour challenger et ameliorer votre force, votre endurance et vos performances globales.' : 'Parfait pour commencer ! Votre programme sera adapte a votre niveau actuel pour progresser rapidement.'}</p>
+        <div class="space-y-3 text-left max-w-xs mx-auto mb-6">
+          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Force</span><span style="color:var(--red)">${forceScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(forceScore/30)*100}%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Endurance</span><span style="color:var(--red)">${endScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(endScore/30)*100}%"></div></div></div>
+        </div>
+        <p class="text-[10px] text-white/20 mb-4">Ce score est base sur vos reponses et est fourni a titre informatif uniquement.</p>
+        <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
+      </div>
+    </div>`;
+  }},
+  // 10 — Blessures (multi)
+  { type:'multi', q:'Avez-vous des blessures ? Nous adapterons le programme.', opts:[
+    {t:'Articulations',icon:'🦴'},{t:'Genoux',icon:'🦵'},{t:'Dos',icon:'🔙'},{t:'Bas du dos',icon:'⬇️'},{t:'Aucune des reponses ci-dessus',icon:'✅'}
+  ], key:'blessures' },
+  // 11 — Slide comparaison
+  { type:'slide', render: () => `
+    <div class="fade-in">
+      <div class="glass-card p-6" style="border-color:rgba(255,23,23,.1)">
+        <h2 class="font-oswald text-lg font-bold uppercase mb-4 text-center">Vraie force : au-dela de l'esthetique</h2>
+        <table class="compare-table mb-4">
+          <tr><td></td><td class="compare-col-gym text-center font-bold text-xs uppercase">Salle 🏋</td><td class="compare-col-mil text-center font-bold text-xs uppercase">Militaire 🚀</td></tr>
+          <tr><td>Focus</td><td class="compare-col-gym text-center">Esthetique</td><td class="compare-col-mil text-center">Fonctionnalite</td></tr>
+          <tr><td>Outils</td><td class="compare-col-gym text-center">Machines</td><td class="compare-col-mil text-center">Poids du corps</td></tr>
+          <tr><td>Objectif</td><td class="compare-col-gym text-center">Volume</td><td class="compare-col-mil text-center">Force reelle</td></tr>
+        </table>
+        <p class="text-white/40 text-sm text-center mb-4">Les entrainements militaires privilegient une force pratique et applicable dans la vie reelle.</p>
+        <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto;display:block">COMPRIS &rarr;</button>
+      </div>
+    </div>`
   },
-  {
-    q: 'Face a la souffrance physique...',
-    a: [
-      { t: 'Je l\'embrasse — c\'est la que je me forge', s: { legion: 3, seals: 1 } },
-      { t: 'Je la gere — technique de respiration, focus', s: { sas: 3, alpins: 1 } },
-      { t: 'Je la domine — ma volonte est plus forte', s: { spetsnaz: 3, marines: 1 } },
-      { t: 'Je la canalise — elle devient du fuel', s: { seals: 2, marines: 2 } }
-    ]
+  // 12 — Frequence
+  { type:'single', q:'A quelle frequence etes-vous pret a vous entrainer ?', opts:[
+    {t:'1 a 2 fois par semaine 💪',icon:'1️⃣'},{t:'3 a 4 fois par semaine 💪⚡',icon:'3️⃣'},{t:'Presque tous les jours 🏆',icon:'🔥'},{t:'Je ne sais pas encore',icon:'🤷'}
+  ], key:'frequence' },
+  // 13 — Duree
+  { type:'single', q:'Combien de temps etes-vous pret a consacrer a un entrainement ?', opts:[
+    {t:'5 a 10 minutes par jour',icon:'⏱️'},{t:'10 a 20 minutes par jour',icon:'⏰'},{t:'Plus de 20 minutes par jour',icon:'🕐'}
+  ], key:'duree' },
+  // 14 — Taille
+  { type:'input', q:'Quelle est votre taille ?', key:'taille', unit:'cm', placeholder:'175', inputType:'number', note:'Calcul de votre indice de masse corporelle (IMC). L\'IMC est largement utilise comme indicateur de risque de sante.' },
+  // 15 — Poids
+  { type:'input', q:'Quel est votre poids actuel ?', key:'poids', unit:'kg', placeholder:'80', inputType:'number', note:'' },
+  // 16 — Journee type
+  { type:'single', q:'Comment decririez-vous votre journee type ?', opts:[
+    {t:'Je passe la majeure partie de la journee assis',icon:'🪑'},{t:'Je bouge de temps en temps',icon:'🚶'},{t:'Je suis debout toute la journee',icon:'🏃'}
+  ], key:'journee' },
+  // 17 — Energie
+  { type:'single', q:'Quel est votre niveau d\'energie moyen au cours de la journee ?', opts:[
+    {t:'Je me sens epuise la plupart du temps 😓',icon:'😓'},{t:'Mon niveau d\'energie varie au cours de la journee 📊',icon:'📊'},{t:'Je suis generalement tres energique et actif 💥',icon:'💥'}
+  ], key:'energie' },
+  // 18 — Slider 1
+  { type:'slider', q:'J\'ai besoin de structure ou de guidance pendant les entrainements pour rester motive(e)', key:'structure', labels:['Pas d\'accord','Neutre','D\'accord'] },
+  // 19 — Slider 2
+  { type:'slider', q:'Je ressens souvent que je n\'exploite pas pleinement le potentiel que je sais avoir', key:'potentiel', labels:['Pas d\'accord','Neutre','D\'accord'] },
+  // 20 — Slider 3
+  { type:'slider', q:'Je ne sais pas comment choisir des entrainements adaptes a moi', key:'choix', labels:['Pas d\'accord','Neutre','D\'accord'] },
+  // 21 — Email capture
+  { type:'email', render: () => `
+    <div class="fade-in text-center">
+      <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
+        <span style="font-size:40px">🎖️</span>
+        <h2 class="font-oswald text-2xl font-bold uppercase mt-3 mb-2">Votre programme est pret !</h2>
+        <p class="text-white/40 text-sm mb-6">Entrez votre email pour recevoir votre plan d'entrainement militaire personnalise.</p>
+        <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
+          <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="name@example.com" required/></div>
+          <button type="submit" class="btn-red">CONTINUER &rarr;</button>
+        </form>
+        <p class="text-white/15 text-[10px] mt-4">Nous respectons votre vie privee — aucun spam.</p>
+      </div>
+    </div>`
   },
-  {
-    q: 'Ton type d\'exercice prefere ?',
-    a: [
-      { t: 'Natation & exercices aquatiques', s: { seals: 3 } },
-      { t: 'Course de fond & trail', s: { alpins: 3, legion: 1 } },
-      { t: 'Musculation & force pure', s: { spetsnaz: 3 } },
-      { t: 'Circuits fonctionnels & CrossFit', s: { marines: 3, sas: 1 } }
-    ]
-  },
-  {
-    q: 'Le froid glacial, ca te fait quoi ?',
-    a: [
-      { t: 'J\'adore — douches froides, bains glaces, immersion', s: { alpins: 3, seals: 1 } },
-      { t: 'Je le supporte — c\'est un outil de trempe', s: { legion: 2, sas: 2 } },
-      { t: 'Je prefere la chaleur et la sueur', s: { spetsnaz: 2, marines: 2 } },
-      { t: 'Peu importe — je m\'adapte', s: { seals: 2, marines: 1 } }
-    ]
-  },
-  {
-    q: 'Ta philosophie en une phrase ?',
-    a: [
-      { t: 'L\'impossible n\'existe pas pour celui qui ose', s: { sas: 3, seals: 1 } },
-      { t: 'La douleur est temporaire, la fierte est eternelle', s: { legion: 3 } },
-      { t: 'La force resout tout', s: { spetsnaz: 3 } },
-      { t: 'Toujours fidele, toujours pret', s: { marines: 3, alpins: 1 } }
-    ]
-  },
-  {
-    q: 'En equipe, tu es plutot...',
-    a: [
-      { t: 'Le leader qui pousse tout le monde au-dela de ses limites', s: { seals: 3, marines: 1 } },
-      { t: 'L\'eclaireur discret qui ouvre la voie', s: { sas: 3, alpins: 1 } },
-      { t: 'Le pilier indestructible sur qui on peut compter', s: { legion: 3 } },
-      { t: 'Le warrior polyvalent qui comble les manques', s: { marines: 3, spetsnaz: 1 } }
-    ]
-  },
-  {
-    q: 'Ton heure d\'entrainement ideale ?',
-    a: [
-      { t: '5h du matin — avant que le monde se reveille', s: { seals: 3, marines: 1 } },
-      { t: 'En pleine nuit — quand personne ne regarde', s: { sas: 3 } },
-      { t: 'L\'heure n\'a pas d\'importance — je m\'entraine quand il faut', s: { legion: 3, alpins: 1 } },
-      { t: 'En fin de journee — quand je suis deja fatigue', s: { spetsnaz: 2, marines: 2 } }
-    ]
-  },
-  {
-    q: 'Si tu devais survivre 72h en nature sauvage...',
-    a: [
-      { t: 'Facile — j\'ai les skills de survie et le mental', s: { sas: 3, alpins: 1 } },
-      { t: 'Je construis un abri et je tiens — resilience pure', s: { legion: 3 } },
-      { t: 'Je cours jusqu\'a la civilisation — endurance max', s: { seals: 2, alpins: 2 } },
-      { t: 'Je chasse, je domine l\'environnement', s: { spetsnaz: 3, marines: 1 } }
-    ]
-  }
+  // 22 — Loading screen (after email)
+  { type:'loading' }
 ];
 
-let currentQ = 0;
-const scores = { seals: 0, sas: 0, legion: 0, spetsnaz: 0, alpins: 0, marines: 0 };
+// ===================== RENDERING =====================
+function renderStep(idx) {
+  currentStep = idx;
+  const s = steps[idx];
+  const container = document.getElementById('step-container');
+  updateProgress();
 
-function startQuiz() {
-  document.getElementById('intro-screen').style.display = 'none';
-  document.getElementById('quiz-screen').style.display = 'block';
-  showQuestion();
-}
+  if(s.type === 'landing' || s.type === 'slide' || s.type === 'score' || s.type === 'email') {
+    container.innerHTML = s.render();
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
 
-function showQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('q-counter').textContent = (currentQ + 1) + '/10';
-  document.getElementById('progress-bar').style.width = ((currentQ) / 10 * 100) + '%';
-  const c = document.getElementById('question-container');
-  c.style.opacity = '0'; c.style.transform = 'translateY(20px)';
-  setTimeout(() => {
-    c.innerHTML = '<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6">' + q.q + '</h2><div class="space-y-3">' +
-      q.a.map((a, i) => '<button class="answer-btn" onclick="answer(' + i + ')"><span class="letter">' + String.fromCharCode(65 + i) + '</span>' + a.t + '</button>').join('') + '</div>';
-    c.style.transition = 'all .4s ease'; c.style.opacity = '1'; c.style.transform = 'translateY(0)';
-  }, 200);
-}
+  if(s.type === 'loading') {
+    showLoadingScreen();
+    return;
+  }
 
-function answer(idx) {
-  const q = questions[currentQ];
-  const s = q.a[idx].s;
-  for (const k in s) scores[k] = (scores[k] || 0) + s[k];
-  currentQ++;
-  if (currentQ < 10) { showQuestion(); }
-  else { showResult(); }
-}
+  // Step counter for questions
+  const stepNum = idx + 1;
+  const stepLabel = `<div class="flex items-center justify-between mb-5"><span class="text-[10px] text-white/20 uppercase tracking-wider font-oswald">Question ${stepNum}/${TOTAL_STEPS}</span><span class="text-[10px] text-white/15">${Math.round((idx/(steps.length-1))*100)}%</span></div>`;
 
-function showResult() {
-  document.getElementById('quiz-screen').style.display = 'none';
-  document.getElementById('progress-bar').style.width = '100%';
-
-  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-  const prof = profiles[winner];
-
-  document.getElementById('result-screen').style.display = 'block';
-  document.getElementById('result-emoji').innerHTML = prof.emoji;
-  document.getElementById('result-badge').textContent = prof.badge;
-  document.getElementById('result-name').textContent = prof.name;
-  document.getElementById('result-unit').textContent = prof.unit;
-  document.getElementById('result-desc').textContent = prof.desc;
-  document.getElementById('plan-unit-name').textContent = prof.name;
-
-  // Stats
-  const statsHtml = Object.entries(prof.stats).map(([k, v]) =>
-    '<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">' + k + '</span><span style="color:var(--red);font-weight:600">' + v + '%</span></div><div class="stat-bar"><div class="stat-fill" style="width:0%;background:var(--red)"></div></div></div>'
-  ).join('');
-  document.getElementById('result-stats').innerHTML = statsHtml;
-  setTimeout(() => {
-    document.querySelectorAll('.stat-fill').forEach((el, i) => {
-      const v = Object.values(prof.stats)[i];
-      el.style.width = v + '%';
+  if(s.type === 'single') {
+    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div></div></div>`;
+    const optsEl = document.getElementById('opts');
+    s.opts.forEach((o,i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn';
+      btn.innerHTML = `<span class="opt-icon">${o.icon||''}</span><span>${o.t}</span>`;
+      btn.onclick = () => {
+        answers[s.key] = o.t;
+        if(o.score !== undefined) answers[s.key+'_score'] = o.score;
+        document.querySelectorAll('#opts .opt-btn').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        setTimeout(goNext, 350);
+      };
+      optsEl.appendChild(btn);
     });
-  }, 400);
+  }
 
-  // Program
-  document.getElementById('result-program').innerHTML = prof.program.map(p =>
-    '<div class="flex items-start gap-2"><span style="color:var(--red);font-size:11px;margin-top:2px">&#9733;</span><span class="text-white/50 text-sm">' + p + '</span></div>'
-  ).join('');
+  if(s.type === 'multi') {
+    const selected = new Set();
+    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div><button class="btn-red mt-6" id="multi-next" disabled onclick="goNext()">CONTINUER &rarr;</button></div></div>`;
+    const optsEl = document.getElementById('opts');
+    s.opts.forEach((o,i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn multi';
+      btn.innerHTML = `<span class="opt-icon">${o.icon||''}</span><span>${o.t}</span>`;
+      btn.onclick = () => {
+        if(selected.has(i)){selected.delete(i);btn.classList.remove('selected');}
+        else{selected.add(i);btn.classList.add('selected');}
+        answers[s.key] = [...selected].map(idx=>s.opts[idx].t);
+        document.getElementById('multi-next').disabled = selected.size === 0;
+      };
+      optsEl.appendChild(btn);
+    });
+  }
 
-  // Product
-  document.getElementById('result-product').innerHTML = '<div style="width:40px;height:65px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12);flex-shrink:0"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div><div><strong class="text-sm">' + prof.product + '</strong></div>';
+  if(s.type === 'input') {
+    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2>
+      <div class="max-w-xs mx-auto">
+        <div class="form-group mb-2"><label>${s.unit}</label><input type="${s.inputType}" id="input-val" placeholder="${s.placeholder}" inputmode="numeric"/></div>
+        ${s.note ? '<p class="text-white/20 text-[10px] mb-4">&#9757; '+s.note+'</p>' : ''}
+        <button class="btn-red mt-4" id="input-next" onclick="submitInput('${s.key}')" disabled>CONTINUER &rarr;</button>
+      </div>
+    </div></div>`;
+    const inp = document.getElementById('input-val');
+    inp.addEventListener('input', () => {
+      document.getElementById('input-next').disabled = !inp.value || isNaN(inp.value);
+    });
+    inp.focus();
+  }
+
+  if(s.type === 'slider') {
+    let val = 1;
+    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-xl md:text-2xl font-bold uppercase mb-8 leading-tight">"${s.q}"</h2>
+      <div class="max-w-sm mx-auto mb-8">
+        <div class="slider-track" id="slider-track">
+          <div class="slider-fill" id="slider-fill" style="width:50%"></div>
+          <div class="slider-thumb" id="slider-thumb" style="left:50%"></div>
+        </div>
+        <div class="slider-labels">${s.labels.map(l=>'<span>'+l+'</span>').join('')}</div>
+      </div>
+      <div class="text-center"><button class="btn-red" style="max-width:240px" onclick="submitSlider('${s.key}')">CONTINUER &rarr;</button></div>
+    </div></div>`;
+    const track = document.getElementById('slider-track');
+    const fill = document.getElementById('slider-fill');
+    const thumb = document.getElementById('slider-thumb');
+    function updateSlider(e) {
+      const rect = track.getBoundingClientRect();
+      let pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      fill.style.width = (pct*100)+'%';
+      thumb.style.left = (pct*100)+'%';
+      val = pct;
+    }
+    track.addEventListener('click', updateSlider);
+    let dragging = false;
+    thumb.addEventListener('mousedown', ()=>dragging=true);
+    thumb.addEventListener('touchstart', ()=>dragging=true, {passive:true});
+    document.addEventListener('mousemove', (e)=>{if(dragging)updateSlider(e);});
+    document.addEventListener('touchmove', (e)=>{if(dragging)updateSlider(e.touches[0]);}, {passive:true});
+    document.addEventListener('mouseup', ()=>dragging=false);
+    document.addEventListener('touchend', ()=>dragging=false);
+    window._sliderVal = () => val;
+  }
+
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
+function submitInput(key) {
+  answers[key] = document.getElementById('input-val').value;
+  goNext();
+}
+
+function submitSlider(key) {
+  answers[key] = window._sliderVal();
+  goNext();
+}
+
+function pick(stepIdx, key, val) {
+  answers[key] = val;
+  goNext();
+}
+
+function goNext() {
+  if(currentStep < steps.length - 1) {
+    renderStep(currentStep + 1);
+  }
+}
+
+function updateProgress() {
+  const pct = Math.round((currentStep / (steps.length-1)) * 100);
+  document.getElementById('top-progress').style.width = pct + '%';
+}
+
+// ===================== LOADING SCREEN =====================
+function showLoadingScreen() {
+  const loadingSteps = [
+    'Analyse des donnees...',
+    'Mesure du profil corporel...',
+    'Suggestion d\'un programme d\'entrainement...',
+    'Elaboration d\'un plan pour atteindre vos objectifs...',
+    'Votre plan personnalise est pret !'
+  ];
+  const container = document.getElementById('step-container');
+  container.innerHTML = `<div class="fade-in text-center">
+    <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1)">
+      <span style="font-size:48px">⚙️</span>
+      <h2 class="font-oswald text-xl font-bold uppercase mt-4 mb-6">Creation de votre programme</h2>
+      <div class="loading-bar"><div class="loading-bar-fill" id="loading-bar-fill" style="width:0%"></div></div>
+      <div class="text-left max-w-sm mx-auto" id="loading-steps">${loadingSteps.map((s,i)=>`<div class="loading-step" id="ls-${i}"><div class="loading-dot"></div><span class="text-sm text-white/60">${s}</span></div>`).join('')}</div>
+    </div>
+  </div>`;
+
+  let step = 0;
+  const interval = setInterval(() => {
+    if(step > 0) document.getElementById('ls-'+(step-1)).className = 'loading-step done';
+    if(step < loadingSteps.length) {
+      document.getElementById('ls-'+step).className = 'loading-step active';
+      document.getElementById('loading-bar-fill').style.width = ((step+1)/loadingSteps.length*100)+'%';
+    }
+    step++;
+    if(step > loadingSteps.length) {
+      clearInterval(interval);
+      setTimeout(showResult, 800);
+    }
+  }, 1200);
+}
+
+// ===================== EMAIL CAPTURE =====================
 function captureEmail(e) {
   e.preventDefault();
   const fd = new FormData(e.target);
-  const data = {}; fd.forEach((v, k) => data[k] = v);
-  const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  const data = {};
+  fd.forEach((v,k) => data[k] = v);
   data.source = 'quiz-military-training';
-  data.profile = winner;
-  data.unit = profiles[winner].name;
-  data.scores = JSON.stringify(scores);
+  data.answers = JSON.stringify(answers);
   data.timestamp = new Date().toISOString();
   console.log('9MM Lead captured:', data);
   // TODO: API call
-  document.getElementById('email-gate').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
+  goNext(); // Go to loading screen
 }
+
+// ===================== RESULT SCREEN =====================
+function showResult() {
+  const taille = parseFloat(answers.taille) || 175;
+  const poids = parseFloat(answers.poids) || 80;
+  const imc = (poids / ((taille/100) * (taille/100))).toFixed(1);
+  const fitnessScore = answers.fitness_score || 30;
+  const level = answers.fitness_level || 'Intermediaire';
+
+  const container = document.getElementById('step-container');
+  document.getElementById('top-progress').style.width = '100%';
+
+  container.innerHTML = `<div class="fade-in">
+    <!-- Result header -->
+    <div class="text-center mb-6">
+      <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">VOTRE PROGRAMME</span>
+      <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-2">Programme Militaire<br/><span style="color:var(--red)">Personnalise</span></h2>
+    </div>
+
+    <!-- Scores -->
+    <div class="glass-card p-6 mb-4" style="border-color:rgba(255,23,23,.1)">
+      <div class="flex items-center justify-between mb-4">
+        <div><span class="text-[10px] text-white/30 uppercase tracking-wider">Votre IMC</span><div class="font-oswald text-2xl font-bold mt-1" style="color:var(--red)">${imc}</div></div>
+        <div class="text-right"><span class="text-[10px] text-white/30 uppercase tracking-wider">Fitness Score</span><div class="font-oswald text-2xl font-bold mt-1" style="color:var(--red)">${fitnessScore}/60</div></div>
+      </div>
+      <div class="text-center"><span class="inline-block text-xs px-3 py-1 rounded-full font-bold" style="background:rgba(255,23,23,.1);color:var(--red)">${level}</span></div>
+    </div>
+
+    <!-- Preview progression -->
+    <div class="glass-card p-6 mb-4" style="border-color:rgba(255,23,23,.1)">
+      <h3 class="font-oswald text-base font-bold uppercase mb-1">Des premiers resultats des 2 semaines</h3>
+      <p class="text-white/30 text-xs mb-4">En fonction de votre regularite et de votre engagement.</p>
+      <div class="flex items-end justify-between gap-2" style="height:80px">
+        <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:20px;background:rgba(255,23,23,.15)"></div><span class="text-[9px] text-white/25">Maintenant</span></div>
+        <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:35px;background:rgba(255,23,23,.25)"></div><span class="text-[9px] text-white/25">2 sem. 🔥</span></div>
+        <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:50px;background:rgba(255,23,23,.4)"></div><span class="text-[9px] text-white/25">1 mois</span></div>
+        <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:65px;background:rgba(255,23,23,.6)"></div><span class="text-[9px] text-white/25">2 mois</span></div>
+        <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:80px;background:var(--red)"></div><span class="text-[9px] text-white/25">3 mois</span></div>
+      </div>
+      <p class="text-[9px] text-white/15 mt-3">Graphique illustratif. Les resultats peuvent varier.</p>
+    </div>
+
+    <!-- Produit -->
+    <div class="glass-card p-5 mb-4" style="border-color:rgba(255,23,23,.1)">
+      <div class="flex items-center gap-4">
+        <div class="w-[50px] h-[70px] rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div>
+        <div>
+          <h3 class="font-oswald text-sm font-bold uppercase">9MM Active Body</h3>
+          <p class="text-white/35 text-xs mt-0.5">Recommande pour votre programme — endurance et energie naturelle pour chaque session.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DECOUVRIR 9MM &rarr;</a>
+    <p class="text-center text-white/15 text-[10px] mt-3">Votre programme detaille a ete envoye par email.</p>
+  </div>`;
+}
+
+// ===================== INIT =====================
+renderStep(0);
 </script>
 </body>
 </html>
