@@ -121,49 +121,17 @@ button:disabled,.btn-dual:disabled,.btn-red:disabled,.btn-cyan:disabled{opacity:
 <form onsubmit="showResult(event)" class="max-w-sm mx-auto space-y-4">
 <div class="form-group"><label>Ton prenom</label><input type="text" id="lead-name" placeholder="Ton prenom" required/></div>
 <div class="form-group"><label>Ton adresse email</label><input type="email" id="lead-email" placeholder="Ton adresse email" required/></div>
+<div class="form-group"><label>Tranche d'age <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select id="lead-age"><option value="">-- Selectionner --</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
+<div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" id="lead-dept" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
 <button type="submit" class="btn-dual">DECOUVRIR MON PROFIL</button>
 </form>
-<p class="text-white/20 text-xs mt-4">🔒 Données confidentielles. Pas de spam.</p>
+<p class="text-white/40 text-xs font-semibold mt-3">100% gratuit</p>
+<p class="text-white/20 text-xs mt-1">Donnees confidentielles. Pas de spam.</p>
 </div>
 </section>
 
 <!-- Result -->
 <section id="result" class="hidden"></section>
-<!-- Product Section -->
-<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10 scroll-animate" data-delay=".2s">
-<div class="text-center mb-8">
-<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.1)">LA GAMME 9MM</span>
-<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase leading-[.9]">Deux formules.<br/><span class="bg-clip-text text-transparent" style="background-image:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text">Un objectif.</span></h2>
-</div>
-<div class="grid sm:grid-cols-2 gap-4">
-<div class="glass-card p-5" style="border-color:rgba(255,23,23,.1)">
-<div class="flex items-center gap-4 mb-3">
-<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(255,23,23,.1),rgba(255,23,23,.02));border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-base font-bold" style="color:var(--red)">9MM</span></div>
-<div><h3 class="font-oswald text-base font-bold uppercase">Active Body</h3><p class="text-white/35 text-[11px] mt-0.5">Endurance & energie physique</p></div>
-</div>
-<div class="flex flex-wrap gap-1.5 mb-2">
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Guarana</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Maca</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Ginseng</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(255,23,23,.06);color:var(--red);border:1px solid rgba(255,23,23,.08)">Vitamines B</span>
-</div>
-<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
-</div>
-<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
-<div class="flex items-center gap-4 mb-3">
-<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
-<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Concentration & clarte mentale</p></div>
-</div>
-<div class="flex flex-wrap gap-1.5 mb-2">
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Green Tea</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Vitamines B</span>
-</div>
-<p class="text-[10px] text-white/25">250ml · Made in Switzerland</p>
-</div>
-</div>
-</section>
 </main>
 
 <footer class="relative z-10 text-center py-8 mt-8">
@@ -203,7 +171,8 @@ let pf,cl,desc,prod,guide;
 if(b>m&&b>=h){pf='ACTIVE BODY';cl='result-body';desc=`${nm}, tu es un profil <strong>physique</strong>. Tu vis pour le mouvement et le dépassement corporel.`;prod='9MM Active Body';guide='Le Protocole Impact'}
 else if(m>b&&m>=h){pf='ACTIVE MIND';cl='result-mind';desc=`${nm}, tu es un profil <strong>mental</strong>. Stratégie, concentration, lucidité — ton esprit est ton arme.`;prod='9MM Active Mind';guide='Le Protocole Focus'}
 else{pf='HYBRID';cl='result-hybrid';desc=`${nm}, tu es un profil <strong>hybride</strong>. Corps et esprit alignés — l'état d'esprit 9MM dans sa forme la plus pure.`;prod='9MM Active Body + Active Mind';guide='Les deux protocoles'}
-console.log('9MM Lead:',{name:nm,email:em,profile:pf,answers:ans.map(a=>a.s),source:'quiz-profil'});
+const age=document.getElementById('lead-age').value;const dept=document.getElementById('lead-dept').value;
+console.log('9MM Lead:',{name:nm,email:em,age_range:age,departement:dept,profile:pf,answers:ans.map(a=>a.s),source:'quiz-profil'});
 document.getElementById('email-section').classList.add('hidden');
 const r=document.getElementById('result');r.classList.remove('hidden');
 const border=b>m&&b>=h?'var(--red)':m>b&&m>=h?'var(--cyan)':'';
@@ -218,6 +187,16 @@ r.innerHTML=`<div class="glass-card p-10 fade-in text-center" style="${border?'b
 </div>
 <p class="text-white/30 text-xs mb-6">📧 Profil détaillé + guide envoyés à <strong class="text-white/60">${em}</strong></p>
 <a href="https://9mm-energy.com" class="btn-dual inline-block px-8">DÉCOUVRIR 9MM →</a>
+</div>
+<div class="mt-10 pt-6" style="border-top:1px solid rgba(255,255,255,.05)">
+<p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Decouvre aussi</p>
+<div class="space-y-2">
+<a href="pro-match-quiz.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#129354;</span><div><p class="text-white/70 text-sm font-semibold">Ton Style de Boxe</p><p class="text-white/30 text-[10px]">Analyse morphologique</p></div></a>
+<a href="quiz-military-training.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#127894;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Militaire</p><p class="text-white/30 text-[10px]">Programme d'entrainement</p></div></a>
+<a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes reflexes</p></div></a>
+<a href="focus-score-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127919;</span><div><p class="text-white/70 text-sm font-semibold">Focus Score Test</p><p class="text-white/30 text-[10px]">Teste ta concentration</p></div></a>
+<a href="streak-tracker.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127918;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Fortnite 7 Jours</p><p class="text-white/30 text-[10px]">Programme gaming</p></div></a>
+</div>
 </div>`}
 </script>
 </body></html>

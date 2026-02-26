@@ -23,6 +23,9 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
 .form-group input::placeholder{color:rgba(255,255,255,.25)}
 .form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-group select:focus{border-color:var(--cyan);background-color:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.form-group select option{background:#1a1a1a;color:#fff}
 .glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
 .btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
 .btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
@@ -102,16 +105,11 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
 <div class="form-group"><label>Ton pseudo / prenom</label><input type="text" name="name" placeholder="Ton pseudo Fortnite" required/></div>
 <div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
+<div class="form-group"><label>Tranche d'age <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Selectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
+<div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
 <button type="submit" class="btn-cyan">COMMENCER LE CHALLENGE &rarr;</button>
 </form>
-<div class="flex items-center gap-3 mt-5 justify-center">
-<div class="flex -space-x-2">
-<div class="w-6 h-6 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[9px]">🎮</div>
-<div class="w-6 h-6 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[9px]">🏆</div>
-<div class="w-6 h-6 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[9px]">⚡</div>
-</div>
-<span class="text-white/20 text-xs">3,200+ joueurs inscrits</span>
-</div>
+<p class="text-white/20 text-[10px] mt-3">100% gratuit &bull; Pas de spam</p>
 </div>
 
 <!-- Apercu du challenge EN DESSOUS du formulaire -->
@@ -216,30 +214,20 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 </div>
 </div>
 <a href="https://9mm-energy.com" class="btn-cyan inline-block px-8" style="max-width:300px">DECOUVRIR 9MM ACTIVE MIND &rarr;</a>
+<!-- Decouvre aussi -->
+<div class="mt-8 text-left">
+<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Decouvre aussi</p>
+<div class="space-y-2">
+<a href="reaction-time-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#9889;</span> Reaction Time Test</a>
+<a href="focus-score-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#127919;</span> Focus Score Test</a>
+<a href="pro-match-quiz.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#129354;</span> Ton Style de Boxe</a>
+<a href="quiz-military-training.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#127894;</span> Challenge Militaire</a>
+</div>
+</div>
 </div>
 </div>
 </div>
 
-<!-- Product section -->
-<section class="max-w-3xl mx-auto px-5 mt-16 mb-8 relative z-10">
-<div class="text-center mb-6">
-<span class="inline-block text-[10px] tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.1)">TON BOOST GAMING</span>
-<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase leading-[.9]">Reflexes. Focus.<br/><span style="color:var(--cyan)">Zero Crash.</span></h2>
-</div>
-<div class="glass-card p-5" style="border-color:rgba(0,237,239,.1)">
-<div class="flex items-center gap-4 mb-3">
-<div class="w-[56px] h-[80px] rounded-lg flex items-center justify-center shrink-0" style="background:linear-gradient(180deg,rgba(0,237,239,.1),rgba(0,237,239,.02));border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-base font-bold" style="color:var(--cyan)">9MM</span></div>
-<div><h3 class="font-oswald text-base font-bold uppercase">Active Mind</h3><p class="text-white/35 text-[11px] mt-0.5">Concentration & reflexes gaming</p></div>
-</div>
-<div class="flex flex-wrap gap-1.5 mb-2">
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">The Vert</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Guarana</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Ginseng</span>
-<span class="text-[9px] px-2 py-0.5 rounded-full" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.08)">Vitamines B</span>
-</div>
-<p class="text-[10px] text-white/25">250ml &middot; 0g sucre &middot; Made in Switzerland</p>
-</div>
-</section>
 </main>
 
 <footer class="relative z-10 text-center py-8 mt-8">

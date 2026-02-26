@@ -26,7 +26,9 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
 .form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px)}
 .form-group input::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
+.form-group input:focus,.form-group select:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
+.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+.form-group select option{background:#1a1a1a;color:#fff}
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 input[type=number]{-moz-appearance:textfield}
 
@@ -117,15 +119,6 @@ const steps = [
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">Un plan de progression sur 3 mois</span></div>
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">La comparaison avec un boxeur pro qui te ressemble</span></div>
         </div>
-      </div>
-
-      <div class="flex items-center gap-3 justify-center mb-5">
-        <div class="flex -space-x-2">
-          <div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">&#129354;</div>
-          <div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">&#128170;</div>
-          <div class="w-7 h-7 rounded-full bg-white/10 border-2 border-black flex items-center justify-center text-[10px]">&#128293;</div>
-        </div>
-        <span class="text-white/25 text-xs">6,400+ profils analyses</span>
       </div>
 
       <button class="btn-red" onclick="goNext()" style="max-width:320px;margin:0 auto;display:block">DECOUVRIR MON STYLE &rarr;</button>
@@ -360,9 +353,12 @@ const steps = [
         <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
           <div class="form-group"><label>Prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="name@example.com" required/></div>
+          <div class="form-group"><label>Tranche d\'age <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">-- Selectionner --</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
+          <div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
           <button type="submit" class="btn-red">VOIR MON PROFIL &rarr;</button>
         </form>
-        <p class="text-white/15 text-[10px] mt-4">Aucun spam — on respecte ta boite mail.</p>
+        <p class="text-white/40 text-xs font-semibold mt-3">100% gratuit</p>
+        <p class="text-white/15 text-[10px] mt-1">Aucun spam — on respecte ta boite mail.</p>
       </div>
     </div>`
   },
@@ -768,6 +764,17 @@ function showResult() {
     <!-- CTA -->
     <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DECOUVRIR 9MM &rarr;</a>
     <p class="text-center text-white/15 text-[10px] mt-3">Ton analyse complete a ete envoyee par email.</p>
+
+    <!-- Cross-links -->
+    <div class="mt-10 pt-6" style="border-top:1px solid rgba(255,255,255,.05)">
+      <p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Decouvre aussi</p>
+      <div class="space-y-2">
+        <a href="quiz-military-training.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#127894;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Militaire</p><p class="text-white/30 text-[10px]">Programme d'entrainement</p></div></a>
+        <a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes reflexes</p></div></a>
+        <a href="focus-score-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127919;</span><div><p class="text-white/70 text-sm font-semibold">Focus Score Test</p><p class="text-white/30 text-[10px]">Teste ta concentration</p></div></a>
+        <a href="streak-tracker.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127918;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Fortnite 7 Jours</p><p class="text-white/30 text-[10px]">Programme gaming</p></div></a>
+      </div>
+    </div>
   </div>`;
 
   // Animate stat bars
