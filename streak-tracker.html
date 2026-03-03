@@ -308,7 +308,7 @@ function captureEmail(e) {
   d.source = 'challenge-fortnite-7j';
   d.timestamp = new Date().toISOString();
   console.log('9MM Lead captured:', d);
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:d.email,first_name:d.name||'',properties:{source:'challenge-fortnite-7j',age_range:d.age_range||'',departement:d.departement||''},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}}},relationships:{list:{data:{type:'list',id:'TShCcn'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:d.email,first_name:d.name||'',properties:{source:'challenge-fortnite-7j',age_range:d.age_range||'',departement:d.departement||''}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'TShCcn'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
   if (!data) {
     data = { startDate: new Date().toISOString().split('T')[0], days: {}, name: d.name };
   }
