@@ -318,7 +318,7 @@ function captureEmail(e){
   data.result_ms=avg;
   data.attempts=attempts.join(',');
   data.timestamp=new Date().toISOString();
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/json',revision:'2024-10-15'},body:JSON.stringify({data:{type:'client-subscription',attributes:{profile:{data:{type:'profile',attributes:{email:data.email,first_name:data.name||'',properties:{source:'reaction-time-test',age_range:data.age_range||'',departement:data.departement||''},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}}},relationships:{list:{data:{type:'list',id:'Ta45bZ'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
+  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:data.email,first_name:data.name||'',properties:{source:'reaction-time-test',age_range:data.age_range||'',departement:data.departement||''},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}}},relationships:{list:{data:{type:'list',id:'Ta45bZ'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
   console.log('9MM Lead captured:',data);
   document.getElementById('email-gate').style.display='none';
   document.getElementById('success-msg').style.display='block';
