@@ -107,45 +107,45 @@ const steps = [
   { type:'landing', render: () => `
     <div class="text-center fade-in">
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-5" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">ANALYSE MORPHOLOGIQUE</span>
-      <h1 class="font-oswald text-3xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Decouvre ton style<br/>de boxe en fonction<br/><span style="color:var(--red)">de ton physique</span></h1>
-      <p class="text-white/50 text-sm mb-2 max-w-sm mx-auto">99% des boxeurs amateurs ne connaissent pas leur style de boxe ideal.</p>
-      <p class="text-white/30 text-xs mb-8 max-w-sm mx-auto">Ton physique determine naturellement le style qui te donnera le plus d'avantages sur le ring. Decouvre le tien en 3 minutes.</p>
+      <h1 class="font-oswald text-3xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Découvre ton style<br/>de boxe en fonction<br/><span style="color:var(--red)">de ton physique</span></h1>
+      <p class="text-white/50 text-sm mb-2 max-w-sm mx-auto">99% des boxeurs amateurs ne connaissent pas leur style de boxe idéal.</p>
+      <p class="text-white/30 text-xs mb-8 max-w-sm mx-auto">Ton physique détermine naturellement le style qui te donnera le plus d'avantages sur le ring. Découvre le tien en 3 minutes.</p>
 
       <div class="glass-card p-5 text-left mb-8 max-w-sm mx-auto" style="border-color:rgba(255,23,23,.08)">
-        <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Ce que tu vas decouvrir</p>
+        <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Ce que tu vas découvrir</p>
         <div class="space-y-2">
-          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">Ton style de boxe naturel base sur ta morphologie</span></div>
+          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">Ton style de boxe naturel basé sur ta morphologie</span></div>
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">Les forces et faiblesses de ton physique</span></div>
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">Un plan de progression sur 3 mois</span></div>
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/60 text-sm">La comparaison avec un boxeur pro qui te ressemble</span></div>
         </div>
       </div>
 
-      <button class="btn-red" onclick="goNext()" style="max-width:320px;margin:0 auto;display:block">DECOUVRIR MON STYLE &rarr;</button>
+      <button class="btn-red" onclick="goNext()" style="max-width:320px;margin:0 auto;display:block">DÉCOUVRIR MON STYLE &rarr;</button>
       <p class="text-white/20 text-xs mt-4">&#9201; 3 min &bull; 15 questions &bull; 100% gratuit</p>
     </div>`
   },
 
   // 1 — Objectif
   { type:'single', q:'Quel est ton objectif principal en boxe ?', opts:[
-    {t:'Apprendre a me battre efficacement',icon:'&#129354;'},
+    {t:'Apprendre à me battre efficacement',icon:'&#129354;'},
     {t:'Me remettre en forme avec la boxe',icon:'&#128293;'},
     {t:'Progresser pour faire de la competition',icon:'&#127942;'},
-    {t:'Ameliorer ma confiance en moi',icon:'&#128170;'}
+    {t:'Améliorer ma confiance en moi',icon:'&#128170;'}
   ], key:'objectif' },
 
   // 2 — Morphologie clavicules
-  { type:'single', q:'Comment decrirais-tu la largeur de tes epaules (clavicules) ?', opts:[
-    {t:'Etroites — plus fines que la moyenne',icon:'&#128100;'},
+  { type:'single', q:'Comment décrirais-tu la largeur de tes épaules (clavicules) ?', opts:[
+    {t:'Étroites — plus fines que la moyenne',icon:'&#128100;'},
     {t:'Moyennes — dans la norme',icon:'&#129489;'},
     {t:'Larges — plus larges que la moyenne',icon:'&#128581;'}
   ], key:'clavicules' },
 
   // 3 — Envergure vs taille
-  { type:'single', q:'Comment se compare ton envergure (bras ecartes) par rapport a ta taille ?', opts:[
+  { type:'single', q:'Comment se compare ton envergure (bras écartés) par rapport à ta taille ?', opts:[
     {t:'Mon envergure est plus courte que ma taille',icon:'&#128591;'},
-    {t:'Mon envergure est a peu pres egale a ma taille',icon:'&#9194;'},
-    {t:'Mon envergure depasse ma taille',icon:'&#128587;'},
+    {t:'Mon envergure est à peu près égale à ma taille',icon:'&#9194;'},
+    {t:'Mon envergure dépasse ma taille',icon:'&#128587;'},
     {t:'Je ne sais pas',icon:'&#129300;'}
   ], key:'envergure' },
 
@@ -159,8 +159,8 @@ const steps = [
   { type:'slide', render: () => `
     <div class="fade-in">
       <div class="glass-card p-6" style="border-color:rgba(255,23,23,.1)">
-        <h2 class="font-oswald text-lg font-bold uppercase mb-2 text-center">Pourquoi ton physique determine ton style</h2>
-        <p class="text-white/40 text-sm text-center mb-5">Deux champions, deux physiques, deux styles radicalement differents.</p>
+        <h2 class="font-oswald text-lg font-bold uppercase mb-2 text-center">Pourquoi ton physique détermine ton style</h2>
+        <p class="text-white/40 text-sm text-center mb-5">Deux champions, deux physiques, deux styles radicalement différents.</p>
 
         <div class="flex gap-3 mb-5">
           <div class="morph-card glass-card" style="border-color:rgba(255,23,23,.08)">
@@ -189,7 +189,7 @@ const steps = [
         </div>
 
         <div class="text-center">
-          <p class="text-white/40 text-xs mb-4">Meme poids, styles opposes. Ton physique est ton premier avantage — encore faut-il le connaitre.</p>
+          <p class="text-white/40 text-xs mb-4">Même poids, styles opposés. Ton physique est ton premier avantage — encore faut-il le connaître.</p>
           <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
         </div>
       </div>
@@ -197,23 +197,23 @@ const steps = [
   },
 
   // 7 — Pompes
-  { type:'single', q:'Combien de pompes peux-tu enchainer sans pause ?', opts:[
+  { type:'single', q:'Combien de pompes peux-tu enchaîner sans pause ?', opts:[
     {t:'Moins de 10',icon:'1&#65039;&#8419;',score:5},
-    {t:'10 a 25',icon:'2&#65039;&#8419;',score:15},
-    {t:'25 a 40',icon:'3&#65039;&#8419;',score:25},
+    {t:'10 à 25',icon:'2&#65039;&#8419;',score:15},
+    {t:'25 à 40',icon:'3&#65039;&#8419;',score:25},
     {t:'Plus de 40',icon:'4&#65039;&#8419;',score:35}
   ], key:'pompes' },
 
   // 8 — Endurance (rounds)
-  { type:'single', q:'Combien de rounds de 3 minutes peux-tu tenir a haute intensite ?', opts:[
-    {t:'1 a 2 rounds max',icon:'&#128547;',score:5},
-    {t:'3 a 5 rounds',icon:'&#128170;',score:15},
-    {t:'6 a 8 rounds',icon:'&#128293;',score:25},
+  { type:'single', q:'Combien de rounds de 3 minutes peux-tu tenir à haute intensité ?', opts:[
+    {t:'1 à 2 rounds max',icon:'&#128547;',score:5},
+    {t:'3 à 5 rounds',icon:'&#128170;',score:15},
+    {t:'6 à 8 rounds',icon:'&#128293;',score:25},
     {t:'Plus de 8 rounds',icon:'&#127942;',score:35}
   ], key:'endurance' },
 
   // 9 — Type d'energie naturel
-  { type:'single', q:'Quel est ton type d\'energie naturel ?', opts:[
+  { type:'single', q:'Quel est ton type d\'énergie naturel ?', opts:[
     {t:'Explosif — intense mais court',icon:'&#9889;'},
     {t:'Regulier — constant et endurant',icon:'&#128260;'},
     {t:'Variable — des pics et des creux',icon:'&#128200;'}
@@ -226,9 +226,9 @@ const steps = [
     const total = p + e;
     const maxScore = 70;
     const pct = Math.round((total/maxScore)*100);
-    let level = 'Debutant';
-    if(pct >= 75) level = 'Avance';
-    else if(pct >= 45) level = 'Intermediaire';
+    let level = 'Débutant';
+    if(pct >= 75) level = 'Avancé';
+    else if(pct >= 45) level = 'Intermédiaire';
     answers.fitness_score = total;
     answers.fitness_level = level;
     const forceScore = Math.min(35, Math.round(p));
@@ -239,19 +239,19 @@ const steps = [
         <span class="text-[10px] tracking-[.2em] uppercase text-white/30">Ton niveau physique actuel</span>
         <div class="mt-3 mb-2"><span class="font-oswald text-5xl font-bold" style="color:var(--red)">${total}</span><span class="text-white/30 text-lg ml-1">/${maxScore}</span></div>
         <p class="font-oswald text-lg font-bold uppercase mb-1" style="color:var(--red)">${level}</p>
-        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 45 ? 'Bon potentiel ! Ton programme sera concu pour exploiter tes forces morphologiques et combler tes lacunes.' : 'Parfait point de depart ! Ton style de boxe sera adapte a ton physique pour progresser rapidement et efficacement.'}</p>
+        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 45 ? 'Bon potentiel ! Ton programme sera conçu pour exploiter tes forces morphologiques et combler tes lacunes.' : 'Parfait point de départ ! Ton style de boxe sera adapté à ton physique pour progresser rapidement et efficacement.'}</p>
         <div class="space-y-3 text-left max-w-xs mx-auto mb-6">
           <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Force</span><span style="color:var(--red)">${forceScore}/35</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(forceScore/35)*100}%"></div></div></div>
           <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Endurance</span><span style="color:var(--red)">${endurScore}/35</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(endurScore/35)*100}%"></div></div></div>
         </div>
-        <p class="text-[10px] text-white/20 mb-4">Score base sur tes reponses, a titre informatif.</p>
+        <p class="text-[10px] text-white/20 mb-4">Score basé sur tes réponses, à titre informatif.</p>
         <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
       </div>
     </div>`;
   }},
 
   // 11 — Frustrations (multi)
-  { type:'multi', q:'Quelles sont tes frustrations actuelles en boxe ? (plusieurs reponses possibles)', opts:[
+  { type:'multi', q:'Quelles sont tes frustrations actuelles en boxe ? (plusieurs réponses possibles)', opts:[
     {t:'Je me fatigue trop vite',icon:'&#128547;'},
     {t:'Je manque de puissance dans mes coups',icon:'&#128165;'},
     {t:'Je ne sais pas quelle distance garder',icon:'&#128207;'},
@@ -261,23 +261,23 @@ const steps = [
 
   // 12 — Niveau en boxe
   { type:'single', q:'Quel est ton niveau en boxe ?', opts:[
-    {t:'Debutant — moins de 6 mois',icon:'&#127793;'},
-    {t:'Intermediaire — 6 mois a 2 ans',icon:'&#128170;'},
-    {t:'Avance — plus de 2 ans',icon:'&#129354;'},
+    {t:'Débutant — moins de 6 mois',icon:'&#127793;'},
+    {t:'Intermédiaire — 6 mois à 2 ans',icon:'&#128170;'},
+    {t:'Avancé — plus de 2 ans',icon:'&#129354;'},
     {t:'Aucune experience',icon:'&#127358;'}
   ], key:'niveau_boxe' },
 
   // 13 — Meilleure forme
-  { type:'single', q:'Quand etais-tu en meilleure forme physique de ta vie ?', opts:[
+  { type:'single', q:'Quand étais-tu en meilleure forme physique de ta vie ?', opts:[
     {t:'Il y a moins d\'un an',icon:'&#128197;'},
-    {t:'Il y a 1 a 3 ans',icon:'&#128198;'},
+    {t:'Il y a 1 à 3 ans',icon:'&#128198;'},
     {t:'Il y a plus de 3 ans',icon:'&#8987;'},
     {t:'Jamais vraiment',icon:'&#129335;'}
   ], key:'best_shape' },
 
   // 14 — Blessures (multi)
   { type:'multi', q:'As-tu des blessures ou limitations physiques ?', opts:[
-    {t:'Epaules',icon:'&#129471;'},
+    {t:'Épaules',icon:'&#129471;'},
     {t:'Poignets / mains',icon:'&#9995;'},
     {t:'Genoux',icon:'&#129461;'},
     {t:'Dos',icon:'&#128260;'},
@@ -289,14 +289,14 @@ const steps = [
     <div class="fade-in">
       <div class="glass-card p-6" style="border-color:rgba(255,23,23,.1)">
         <h2 class="font-oswald text-lg font-bold uppercase mb-2 text-center">L'erreur #1 des boxeurs amateurs</h2>
-        <p class="text-white/40 text-sm text-center mb-5">Copier le style d'un boxeur sans avoir le meme physique.</p>
+        <p class="text-white/40 text-sm text-center mb-5">Copier le style d'un boxeur sans avoir le même physique.</p>
 
         <div class="glass-card p-4 mb-4" style="border-color:rgba(255,23,23,.06)">
           <div class="flex items-start gap-3">
             <span class="text-xl mt-0.5" style="color:var(--red)">&#10060;</span>
             <div>
               <p class="text-sm text-white/70 font-semibold mb-1">L'erreur classique</p>
-              <p class="text-xs text-white/40">Un boxeur avec des bras courts qui essaie de boxer comme Usyk (a distance) se fera systematiquement contrer. Il devrait plutot rentrer dans la poche comme Tyson.</p>
+              <p class="text-xs text-white/40">Un boxeur avec des bras courts qui essaie de boxer comme Usyk (à distance) se fera systématiquement contrer. Il devrait plutôt rentrer dans la poche comme Tyson.</p>
             </div>
           </div>
         </div>
@@ -306,13 +306,13 @@ const steps = [
             <span class="text-xl mt-0.5" style="color:var(--red)">&#9989;</span>
             <div>
               <p class="text-sm text-white/70 font-semibold mb-1">L'approche intelligente</p>
-              <p class="text-xs text-white/40">Identifier ton profil morphologique (allonge, envergure, poids, type d'energie) puis adapter ton style en consequence. C'est ce que font TOUS les pros.</p>
+              <p class="text-xs text-white/40">Identifier ton profil morphologique (allonge, envergure, poids, type d'énergie) puis adapter ton style en consequence. C'est ce que font TOUS les pros.</p>
             </div>
           </div>
         </div>
 
         <div class="text-center">
-          <p class="text-white/30 text-[10px] mb-4">C'est exactement ce qu'on fait pour toi dans les prochaines etapes.</p>
+          <p class="text-white/30 text-[10px] mb-4">C'est exactement ce qu'on fait pour toi dans les prochaines étapes.</p>
           <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
         </div>
       </div>
@@ -320,26 +320,26 @@ const steps = [
   },
 
   // 16 — Slider 1: Confiance
-  { type:'slider', q:'Je me sens confiant dans mes capacites physiques pour la boxe', key:'confiance', labels:['Pas du tout','Neutre','Totalement'] },
+  { type:'slider', q:'Je me sens confiant dans mes capacités physiques pour la boxe', key:'confiance', labels:['Pas du tout','Neutre','Totalement'] },
 
   // 17 — Slider 2: Regularite
-  { type:'slider', q:'Je m\'entraine regulierement sans avoir besoin de motivation exterieure', key:'regularite', labels:['Pas du tout','Neutre','Totalement'] },
+  { type:'slider', q:'Je m\'entraîne régulièrement sans avoir besoin de motivation exterieure', key:'regularite', labels:['Pas du tout','Neutre','Totalement'] },
 
   // 18 — Slider 3: Connaissance de soi
   { type:'slider', q:'Je connais mes forces et faiblesses physiques pour la boxe', key:'connaissance', labels:['Pas du tout','Neutre','Totalement'] },
 
   // 19 — Frequence souhaitee
-  { type:'single', q:'A quelle frequence veux-tu t\'entrainer ?', opts:[
-    {t:'1 a 2 fois par semaine',icon:'&#128170;'},
-    {t:'3 a 4 fois par semaine',icon:'&#128293;'},
+  { type:'single', q:'A quelle frequence veux-tu t\'entraîner ?', opts:[
+    {t:'1 à 2 fois par semaine',icon:'&#128170;'},
+    {t:'3 à 4 fois par semaine',icon:'&#128293;'},
     {t:'Presque tous les jours',icon:'&#127942;'},
     {t:'Je ne sais pas encore',icon:'&#129300;'}
   ], key:'frequence' },
 
   // 20 — Duree des sessions
   { type:'single', q:'Combien de temps par session ?', opts:[
-    {t:'15 a 30 minutes',icon:'&#9201;'},
-    {t:'30 a 60 minutes',icon:'&#9200;'},
+    {t:'15 à 30 minutes',icon:'&#9201;'},
+    {t:'30 à 60 minutes',icon:'&#9200;'},
     {t:'Plus d\'une heure',icon:'&#128336;'}
   ], key:'duree' },
 
@@ -348,8 +348,8 @@ const steps = [
     <div class="fade-in text-center">
       <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
         <span style="font-size:40px">&#129354;</span>
-        <h2 class="font-oswald text-2xl font-bold uppercase mt-3 mb-2">Ton profil est pret !</h2>
-        <p class="text-white/40 text-sm mb-6">Entre ton email pour recevoir ton analyse morphologique complete et ton plan de boxe personnalise.</p>
+        <h2 class="font-oswald text-2xl font-bold uppercase mt-3 mb-2">Ton profil est prêt !</h2>
+        <p class="text-white/40 text-sm mb-6">Entre ton email pour recevoir ton analyse morphologique complète et ton plan de boxe personnalisé.</p>
         <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
           <div class="form-group"><label>Prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="name@example.com" required/></div>
@@ -376,49 +376,49 @@ const profiles = {
     name: 'L\'Outboxer',
     emoji: '&#127942;',
     boxer: 'Oleksandr Usyk',
-    desc: 'Ton physique te donne un avantage a distance. Avec ton allonge et ta mobilite, tu domines en gardant l\'adversaire au bout de ton jab. Tu controles le ring avec intelligence.',
+    desc: 'Ton physique te donne un avantage à distance. Avec ton allonge et ta mobilite, tu domines en gardant l\'adversaire au bout de ton jab. Tu controles le ring avec intelligence.',
     stats: { Allonge:95, Mobilite:90, Timing:88, Endurance:80, Puissance:55 },
     strengths: ['Jab dominant','Controle de la distance','Jeu de jambes','Intelligence tactique'],
-    weaknesses: ['Vulnerabilite en corps-a-corps','Puissance a courte distance'],
-    training: 'Travaille ton jab, ton jeu de jambes et ta gestion de la distance. Evite le corps-a-corps.'
+    weaknesses: ['Vulnérabilité en corps-à-corps','Puissance à courte distance'],
+    training: 'Travaille ton jab, ton jeu de jambes et ta gestion de la distance. Évite le corps-à-corps.'
   },
   infighter: {
     name: 'L\'Infighter',
     emoji: '&#128293;',
     boxer: 'Mike Tyson',
-    desc: 'Ton centre de gravite bas et ta puissance naturelle font de toi une menace en courte distance. Tu rentres dans la garde, tu frappes avec devastation. Le ring est ton cage.',
+    desc: 'Ton centre de gravité bas et ta puissance naturelle font de toi une menace en courte distance. Tu rentres dans la garde, tu frappes avec dévastation. Le ring est ta cage.',
     stats: { Puissance:95, Explosivite:92, Pression:88, Encaissement:82, Allonge:40 },
-    strengths: ['KO power','Peek-a-boo','Entrees explosives','Coups au corps'],
-    weaknesses: ['Distance longue','Endurance sur la duree'],
-    training: 'Perfectionne tes entrees, ton peek-a-boo et tes enchainements courts. Cardio intensif.'
+    strengths: ['KO power','Peek-a-boo','Entrées explosives','Coups au corps'],
+    weaknesses: ['Distance longue','Endurance sur la durée'],
+    training: 'Perfectionne tes entrées, ton peek-a-boo et tes enchaînements courts. Cardio intensif.'
   },
   counterpuncher: {
     name: 'Le Contre-Attaquant',
     emoji: '&#127919;',
     boxer: 'Floyd Mayweather',
-    desc: 'Ton calme naturel et ta lecture du jeu font de toi un maitre du contre. Tu laisses l\'adversaire attaquer et tu punis chaque erreur. La boxe intelligente, c\'est toi.',
+    desc: 'Ton calme naturel et ta lecture du jeu font de toi un maître du contre. Tu laisses l\'adversaire attaquer et tu punis chaque erreur. La boxe intelligente, c\'est toi.',
     stats: { Defense:96, Timing:94, Precision:90, 'QI Boxe':92, Agressivite:35 },
-    strengths: ['Defense hermetique','Contres devastateurs','Lecture du jeu','Patience'],
+    strengths: ['Défense hermétique','Contres dévastateurs','Lecture du jeu','Patience'],
     weaknesses: ['Peut manquer d\'initiative','Rythme parfois trop bas'],
-    training: 'Travaille tes reflexes defensifs, le pull counter et le timing de tes contres.'
+    training: 'Travaille tes réflexes défensifs, le pull counter et le timing de tes contres.'
   },
   pressure: {
     name: 'Le Rouleau Compresseur',
     emoji: '&#128296;',
     boxer: 'Gennady "GGG" Golovkin',
-    desc: 'Tu avances sans cesse, tu brises le moral de l\'adversaire par ta pression constante. Ton endurance et ta resilience sont tes armes. Tu ne recules jamais.',
-    stats: { Pression:95, Endurance:93, Resilience:90, 'Force de frappe':85, Agilite:50 },
+    desc: 'Tu avances sans cesse, tu brises le moral de l\'adversaire par ta pression constante. Ton endurance et ta résilience sont tes armes. Tu ne recules jamais.',
+    stats: { Pression:95, Endurance:93, Résilience:90, 'Force de frappe':85, Agilite:50 },
     strengths: ['Pression constante','Endurance infinie','Mental d\'acier','Coups au corps'],
     weaknesses: ['Peut prendre des coups en entrant','Jeu de jambes limite'],
-    training: 'Travaille ton cardio, tes coupes d\'angle et ta capacite a prendre des coups en entrant.'
+    training: 'Travaille ton cardio, tes coupes d\'angle et ta capacité à prendre des coups en entrant.'
   },
   switch: {
     name: 'Le Cameleon',
     emoji: '&#9889;',
     boxer: 'Terence Crawford',
-    desc: 'Ton adaptabilite est ton super-pouvoir. Tu peux boxer a distance ou au corps-a-corps, switcher de garde, changer de rythme. Tu es imprevisible et polyvalent.',
-    stats: { Adaptabilite:96, Reflexes:90, Angles:88, Polyvalence:95, Regularite:55 },
-    strengths: ['Switch de garde','Polyvalence totale','Imprevisibilite','Angles uniques'],
+    desc: 'Ton adaptabilité est ton super-pouvoir. Tu peux boxer à distance ou au corps-à-corps, switcher de garde, changer de rythme. Tu es imprévisible et polyvalent.',
+    stats: { Adaptabilité:96, Réflexes:90, Angles:88, Polyvalence:95, Régularité:55 },
+    strengths: ['Switch de garde','Polyvalence totale','Imprévisibilité','Angles uniques'],
     weaknesses: ['Peut manquer de specialisation','Demande beaucoup de travail'],
     training: 'Travaille le switch, les angles et la polyvalence. Sois bon partout, excellent dans l\'improvisation.'
   },
@@ -428,9 +428,9 @@ const profiles = {
     boxer: 'Deontay Wilder',
     desc: 'Tu as le punch naturel. Chaque coup que tu lances peut terminer le combat. Tu mises tout sur ta puissance brute et ton timing. Un seul coup suffit.',
     stats: { Puissance:98, 'Force de frappe':96, Intimidation:90, Explosivite:85, Defense:40 },
-    strengths: ['KO a tout moment','Intimidation naturelle','Frappe decisive','Punch de la main arriere'],
-    weaknesses: ['Defense limitee','Peut se fatiguer si le combat dure'],
-    training: 'Travaille ton timing d\'enchainement, ton cardio et ta defense. Ton punch est deja la.'
+    strengths: ['KO à tout moment','Intimidation naturelle','Frappe decisive','Punch de la main arriere'],
+    weaknesses: ['Défense limitée','Peut se fatiguer si le combat dure'],
+    training: 'Travaille ton timing d\'enchaînement, ton cardio et ta défense. Ton punch est déjà là.'
   }
 };
 
@@ -597,11 +597,11 @@ function calculateProfile() {
 
   // Clavicles
   if(clavicules.includes('Larges')) { sc.outboxer += 2; sc.slugger += 1; }
-  else if(clavicules.includes('Etroites')) { sc.infighter += 2; sc.pressure += 1; }
+  else if(clavicules.includes('Étroites')) { sc.infighter += 2; sc.pressure += 1; }
   else { sc.switch += 2; sc.counterpuncher += 1; }
 
   // Reach
-  if(envergure.includes('depasse')) { sc.outboxer += 3; sc.counterpuncher += 2; }
+  if(envergure.includes('dépasse')) { sc.outboxer += 3; sc.counterpuncher += 2; }
   else if(envergure.includes('courte')) { sc.infighter += 3; sc.pressure += 2; }
   else { sc.switch += 2; sc.counterpuncher += 1; }
 
@@ -635,7 +635,7 @@ function showLoadingScreen() {
     'Evaluation de ton profil physique...',
     'Identification de ton style optimal...',
     'Comparaison avec les boxeurs pro...',
-    'Ton profil de boxeur est pret !'
+    'Ton profil de boxeur est prêt !'
   ];
   const container = document.getElementById('step-container');
   container.innerHTML = `<div class="fade-in text-center">
@@ -684,7 +684,7 @@ function showResult() {
   const taille = parseFloat(answers.taille) || 175;
   const poids = parseFloat(answers.poids) || 75;
   const fitnessScore = answers.fitness_score || 30;
-  const level = answers.fitness_level || 'Intermediaire';
+  const level = answers.fitness_level || 'Intermédiaire';
 
   const container = document.getElementById('step-container');
   document.getElementById('top-progress').style.width = '100%';
@@ -699,7 +699,7 @@ function showResult() {
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">TON PROFIL DE BOXEUR</span>
       <span style="font-size:56px;display:block;margin-bottom:8px">${p.emoji}</span>
       <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-1" style="color:var(--red)">${p.name}</h2>
-      <p class="text-white/60 text-base font-semibold mb-2">Inspire de ${p.boxer}</p>
+      <p class="text-white/60 text-base font-semibold mb-2">Inspiré de ${p.boxer}</p>
       <p class="text-white/40 text-sm max-w-md mx-auto">${p.desc}</p>
     </div>
 
@@ -727,20 +727,20 @@ function showResult() {
 
     <!-- Faiblesses -->
     <div class="glass-card p-5 mb-4" style="border-color:rgba(255,23,23,.1)">
-      <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Points a travailler</p>
+      <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Points à travailler</p>
       <div class="flex flex-wrap gap-2">${p.weaknesses.map(w=>'<span style="font-size:11px;padding:5px 12px;border-radius:99px;background:rgba(255,255,255,.03);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)">'+w+'</span>').join('')}</div>
     </div>
 
     <!-- Conseil -->
     <div class="glass-card p-5 mb-4" style="border-color:rgba(255,23,23,.1)">
-      <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Conseil d'entrainement</p>
+      <p class="text-[10px] text-white/25 uppercase tracking-wider mb-3">Conseil d'entraînement</p>
       <p class="text-white/50 text-sm">${p.training}</p>
     </div>
 
     <!-- Progression graph -->
     <div class="glass-card p-6 mb-4" style="border-color:rgba(255,23,23,.1)">
-      <h3 class="font-oswald text-base font-bold uppercase mb-1">Ta progression estimee sur 3 mois</h3>
-      <p class="text-white/30 text-xs mb-4">En suivant un programme adapte a ton profil morphologique.</p>
+      <h3 class="font-oswald text-base font-bold uppercase mb-1">Ta progression estimée sur 3 mois</h3>
+      <p class="text-white/30 text-xs mb-4">En suivant un programme adapté à ton profil morphologique.</p>
       <div class="flex items-end justify-between gap-2" style="height:80px">
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:15px;background:rgba(255,23,23,.12)"></div><span class="text-[9px] text-white/25">Maintenant</span></div>
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:30px;background:rgba(255,23,23,.2)"></div><span class="text-[9px] text-white/25">2 sem.</span></div>
@@ -748,7 +748,7 @@ function showResult() {
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:62px;background:rgba(255,23,23,.55)"></div><span class="text-[9px] text-white/25">2 mois</span></div>
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:80px;background:var(--red)"></div><span class="text-[9px] text-white/25">3 mois</span></div>
       </div>
-      <p class="text-[9px] text-white/15 mt-3">Graphique illustratif. Les resultats varient selon l'engagement.</p>
+      <p class="text-[9px] text-white/15 mt-3">Graphique illustratif. Les résultats varient selon l'engagement.</p>
     </div>
 
     <!-- Produit 9MM -->
@@ -757,21 +757,21 @@ function showResult() {
         <div class="w-[50px] h-[70px] rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div>
         <div>
           <h3 class="font-oswald text-sm font-bold uppercase">9MM Active Body</h3>
-          <p class="text-white/35 text-xs mt-0.5">Recommande pour ton profil — endurance et energie pour chaque round.</p>
+          <p class="text-white/35 text-xs mt-0.5">Recommandé pour ton profil — endurance et énergie pour chaque round.</p>
         </div>
       </div>
     </div>
 
     <!-- CTA -->
-    <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DECOUVRIR 9MM &rarr;</a>
-    <p class="text-center text-white/15 text-[10px] mt-3">Ton analyse complete a ete envoyee par email.</p>
+    <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DÉCOUVRIR 9MM &rarr;</a>
+    <p class="text-center text-white/15 text-[10px] mt-3">Ton analyse complète a été envoyée par email.</p>
 
     <!-- Cross-links -->
     <div class="mt-10 pt-6" style="border-top:1px solid rgba(255,255,255,.05)">
-      <p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Decouvre aussi</p>
+      <p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Découvre aussi</p>
       <div class="space-y-2">
-        <a href="quiz-military-training.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#127894;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Militaire</p><p class="text-white/30 text-[10px]">Programme d'entrainement</p></div></a>
-        <a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes reflexes</p></div></a>
+        <a href="quiz-military-training.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#127894;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Militaire</p><p class="text-white/30 text-[10px]">Programme d'entraînement</p></div></a>
+        <a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes réflexes</p></div></a>
         <a href="focus-score-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127919;</span><div><p class="text-white/70 text-sm font-semibold">Focus Score Test</p><p class="text-white/30 text-[10px]">Teste ta concentration</p></div></a>
         <a href="streak-tracker.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127918;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Fortnite 7 Jours</p><p class="text-white/30 text-[10px]">Programme gaming</p></div></a>
       </div>

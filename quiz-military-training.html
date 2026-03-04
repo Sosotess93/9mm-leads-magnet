@@ -2,7 +2,7 @@
 <html lang="fr" class="scroll-smooth">
 <head>
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Challenge Militaire Avance</title>
+<title>9MM — Challenge Militaire Avancé</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
@@ -116,8 +116,8 @@ const steps = [
   { type:'landing', render: () => `
     <div class="text-center fade-in">
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">&#9733; PROGRAMME MILITAIRE &#9733;</span>
-      <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Challenge<br/>d'entrainement<br/><span style="color:var(--red)">militaire avance</span></h1>
-      <p class="text-white/40 text-sm mb-8">SELECTIONNEZ VOTRE AGE</p>
+      <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Challenge<br/>d'entraînement<br/><span style="color:var(--red)">militaire avancé</span></h1>
+      <p class="text-white/40 text-sm mb-8">SÉLECTIONNEZ VOTRE ÂGE</p>
       <div class="grid grid-cols-2 gap-3 max-w-xs mx-auto">
         <button class="opt-btn justify-center" onclick="pick(0,'age','18-29')"><span>18-29</span></button>
         <button class="opt-btn justify-center" onclick="pick(0,'age','30-39')"><span>30-39</span></button>
@@ -132,43 +132,43 @@ const steps = [
   ], key:'genre' },
   // 2 — Objectif
   { type:'single', q:'Quel est votre objectif principal ?', opts:[
-    {t:'Prendre du muscle et de la force',icon:'💪'},{t:'Perdre du poids',icon:'🔥'},{t:'Ameliorer la mobilite',icon:'🧘'},{t:'Developper la flexibilite',icon:'🤸'},{t:'Ameliorer la forme generale',icon:'⚡'},{t:'Tester de nouvelles facons de s\'entrainer',icon:'🆕'}
+    {t:'Prendre du muscle et de la force',icon:'💪'},{t:'Perdre du poids',icon:'🔥'},{t:'Améliorer la mobilité',icon:'🧘'},{t:'Développer la flexibilité',icon:'🤸'},{t:'Améliorer la forme générale',icon:'⚡'},{t:'Tester de nouvelles façons de s\'entraîner',icon:'🆕'}
   ], key:'objectif' },
   // 3 — Zones problematiques (multi)
-  { type:'multi', q:'Selectionnez les zones problematiques', opts:[
-    {t:'Poitrine faible',icon:'🫁'},{t:'Bras fins',icon:'💪'},{t:'Ventre a biere',icon:'🍺'},{t:'Jambes fines',icon:'🦵'}
+  { type:'multi', q:'Sélectionnez les zones problématiques', opts:[
+    {t:'Poitrine faible',icon:'🫁'},{t:'Bras fins',icon:'💪'},{t:'Ventre à bière',icon:'🍺'},{t:'Jambes fines',icon:'🦵'}
   ], key:'zones' },
   // 4 — Experience militaire
-  { type:'single', q:'Connaissez-vous les methodes d\'entrainement de style militaire ?', opts:[
-    {t:'Oui, j\'ai un peu d\'experience',icon:'✅'},{t:'Je m\'y connais un peu',icon:'🤔'},{t:'Non, pas du tout',icon:'❌'}
+  { type:'single', q:'Connaissez-vous les méthodes d\'entraînement de style militaire ?', opts:[
+    {t:'Oui, j\'ai un peu d\'expérience',icon:'✅'},{t:'Je m\'y connais un peu',icon:'🤔'},{t:'Non, pas du tout',icon:'❌'}
   ], key:'experience' },
   // 5 — Slide educative
   { type:'slide', render: () => `
     <div class="fade-in">
       <div class="glass-card p-6 text-center" style="border-color:rgba(255,23,23,.1)">
         <span style="font-size:40px">🎖️</span>
-        <h2 class="font-oswald text-xl font-bold uppercase mt-3 mb-3">Entrainez-vous comme les meilleurs</h2>
-        <p class="text-white/50 text-sm leading-relaxed mb-4">Un programme d'entrainement inspire par l'armee suit un systeme eprouve qui developpe :</p>
+        <h2 class="font-oswald text-xl font-bold uppercase mt-3 mb-3">Entraînez-vous comme les meilleurs</h2>
+        <p class="text-white/50 text-sm leading-relaxed mb-4">Un programme d'entraînement inspiré par l'armée suit un système éprouvé qui développe :</p>
         <div class="space-y-2 text-left max-w-xs mx-auto mb-6">
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">La force fonctionnelle</span></div>
           <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">L'endurance</span></div>
-          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">La resilience mentale</span></div>
+          <div class="flex items-center gap-3"><span style="color:var(--red)">&#9733;</span><span class="text-white/70 text-sm">La résilience mentale</span></div>
         </div>
         <button class="btn-red" onclick="goNext()" style="max-width:260px;margin:0 auto">COMPRIS &rarr;</button>
       </div>
     </div>`
   },
   // 6 — Meilleure forme
-  { type:'single', q:'Il y a combien de temps etiez-vous en meilleure forme de votre vie ?', opts:[
-    {t:'Il y a moins d\'un an',icon:'📅'},{t:'Il y a 1 a 3 ans',icon:'📆'},{t:'Il y a plus de 3 ans',icon:'⏳'},{t:'Jamais',icon:'🤷'}
+  { type:'single', q:'Il y a combien de temps étiez-vous en meilleure forme de votre vie ?', opts:[
+    {t:'Il y a moins d\'un an',icon:'📅'},{t:'Il y a 1 à 3 ans',icon:'📆'},{t:'Il y a plus de 3 ans',icon:'⏳'},{t:'Jamais',icon:'🤷'}
   ], key:'best_shape' },
   // 7 — Pompes
   { type:'single', q:'Combien de pompes pouvez-vous faire en une serie ?', opts:[
-    {t:'Moins de 10 💪',icon:'1️⃣',score:5},{t:'10 a 20 💪💪',icon:'2️⃣',score:10},{t:'21 a 30 💪💪💪',icon:'3️⃣',score:20},{t:'Plus de 30 😤',icon:'4️⃣',score:30}
+    {t:'Moins de 10 💪',icon:'1️⃣',score:5},{t:'10 à 20 💪💪',icon:'2️⃣',score:10},{t:'21 à 30 💪💪💪',icon:'3️⃣',score:20},{t:'Plus de 30 😤',icon:'4️⃣',score:30}
   ], key:'pompes' },
   // 8 — Tractions
   { type:'single', q:'Combien de tractions pouvez-vous faire en une serie ?', opts:[
-    {t:'Je ne peux pas en faire une seule',icon:'0️⃣',score:0},{t:'Moins de 5 🔥',icon:'1️⃣',score:8},{t:'5 a 10 🔥🔥',icon:'2️⃣',score:18},{t:'Plus de 10 🔥🔥🔥',icon:'3️⃣',score:30}
+    {t:'Je ne peux pas en faire une seule',icon:'0️⃣',score:0},{t:'Moins de 5 🔥',icon:'1️⃣',score:8},{t:'5 à 10 🔥🔥',icon:'2️⃣',score:18},{t:'Plus de 10 🔥🔥🔥',icon:'3️⃣',score:30}
   ], key:'tractions' },
   // 9 — Score intermediaire
   { type:'score', render: () => {
@@ -177,9 +177,9 @@ const steps = [
     const total = p + t;
     const maxScore = 60;
     const pct = Math.round((total/maxScore)*100);
-    let level = 'Debutant';
-    if(pct >= 80) level = 'Avance';
-    else if(pct >= 50) level = 'Intermediaire';
+    let level = 'Débutant';
+    if(pct >= 80) level = 'Avancé';
+    else if(pct >= 50) level = 'Intermédiaire';
     answers.fitness_score = total;
     answers.fitness_level = level;
     const forceScore = Math.min(30, Math.round(p * 1));
@@ -190,76 +190,76 @@ const steps = [
         <span class="text-[10px] tracking-[.2em] uppercase text-white/30">Votre niveau de forme physique</span>
         <div class="mt-3 mb-2"><span class="font-oswald text-5xl font-bold" style="color:var(--red)">${total}</span><span class="text-white/30 text-lg ml-1">/${maxScore}</span></div>
         <p class="font-oswald text-lg font-bold uppercase mb-1" style="color:var(--red)">${level}</p>
-        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 50 ? 'Grand potentiel ! Vous allez recevoir un programme concu pour challenger et ameliorer votre force, votre endurance et vos performances globales.' : 'Parfait pour commencer ! Votre programme sera adapte a votre niveau actuel pour progresser rapidement.'}</p>
+        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 50 ? 'Grand potentiel ! Vous allez recevoir un programme conçu pour challenger et améliorer votre force, votre endurance et vos performances globales.' : 'Parfait pour commencer ! Votre programme sera adapté à votre niveau actuel pour progresser rapidement.'}</p>
         <div class="space-y-3 text-left max-w-xs mx-auto mb-6">
           <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Force</span><span style="color:var(--red)">${forceScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(forceScore/30)*100}%"></div></div></div>
           <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Endurance</span><span style="color:var(--red)">${endScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(endScore/30)*100}%"></div></div></div>
         </div>
-        <p class="text-[10px] text-white/20 mb-4">Ce score est base sur vos reponses et est fourni a titre informatif uniquement.</p>
+        <p class="text-[10px] text-white/20 mb-4">Ce score est basé sur vos réponses et est fourni à titre informatif uniquement.</p>
         <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
       </div>
     </div>`;
   }},
   // 10 — Blessures (multi)
   { type:'multi', q:'Avez-vous des blessures ? Nous adapterons le programme.', opts:[
-    {t:'Articulations',icon:'🦴'},{t:'Genoux',icon:'🦵'},{t:'Dos',icon:'🔙'},{t:'Bas du dos',icon:'⬇️'},{t:'Aucune des reponses ci-dessus',icon:'✅'}
+    {t:'Articulations',icon:'🦴'},{t:'Genoux',icon:'🦵'},{t:'Dos',icon:'🔙'},{t:'Bas du dos',icon:'⬇️'},{t:'Aucune des réponses ci-dessus',icon:'✅'}
   ], key:'blessures' },
   // 11 — Slide comparaison
   { type:'slide', render: () => `
     <div class="fade-in">
       <div class="glass-card p-6" style="border-color:rgba(255,23,23,.1)">
-        <h2 class="font-oswald text-lg font-bold uppercase mb-4 text-center">Vraie force : au-dela de l'esthetique</h2>
+        <h2 class="font-oswald text-lg font-bold uppercase mb-4 text-center">Vraie force : au-delà de l'esthétique</h2>
         <table class="compare-table mb-4">
           <tr><td></td><td class="compare-col-gym text-center font-bold text-xs uppercase">Salle 🏋</td><td class="compare-col-mil text-center font-bold text-xs uppercase">Militaire 🚀</td></tr>
-          <tr><td>Focus</td><td class="compare-col-gym text-center">Esthetique</td><td class="compare-col-mil text-center">Fonctionnalite</td></tr>
+          <tr><td>Focus</td><td class="compare-col-gym text-center">Esthétique</td><td class="compare-col-mil text-center">Fonctionnalité</td></tr>
           <tr><td>Outils</td><td class="compare-col-gym text-center">Machines</td><td class="compare-col-mil text-center">Poids du corps</td></tr>
-          <tr><td>Objectif</td><td class="compare-col-gym text-center">Volume</td><td class="compare-col-mil text-center">Force reelle</td></tr>
+          <tr><td>Objectif</td><td class="compare-col-gym text-center">Volume</td><td class="compare-col-mil text-center">Force réelle</td></tr>
         </table>
-        <p class="text-white/40 text-sm text-center mb-4">Les entrainements militaires privilegient une force pratique et applicable dans la vie reelle.</p>
+        <p class="text-white/40 text-sm text-center mb-4">Les entraînements militaires privilégient une force pratique et applicable dans la vie réelle.</p>
         <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto;display:block">COMPRIS &rarr;</button>
       </div>
     </div>`
   },
   // 12 — Frequence
-  { type:'single', q:'A quelle frequence etes-vous pret a vous entrainer ?', opts:[
-    {t:'1 a 2 fois par semaine 💪',icon:'1️⃣'},{t:'3 a 4 fois par semaine 💪⚡',icon:'3️⃣'},{t:'Presque tous les jours 🏆',icon:'🔥'},{t:'Je ne sais pas encore',icon:'🤷'}
+  { type:'single', q:'À quelle fréquence êtes-vous prêt à vous entraîner ?', opts:[
+    {t:'1 à 2 fois par semaine 💪',icon:'1️⃣'},{t:'3 à 4 fois par semaine 💪⚡',icon:'3️⃣'},{t:'Presque tous les jours 🏆',icon:'🔥'},{t:'Je ne sais pas encore',icon:'🤷'}
   ], key:'frequence' },
   // 13 — Duree
-  { type:'single', q:'Combien de temps etes-vous pret a consacrer a un entrainement ?', opts:[
-    {t:'5 a 10 minutes par jour',icon:'⏱️'},{t:'10 a 20 minutes par jour',icon:'⏰'},{t:'Plus de 20 minutes par jour',icon:'🕐'}
+  { type:'single', q:'Combien de temps êtes-vous prêt à consacrer à un entraînement ?', opts:[
+    {t:'5 à 10 minutes par jour',icon:'⏱️'},{t:'10 à 20 minutes par jour',icon:'⏰'},{t:'Plus de 20 minutes par jour',icon:'🕐'}
   ], key:'duree' },
   // 14 — Taille
-  { type:'input', q:'Quelle est votre taille ?', key:'taille', unit:'cm', placeholder:'175', inputType:'number', note:'Calcul de votre indice de masse corporelle (IMC). L\'IMC est largement utilise comme indicateur de risque de sante.' },
+  { type:'input', q:'Quelle est votre taille ?', key:'taille', unit:'cm', placeholder:'175', inputType:'number', note:'Calcul de votre indice de masse corporelle (IMC). L\'IMC est largement utilisé comme indicateur de risque de santé.' },
   // 15 — Poids
   { type:'input', q:'Quel est votre poids actuel ?', key:'poids', unit:'kg', placeholder:'80', inputType:'number', note:'' },
   // 16 — Journee type
-  { type:'single', q:'Comment decririez-vous votre journee type ?', opts:[
-    {t:'Je passe la majeure partie de la journee assis',icon:'🪑'},{t:'Je bouge de temps en temps',icon:'🚶'},{t:'Je suis debout toute la journee',icon:'🏃'}
+  { type:'single', q:'Comment décririez-vous votre journée type ?', opts:[
+    {t:'Je passe la majeure partie de la journée assis',icon:'🪑'},{t:'Je bouge de temps en temps',icon:'🚶'},{t:'Je suis debout toute la journée',icon:'🏃'}
   ], key:'journee' },
   // 17 — Energie
-  { type:'single', q:'Quel est votre niveau d\'energie moyen au cours de la journee ?', opts:[
-    {t:'Je me sens epuise la plupart du temps 😓',icon:'😓'},{t:'Mon niveau d\'energie varie au cours de la journee 📊',icon:'📊'},{t:'Je suis generalement tres energique et actif 💥',icon:'💥'}
+  { type:'single', q:'Quel est votre niveau d\'énergie moyen au cours de la journée ?', opts:[
+    {t:'Je me sens épuisé la plupart du temps 😓',icon:'😓'},{t:'Mon niveau d\'énergie varie au cours de la journée 📊',icon:'📊'},{t:'Je suis généralement très énergique et actif 💥',icon:'💥'}
   ], key:'energie' },
   // 18 — Slider 1
-  { type:'slider', q:'J\'ai besoin de structure ou de guidance pendant les entrainements pour rester motive(e)', key:'structure', labels:['Pas d\'accord','Neutre','D\'accord'] },
+  { type:'slider', q:'J\'ai besoin de structure ou de guidance pendant les entraînements pour rester motivé(e)', key:'structure', labels:['Pas d\'accord','Neutre','D\'accord'] },
   // 19 — Slider 2
   { type:'slider', q:'Je ressens souvent que je n\'exploite pas pleinement le potentiel que je sais avoir', key:'potentiel', labels:['Pas d\'accord','Neutre','D\'accord'] },
   // 20 — Slider 3
-  { type:'slider', q:'Je ne sais pas comment choisir des entrainements adaptes a moi', key:'choix', labels:['Pas d\'accord','Neutre','D\'accord'] },
+  { type:'slider', q:'Je ne sais pas comment choisir des entraînements adaptés à moi', key:'choix', labels:['Pas d\'accord','Neutre','D\'accord'] },
   // 21 — Email capture
   { type:'email', render: () => `
     <div class="fade-in text-center">
       <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
         <span style="font-size:40px">🎖️</span>
-        <h2 class="font-oswald text-2xl font-bold uppercase mt-3 mb-2">Votre programme est pret !</h2>
-        <p class="text-white/40 text-sm mb-6">Entrez votre email pour recevoir votre plan d'entrainement militaire personnalise.</p>
+        <h2 class="font-oswald text-2xl font-bold uppercase mt-3 mb-2">Votre programme est prêt !</h2>
+        <p class="text-white/40 text-sm mb-6">Entrez votre email pour recevoir votre plan d'entraînement militaire personnalisé.</p>
         <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="name@example.com" required/></div>
-          <div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
+          <div class="form-group"><label>Département <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
           <button type="submit" class="btn-red">CONTINUER &rarr;</button>
         </form>
         <p class="text-white/40 text-xs font-semibold mt-3">100% gratuit</p>
-        <p class="text-white/15 text-[10px] mt-1">Nous respectons votre vie privee — aucun spam.</p>
+        <p class="text-white/15 text-[10px] mt-1">Nous respectons votre vie privée — aucun spam.</p>
       </div>
     </div>`
   },
@@ -405,17 +405,17 @@ function updateProgress() {
 // ===================== LOADING SCREEN =====================
 function showLoadingScreen() {
   const loadingSteps = [
-    'Analyse des donnees...',
+    'Analyse des données...',
     'Mesure du profil corporel...',
-    'Suggestion d\'un programme d\'entrainement...',
-    'Elaboration d\'un plan pour atteindre vos objectifs...',
-    'Votre plan personnalise est pret !'
+    'Suggestion d\'un programme d\'entraînement...',
+    'Élaboration d\'un plan pour atteindre vos objectifs...',
+    'Votre plan personnalisé est prêt !'
   ];
   const container = document.getElementById('step-container');
   container.innerHTML = `<div class="fade-in text-center">
     <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1)">
       <span style="font-size:48px">⚙️</span>
-      <h2 class="font-oswald text-xl font-bold uppercase mt-4 mb-6">Creation de votre programme</h2>
+      <h2 class="font-oswald text-xl font-bold uppercase mt-4 mb-6">Création de votre programme</h2>
       <div class="loading-bar"><div class="loading-bar-fill" id="loading-bar-fill" style="width:0%"></div></div>
       <div class="text-left max-w-sm mx-auto" id="loading-steps">${loadingSteps.map((s,i)=>`<div class="loading-step" id="ls-${i}"><div class="loading-dot"></div><span class="text-sm text-white/60">${s}</span></div>`).join('')}</div>
     </div>
@@ -457,7 +457,7 @@ function showResult() {
   const poids = parseFloat(answers.poids) || 80;
   const imc = (poids / ((taille/100) * (taille/100))).toFixed(1);
   const fitnessScore = answers.fitness_score || 30;
-  const level = answers.fitness_level || 'Intermediaire';
+  const level = answers.fitness_level || 'Intermédiaire';
 
   const container = document.getElementById('step-container');
   document.getElementById('top-progress').style.width = '100%';
@@ -466,7 +466,7 @@ function showResult() {
     <!-- Result header -->
     <div class="text-center mb-6">
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">VOTRE PROGRAMME</span>
-      <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-2">Programme Militaire<br/><span style="color:var(--red)">Personnalise</span></h2>
+      <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-2">Programme Militaire<br/><span style="color:var(--red)">Personnalisé</span></h2>
     </div>
 
     <!-- Scores -->
@@ -480,8 +480,8 @@ function showResult() {
 
     <!-- Preview progression -->
     <div class="glass-card p-6 mb-4" style="border-color:rgba(255,23,23,.1)">
-      <h3 class="font-oswald text-base font-bold uppercase mb-1">Des premiers resultats des 2 semaines</h3>
-      <p class="text-white/30 text-xs mb-4">En fonction de votre regularite et de votre engagement.</p>
+      <h3 class="font-oswald text-base font-bold uppercase mb-1">Dès les premiers résultats dès 2 semaines</h3>
+      <p class="text-white/30 text-xs mb-4">En fonction de votre régularité et de votre engagement.</p>
       <div class="flex items-end justify-between gap-2" style="height:80px">
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:20px;background:rgba(255,23,23,.15)"></div><span class="text-[9px] text-white/25">Maintenant</span></div>
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:35px;background:rgba(255,23,23,.25)"></div><span class="text-[9px] text-white/25">2 sem. 🔥</span></div>
@@ -489,7 +489,7 @@ function showResult() {
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:65px;background:rgba(255,23,23,.6)"></div><span class="text-[9px] text-white/25">2 mois</span></div>
         <div class="flex flex-col items-center gap-1 flex-1"><div class="w-full rounded-t-md" style="height:80px;background:var(--red)"></div><span class="text-[9px] text-white/25">3 mois</span></div>
       </div>
-      <p class="text-[9px] text-white/15 mt-3">Graphique illustratif. Les resultats peuvent varier.</p>
+      <p class="text-[9px] text-white/15 mt-3">Graphique illustratif. Les résultats peuvent varier.</p>
     </div>
 
     <!-- Produit -->
@@ -498,21 +498,21 @@ function showResult() {
         <div class="w-[50px] h-[70px] rounded-lg flex items-center justify-center shrink-0" style="background:rgba(255,23,23,.08);border:1px solid rgba(255,23,23,.12)"><span class="font-oswald text-sm font-bold" style="color:var(--red)">9MM</span></div>
         <div>
           <h3 class="font-oswald text-sm font-bold uppercase">9MM Active Body</h3>
-          <p class="text-white/35 text-xs mt-0.5">Recommande pour votre programme — endurance et energie naturelle pour chaque session.</p>
+          <p class="text-white/35 text-xs mt-0.5">Recommandé pour votre programme — endurance et énergie naturelle pour chaque session.</p>
         </div>
       </div>
     </div>
 
     <!-- CTA -->
-    <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DECOUVRIR 9MM &rarr;</a>
-    <p class="text-center text-white/15 text-[10px] mt-3">Votre programme detaille a ete envoye par email.</p>
+    <a href="https://9mm-energy.com" class="btn-red block text-center" style="text-decoration:none">DÉCOUVRIR 9MM &rarr;</a>
+    <p class="text-center text-white/15 text-[10px] mt-3">Votre programme détaillé a été envoyé par email.</p>
 
     <!-- Cross-links -->
     <div class="mt-10 pt-6" style="border-top:1px solid rgba(255,255,255,.05)">
-      <p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Decouvre aussi</p>
+      <p class="text-[10px] text-white/20 uppercase tracking-wider text-center mb-4">Découvre aussi</p>
       <div class="space-y-2">
         <a href="pro-match-quiz.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(255,23,23,.25)]" style="text-decoration:none;border-color:rgba(255,23,23,.08)"><span class="text-lg">&#129354;</span><div><p class="text-white/70 text-sm font-semibold">Ton Style de Boxe</p><p class="text-white/30 text-[10px]">Analyse morphologique</p></div></a>
-        <a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes reflexes</p></div></a>
+        <a href="reaction-time-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#9889;</span><div><p class="text-white/70 text-sm font-semibold">Reaction Time Test</p><p class="text-white/30 text-[10px]">Teste tes réflexes</p></div></a>
         <a href="focus-score-test.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127919;</span><div><p class="text-white/70 text-sm font-semibold">Focus Score Test</p><p class="text-white/30 text-[10px]">Teste ta concentration</p></div></a>
         <a href="streak-tracker.html" class="glass-card p-4 flex items-center gap-3 transition-all hover:border-[rgba(0,237,239,.25)]" style="text-decoration:none;border-color:rgba(0,237,239,.08)"><span class="text-lg">&#127918;</span><div><p class="text-white/70 text-sm font-semibold">Challenge Fortnite 7 Jours</p><p class="text-white/30 text-[10px]">Programme gaming</p></div></a>
       </div>

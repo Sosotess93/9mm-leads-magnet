@@ -99,7 +99,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div id="game-start-screen" class="flex items-center justify-center h-full" style="min-height:380px">
 <div class="text-center px-6">
 <p class="font-oswald text-3xl font-bold uppercase mb-2" style="color:var(--cyan)">Focus Test</p>
-<p class="text-white/40 text-sm mb-4">Un chiffre cible apparait en haut. Clique UNIQUEMENT sur ce chiffre parmi les leurres.</p>
+<p class="text-white/40 text-sm mb-4">Un chiffre cible apparaît en haut. Clique UNIQUEMENT sur ce chiffre parmi les leurres.</p>
 <p class="text-white/25 text-xs mb-6">3 vies • Vitesse croissante • Pas de second chance</p>
 <button onclick="startGame()" class="btn-cyan" style="max-width:220px;margin:0 auto;display:block;padding:14px">COMMENCER LE TEST</button>
 </div>
@@ -124,31 +124,31 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div class="max-w-sm mx-auto grid grid-cols-3 gap-3 mb-8">
 <div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold" style="color:var(--cyan)" id="stat-hits">0</span><p class="text-[10px] text-white/30 mt-1">Cibles</p></div>
 <div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold text-white" id="stat-level">0</span><p class="text-[10px] text-white/30 mt-1">Niveau max</p></div>
-<div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold text-white" id="stat-time">0s</span><p class="text-[10px] text-white/30 mt-1">Duree</p></div>
+<div class="glass-card p-3 text-center"><span class="font-oswald text-lg font-bold text-white" id="stat-time">0s</span><p class="text-[10px] text-white/30 mt-1">Durée</p></div>
 </div>
 
 <div id="email-gate">
 <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.15),transparent);margin:20px 0"></div>
-<p class="font-oswald text-lg font-bold uppercase mb-1">Recois ton analyse focus</p>
-<p class="text-white/35 text-sm mb-6">+ Programme personnalise pour ameliorer ta concentration</p>
+<p class="font-oswald text-lg font-bold uppercase mb-1">Reçois ton analyse focus</p>
+<p class="text-white/35 text-sm mb-6">+ Programme personnalisé pour améliorer ta concentration</p>
 <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
 <div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
 <div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<div class="form-group"><label>Tranche d'age <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Selectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
-<div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
+<div class="form-group"><label>Tranche d'âge <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Sélectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
+<div class="form-group"><label>Département <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
 <button type="submit" class="btn-cyan">RECEVOIR MON ANALYSE &rarr;</button>
 </form>
 <p class="text-white/20 text-[10px] mt-3">100% gratuit &bull; Pas de spam</p>
 </div>
 <div id="success-msg" style="display:none" class="mt-6">
 <span style="font-size:40px">✅</span>
-<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyee !</h4>
-<p class="text-white/45 text-sm mb-4">Verifie ta boite mail.</p>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyée !</h4>
+<p class="text-white/45 text-sm mb-4">Vérifie ta boîte mail.</p>
 <button onclick="location.reload()" class="btn-cyan" style="max-width:200px;margin:0 auto;display:block;padding:12px">REJOUER</button>
 </div>
-<!-- Decouvre aussi -->
+<!-- Découvre aussi -->
 <div class="mt-8 text-left" id="cross-links">
-<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Decouvre aussi</p>
+<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Découvre aussi</p>
 <div class="space-y-2">
 <a href="reaction-time-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#9889;</span> Reaction Time Test</a>
 <a href="streak-tracker.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#127918;</span> Challenge Fortnite 7 Jours</a>
@@ -163,7 +163,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <!-- STICKY CTA BAR -->
 <div id="sticky-cta">
 <button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">&times;</button>
-<div class="cta-text"><strong>Recois ton analyse focus</strong> + programme personnalise pour ameliorer ta concentration</div>
+<div class="cta-text"><strong>Reçois ton analyse focus</strong> + programme personnalisé pour améliorer ta concentration</div>
 <button class="cta-btn" onclick="scrollToEmailForm()">RECEVOIR MON ANALYSE →</button>
 </div>
 
@@ -264,9 +264,9 @@ function endGame(){
 
   let rank='',stats='';
   if(focusScore>=85){rank='🧠 Focus Elite';stats='Concentration exceptionnelle. Tu es dans le top 5%.';}
-  else if(focusScore>=65){rank='⚡ Focus Sharp';stats='Tres bonne concentration. Quelques ajustements et tu atteins l\'elite.';}
-  else if(focusScore>=40){rank='🎯 Focus Moyen';stats='Concentration correcte. Le potentiel est la, il faut l\'entrainer.';}
-  else{rank='🔄 Focus Debutant';stats='La concentration se travaille ! Suis nos tips pour progresser vite.';}
+  else if(focusScore>=65){rank='⚡ Focus Sharp';stats='Très bonne concentration. Quelques ajustements et tu atteins l\'élite.';}
+  else if(focusScore>=40){rank='🎯 Focus Moyen';stats='Concentration correcte. Le potentiel est là, il faut l\'entraîner.';}
+  else{rank='🔄 Focus Débutant';stats='La concentration se travaille ! Suis nos tips pour progresser vite.';}
   document.getElementById('focus-rank').textContent=rank;
   document.getElementById('focus-stats').textContent=stats;
 

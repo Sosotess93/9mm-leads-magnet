@@ -79,9 +79,9 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div class="text-center fade-in mb-8">
 <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">TEST INTERACTIF</span>
 <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">
-<span class="text-white">Reaction</span> <span style="color:var(--cyan)">Time</span>
+<span class="text-white">Réaction</span> <span style="color:var(--cyan)">Time</span>
 </h1>
-<p class="text-white/45 max-w-md mx-auto">Teste ton temps de reaction et compare-toi aux gamers pro. 5 essais, pas de triche.</p>
+<p class="text-white/45 max-w-md mx-auto">Teste ton temps de réaction et compare-toi aux gamers pro. 5 essais, pas de triche.</p>
 </div>
 
 
@@ -99,7 +99,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 
 <div id="game-zone" class="idle">
 <div id="game-text" class="text-center px-6">
-<p class="font-oswald text-2xl font-bold uppercase mb-2">Pret ?</p>
+<p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p>
 <p class="text-white/40 text-sm">Clique pour commencer le test</p>
 </div>
 </div>
@@ -117,7 +117,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <!-- RESULTS (hidden until complete) -->
 <div id="results-section" style="display:none" class="mt-8">
 <div class="glass-card p-8 md:p-10 text-center" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 60px rgba(0,237,239,.08)">
-<span class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">TON RESULTAT</span>
+<span class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">TON RÉSULTAT</span>
 <div class="font-oswald text-7xl md:text-8xl font-bold" style="color:var(--cyan)" id="final-ms">0</div>
 <p class="text-white/30 text-sm mb-1">millisecondes (moyenne)</p>
 <p class="font-oswald text-xl font-bold uppercase mt-3 mb-6" id="rank-label" style="color:var(--cyan)">—</p>
@@ -125,7 +125,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <!-- Comparison bars -->
 <div class="max-w-sm mx-auto text-left space-y-4 mb-8">
 <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Pro Gamer</span><span style="color:var(--cyan)">&lt; 180ms</span></div><div class="result-bar"><div class="result-fill" style="width:95%;background:var(--cyan)"></div></div></div>
-<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Tres bon</span><span style="color:rgba(0,237,239,.6)">&lt; 220ms</span></div><div class="result-bar"><div class="result-fill" style="width:78%;background:rgba(0,237,239,.6)"></div></div></div>
+<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Très bon</span><span style="color:rgba(0,237,239,.6)">&lt; 220ms</span></div><div class="result-bar"><div class="result-fill" style="width:78%;background:rgba(0,237,239,.6)"></div></div></div>
 <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Bon</span><span style="color:rgba(0,237,239,.4)">&lt; 280ms</span></div><div class="result-bar"><div class="result-fill" style="width:60%;background:rgba(0,237,239,.4)"></div></div></div>
 <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Moyen</span><span style="color:rgba(255,255,255,.2)">&lt; 350ms</span></div><div class="result-bar"><div class="result-fill" style="width:40%;background:rgba(255,255,255,.15)"></div></div></div>
 <div id="your-bar"><div class="flex justify-between text-xs mb-1"><span class="text-white font-bold">Toi</span><span class="font-bold" style="color:var(--cyan)" id="your-bar-ms">—</span></div><div class="result-bar" style="border:1px solid rgba(0,237,239,.2)"><div class="result-fill" id="your-bar-fill" style="width:0%;background:linear-gradient(90deg,var(--cyan),#00b8ba)"></div></div></div>
@@ -134,26 +134,26 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <!-- Email gate -->
 <div id="email-gate">
 <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.15),transparent);margin:24px 0"></div>
-<p class="font-oswald text-lg font-bold uppercase mb-1">Recois tes resultats detailles</p>
-<p class="text-white/35 text-sm mb-6">+ Tips personnalises pour ameliorer ton temps de reaction</p>
+<p class="font-oswald text-lg font-bold uppercase mb-1">Reçois tes résultats détaillés</p>
+<p class="text-white/35 text-sm mb-6">+ Tips personnalisés pour améliorer ton temps de réaction</p>
 <form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
 <div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
 <div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<div class="form-group"><label>Tranche d'age <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Selectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
-<div class="form-group"><label>Departement <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
+<div class="form-group"><label>Tranche d'âge <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Sélectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
+<div class="form-group"><label>Département <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
 <button type="submit" class="btn-cyan">RECEVOIR MON ANALYSE &rarr;</button>
 </form>
 <p class="text-white/20 text-[10px] mt-3">100% gratuit &bull; Pas de spam</p>
 </div>
 <div id="success-msg" style="display:none" class="mt-6">
 <span style="font-size:40px">✅</span>
-<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyee !</h4>
-<p class="text-white/45 text-sm">Verifie ta boite mail pour tes resultats detailles.</p>
+<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyée !</h4>
+<p class="text-white/45 text-sm">Vérifie ta boîte mail pour tes résultats détaillés.</p>
 <button onclick="resetGame()" class="btn-cyan mt-4" style="max-width:200px;margin:16px auto 0;display:block;padding:12px">REJOUER</button>
 </div>
-<!-- Decouvre aussi -->
+<!-- Découvre aussi -->
 <div class="mt-8 text-left" id="cross-links">
-<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Decouvre aussi</p>
+<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Découvre aussi</p>
 <div class="space-y-2">
 <a href="focus-score-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#9889;</span> Focus Score Test</a>
 <a href="streak-tracker.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#127918;</span> Challenge Fortnite 7 Jours</a>
@@ -177,7 +177,7 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 
 <!-- STICKY CTA BAR -->
 <div id="sticky-cta">
-<span class="cta-text"><strong>Recois ton analyse detaillee</strong> + tips pro</span>
+<span class="cta-text"><strong>Reçois ton analyse détaillée</strong> + tips pro</span>
 <button class="cta-btn" onclick="scrollToEmailForm()">RECEVOIR MON ANALYSE &rarr;</button>
 <button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">&times;</button>
 </div>
@@ -223,7 +223,7 @@ function tooEarly(){
   clearTimeout(timeoutId);
   state='too-early';
   zone.className='too-early';
-  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase" style="color:rgba(255,150,50,1)">Trop tot !</p><p class="text-white/30 text-sm mt-2">Clique pour reessayer</p>';
+  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase" style="color:rgba(255,150,50,1)">Trop tôt !</p><p class="text-white/30 text-sm mt-2">Clique pour réessayer</p>';
 }
 
 function recordReaction(){
@@ -274,10 +274,10 @@ function showFinalResults(){
   // Rank
   let rank='';
   if(avg<180)rank='🏆 Niveau Pro Gamer !';
-  else if(avg<220)rank='⚡ Tres bon — Top 15%';
+  else if(avg<220)rank='⚡ Très bon — Top 15%';
   else if(avg<280)rank='🎯 Bon — Au-dessus de la moyenne';
   else if(avg<350)rank='💪 Moyen — Tu peux progresser';
-  else rank='🔄 A ameliorer — Entraine-toi !';
+  else rank='🔄 À améliorer — Entraîne-toi !';
   document.getElementById('rank-label').textContent=rank;
 
   // Show sticky CTA bar after a short delay
@@ -330,7 +330,7 @@ function captureEmail(e){
 function resetGame(){
   attempts=[];currentAttempt=0;state='idle';
   zone.style.display='flex';zone.className='idle';
-  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase mb-2">Pret ?</p><p class="text-white/40 text-sm">Clique pour commencer le test</p>';
+  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p><p class="text-white/40 text-sm">Clique pour commencer le test</p>';
   liveResult.style.display='none';attemptsHistory.style.display='none';
   document.getElementById('results-section').style.display='none';
   document.getElementById('email-gate').style.display='block';
