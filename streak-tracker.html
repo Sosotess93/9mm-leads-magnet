@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '478088670624086');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=478088670624086&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>9MM — Challenge Fortnite 7 Jours</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -278,6 +295,8 @@ function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
 function captureEmail(e) {
   e.preventDefault();
+  fbq('trackCustom','StartQuiz',{quiz_name:'challenge-fortnite-7j'});
+  fbq('track','Lead',{content_name:'challenge-fortnite-7j'});
   const fd = new FormData(e.target);
   const d = {}; fd.forEach((v, k) => d[k] = v);
   d.source = 'challenge-fortnite-7j';
@@ -351,6 +370,7 @@ function render() {
 
   // Check completion
   if (completedCount >= 7) {
+    fbq('trackCustom','QuizComplete',{quiz_name:'challenge-fortnite-7j'});
     document.getElementById('completion-screen').style.display = 'block';
     launchConfetti();
   }

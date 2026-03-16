@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '478088670624086');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=478088670624086&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>9MM — Focus Score Test</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -181,6 +198,7 @@ let score=0,lives=3,level=1,hits=0,gameActive=false,targetNum=0,spawnInterval=nu
 const area=document.getElementById('game-area');
 
 function startGame(){
+  fbq('trackCustom','StartQuiz',{quiz_name:'focus-score-test'});
   document.getElementById('game-start-screen').style.display='none';
   document.getElementById('target-indicator').style.display='block';
   score=0;lives=3;level=1;hits=0;seconds=0;gameActive=true;
@@ -246,6 +264,7 @@ function updateHUD(){
 }
 
 function endGame(){
+  fbq('trackCustom','QuizComplete',{quiz_name:'focus-score-test'});
   gameActive=false;
   clearInterval(spawnInterval);clearInterval(gameTimer);
   area.querySelectorAll('.target-btn').forEach(b=>b.remove());
@@ -321,6 +340,7 @@ function captureEmail(e){
   const fd=new FormData(e.target);const data={};fd.forEach((v,k)=>data[k]=v);
   const focusScore=Math.min(100,Math.round((score/500)*100));
   data.source='focus-score-test';data.focus_score=focusScore;data.level=level;data.hits=hits;data.time=seconds;data.timestamp=new Date().toISOString();
+  fbq('track','Lead',{content_name:'focus-score-test'});
   fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:data.email,first_name:data.name||'',properties:{source:'focus-score-test',age_range:data.age_range||'',departement:data.departement||''}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'TK47E7'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
   console.log('9MM Lead captured:',data);
   document.getElementById('email-gate').style.display='none';

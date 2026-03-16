@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '478088670624086');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=478088670624086&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>9MM — Quel est ton profil de performance ?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -157,7 +174,7 @@ const questions=[
 {q:"Ta philosophie en une phrase :",tag:"Philosophie",opts:[{t:"Le corps est une machine, il faut la pousser",s:"body"},{t:"L\u2019esprit m\u00e8ne, le reste suit",s:"mind"},{t:"L\u2019impact se joue quand corps et esprit s\u2019alignent",s:"hybrid"}]}
 ];
 let cur=0,ans=[];
-function startQuiz(){document.getElementById('intro').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');render()}
+function startQuiz(){fbq('trackCustom','StartQuiz',{quiz_name:'quiz-profil-performance'});document.getElementById('intro').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');render()}
 function render(){const q=questions[cur];document.getElementById('q-counter').textContent=`Question ${cur+1}/${questions.length}`;document.getElementById('q-tag').textContent=q.tag;document.getElementById('progress').style.width=`${((cur+1)/questions.length)*100}%`;document.getElementById('q-text').textContent=q.q;document.getElementById('btn-prev').style.display=cur>0?'block':'none';const o=document.getElementById('q-options');o.innerHTML='';q.opts.forEach((op,i)=>{const d=document.createElement('div');d.className='glass-card p-4 flex items-center gap-4 cursor-pointer transition-all hover:border-white/20 hover:translate-y-[-2px]';d.innerHTML=`<span class="w-8 h-8 rounded-full border border-white/15 flex items-center justify-center text-sm font-bold shrink-0 text-white/50">${String.fromCharCode(65+i)}</span><span class="text-white/70 text-sm">${op.t}</span>`;d.onclick=()=>sel(i,op.s,d);if(ans[cur]&&ans[cur].i===i)applySel(d,op.s);o.appendChild(d)});document.getElementById('btn-next').disabled=!ans[cur]}
 function applySel(el,s){el.style.borderColor=s==='body'?'var(--red)':s==='mind'?'var(--cyan)':'var(--red)';el.style.background=s==='body'?'rgba(255,23,23,.08)':s==='mind'?'rgba(0,237,239,.08)':'linear-gradient(135deg,rgba(255,23,23,.06),rgba(0,237,239,.06))';el.style.boxShadow=s==='body'?'0 0 30px rgba(255,23,23,.1)':s==='mind'?'0 0 30px rgba(0,237,239,.1)':'0 0 20px rgba(255,23,23,.08),0 0 20px rgba(0,237,239,.08)'}
 function sel(i,s,el){ans[cur]={i,s};[...document.getElementById('q-options').children].forEach(c=>{c.style.borderColor='';c.style.background='';c.style.boxShadow=''});applySel(el,s);document.getElementById('btn-next').disabled=false}
@@ -171,8 +188,10 @@ else if(m>b&&m>=h){pf='ACTIVE MIND';cl='result-mind';desc=`${nm}, tu es un profi
 else{pf='HYBRID';cl='result-hybrid';desc=`${nm}, tu es un profil <strong>hybride</strong>. Corps et esprit alignés — l'état d'esprit 9MM dans sa forme la plus pure.`;prod='9MM Active Body + Active Mind';guide='Les deux protocoles'}
 const age=document.getElementById('lead-age').value;const dept=document.getElementById('lead-dept').value;
 // Klaviyo client subscription
+fbq('track','Lead',{content_name:'quiz-profil-performance'});
 fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:em,first_name:nm,properties:{source:'quiz-profil',age_range:age||'',departement:dept||'',profile_result:pf,quiz_answers:ans.map(a=>a.s).join(', ')}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'TR787E'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
 console.log('9MM Lead:',{name:nm,email:em,age_range:age,departement:dept,profile:pf,answers:ans.map(a=>a.s),source:'quiz-profil'});
+fbq('trackCustom','QuizComplete',{quiz_name:'quiz-profil-performance',profile:pf});
 document.getElementById('email-section').classList.add('hidden');
 const r=document.getElementById('result');r.classList.remove('hidden');
 const border=b>m&&b>=h?'var(--red)':m>b&&m>=h?'var(--cyan)':'';
