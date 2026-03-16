@@ -347,30 +347,19 @@ function resetGame(){
   hideStickyBar();
 }
 </script>
-<!-- Cookie Consent Wall -->
-<div id="cookie-wall" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px">
-<div style="max-width:440px;width:100%;background:rgba(17,17,17,.98);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 28px;text-align:center;backdrop-filter:blur(20px)">
-<img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM" style="height:44px;margin-bottom:20px;opacity:.8">
-<h2 style="font-family:'Oswald',sans-serif;font-size:22px;font-weight:700;text-transform:uppercase;margin:0 0 12px;color:#fff;letter-spacing:.02em">Cookies & Confidentialité</h2>
-<p style="color:rgba(255,255,255,.5);font-size:13px;line-height:1.7;margin:0 0 24px">Nous utilisons des cookies pour améliorer ton expérience et mesurer la performance de nos contenus. En acceptant, tu autorises l'utilisation de cookies analytiques et publicitaires.</p>
-<div style="display:flex;gap:12px;justify-content:center">
-<button onclick="acceptCookies()" style="background:linear-gradient(135deg,#FF1717,#cc1212);color:#fff;font-weight:700;padding:14px 32px;border-radius:12px;border:none;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:all .3s">Accepter</button>
-<button onclick="refuseCookies()" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-weight:600;padding:14px 24px;border-radius:12px;border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:13px;transition:all .3s">Refuser</button>
-</div>
-<div id="cookie-refused-msg" style="display:none;margin-top:16px;padding:12px 16px;background:rgba(255,23,23,.06);border:1px solid rgba(255,23,23,.12);border-radius:10px">
-<p style="color:rgba(255,255,255,.6);font-size:12px;margin:0;line-height:1.5">L'accès au site nécessite l'acceptation des cookies pour fonctionner correctement.</p>
-</div>
-<div style="margin-top:16px;display:flex;gap:16px;justify-content:center">
-<a href="politique-confidentialite.html" style="color:rgba(255,255,255,.3);font-size:11px;text-decoration:underline">Politique de confidentialité</a>
-<a href="mentions-legales.html" style="color:rgba(255,255,255,.3);font-size:11px;text-decoration:underline">Mentions légales</a>
-</div>
+<!-- Cookie Consent Bar -->
+<div id="cookie-bar" style="position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:rgba(17,17,17,.97);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
+<p style="color:rgba(255,255,255,.6);font-size:13px;margin:0;line-height:1.5;max-width:600px">Ce site utilise des cookies pour mesurer la performance et améliorer ton expérience. <a href="politique-confidentialite.html" style="color:rgba(0,237,239,.7);text-decoration:underline">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0">
+<button onclick="acceptCookies()" style="background:linear-gradient(135deg,#FF1717,#cc1212);color:#fff;font-weight:700;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;white-space:nowrap">Accepter</button>
+<button onclick="refuseCookies()" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:12px;white-space:nowrap">Refuser</button>
 </div>
 </div>
 <script>
-function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-wall').style.display='none';loadFBPixel()}
-function refuseCookies(){document.getElementById('cookie-refused-msg').style.display='block'}
+function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none';loadFBPixel()}
+function refuseCookies(){localStorage.setItem('9mm_cookies','refused');document.getElementById('cookie-bar').style.display='none'}
 function loadFBPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','478088670624086');fbq('track','PageView')}
-if(localStorage.getItem('9mm_cookies')==='accepted'){document.getElementById('cookie-wall').style.display='none';loadFBPixel()}
+(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'){document.getElementById('cookie-bar').style.display='none';loadFBPixel()}else if(c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
 </script>
 </body>
 </html>
