@@ -1,126 +1,497 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" class="scroll-smooth">
-<head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Challenge Militaire Avancé</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
-body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
-.font-oswald{font-family:'Oswald',sans-serif}
-@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
-@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes pulseDot{0%,100%{opacity:.3}50%{opacity:1}}
-@keyframes progressFill{0%{width:0}100%{width:100%}}
-.fade-in{animation:fadeSlideBlurIn .6s cubic-bezier(.16,1,.3,1) both}
-*,*::before,*::after{box-sizing:border-box}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>9MM — Challenge Militaire Avancé</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --red: #ff1717;
+        --cyan: #00edef;
+        --black: #0a0a0a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: #fff;
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .font-oswald {
+        font-family: "Oswald", sans-serif;
+      }
+      @keyframes border-beam {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+      @keyframes fadeSlideBlurIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+          filter: blur(8px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+      @keyframes pulseDot {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      @keyframes progressFill {
+        0% {
+          width: 0;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+      .fade-in {
+        animation: fadeSlideBlurIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
 
-/* Shared UI */
-.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
-.btn-red:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
-.btn-red:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px)}
-.form-group input::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus,.form-group select:focus{border-color:var(--red);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(255,23,23,.1)}
-.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-.form-group select option{background:#1a1a1a;color:#fff}
-input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
-input[type=number]{-moz-appearance:textfield}
+      /* Shared UI */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+        position: relative;
+      }
+      .btn-red {
+        background: linear-gradient(135deg, var(--red), #cc1212);
+        color: #fff;
+        font-weight: 700;
+        padding: 16px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.05rem;
+        transition: all 0.3s;
+        width: 100%;
+        font-family: "Oswald", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .btn-red:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 23, 23, 0.3);
+      }
+      .btn-red:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group input {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s;
+        backdrop-filter: blur(6px);
+      }
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--red);
+        background: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(255, 23, 23, 0.1);
+      }
+      .form-group select {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s;
+        backdrop-filter: blur(6px);
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+      }
+      .form-group select option {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
 
-/* Option buttons */
-.opt-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .25s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px}
-.opt-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);transform:translateX(4px)}
-.opt-btn.selected{background:rgba(255,23,23,.08);border-color:rgba(255,23,23,.25);box-shadow:0 0 20px rgba(255,23,23,.08)}
-.opt-btn.multi.selected{background:rgba(255,23,23,.08);border-color:rgba(255,23,23,.25)}
-.opt-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;background:rgba(255,255,255,.06);flex-shrink:0}
-.opt-btn.selected .opt-icon{background:rgba(255,23,23,.15)}
+      /* Option buttons */
+      .opt-btn {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 14px 18px;
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.25s;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        color: #fff;
+        font-size: 14px;
+      }
+      .opt-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateX(4px);
+      }
+      .opt-btn.selected {
+        background: rgba(255, 23, 23, 0.08);
+        border-color: rgba(255, 23, 23, 0.25);
+        box-shadow: 0 0 20px rgba(255, 23, 23, 0.08);
+      }
+      .opt-btn.multi.selected {
+        background: rgba(255, 23, 23, 0.08);
+        border-color: rgba(255, 23, 23, 0.25);
+      }
+      .opt-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        flex-shrink: 0;
+      }
+      .opt-btn.selected .opt-icon {
+        background: rgba(255, 23, 23, 0.15);
+      }
 
-/* Slider */
-.slider-track{width:100%;height:8px;border-radius:99px;background:rgba(255,255,255,.06);position:relative;cursor:pointer}
-.slider-fill{height:100%;border-radius:99px;background:var(--red);transition:width .15s}
-.slider-thumb{width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--red);position:absolute;top:50%;transform:translate(-50%,-50%);cursor:grab;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:left .15s}
-.slider-labels{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:rgba(255,255,255,.3)}
+      /* Slider */
+      .slider-track {
+        width: 100%;
+        height: 8px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.06);
+        position: relative;
+        cursor: pointer;
+      }
+      .slider-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: var(--red);
+        transition: width 0.15s;
+      }
+      .slider-thumb {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #fff;
+        border: 3px solid var(--red);
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: grab;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: left 0.15s;
+      }
+      .slider-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+      }
 
-/* Score dots */
-.score-dots{display:flex;gap:4px;align-items:center}
-.score-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);transition:background .3s}
-.score-dot.filled{background:var(--red)}
+      /* Score dots */
+      .score-dots {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+      .score-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: background 0.3s;
+      }
+      .score-dot.filled {
+        background: var(--red);
+      }
 
-/* Loading screen */
-.loading-step{display:flex;align-items:center;gap:12px;padding:12px 0;opacity:.3;transition:opacity .5s}
-.loading-step.active{opacity:1}
-.loading-step.done{opacity:.5}
-.loading-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .3s}
-.loading-step.active .loading-dot{background:var(--red);animation:pulseDot 1s ease infinite}
-.loading-step.done .loading-dot{background:var(--red)}
-.loading-bar{width:100%;height:4px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;margin-bottom:24px}
-.loading-bar-fill{height:100%;border-radius:99px;background:var(--red);transition:width .8s cubic-bezier(.16,1,.3,1)}
+      /* Loading screen */
+      .loading-step {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 0;
+        opacity: 0.3;
+        transition: opacity 0.5s;
+      }
+      .loading-step.active {
+        opacity: 1;
+      }
+      .loading-step.done {
+        opacity: 0.5;
+      }
+      .loading-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: background 0.3s;
+      }
+      .loading-step.active .loading-dot {
+        background: var(--red);
+        animation: pulseDot 1s ease infinite;
+      }
+      .loading-step.done .loading-dot {
+        background: var(--red);
+      }
+      .loading-bar {
+        width: 100%;
+        height: 4px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+      .loading-bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: var(--red);
+        transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-/* Comparison table */
-.compare-table{width:100%;border-collapse:separate;border-spacing:0}
-.compare-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px}
-.compare-table td:first-child{color:rgba(255,255,255,.3);width:30%}
-.compare-col-gym{color:rgba(255,255,255,.4)}
-.compare-col-mil{color:var(--red);font-weight:600}
+      /* Comparison table */
+      .compare-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+      .compare-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        font-size: 13px;
+      }
+      .compare-table td:first-child {
+        color: rgba(255, 255, 255, 0.3);
+        width: 30%;
+      }
+      .compare-col-gym {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .compare-col-mil {
+        color: var(--red);
+        font-weight: 600;
+      }
 
-/* Progress bar */
-.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
-.quiz-progress-fill{height:100%;background:var(--red);transition:width .5s cubic-bezier(.16,1,.3,1)}
+      /* Progress bar */
+      .quiz-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .quiz-progress-fill {
+        height: 100%;
+        background: var(--red);
+        transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-/* Stat bar */
-.stat-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-.stat-fill{height:100%;border-radius:99px;background:var(--red);transition:width 1s cubic-bezier(.16,1,.3,1)}
+      /* Stat bar */
+      .stat-bar {
+        height: 6px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+      .stat-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: var(--red);
+        transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px!important;padding-right:16px!important}}
-</style>
-</head>
-<body>
+      @media (max-width: 640px) {
+        .glass-card {
+          border-radius: 12px;
+        }
+        main {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo header -->
+    <header
+      style="
+        position: relative;
+        z-index: 50;
+        padding: 20px 24px;
+        text-align: center;
+      "
+    >
+      <a href="index.html"
+        ><img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 80px; display: inline-block"
+      /></a>
+    </header>
 
-<!-- Logo header -->
-<header style="position:relative;z-index:50;padding:20px 24px;text-align:center">
-<a href="index.html"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:80px;display:inline-block"></a>
-</header>
+    <div class="quiz-progress">
+      <div class="quiz-progress-fill" id="top-progress" style="width: 0%"></div>
+    </div>
 
-<div class="quiz-progress"><div class="quiz-progress-fill" id="top-progress" style="width:0%"></div></div>
+    <div
+      class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between"
+    >
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"
+        ></div>
+      </div>
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"
+        ></div>
+      </div>
+    </div>
 
-<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
-<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
-<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
-</div>
+    <main
+      class="max-w-lg mx-auto px-5 pb-16 relative z-10 flex flex-col"
+      id="main"
+      style="min-height: calc(100vh - 120px)"
+    >
+      <div
+        class="fixed top-0 left-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"
+      ></div>
 
+      <!-- Container for all steps -->
+      <div
+        id="step-container"
+        class="flex-1 flex flex-col justify-center py-8"
+      ></div>
+    </main>
 
-<main class="max-w-lg mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
-<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+    <footer class="relative z-10 text-center py-8 mt-8">
+      <div class="max-w-md mx-auto border-t border-white/5 pt-6">
+        <img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 50px; opacity: 0.4; display: inline-block"
+        />
+        <p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Europe SAS</p>
+      </div>
+      <div
+        style="
+          margin-top: 12px;
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+        "
+      >
+        <a
+          href="mentions-legales.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Mentions légales</a
+        >
+        <a
+          href="politique-confidentialite.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Politique de confidentialité</a
+        >
+      </div>
+    </footer>
 
-<!-- Container for all steps -->
-<div id="step-container" class="flex-1 flex flex-col justify-center py-8"></div>
+    <script>
+      const TOTAL_STEPS = 22;
+      let currentStep = 0;
+      const answers = {};
 
-</main>
-
-<footer class="relative z-10 text-center py-8 mt-8">
-<div class="max-w-md mx-auto border-t border-white/5 pt-6"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:50px;opacity:.4;display:inline-block"><p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p></div>
-<div style="margin-top:12px;display:flex;gap:16px;justify-content:center">
-<a href="mentions-legales.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Mentions légales</a>
-<a href="politique-confidentialite.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Politique de confidentialité</a>
-</div>
-</footer>
-
-<script>
-const TOTAL_STEPS = 22;
-let currentStep = 0;
-const answers = {};
-
-// ===================== STEP DEFINITIONS =====================
-const steps = [
-  // 0 — LANDING
-  { type:'landing', render: () => `
+      // ===================== STEP DEFINITIONS =====================
+      const steps = [
+        // 0 — LANDING
+        {
+          type: "landing",
+          render: () => `
     <div class="text-center fade-in">
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-6" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">&#9733; PROGRAMME MILITAIRE &#9733;</span>
       <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.85] mb-4">Challenge<br/>d'entraînement<br/><span style="color:var(--red)">militaire avancé</span></h1>
@@ -131,26 +502,59 @@ const steps = [
         <button class="opt-btn justify-center" onclick="pick(0,'age','40-49')"><span>40-49</span></button>
         <button class="opt-btn justify-center" onclick="pick(0,'age','50+')"><span>50+</span></button>
       </div>
-    </div>`
-  },
-  // 1 — Genre
-  { type:'single', q:'Choisissez votre genre', opts:[
-    {t:'Homme',icon:'♂️'},{t:'Femme',icon:'♀️'}
-  ], key:'genre' },
-  // 2 — Objectif
-  { type:'single', q:'Quel est votre objectif principal ?', opts:[
-    {t:'Prendre du muscle et de la force',icon:'💪'},{t:'Perdre du poids',icon:'🔥'},{t:'Améliorer la mobilité',icon:'🧘'},{t:'Développer la flexibilité',icon:'🤸'},{t:'Améliorer la forme générale',icon:'⚡'},{t:'Tester de nouvelles façons de s\'entraîner',icon:'🆕'}
-  ], key:'objectif' },
-  // 3 — Zones problematiques (multi)
-  { type:'multi', q:'Sélectionnez les zones problématiques', opts:[
-    {t:'Poitrine faible',icon:'🫁'},{t:'Bras fins',icon:'💪'},{t:'Ventre à bière',icon:'🍺'},{t:'Jambes fines',icon:'🦵'}
-  ], key:'zones' },
-  // 4 — Experience militaire
-  { type:'single', q:'Connaissez-vous les méthodes d\'entraînement de style militaire ?', opts:[
-    {t:'Oui, j\'ai un peu d\'expérience',icon:'✅'},{t:'Je m\'y connais un peu',icon:'🤔'},{t:'Non, pas du tout',icon:'❌'}
-  ], key:'experience' },
-  // 5 — Slide educative
-  { type:'slide', render: () => `
+    </div>`,
+        },
+        // 1 — Genre
+        {
+          type: "single",
+          q: "Choisissez votre genre",
+          opts: [
+            { t: "Homme", icon: "♂️" },
+            { t: "Femme", icon: "♀️" },
+          ],
+          key: "genre",
+        },
+        // 2 — Objectif
+        {
+          type: "single",
+          q: "Quel est votre objectif principal ?",
+          opts: [
+            { t: "Prendre du muscle et de la force", icon: "💪" },
+            { t: "Perdre du poids", icon: "🔥" },
+            { t: "Améliorer la mobilité", icon: "🧘" },
+            { t: "Développer la flexibilité", icon: "🤸" },
+            { t: "Améliorer la forme générale", icon: "⚡" },
+            { t: "Tester de nouvelles façons de s'entraîner", icon: "🆕" },
+          ],
+          key: "objectif",
+        },
+        // 3 — Zones problematiques (multi)
+        {
+          type: "multi",
+          q: "Sélectionnez les zones problématiques",
+          opts: [
+            { t: "Poitrine faible", icon: "🫁" },
+            { t: "Bras fins", icon: "💪" },
+            { t: "Ventre à bière", icon: "🍺" },
+            { t: "Jambes fines", icon: "🦵" },
+          ],
+          key: "zones",
+        },
+        // 4 — Experience militaire
+        {
+          type: "single",
+          q: "Connaissez-vous les méthodes d'entraînement de style militaire ?",
+          opts: [
+            { t: "Oui, j'ai un peu d'expérience", icon: "✅" },
+            { t: "Je m'y connais un peu", icon: "🤔" },
+            { t: "Non, pas du tout", icon: "❌" },
+          ],
+          key: "experience",
+        },
+        // 5 — Slide educative
+        {
+          type: "slide",
+          render: () => `
     <div class="fade-in">
       <div class="glass-card p-6 text-center" style="border-color:rgba(255,23,23,.1)">
         <span style="font-size:40px">🎖️</span>
@@ -163,56 +567,94 @@ const steps = [
         </div>
         <button class="btn-red" onclick="goNext()" style="max-width:260px;margin:0 auto">COMPRIS &rarr;</button>
       </div>
-    </div>`
-  },
-  // 6 — Meilleure forme
-  { type:'single', q:'Il y a combien de temps étiez-vous en meilleure forme de votre vie ?', opts:[
-    {t:'Il y a moins d\'un an',icon:'📅'},{t:'Il y a 1 à 3 ans',icon:'📆'},{t:'Il y a plus de 3 ans',icon:'⏳'},{t:'Jamais',icon:'🤷'}
-  ], key:'best_shape' },
-  // 7 — Pompes
-  { type:'single', q:'Combien de pompes pouvez-vous faire en une serie ?', opts:[
-    {t:'Moins de 10 💪',icon:'1️⃣',score:5},{t:'10 à 20 💪💪',icon:'2️⃣',score:10},{t:'21 à 30 💪💪💪',icon:'3️⃣',score:20},{t:'Plus de 30 😤',icon:'4️⃣',score:30}
-  ], key:'pompes' },
-  // 8 — Tractions
-  { type:'single', q:'Combien de tractions pouvez-vous faire en une serie ?', opts:[
-    {t:'Je ne peux pas en faire une seule',icon:'0️⃣',score:0},{t:'Moins de 5 🔥',icon:'1️⃣',score:8},{t:'5 à 10 🔥🔥',icon:'2️⃣',score:18},{t:'Plus de 10 🔥🔥🔥',icon:'3️⃣',score:30}
-  ], key:'tractions' },
-  // 9 — Score intermediaire
-  { type:'score', render: () => {
-    const p = answers.pompes_score || 0;
-    const t = answers.tractions_score || 0;
-    const total = p + t;
-    const maxScore = 60;
-    const pct = Math.round((total/maxScore)*100);
-    let level = 'Débutant';
-    if(pct >= 80) level = 'Avancé';
-    else if(pct >= 50) level = 'Intermédiaire';
-    answers.fitness_score = total;
-    answers.fitness_level = level;
-    const forceScore = Math.min(30, Math.round(p * 1));
-    const endScore = Math.min(30, Math.round(t * 1.1 + 5));
-    return `
+    </div>`,
+        },
+        // 6 — Meilleure forme
+        {
+          type: "single",
+          q: "Il y a combien de temps étiez-vous en meilleure forme de votre vie ?",
+          opts: [
+            { t: "Il y a moins d'un an", icon: "📅" },
+            { t: "Il y a 1 à 3 ans", icon: "📆" },
+            { t: "Il y a plus de 3 ans", icon: "⏳" },
+            { t: "Jamais", icon: "🤷" },
+          ],
+          key: "best_shape",
+        },
+        // 7 — Pompes
+        {
+          type: "single",
+          q: "Combien de pompes pouvez-vous faire en une serie ?",
+          opts: [
+            { t: "Moins de 10 💪", icon: "1️⃣", score: 5 },
+            { t: "10 à 20 💪💪", icon: "2️⃣", score: 10 },
+            { t: "21 à 30 💪💪💪", icon: "3️⃣", score: 20 },
+            { t: "Plus de 30 😤", icon: "4️⃣", score: 30 },
+          ],
+          key: "pompes",
+        },
+        // 8 — Tractions
+        {
+          type: "single",
+          q: "Combien de tractions pouvez-vous faire en une serie ?",
+          opts: [
+            { t: "Je ne peux pas en faire une seule", icon: "0️⃣", score: 0 },
+            { t: "Moins de 5 🔥", icon: "1️⃣", score: 8 },
+            { t: "5 à 10 🔥🔥", icon: "2️⃣", score: 18 },
+            { t: "Plus de 10 🔥🔥🔥", icon: "3️⃣", score: 30 },
+          ],
+          key: "tractions",
+        },
+        // 9 — Score intermediaire
+        {
+          type: "score",
+          render: () => {
+            const p = answers.pompes_score || 0;
+            const t = answers.tractions_score || 0;
+            const total = p + t;
+            const maxScore = 60;
+            const pct = Math.round((total / maxScore) * 100);
+            let level = "Débutant";
+            if (pct >= 80) level = "Avancé";
+            else if (pct >= 50) level = "Intermédiaire";
+            answers.fitness_score = total;
+            answers.fitness_level = level;
+            const forceScore = Math.min(30, Math.round(p * 1));
+            const endScore = Math.min(30, Math.round(t * 1.1 + 5));
+            return `
     <div class="fade-in text-center">
       <div class="glass-card p-8" style="border-color:rgba(255,23,23,.12);box-shadow:0 0 40px rgba(255,23,23,.05)">
         <span class="text-[10px] tracking-[.2em] uppercase text-white/30">Votre niveau de forme physique</span>
         <div class="mt-3 mb-2"><span class="font-oswald text-5xl font-bold" style="color:var(--red)">${total}</span><span class="text-white/30 text-lg ml-1">/${maxScore}</span></div>
         <p class="font-oswald text-lg font-bold uppercase mb-1" style="color:var(--red)">${level}</p>
-        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 50 ? 'Grand potentiel ! Vous allez recevoir un programme conçu pour challenger et améliorer votre force, votre endurance et vos performances globales.' : 'Parfait pour commencer ! Votre programme sera adapté à votre niveau actuel pour progresser rapidement.'}</p>
+        <p class="text-white/40 text-sm mb-6 max-w-sm mx-auto">${pct >= 50 ? "Grand potentiel ! Vous allez recevoir un programme conçu pour challenger et améliorer votre force, votre endurance et vos performances globales." : "Parfait pour commencer ! Votre programme sera adapté à votre niveau actuel pour progresser rapidement."}</p>
         <div class="space-y-3 text-left max-w-xs mx-auto mb-6">
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Force</span><span style="color:var(--red)">${forceScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(forceScore/30)*100}%"></div></div></div>
-          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Endurance</span><span style="color:var(--red)">${endScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(endScore/30)*100}%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Force</span><span style="color:var(--red)">${forceScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(forceScore / 30) * 100}%"></div></div></div>
+          <div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Endurance</span><span style="color:var(--red)">${endScore}/30</span></div><div class="stat-bar"><div class="stat-fill" style="width:${(endScore / 30) * 100}%"></div></div></div>
         </div>
         <p class="text-[10px] text-white/20 mb-4">Ce score est basé sur vos réponses et est fourni à titre informatif uniquement.</p>
         <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto">CONTINUER &rarr;</button>
       </div>
     </div>`;
-  }},
-  // 10 — Blessures (multi)
-  { type:'multi', q:'Avez-vous des blessures ? Nous adapterons le programme.', opts:[
-    {t:'Articulations',icon:'🦴'},{t:'Genoux',icon:'🦵'},{t:'Dos',icon:'🔙'},{t:'Bas du dos',icon:'⬇️'},{t:'Aucune des réponses ci-dessus',icon:'✅'}
-  ], key:'blessures' },
-  // 11 — Slide comparaison
-  { type:'slide', render: () => `
+          },
+        },
+        // 10 — Blessures (multi)
+        {
+          type: "multi",
+          q: "Avez-vous des blessures ? Nous adapterons le programme.",
+          opts: [
+            { t: "Articulations", icon: "🦴" },
+            { t: "Genoux", icon: "🦵" },
+            { t: "Dos", icon: "🔙" },
+            { t: "Bas du dos", icon: "⬇️" },
+            { t: "Aucune des réponses ci-dessus", icon: "✅" },
+          ],
+          key: "blessures",
+        },
+        // 11 — Slide comparaison
+        {
+          type: "slide",
+          render: () => `
     <div class="fade-in">
       <div class="glass-card p-6" style="border-color:rgba(255,23,23,.1)">
         <h2 class="font-oswald text-lg font-bold uppercase mb-4 text-center">Vraie force : au-delà de l'esthétique</h2>
@@ -225,36 +667,104 @@ const steps = [
         <p class="text-white/40 text-sm text-center mb-4">Les entraînements militaires privilégient une force pratique et applicable dans la vie réelle.</p>
         <button class="btn-red" onclick="goNext()" style="max-width:240px;margin:0 auto;display:block">COMPRIS &rarr;</button>
       </div>
-    </div>`
-  },
-  // 12 — Frequence
-  { type:'single', q:'À quelle fréquence êtes-vous prêt à vous entraîner ?', opts:[
-    {t:'1 à 2 fois par semaine 💪',icon:'1️⃣'},{t:'3 à 4 fois par semaine 💪⚡',icon:'3️⃣'},{t:'Presque tous les jours 🏆',icon:'🔥'},{t:'Je ne sais pas encore',icon:'🤷'}
-  ], key:'frequence' },
-  // 13 — Duree
-  { type:'single', q:'Combien de temps êtes-vous prêt à consacrer à un entraînement ?', opts:[
-    {t:'5 à 10 minutes par jour',icon:'⏱️'},{t:'10 à 20 minutes par jour',icon:'⏰'},{t:'Plus de 20 minutes par jour',icon:'🕐'}
-  ], key:'duree' },
-  // 14 — Taille
-  { type:'input', q:'Quelle est votre taille ?', key:'taille', unit:'cm', placeholder:'175', inputType:'number', note:'Calcul de votre indice de masse corporelle (IMC). L\'IMC est largement utilisé comme indicateur de risque de santé.' },
-  // 15 — Poids
-  { type:'input', q:'Quel est votre poids actuel ?', key:'poids', unit:'kg', placeholder:'80', inputType:'number', note:'' },
-  // 16 — Journee type
-  { type:'single', q:'Comment décririez-vous votre journée type ?', opts:[
-    {t:'Je passe la majeure partie de la journée assis',icon:'🪑'},{t:'Je bouge de temps en temps',icon:'🚶'},{t:'Je suis debout toute la journée',icon:'🏃'}
-  ], key:'journee' },
-  // 17 — Energie
-  { type:'single', q:'Quel est votre niveau d\'énergie moyen au cours de la journée ?', opts:[
-    {t:'Je me sens épuisé la plupart du temps 😓',icon:'😓'},{t:'Mon niveau d\'énergie varie au cours de la journée 📊',icon:'📊'},{t:'Je suis généralement très énergique et actif 💥',icon:'💥'}
-  ], key:'energie' },
-  // 18 — Slider 1
-  { type:'slider', q:'J\'ai besoin de structure ou de guidance pendant les entraînements pour rester motivé(e)', key:'structure', labels:['Pas d\'accord','Neutre','D\'accord'] },
-  // 19 — Slider 2
-  { type:'slider', q:'Je ressens souvent que je n\'exploite pas pleinement le potentiel que je sais avoir', key:'potentiel', labels:['Pas d\'accord','Neutre','D\'accord'] },
-  // 20 — Slider 3
-  { type:'slider', q:'Je ne sais pas comment choisir des entraînements adaptés à moi', key:'choix', labels:['Pas d\'accord','Neutre','D\'accord'] },
-  // 21 — Email capture
-  { type:'email', render: () => `
+    </div>`,
+        },
+        // 12 — Frequence
+        {
+          type: "single",
+          q: "À quelle fréquence êtes-vous prêt à vous entraîner ?",
+          opts: [
+            { t: "1 à 2 fois par semaine 💪", icon: "1️⃣" },
+            { t: "3 à 4 fois par semaine 💪⚡", icon: "3️⃣" },
+            { t: "Presque tous les jours 🏆", icon: "🔥" },
+            { t: "Je ne sais pas encore", icon: "🤷" },
+          ],
+          key: "frequence",
+        },
+        // 13 — Duree
+        {
+          type: "single",
+          q: "Combien de temps êtes-vous prêt à consacrer à un entraînement ?",
+          opts: [
+            { t: "5 à 10 minutes par jour", icon: "⏱️" },
+            { t: "10 à 20 minutes par jour", icon: "⏰" },
+            { t: "Plus de 20 minutes par jour", icon: "🕐" },
+          ],
+          key: "duree",
+        },
+        // 14 — Taille
+        {
+          type: "input",
+          q: "Quelle est votre taille ?",
+          key: "taille",
+          unit: "cm",
+          placeholder: "175",
+          inputType: "number",
+          note: "Calcul de votre indice de masse corporelle (IMC). L'IMC est largement utilisé comme indicateur de risque de santé.",
+        },
+        // 15 — Poids
+        {
+          type: "input",
+          q: "Quel est votre poids actuel ?",
+          key: "poids",
+          unit: "kg",
+          placeholder: "80",
+          inputType: "number",
+          note: "",
+        },
+        // 16 — Journee type
+        {
+          type: "single",
+          q: "Comment décririez-vous votre journée type ?",
+          opts: [
+            { t: "Je passe la majeure partie de la journée assis", icon: "🪑" },
+            { t: "Je bouge de temps en temps", icon: "🚶" },
+            { t: "Je suis debout toute la journée", icon: "🏃" },
+          ],
+          key: "journee",
+        },
+        // 17 — Energie
+        {
+          type: "single",
+          q: "Quel est votre niveau d'énergie moyen au cours de la journée ?",
+          opts: [
+            { t: "Je me sens épuisé la plupart du temps 😓", icon: "😓" },
+            {
+              t: "Mon niveau d'énergie varie au cours de la journée 📊",
+              icon: "📊",
+            },
+            {
+              t: "Je suis généralement très énergique et actif 💥",
+              icon: "💥",
+            },
+          ],
+          key: "energie",
+        },
+        // 18 — Slider 1
+        {
+          type: "slider",
+          q: "J'ai besoin de structure ou de guidance pendant les entraînements pour rester motivé(e)",
+          key: "structure",
+          labels: ["Pas d'accord", "Neutre", "D'accord"],
+        },
+        // 19 — Slider 2
+        {
+          type: "slider",
+          q: "Je ressens souvent que je n'exploite pas pleinement le potentiel que je sais avoir",
+          key: "potentiel",
+          labels: ["Pas d'accord", "Neutre", "D'accord"],
+        },
+        // 20 — Slider 3
+        {
+          type: "slider",
+          q: "Je ne sais pas comment choisir des entraînements adaptés à moi",
+          key: "choix",
+          labels: ["Pas d'accord", "Neutre", "D'accord"],
+        },
+        // 21 — Email capture
+        {
+          type: "email",
+          render: () => `
     <div class="fade-in text-center">
       <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1);box-shadow:0 0 40px rgba(255,23,23,.05)">
         <span style="font-size:40px">🎖️</span>
@@ -268,211 +778,277 @@ const steps = [
         <p class="text-white/40 text-xs font-semibold mt-3">100% gratuit</p>
         <p class="text-white/15 text-[10px] mt-1">Nous respectons votre vie privée — aucun spam.</p>
       </div>
-    </div>`
-  },
-  // 22 — Loading screen (after email)
-  { type:'loading' }
-];
+    </div>`,
+        },
+        // 22 — Loading screen (after email)
+        { type: "loading" },
+      ];
 
-// ===================== RENDERING =====================
-function renderStep(idx) {
-  currentStep = idx;
-  const s = steps[idx];
-  const container = document.getElementById('step-container');
-  updateProgress();
+      // ===================== RENDERING =====================
+      function renderStep(idx) {
+        currentStep = idx;
+        const s = steps[idx];
+        const container = document.getElementById("step-container");
+        updateProgress();
 
-  if(s.type === 'landing' || s.type === 'slide' || s.type === 'score' || s.type === 'email') {
-    container.innerHTML = s.render();
-    window.scrollTo({top:0,behavior:'smooth'});
-    return;
-  }
+        if (
+          s.type === "landing" ||
+          s.type === "slide" ||
+          s.type === "score" ||
+          s.type === "email"
+        ) {
+          container.innerHTML = s.render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
 
-  if(s.type === 'loading') {
-    showLoadingScreen();
-    return;
-  }
+        if (s.type === "loading") {
+          showLoadingScreen();
+          return;
+        }
 
-  // Step counter for questions
-  const stepNum = idx + 1;
-  const stepLabel = `<div class="flex items-center justify-between mb-5"><span class="text-[10px] text-white/20 uppercase tracking-wider font-oswald">Question ${stepNum}/${TOTAL_STEPS}</span><span class="text-[10px] text-white/15">${Math.round((idx/(steps.length-1))*100)}%</span></div>`;
+        // Step counter for questions
+        const stepNum = idx + 1;
+        const stepLabel = `<div class="flex items-center justify-between mb-5"><span class="text-[10px] text-white/20 uppercase tracking-wider font-oswald">Question ${stepNum}/${TOTAL_STEPS}</span><span class="text-[10px] text-white/15">${Math.round((idx / (steps.length - 1)) * 100)}%</span></div>`;
 
-  if(s.type === 'single') {
-    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div></div></div>`;
-    const optsEl = document.getElementById('opts');
-    s.opts.forEach((o,i) => {
-      const btn = document.createElement('button');
-      btn.className = 'opt-btn';
-      btn.innerHTML = `<span class="opt-icon">${o.icon||''}</span><span>${o.t}</span>`;
-      btn.onclick = () => {
-        answers[s.key] = o.t;
-        if(o.score !== undefined) answers[s.key+'_score'] = o.score;
-        document.querySelectorAll('#opts .opt-btn').forEach(b=>b.classList.remove('selected'));
-        btn.classList.add('selected');
-        setTimeout(goNext, 350);
-      };
-      optsEl.appendChild(btn);
-    });
-  }
+        if (s.type === "single") {
+          container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div></div></div>`;
+          const optsEl = document.getElementById("opts");
+          s.opts.forEach((o, i) => {
+            const btn = document.createElement("button");
+            btn.className = "opt-btn";
+            btn.innerHTML = `<span class="opt-icon">${o.icon || ""}</span><span>${o.t}</span>`;
+            btn.onclick = () => {
+              answers[s.key] = o.t;
+              if (o.score !== undefined) answers[s.key + "_score"] = o.score;
+              document
+                .querySelectorAll("#opts .opt-btn")
+                .forEach((b) => b.classList.remove("selected"));
+              btn.classList.add("selected");
+              setTimeout(goNext, 350);
+            };
+            optsEl.appendChild(btn);
+          });
+        }
 
-  if(s.type === 'multi') {
-    const selected = new Set();
-    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div><button class="btn-red mt-6" id="multi-next" disabled onclick="goNext()">CONTINUER &rarr;</button></div></div>`;
-    const optsEl = document.getElementById('opts');
-    s.opts.forEach((o,i) => {
-      const btn = document.createElement('button');
-      btn.className = 'opt-btn multi';
-      btn.innerHTML = `<span class="opt-icon">${o.icon||''}</span><span>${o.t}</span>`;
-      btn.onclick = () => {
-        if(selected.has(i)){selected.delete(i);btn.classList.remove('selected');}
-        else{selected.add(i);btn.classList.add('selected');}
-        answers[s.key] = [...selected].map(idx=>s.opts[idx].t);
-        document.getElementById('multi-next').disabled = selected.size === 0;
-      };
-      optsEl.appendChild(btn);
-    });
-  }
+        if (s.type === "multi") {
+          const selected = new Set();
+          container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2><div class="space-y-3" id="opts"></div><button class="btn-red mt-6" id="multi-next" disabled onclick="goNext()">CONTINUER &rarr;</button></div></div>`;
+          const optsEl = document.getElementById("opts");
+          s.opts.forEach((o, i) => {
+            const btn = document.createElement("button");
+            btn.className = "opt-btn multi";
+            btn.innerHTML = `<span class="opt-icon">${o.icon || ""}</span><span>${o.t}</span>`;
+            btn.onclick = () => {
+              if (selected.has(i)) {
+                selected.delete(i);
+                btn.classList.remove("selected");
+              } else {
+                selected.add(i);
+                btn.classList.add("selected");
+              }
+              answers[s.key] = [...selected].map((idx) => s.opts[idx].t);
+              document.getElementById("multi-next").disabled =
+                selected.size === 0;
+            };
+            optsEl.appendChild(btn);
+          });
+        }
 
-  if(s.type === 'input') {
-    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2>
+        if (s.type === "input") {
+          container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">${s.q}</h2>
       <div class="max-w-xs mx-auto">
         <div class="form-group mb-2"><label>${s.unit}</label><input type="${s.inputType}" id="input-val" placeholder="${s.placeholder}" inputmode="numeric"/></div>
-        ${s.note ? '<p class="text-white/20 text-[10px] mb-4">&#9757; '+s.note+'</p>' : ''}
+        ${s.note ? '<p class="text-white/20 text-[10px] mb-4">&#9757; ' + s.note + "</p>" : ""}
         <button class="btn-red mt-4" id="input-next" onclick="submitInput('${s.key}')" disabled>CONTINUER &rarr;</button>
       </div>
     </div></div>`;
-    const inp = document.getElementById('input-val');
-    inp.addEventListener('input', () => {
-      document.getElementById('input-next').disabled = !inp.value || isNaN(inp.value);
-    });
-    inp.focus();
-  }
+          const inp = document.getElementById("input-val");
+          inp.addEventListener("input", () => {
+            document.getElementById("input-next").disabled =
+              !inp.value || isNaN(inp.value);
+          });
+          inp.focus();
+        }
 
-  if(s.type === 'slider') {
-    let val = 1;
-    container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-xl md:text-2xl font-bold uppercase mb-8 leading-tight">"${s.q}"</h2>
+        if (s.type === "slider") {
+          let val = 1;
+          container.innerHTML = `<div class="fade-in"><div class="glass-card p-6 md:p-8" style="border-color:rgba(255,23,23,.08)">${stepLabel}<h2 class="font-oswald text-xl md:text-2xl font-bold uppercase mb-8 leading-tight">"${s.q}"</h2>
       <div class="max-w-sm mx-auto mb-8">
         <div class="slider-track" id="slider-track">
           <div class="slider-fill" id="slider-fill" style="width:50%"></div>
           <div class="slider-thumb" id="slider-thumb" style="left:50%"></div>
         </div>
-        <div class="slider-labels">${s.labels.map(l=>'<span>'+l+'</span>').join('')}</div>
+        <div class="slider-labels">${s.labels.map((l) => "<span>" + l + "</span>").join("")}</div>
       </div>
       <div class="text-center"><button class="btn-red" style="max-width:240px" onclick="submitSlider('${s.key}')">CONTINUER &rarr;</button></div>
     </div></div>`;
-    const track = document.getElementById('slider-track');
-    const fill = document.getElementById('slider-fill');
-    const thumb = document.getElementById('slider-thumb');
-    function updateSlider(e) {
-      const rect = track.getBoundingClientRect();
-      let pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      fill.style.width = (pct*100)+'%';
-      thumb.style.left = (pct*100)+'%';
-      val = pct;
-    }
-    track.addEventListener('click', updateSlider);
-    let dragging = false;
-    thumb.addEventListener('mousedown', ()=>dragging=true);
-    thumb.addEventListener('touchstart', ()=>dragging=true, {passive:true});
-    document.addEventListener('mousemove', (e)=>{if(dragging)updateSlider(e);});
-    document.addEventListener('touchmove', (e)=>{if(dragging)updateSlider(e.touches[0]);}, {passive:true});
-    document.addEventListener('mouseup', ()=>dragging=false);
-    document.addEventListener('touchend', ()=>dragging=false);
-    window._sliderVal = () => val;
-  }
+          const track = document.getElementById("slider-track");
+          const fill = document.getElementById("slider-fill");
+          const thumb = document.getElementById("slider-thumb");
+          function updateSlider(e) {
+            const rect = track.getBoundingClientRect();
+            let pct = Math.max(
+              0,
+              Math.min(1, (e.clientX - rect.left) / rect.width),
+            );
+            fill.style.width = pct * 100 + "%";
+            thumb.style.left = pct * 100 + "%";
+            val = pct;
+          }
+          track.addEventListener("click", updateSlider);
+          let dragging = false;
+          thumb.addEventListener("mousedown", () => (dragging = true));
+          thumb.addEventListener("touchstart", () => (dragging = true), {
+            passive: true,
+          });
+          document.addEventListener("mousemove", (e) => {
+            if (dragging) updateSlider(e);
+          });
+          document.addEventListener(
+            "touchmove",
+            (e) => {
+              if (dragging) updateSlider(e.touches[0]);
+            },
+            { passive: true },
+          );
+          document.addEventListener("mouseup", () => (dragging = false));
+          document.addEventListener("touchend", () => (dragging = false));
+          window._sliderVal = () => val;
+        }
 
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-function submitInput(key) {
-  answers[key] = document.getElementById('input-val').value;
-  goNext();
-}
+      function submitInput(key) {
+        answers[key] = document.getElementById("input-val").value;
+        goNext();
+      }
 
-function submitSlider(key) {
-  answers[key] = window._sliderVal();
-  goNext();
-}
+      function submitSlider(key) {
+        answers[key] = window._sliderVal();
+        goNext();
+      }
 
-function pick(stepIdx, key, val) {
-  if(currentStep === 0) fbq('trackCustom','StartQuiz',{quiz_name:'quiz-military-training'});
-  answers[key] = val;
-  goNext();
-}
+      function pick(stepIdx, key, val) {
+        if (currentStep === 0)
+          fbq("trackCustom", "StartQuiz", {
+            quiz_name: "quiz-military-training",
+          });
+        answers[key] = val;
+        goNext();
+      }
 
-function goNext() {
-  if(currentStep < steps.length - 1) {
-    renderStep(currentStep + 1);
-  }
-}
+      function goNext() {
+        if (currentStep < steps.length - 1) {
+          renderStep(currentStep + 1);
+        }
+      }
 
-function updateProgress() {
-  const pct = Math.round((currentStep / (steps.length-1)) * 100);
-  document.getElementById('top-progress').style.width = pct + '%';
-}
+      function updateProgress() {
+        const pct = Math.round((currentStep / (steps.length - 1)) * 100);
+        document.getElementById("top-progress").style.width = pct + "%";
+      }
 
-// ===================== LOADING SCREEN =====================
-function showLoadingScreen() {
-  const loadingSteps = [
-    'Analyse des données...',
-    'Mesure du profil corporel...',
-    'Suggestion d\'un programme d\'entraînement...',
-    'Élaboration d\'un plan pour atteindre vos objectifs...',
-    'Votre plan personnalisé est prêt !'
-  ];
-  const container = document.getElementById('step-container');
-  container.innerHTML = `<div class="fade-in text-center">
+      // ===================== LOADING SCREEN =====================
+      function showLoadingScreen() {
+        const loadingSteps = [
+          "Analyse des données...",
+          "Mesure du profil corporel...",
+          "Suggestion d'un programme d'entraînement...",
+          "Élaboration d'un plan pour atteindre vos objectifs...",
+          "Votre plan personnalisé est prêt !",
+        ];
+        const container = document.getElementById("step-container");
+        container.innerHTML = `<div class="fade-in text-center">
     <div class="glass-card p-8" style="border-color:rgba(255,23,23,.1)">
       <span style="font-size:48px">⚙️</span>
       <h2 class="font-oswald text-xl font-bold uppercase mt-4 mb-6">Création de votre programme</h2>
       <div class="loading-bar"><div class="loading-bar-fill" id="loading-bar-fill" style="width:0%"></div></div>
-      <div class="text-left max-w-sm mx-auto" id="loading-steps">${loadingSteps.map((s,i)=>`<div class="loading-step" id="ls-${i}"><div class="loading-dot"></div><span class="text-sm text-white/60">${s}</span></div>`).join('')}</div>
+      <div class="text-left max-w-sm mx-auto" id="loading-steps">${loadingSteps.map((s, i) => `<div class="loading-step" id="ls-${i}"><div class="loading-dot"></div><span class="text-sm text-white/60">${s}</span></div>`).join("")}</div>
     </div>
   </div>`;
 
-  let step = 0;
-  const interval = setInterval(() => {
-    if(step > 0) document.getElementById('ls-'+(step-1)).className = 'loading-step done';
-    if(step < loadingSteps.length) {
-      document.getElementById('ls-'+step).className = 'loading-step active';
-      document.getElementById('loading-bar-fill').style.width = ((step+1)/loadingSteps.length*100)+'%';
-    }
-    step++;
-    if(step > loadingSteps.length) {
-      clearInterval(interval);
-      setTimeout(showResult, 800);
-    }
-  }, 1200);
-}
+        let step = 0;
+        const interval = setInterval(() => {
+          if (step > 0)
+            document.getElementById("ls-" + (step - 1)).className =
+              "loading-step done";
+          if (step < loadingSteps.length) {
+            document.getElementById("ls-" + step).className =
+              "loading-step active";
+            document.getElementById("loading-bar-fill").style.width =
+              ((step + 1) / loadingSteps.length) * 100 + "%";
+          }
+          step++;
+          if (step > loadingSteps.length) {
+            clearInterval(interval);
+            setTimeout(showResult, 800);
+          }
+        }, 1200);
+      }
 
-// ===================== EMAIL CAPTURE =====================
-function captureEmail(e) {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = {};
-  fd.forEach((v,k) => data[k] = v);
-  data.source = 'quiz-military-training';
-  data.answers = JSON.stringify(answers);
-  data.timestamp = new Date().toISOString();
-  // Klaviyo client subscription
-  fbq('track','Lead',{content_name:'quiz-military-training'});
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:data.email,properties:{source:'quiz-military-training',departement:data.departement||'',quiz_answers:data.answers}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'Tuz6zz'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
-  console.log('9MM Lead captured:', data);
-  goNext(); // Go to loading screen
-}
+      // ===================== EMAIL CAPTURE =====================
+      function captureEmail(e) {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const data = {};
+        fd.forEach((v, k) => (data[k] = v));
+        data.source = "quiz-military-training";
+        data.answers = JSON.stringify(answers);
+        data.timestamp = new Date().toISOString();
+        // Klaviyo client subscription
+        fbq("track", "Lead", { content_name: "quiz-military-training" });
+        fetch("https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/vnd.api+json",
+            revision: "2026-01-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email: data.email,
+                      properties: {
+                        source: "quiz-military-training",
+                        departement: data.departement || "",
+                        quiz_answers: data.answers,
+                      },
+                    },
+                    subscriptions: {
+                      email: { marketing: { consent: "SUBSCRIBED" } },
+                    },
+                  },
+                },
+              },
+              relationships: { list: { data: { type: "list", id: "Tuz6zz" } } },
+            },
+          }),
+        }).catch((err) => console.error("Klaviyo error:", err));
+        console.log("9MM Lead captured:", data);
+        goNext(); // Go to loading screen
+      }
 
-// ===================== RESULT SCREEN =====================
-function showResult() {
-  fbq('trackCustom','QuizComplete',{quiz_name:'quiz-military-training'});
-  const taille = parseFloat(answers.taille) || 175;
-  const poids = parseFloat(answers.poids) || 80;
-  const imc = (poids / ((taille/100) * (taille/100))).toFixed(1);
-  const fitnessScore = answers.fitness_score || 30;
-  const level = answers.fitness_level || 'Intermédiaire';
+      // ===================== RESULT SCREEN =====================
+      function showResult() {
+        fbq("trackCustom", "QuizComplete", {
+          quiz_name: "quiz-military-training",
+        });
+        const taille = parseFloat(answers.taille) || 175;
+        const poids = parseFloat(answers.poids) || 80;
+        const imc = (poids / ((taille / 100) * (taille / 100))).toFixed(1);
+        const fitnessScore = answers.fitness_score || 30;
+        const level = answers.fitness_level || "Intermédiaire";
 
-  const container = document.getElementById('step-container');
-  document.getElementById('top-progress').style.width = '100%';
+        const container = document.getElementById("step-container");
+        document.getElementById("top-progress").style.width = "100%";
 
-  container.innerHTML = `<div class="fade-in">
+        container.innerHTML = `<div class="fade-in">
     <!-- Result header -->
     <div class="text-center mb-6">
       <span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-3" style="background:rgba(255,23,23,.08);color:var(--red);border:1px solid rgba(255,23,23,.15)">VOTRE PROGRAMME</span>
@@ -528,24 +1104,132 @@ function showResult() {
       </div>
     </div>
   </div>`;
-}
+      }
 
-// ===================== INIT =====================
-renderStep(0);
-</script>
-<!-- Cookie Consent Bar -->
-<div id="cookie-bar" style="position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:rgba(17,17,17,.97);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-<p style="color:rgba(255,255,255,.6);font-size:13px;margin:0;line-height:1.5;max-width:600px">Ce site utilise des cookies pour mesurer la performance et améliorer ton expérience. <a href="politique-confidentialite.html" style="color:rgba(0,237,239,.7);text-decoration:underline">En savoir plus</a></p>
-<div style="display:flex;gap:10px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:linear-gradient(135deg,#FF1717,#cc1212);color:#fff;font-weight:700;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;white-space:nowrap">Accepter</button>
-<button onclick="refuseCookies()" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:12px;white-space:nowrap">Refuser</button>
-</div>
-</div>
-<script>
-function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none';loadFBPixel()}
-function refuseCookies(){localStorage.setItem('9mm_cookies','refused');document.getElementById('cookie-bar').style.display='none'}
-function loadFBPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','478088670624086');fbq('track','PageView')}
-(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'){document.getElementById('cookie-bar').style.display='none';loadFBPixel()}else if(c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
-</script>
-</body>
+      // ===================== INIT =====================
+      renderStep(0);
+    </script>
+    <!-- Cookie Consent Bar -->
+    <div
+      id="cookie-bar"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background: rgba(17, 17, 17, 0.97);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      "
+    >
+      <p
+        style="
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 13px;
+          margin: 0;
+          line-height: 1.5;
+          max-width: 600px;
+        "
+      >
+        Ce site utilise des cookies pour mesurer la performance et améliorer ton
+        expérience.
+        <a
+          href="politique-confidentialite.html"
+          style="color: rgba(0, 237, 239, 0.7); text-decoration: underline"
+          >En savoir plus</a
+        >
+      </p>
+      <div style="display: flex; gap: 10px; flex-shrink: 0">
+        <button
+          onclick="acceptCookies()"
+          style="
+            background: linear-gradient(135deg, #ff1717, #cc1212);
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: &quot;Oswald&quot;, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 13px;
+            white-space: nowrap;
+          "
+        >
+          Accepter
+        </button>
+        <button
+          onclick="refuseCookies()"
+          style="
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+          "
+        >
+          Refuser
+        </button>
+      </div>
+    </div>
+    <script>
+      function acceptCookies() {
+        localStorage.setItem("9mm_cookies", "accepted");
+        document.getElementById("cookie-bar").style.display = "none";
+        loadFBPixel();
+      }
+      function refuseCookies() {
+        localStorage.setItem("9mm_cookies", "refused");
+        document.getElementById("cookie-bar").style.display = "none";
+      }
+      function loadFBPixel() {
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod
+              ? n.callMethod.apply(n, arguments)
+              : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(
+          window,
+          document,
+          "script",
+          "https://connect.facebook.net/en_US/fbevents.js",
+        );
+        fbq("init", "478088670624086");
+        fbq("track", "PageView");
+      }
+      (function () {
+        var c = localStorage.getItem("9mm_cookies");
+        if (c === "accepted") {
+          document.getElementById("cookie-bar").style.display = "none";
+          loadFBPixel();
+        } else if (c === "refused") {
+          document.getElementById("cookie-bar").style.display = "none";
+        }
+      })();
+    </script>
+  </body>
 </html>

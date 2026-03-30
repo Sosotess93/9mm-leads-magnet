@@ -1,365 +1,1143 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" class="scroll-smooth">
-<head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Reaction Time Test</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
-body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
-.font-oswald{font-family:'Oswald',sans-serif}
-@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
-@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes pulseCyan{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.2)}50%{box-shadow:0 0 40px rgba(0,237,239,.4)}}
-@keyframes countPulse{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
-.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
-.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}
-*,*::before,*::after{box-sizing:border-box}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
-.form-group input::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
-.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-.form-group select:focus{border-color:var(--cyan);background-color:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
-.form-group select option{background:#1a1a1a;color:#fff}
-.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
-.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
-@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>9MM — Reaction Time Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --red: #ff1717;
+        --cyan: #00edef;
+        --black: #0a0a0a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: #fff;
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .font-oswald {
+        font-family: "Oswald", sans-serif;
+      }
+      @keyframes border-beam {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+      @keyframes fadeSlideBlurIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+          filter: blur(8px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+      @keyframes pulseCyan {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(0, 237, 239, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(0, 237, 239, 0.4);
+        }
+      }
+      @keyframes countPulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .fade-in {
+        animation: fadeSlideBlurIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .delay-1 {
+        animation-delay: 0.15s;
+      }
+      .delay-2 {
+        animation-delay: 0.3s;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group input {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
+      }
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-group input:focus {
+        border-color: var(--cyan);
+        background: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(0, 237, 239, 0.1);
+      }
+      .form-group select {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+      }
+      .form-group select:focus {
+        border-color: var(--cyan);
+        background-color: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(0, 237, 239, 0.1);
+      }
+      .form-group select option {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+        position: relative;
+      }
+      .btn-cyan {
+        background: linear-gradient(135deg, var(--cyan), #00b8ba);
+        color: #000;
+        font-weight: 700;
+        padding: 16px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.05rem;
+        transition: all 0.3s;
+        width: 100%;
+      }
+      .btn-cyan:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 237, 239, 0.3);
+      }
+      @media (max-width: 640px) {
+        .glass-card {
+          border-radius: 12px;
+        }
+        main {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
 
-/* Sticky CTA Bar */
-@keyframes slideUpCTA{0%{transform:translateY(100%);opacity:0}100%{transform:translateY(0);opacity:1}}
-@keyframes slideDownCTA{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100%);opacity:0}}
-#sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(0,237,239,.15);padding:14px 20px;display:none;align-items:center;justify-content:center;gap:16px;animation:slideUpCTA .5s cubic-bezier(.16,1,.3,1) both}
-#sticky-cta.hiding{animation:slideDownCTA .35s cubic-bezier(.7,0,.84,0) both}
-#sticky-cta .cta-text{color:rgba(255,255,255,.7);font-size:14px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#sticky-cta .cta-text strong{color:#fff;font-weight:700}
-#sticky-cta .cta-btn{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;transition:all .3s;flex-shrink:0}
-#sticky-cta .cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 25px rgba(0,237,239,.35)}
-#sticky-cta .cta-close{background:none;border:none;color:rgba(255,255,255,.35);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s;flex-shrink:0}
-#sticky-cta .cta-close:hover{color:rgba(255,255,255,.7)}
-@media(max-width:640px){#sticky-cta{flex-wrap:wrap;gap:10px;padding:12px 16px}#sticky-cta .cta-text{width:100%;text-align:center;font-size:13px}#sticky-cta .cta-btn{flex:1;text-align:center;font-size:13px;padding:10px 16px}}
+      /* Sticky CTA Bar */
+      @keyframes slideUpCTA {
+        0% {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideDownCTA {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100%);
+          opacity: 0;
+        }
+      }
+      #sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(10, 10, 10, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(0, 237, 239, 0.15);
+        padding: 14px 20px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        animation: slideUpCTA 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      #sticky-cta.hiding {
+        animation: slideDownCTA 0.35s cubic-bezier(0.7, 0, 0.84, 0) both;
+      }
+      #sticky-cta .cta-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      #sticky-cta .cta-text strong {
+        color: #fff;
+        font-weight: 700;
+      }
+      #sticky-cta .cta-btn {
+        background: linear-gradient(135deg, var(--cyan), #00b8ba);
+        color: #000;
+        font-family: "Oswald", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: all 0.3s;
+        flex-shrink: 0;
+      }
+      #sticky-cta .cta-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 25px rgba(0, 237, 239, 0.35);
+      }
+      #sticky-cta .cta-close {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 20px;
+        cursor: pointer;
+        padding: 4px 8px;
+        line-height: 1;
+        transition: color 0.2s;
+        flex-shrink: 0;
+      }
+      #sticky-cta .cta-close:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      @media (max-width: 640px) {
+        #sticky-cta {
+          flex-wrap: wrap;
+          gap: 10px;
+          padding: 12px 16px;
+        }
+        #sticky-cta .cta-text {
+          width: 100%;
+          text-align: center;
+          font-size: 13px;
+        }
+        #sticky-cta .cta-btn {
+          flex: 1;
+          text-align: center;
+          font-size: 13px;
+          padding: 10px 16px;
+        }
+      }
 
-/* Game Zone */
-#game-zone{width:100%;height:340px;border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .15s;user-select:none;-webkit-user-select:none;position:relative;overflow:hidden}
-#game-zone.waiting{background:rgba(255,23,23,.08);border:2px solid rgba(255,23,23,.15)}
-#game-zone.ready{background:rgba(0,237,239,.15);border:2px solid rgba(0,237,239,.3)}
-#game-zone.too-early{background:rgba(255,100,50,.1);border:2px solid rgba(255,100,50,.2)}
-#game-zone.idle{background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.08)}
+      /* Game Zone */
+      #game-zone {
+        width: 100%;
+        height: 340px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+        user-select: none;
+        -webkit-user-select: none;
+        position: relative;
+        overflow: hidden;
+      }
+      #game-zone.waiting {
+        background: rgba(255, 23, 23, 0.08);
+        border: 2px solid rgba(255, 23, 23, 0.15);
+      }
+      #game-zone.ready {
+        background: rgba(0, 237, 239, 0.15);
+        border: 2px solid rgba(0, 237, 239, 0.3);
+      }
+      #game-zone.too-early {
+        background: rgba(255, 100, 50, 0.1);
+        border: 2px solid rgba(255, 100, 50, 0.2);
+      }
+      #game-zone.idle {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 255, 255, 0.08);
+      }
 
-.result-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden}
-.result-fill{height:100%;border-radius:99px;transition:width .8s cubic-bezier(.16,1,.3,1)}
-.attempt-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
-.attempt-dot.done{background:var(--cyan)}
-.attempt-dot.active{background:var(--cyan);animation:countPulse 1s ease infinite}
-</style>
-</head>
-<body>
+      .result-bar {
+        height: 8px;
+        border-radius: 99px;
+        background: rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+      .result-fill {
+        height: 100%;
+        border-radius: 99px;
+        transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .attempt-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+      }
+      .attempt-dot.done {
+        background: var(--cyan);
+      }
+      .attempt-dot.active {
+        background: var(--cyan);
+        animation: countPulse 1s ease infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo header -->
+    <header
+      style="
+        position: relative;
+        z-index: 50;
+        padding: 20px 24px;
+        text-align: center;
+      "
+    >
+      <a href="index.html"
+        ><img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 80px; display: inline-block"
+      /></a>
+    </header>
 
-<!-- Logo header -->
-<header style="position:relative;z-index:50;padding:20px 24px;text-align:center">
-<a href="index.html"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:80px;display:inline-block"></a>
-</header>
+    <div
+      class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between"
+    >
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"
+        ></div>
+      </div>
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"
+        ></div>
+      </div>
+    </div>
 
-<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
-<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
-<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
-</div>
+    <main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
+      <div
+        class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"
+      ></div>
 
+      <div class="text-center fade-in mb-8">
+        <span
+          class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4"
+          style="
+            background: rgba(0, 237, 239, 0.08);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 237, 239, 0.15);
+          "
+          >TEST INTERACTIF</span
+        >
+        <h1
+          class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3"
+        >
+          <span class="text-white">Réaction</span>
+          <span style="color: var(--cyan)">Time</span>
+        </h1>
+        <p class="text-white/45 max-w-md mx-auto">
+          Teste ton temps de réaction et compare-toi aux gamers pro. 5 essais,
+          pas de triche.
+        </p>
+      </div>
 
-<main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
-<div class="fixed top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+      <!-- GAME AREA -->
+      <div id="game-container" class="fade-in delay-1">
+        <!-- Attempt indicators -->
+        <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="attempt-dot active" id="dot-0"></div>
+          <div class="attempt-dot" id="dot-1"></div>
+          <div class="attempt-dot" id="dot-2"></div>
+          <div class="attempt-dot" id="dot-3"></div>
+          <div class="attempt-dot" id="dot-4"></div>
+          <span class="text-white/20 text-xs ml-2" id="attempt-label"
+            >Essai 1/5</span
+          >
+        </div>
 
-<div class="text-center fade-in mb-8">
-<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">TEST INTERACTIF</span>
-<h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-[.9] mb-3">
-<span class="text-white">Réaction</span> <span style="color:var(--cyan)">Time</span>
-</h1>
-<p class="text-white/45 max-w-md mx-auto">Teste ton temps de réaction et compare-toi aux gamers pro. 5 essais, pas de triche.</p>
-</div>
+        <div id="game-zone" class="idle">
+          <div id="game-text" class="text-center px-6">
+            <p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p>
+            <p class="text-white/40 text-sm">Clique pour commencer le test</p>
+          </div>
+        </div>
 
+        <!-- Live result -->
+        <div id="live-result" class="text-center mt-4" style="display: none">
+          <span
+            class="font-oswald text-5xl font-bold"
+            style="color: var(--cyan)"
+            id="live-ms"
+            >0</span
+          >
+          <span class="text-white/30 text-sm ml-1">ms</span>
+        </div>
 
-<!-- GAME AREA -->
-<div id="game-container" class="fade-in delay-1">
-<!-- Attempt indicators -->
-<div class="flex items-center justify-center gap-3 mb-4">
-<div class="attempt-dot active" id="dot-0"></div>
-<div class="attempt-dot" id="dot-1"></div>
-<div class="attempt-dot" id="dot-2"></div>
-<div class="attempt-dot" id="dot-3"></div>
-<div class="attempt-dot" id="dot-4"></div>
-<span class="text-white/20 text-xs ml-2" id="attempt-label">Essai 1/5</span>
-</div>
+        <!-- Attempts history -->
+        <div
+          id="attempts-history"
+          class="flex justify-center gap-3 mt-4"
+          style="display: none"
+        ></div>
+      </div>
 
-<div id="game-zone" class="idle">
-<div id="game-text" class="text-center px-6">
-<p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p>
-<p class="text-white/40 text-sm">Clique pour commencer le test</p>
-</div>
-</div>
+      <!-- RESULTS (hidden until complete) -->
+      <div id="results-section" style="display: none" class="mt-8">
+        <div
+          class="glass-card p-8 md:p-10 text-center"
+          style="
+            border-color: rgba(0, 237, 239, 0.15);
+            box-shadow: 0 0 60px rgba(0, 237, 239, 0.08);
+          "
+        >
+          <span
+            class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4"
+            style="
+              background: rgba(0, 237, 239, 0.08);
+              color: var(--cyan);
+              border: 1px solid rgba(0, 237, 239, 0.12);
+            "
+            >TON RÉSULTAT</span
+          >
+          <div
+            class="font-oswald text-7xl md:text-8xl font-bold"
+            style="color: var(--cyan)"
+            id="final-ms"
+          >
+            0
+          </div>
+          <p class="text-white/30 text-sm mb-1">millisecondes (moyenne)</p>
+          <p
+            class="font-oswald text-xl font-bold uppercase mt-3 mb-6"
+            id="rank-label"
+            style="color: var(--cyan)"
+          >
+            —
+          </p>
 
-<!-- Live result -->
-<div id="live-result" class="text-center mt-4" style="display:none">
-<span class="font-oswald text-5xl font-bold" style="color:var(--cyan)" id="live-ms">0</span>
-<span class="text-white/30 text-sm ml-1">ms</span>
-</div>
+          <!-- Comparison bars -->
+          <div class="max-w-sm mx-auto text-left space-y-4 mb-8">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/40">Pro Gamer</span
+                ><span style="color: var(--cyan)">&lt; 180ms</span>
+              </div>
+              <div class="result-bar">
+                <div
+                  class="result-fill"
+                  style="width: 95%; background: var(--cyan)"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/40">Très bon</span
+                ><span style="color: rgba(0, 237, 239, 0.6)">&lt; 220ms</span>
+              </div>
+              <div class="result-bar">
+                <div
+                  class="result-fill"
+                  style="width: 78%; background: rgba(0, 237, 239, 0.6)"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/40">Bon</span
+                ><span style="color: rgba(0, 237, 239, 0.4)">&lt; 280ms</span>
+              </div>
+              <div class="result-bar">
+                <div
+                  class="result-fill"
+                  style="width: 60%; background: rgba(0, 237, 239, 0.4)"
+                ></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/40">Moyen</span
+                ><span style="color: rgba(255, 255, 255, 0.2)">&lt; 350ms</span>
+              </div>
+              <div class="result-bar">
+                <div
+                  class="result-fill"
+                  style="width: 40%; background: rgba(255, 255, 255, 0.15)"
+                ></div>
+              </div>
+            </div>
+            <div id="your-bar">
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white font-bold">Toi</span
+                ><span
+                  class="font-bold"
+                  style="color: var(--cyan)"
+                  id="your-bar-ms"
+                  >—</span
+                >
+              </div>
+              <div
+                class="result-bar"
+                style="border: 1px solid rgba(0, 237, 239, 0.2)"
+              >
+                <div
+                  class="result-fill"
+                  id="your-bar-fill"
+                  style="
+                    width: 0%;
+                    background: linear-gradient(90deg, var(--cyan), #00b8ba);
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
 
-<!-- Attempts history -->
-<div id="attempts-history" class="flex justify-center gap-3 mt-4" style="display:none"></div>
-</div>
+          <!-- Email gate -->
+          <div id="email-gate">
+            <div
+              style="
+                height: 1px;
+                background: linear-gradient(
+                  90deg,
+                  transparent,
+                  rgba(0, 237, 239, 0.15),
+                  transparent
+                );
+                margin: 24px 0;
+              "
+            ></div>
+            <p class="font-oswald text-lg font-bold uppercase mb-1">
+              Reçois tes résultats détaillés
+            </p>
+            <p class="text-white/35 text-sm mb-6">
+              + Tips personnalisés pour améliorer ton temps de réaction
+            </p>
+            <form
+              id="lead-form"
+              onsubmit="captureEmail(event)"
+              class="space-y-4 max-w-xs mx-auto"
+            >
+              <div class="form-group">
+                <label>Ton prenom</label
+                ><input
+                  type="text"
+                  name="name"
+                  placeholder="Ton prenom"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Ton email</label
+                ><input
+                  type="email"
+                  name="email"
+                  placeholder="Ton email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label
+                  >Tranche d'âge
+                  <span style="color: rgba(255, 255, 255, 0.2)"
+                    >(optionnel)</span
+                  ></label
+                ><select name="age_range">
+                  <option value="">Sélectionner</option>
+                  <option value="18-24">18-24 ans</option>
+                  <option value="25-34">25-34 ans</option>
+                  <option value="35-44">35-44 ans</option>
+                  <option value="45-54">45-54 ans</option>
+                  <option value="55+">55+ ans</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label
+                  >Département
+                  <span style="color: rgba(255, 255, 255, 0.2)"
+                    >(optionnel)</span
+                  ></label
+                ><input
+                  type="text"
+                  name="departement"
+                  placeholder="Ex: 75"
+                  maxlength="3"
+                  inputmode="numeric"
+                />
+              </div>
+              <button type="submit" class="btn-cyan">
+                RECEVOIR MON ANALYSE &rarr;
+              </button>
+            </form>
+            <p class="text-white/20 text-[10px] mt-3">
+              100% gratuit &bull; Pas de spam
+            </p>
+          </div>
+          <div id="success-msg" style="display: none" class="mt-6">
+            <span style="font-size: 40px">✅</span>
+            <h4
+              class="font-oswald text-xl font-bold mt-3 mb-2"
+              style="color: var(--cyan)"
+            >
+              Analyse envoyée !
+            </h4>
+            <p class="text-white/45 text-sm">
+              Vérifie ta boîte mail pour tes résultats détaillés.
+            </p>
+            <button
+              onclick="resetGame()"
+              class="btn-cyan mt-4"
+              style="
+                max-width: 200px;
+                margin: 16px auto 0;
+                display: block;
+                padding: 12px;
+              "
+            >
+              REJOUER
+            </button>
+          </div>
+          <!-- Découvre aussi -->
+          <div class="mt-8 text-left" id="cross-links">
+            <p
+              class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center"
+            >
+              Découvre aussi
+            </p>
+            <div class="space-y-2">
+              <a
+                href="focus-score-test.html"
+                class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                style="text-decoration: none"
+                ><span style="color: var(--cyan)">&#9889;</span> Focus Score
+                Test</a
+              >
+              <a
+                href="streak-tracker.html"
+                class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                style="text-decoration: none"
+                ><span style="color: var(--cyan)">&#127918;</span> Challenge
+                Fortnite 7 Jours</a
+              >
+              <a
+                href="pro-match-quiz.html"
+                class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                style="text-decoration: none"
+                ><span style="color: var(--red)">&#129354;</span> Ton Style de
+                Boxe</a
+              >
+              <a
+                href="quiz-military-training.html"
+                class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                style="text-decoration: none"
+                ><span style="color: var(--red)">&#127894;</span> Challenge
+                Militaire</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-<!-- RESULTS (hidden until complete) -->
-<div id="results-section" style="display:none" class="mt-8">
-<div class="glass-card p-8 md:p-10 text-center" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 60px rgba(0,237,239,.08)">
-<span class="inline-block text-xs tracking-[.2em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.12)">TON RÉSULTAT</span>
-<div class="font-oswald text-7xl md:text-8xl font-bold" style="color:var(--cyan)" id="final-ms">0</div>
-<p class="text-white/30 text-sm mb-1">millisecondes (moyenne)</p>
-<p class="font-oswald text-xl font-bold uppercase mt-3 mb-6" id="rank-label" style="color:var(--cyan)">—</p>
+    <footer class="relative z-10 text-center py-8 mt-8">
+      <div class="max-w-md mx-auto border-t border-white/5 pt-6">
+        <img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 50px; opacity: 0.4; display: inline-block"
+        />
+        <p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Europe SAS</p>
+      </div>
+      <div
+        style="
+          margin-top: 12px;
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+        "
+      >
+        <a
+          href="mentions-legales.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Mentions légales</a
+        >
+        <a
+          href="politique-confidentialite.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Politique de confidentialité</a
+        >
+      </div>
+    </footer>
 
-<!-- Comparison bars -->
-<div class="max-w-sm mx-auto text-left space-y-4 mb-8">
-<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Pro Gamer</span><span style="color:var(--cyan)">&lt; 180ms</span></div><div class="result-bar"><div class="result-fill" style="width:95%;background:var(--cyan)"></div></div></div>
-<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Très bon</span><span style="color:rgba(0,237,239,.6)">&lt; 220ms</span></div><div class="result-bar"><div class="result-fill" style="width:78%;background:rgba(0,237,239,.6)"></div></div></div>
-<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Bon</span><span style="color:rgba(0,237,239,.4)">&lt; 280ms</span></div><div class="result-bar"><div class="result-fill" style="width:60%;background:rgba(0,237,239,.4)"></div></div></div>
-<div><div class="flex justify-between text-xs mb-1"><span class="text-white/40">Moyen</span><span style="color:rgba(255,255,255,.2)">&lt; 350ms</span></div><div class="result-bar"><div class="result-fill" style="width:40%;background:rgba(255,255,255,.15)"></div></div></div>
-<div id="your-bar"><div class="flex justify-between text-xs mb-1"><span class="text-white font-bold">Toi</span><span class="font-bold" style="color:var(--cyan)" id="your-bar-ms">—</span></div><div class="result-bar" style="border:1px solid rgba(0,237,239,.2)"><div class="result-fill" id="your-bar-fill" style="width:0%;background:linear-gradient(90deg,var(--cyan),#00b8ba)"></div></div></div>
-</div>
+    <!-- STICKY CTA BAR -->
+    <div id="sticky-cta">
+      <span class="cta-text"
+        ><strong>Reçois ton analyse détaillée</strong> + tips pro</span
+      >
+      <button class="cta-btn" onclick="scrollToEmailForm()">
+        RECEVOIR MON ANALYSE &rarr;
+      </button>
+      <button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">
+        &times;
+      </button>
+    </div>
 
-<!-- Email gate -->
-<div id="email-gate">
-<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,237,239,.15),transparent);margin:24px 0"></div>
-<p class="font-oswald text-lg font-bold uppercase mb-1">Reçois tes résultats détaillés</p>
-<p class="text-white/35 text-sm mb-6">+ Tips personnalisés pour améliorer ton temps de réaction</p>
-<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
-<div class="form-group"><label>Ton prenom</label><input type="text" name="name" placeholder="Ton prenom" required/></div>
-<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<div class="form-group"><label>Tranche d'âge <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Sélectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
-<div class="form-group"><label>Département <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
-<button type="submit" class="btn-cyan">RECEVOIR MON ANALYSE &rarr;</button>
-</form>
-<p class="text-white/20 text-[10px] mt-3">100% gratuit &bull; Pas de spam</p>
-</div>
-<div id="success-msg" style="display:none" class="mt-6">
-<span style="font-size:40px">✅</span>
-<h4 class="font-oswald text-xl font-bold mt-3 mb-2" style="color:var(--cyan)">Analyse envoyée !</h4>
-<p class="text-white/45 text-sm">Vérifie ta boîte mail pour tes résultats détaillés.</p>
-<button onclick="resetGame()" class="btn-cyan mt-4" style="max-width:200px;margin:16px auto 0;display:block;padding:12px">REJOUER</button>
-</div>
-<!-- Découvre aussi -->
-<div class="mt-8 text-left" id="cross-links">
-<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Découvre aussi</p>
-<div class="space-y-2">
-<a href="focus-score-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#9889;</span> Focus Score Test</a>
-<a href="streak-tracker.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#127918;</span> Challenge Fortnite 7 Jours</a>
-<a href="pro-match-quiz.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#129354;</span> Ton Style de Boxe</a>
-<a href="quiz-military-training.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#127894;</span> Challenge Militaire</a>
-</div>
-</div>
-</div>
+    <script>
+      const zone = document.getElementById("game-zone");
+      const gameText = document.getElementById("game-text");
+      const liveResult = document.getElementById("live-result");
+      const liveMsEl = document.getElementById("live-ms");
+      const attemptsHistory = document.getElementById("attempts-history");
+      const attemptLabel = document.getElementById("attempt-label");
+      let state = "idle"; // idle, waiting, ready, result, too-early, done
+      let attempts = [];
+      let currentAttempt = 0;
+      let startTime = 0;
+      let timeoutId = null;
 
-</div>
+      zone.addEventListener("click", handleClick);
+      zone.addEventListener(
+        "touchstart",
+        function (e) {
+          e.preventDefault();
+          handleClick();
+        },
+        { passive: false },
+      );
 
-</main>
+      function handleClick() {
+        if (state === "idle") {
+          startRound();
+        } else if (state === "waiting") {
+          tooEarly();
+        } else if (state === "ready") {
+          recordReaction();
+        } else if (state === "result" || state === "too-early") {
+          startRound();
+        }
+      }
 
-<footer class="relative z-10 text-center py-8 mt-8">
-<div class="max-w-md mx-auto border-t border-white/5 pt-6">
-<img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:50px;opacity:.4;display:inline-block">
-<p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p>
-</div>
-<div style="margin-top:12px;display:flex;gap:16px;justify-content:center">
-<a href="mentions-legales.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Mentions légales</a>
-<a href="politique-confidentialite.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Politique de confidentialité</a>
-</div>
-</footer>
+      function startRound() {
+        if (currentAttempt === 0)
+          fbq("trackCustom", "StartQuiz", { quiz_name: "reaction-time-test" });
+        state = "waiting";
+        zone.className = "waiting";
+        gameText.innerHTML =
+          '<p class="font-oswald text-3xl font-bold uppercase" style="color:var(--red)">Attends le vert...</p><p class="text-white/30 text-sm mt-2">Ne clique pas encore !</p>';
+        liveResult.style.display = "none";
+        const delay = 1500 + Math.random() * 3500;
+        timeoutId = setTimeout(() => {
+          state = "ready";
+          zone.className = "ready";
+          gameText.innerHTML =
+            '<p class="font-oswald text-4xl font-bold uppercase" style="color:var(--cyan)">CLIQUE !</p>';
+          startTime = performance.now();
+        }, delay);
+      }
 
-<!-- STICKY CTA BAR -->
-<div id="sticky-cta">
-<span class="cta-text"><strong>Reçois ton analyse détaillée</strong> + tips pro</span>
-<button class="cta-btn" onclick="scrollToEmailForm()">RECEVOIR MON ANALYSE &rarr;</button>
-<button class="cta-close" onclick="closeStickyBar()" aria-label="Fermer">&times;</button>
-</div>
+      function tooEarly() {
+        clearTimeout(timeoutId);
+        state = "too-early";
+        zone.className = "too-early";
+        gameText.innerHTML =
+          '<p class="font-oswald text-2xl font-bold uppercase" style="color:rgba(255,150,50,1)">Trop tôt !</p><p class="text-white/30 text-sm mt-2">Clique pour réessayer</p>';
+      }
 
-<script>
-const zone=document.getElementById('game-zone');
-const gameText=document.getElementById('game-text');
-const liveResult=document.getElementById('live-result');
-const liveMsEl=document.getElementById('live-ms');
-const attemptsHistory=document.getElementById('attempts-history');
-const attemptLabel=document.getElementById('attempt-label');
-let state='idle'; // idle, waiting, ready, result, too-early, done
-let attempts=[];
-let currentAttempt=0;
-let startTime=0;
-let timeoutId=null;
+      function recordReaction() {
+        const ms = Math.round(performance.now() - startTime);
+        attempts.push(ms);
+        currentAttempt++;
+        state = "result";
+        zone.className = "idle";
 
-zone.addEventListener('click',handleClick);
-zone.addEventListener('touchstart',function(e){e.preventDefault();handleClick();},{passive:false});
+        // Show live result
+        liveResult.style.display = "block";
+        liveMsEl.textContent = ms;
+        liveMsEl.style.color =
+          ms < 200
+            ? "var(--cyan)"
+            : ms < 280
+              ? "rgba(0,237,239,.7)"
+              : ms < 350
+                ? "rgba(255,255,255,.5)"
+                : "rgba(255,100,100,.6)";
 
-function handleClick(){
-  if(state==='idle'){startRound();}
-  else if(state==='waiting'){tooEarly();}
-  else if(state==='ready'){recordReaction();}
-  else if(state==='result'||state==='too-early'){startRound();}
-}
+        // Update dots
+        for (let i = 0; i < 5; i++) {
+          const d = document.getElementById("dot-" + i);
+          d.className =
+            "attempt-dot" +
+            (i < currentAttempt ? " done" : "") +
+            (i === currentAttempt ? " active" : "");
+        }
+        attemptLabel.textContent =
+          currentAttempt < 5
+            ? "Essai " + (currentAttempt + 1) + "/5"
+            : "Termine !";
 
-function startRound(){
-  if(currentAttempt===0) fbq('trackCustom','StartQuiz',{quiz_name:'reaction-time-test'});
-  state='waiting';
-  zone.className='waiting';
-  gameText.innerHTML='<p class="font-oswald text-3xl font-bold uppercase" style="color:var(--red)">Attends le vert...</p><p class="text-white/30 text-sm mt-2">Ne clique pas encore !</p>';
-  liveResult.style.display='none';
-  const delay=1500+Math.random()*3500;
-  timeoutId=setTimeout(()=>{
-    state='ready';
-    zone.className='ready';
-    gameText.innerHTML='<p class="font-oswald text-4xl font-bold uppercase" style="color:var(--cyan)">CLIQUE !</p>';
-    startTime=performance.now();
-  },delay);
-}
+        // Show attempt history
+        attemptsHistory.style.display = "flex";
+        attemptsHistory.innerHTML = attempts
+          .map(
+            (a, i) =>
+              '<div class="text-center"><span class="text-[10px] text-white/30">E' +
+              (i + 1) +
+              '</span><br><span class="font-oswald text-sm font-bold" style="color:var(--cyan)">' +
+              a +
+              "ms</span></div>",
+          )
+          .join("");
 
-function tooEarly(){
-  clearTimeout(timeoutId);
-  state='too-early';
-  zone.className='too-early';
-  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase" style="color:rgba(255,150,50,1)">Trop tôt !</p><p class="text-white/30 text-sm mt-2">Clique pour réessayer</p>';
-}
+        if (currentAttempt < 5) {
+          gameText.innerHTML =
+            '<p class="font-oswald text-2xl font-bold uppercase"><span style="color:var(--cyan)">' +
+            ms +
+            'ms</span></p><p class="text-white/30 text-sm mt-2">Clique pour l\'essai suivant</p>';
+        } else {
+          showFinalResults();
+        }
+      }
 
-function recordReaction(){
-  const ms=Math.round(performance.now()-startTime);
-  attempts.push(ms);
-  currentAttempt++;
-  state='result';
-  zone.className='idle';
+      function showFinalResults() {
+        fbq("trackCustom", "QuizComplete", { quiz_name: "reaction-time-test" });
+        state = "done";
+        zone.style.display = "none";
+        attemptsHistory.style.display = "none";
+        liveResult.style.display = "none";
 
-  // Show live result
-  liveResult.style.display='block';
-  liveMsEl.textContent=ms;
-  liveMsEl.style.color=ms<200?'var(--cyan)':ms<280?'rgba(0,237,239,.7)':ms<350?'rgba(255,255,255,.5)':'rgba(255,100,100,.6)';
+        const avg = Math.round(
+          attempts.reduce((a, b) => a + b, 0) / attempts.length,
+        );
+        document.getElementById("results-section").style.display = "block";
+        document.getElementById("final-ms").textContent = avg;
+        document.getElementById("your-bar-ms").textContent = avg + "ms";
 
-  // Update dots
-  for(let i=0;i<5;i++){
-    const d=document.getElementById('dot-'+i);
-    d.className='attempt-dot'+(i<currentAttempt?' done':'')+(i===currentAttempt?' active':'');
-  }
-  attemptLabel.textContent=currentAttempt<5?'Essai '+(currentAttempt+1)+'/5':'Termine !';
+        // Calculate bar width (inverse: lower = better = wider)
+        const pct = Math.max(5, Math.min(100, ((500 - avg) / 500) * 100));
+        setTimeout(() => {
+          document.getElementById("your-bar-fill").style.width = pct + "%";
+        }, 200);
 
-  // Show attempt history
-  attemptsHistory.style.display='flex';
-  attemptsHistory.innerHTML=attempts.map((a,i)=>'<div class="text-center"><span class="text-[10px] text-white/30">E'+(i+1)+'</span><br><span class="font-oswald text-sm font-bold" style="color:var(--cyan)">'+a+'ms</span></div>').join('');
+        // Rank
+        let rank = "";
+        if (avg < 180) rank = "🏆 Niveau Pro Gamer !";
+        else if (avg < 220) rank = "⚡ Très bon — Top 15%";
+        else if (avg < 280) rank = "🎯 Bon — Au-dessus de la moyenne";
+        else if (avg < 350) rank = "💪 Moyen — Tu peux progresser";
+        else rank = "🔄 À améliorer — Entraîne-toi !";
+        document.getElementById("rank-label").textContent = rank;
 
-  if(currentAttempt<5){
-    gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase"><span style="color:var(--cyan)">'+ms+'ms</span></p><p class="text-white/30 text-sm mt-2">Clique pour l\'essai suivant</p>';
-  }else{
-    showFinalResults();
-  }
-}
+        // Show sticky CTA bar after a short delay
+        setTimeout(showStickyBar, 1200);
+      }
 
-function showFinalResults(){
-  fbq('trackCustom','QuizComplete',{quiz_name:'reaction-time-test'});
-  state='done';
-  zone.style.display='none';
-  attemptsHistory.style.display='none';
-  liveResult.style.display='none';
+      // --- Sticky CTA Bar logic ---
+      let stickyBarDismissed = false;
+      function showStickyBar() {
+        if (stickyBarDismissed) return;
+        const bar = document.getElementById("sticky-cta");
+        bar.classList.remove("hiding");
+        bar.style.display = "flex";
+      }
+      function closeStickyBar() {
+        const bar = document.getElementById("sticky-cta");
+        bar.classList.add("hiding");
+        stickyBarDismissed = true;
+        setTimeout(() => {
+          bar.style.display = "none";
+        }, 350);
+      }
+      function hideStickyBar() {
+        const bar = document.getElementById("sticky-cta");
+        bar.classList.add("hiding");
+        setTimeout(() => {
+          bar.style.display = "none";
+          bar.classList.remove("hiding");
+        }, 350);
+      }
+      function scrollToEmailForm() {
+        const gate = document.getElementById("email-gate");
+        if (gate) {
+          gate.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        hideStickyBar();
+      }
 
-  const avg=Math.round(attempts.reduce((a,b)=>a+b,0)/attempts.length);
-  document.getElementById('results-section').style.display='block';
-  document.getElementById('final-ms').textContent=avg;
-  document.getElementById('your-bar-ms').textContent=avg+'ms';
+      function captureEmail(e) {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const data = {};
+        fd.forEach((v, k) => (data[k] = v));
+        const avg = Math.round(
+          attempts.reduce((a, b) => a + b, 0) / attempts.length,
+        );
+        data.source = "reaction-time-test";
+        data.result_ms = avg;
+        data.attempts = attempts.join(",");
+        data.timestamp = new Date().toISOString();
+        fbq("track", "Lead", { content_name: "reaction-time-test" });
+        fetch("https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/vnd.api+json",
+            revision: "2026-01-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email: data.email,
+                      first_name: data.name || "",
+                      properties: {
+                        source: "reaction-time-test",
+                        age_range: data.age_range || "",
+                        departement: data.departement || "",
+                      },
+                    },
+                    subscriptions: {
+                      email: { marketing: { consent: "SUBSCRIBED" } },
+                    },
+                  },
+                },
+              },
+              relationships: { list: { data: { type: "list", id: "Ta45bZ" } } },
+            },
+          }),
+        }).catch((err) => console.error("Klaviyo error:", err));
+        console.log("9MM Lead captured:", data);
+        document.getElementById("email-gate").style.display = "none";
+        document.getElementById("success-msg").style.display = "block";
+        // Hide sticky CTA since form was submitted
+        hideStickyBar();
+        stickyBarDismissed = true;
+      }
 
-  // Calculate bar width (inverse: lower = better = wider)
-  const pct=Math.max(5,Math.min(100,((500-avg)/500)*100));
-  setTimeout(()=>{document.getElementById('your-bar-fill').style.width=pct+'%';},200);
-
-  // Rank
-  let rank='';
-  if(avg<180)rank='🏆 Niveau Pro Gamer !';
-  else if(avg<220)rank='⚡ Très bon — Top 15%';
-  else if(avg<280)rank='🎯 Bon — Au-dessus de la moyenne';
-  else if(avg<350)rank='💪 Moyen — Tu peux progresser';
-  else rank='🔄 À améliorer — Entraîne-toi !';
-  document.getElementById('rank-label').textContent=rank;
-
-  // Show sticky CTA bar after a short delay
-  setTimeout(showStickyBar,1200);
-}
-
-// --- Sticky CTA Bar logic ---
-let stickyBarDismissed=false;
-function showStickyBar(){
-  if(stickyBarDismissed)return;
-  const bar=document.getElementById('sticky-cta');
-  bar.classList.remove('hiding');
-  bar.style.display='flex';
-}
-function closeStickyBar(){
-  const bar=document.getElementById('sticky-cta');
-  bar.classList.add('hiding');
-  stickyBarDismissed=true;
-  setTimeout(()=>{bar.style.display='none';},350);
-}
-function hideStickyBar(){
-  const bar=document.getElementById('sticky-cta');
-  bar.classList.add('hiding');
-  setTimeout(()=>{bar.style.display='none';bar.classList.remove('hiding');},350);
-}
-function scrollToEmailForm(){
-  const gate=document.getElementById('email-gate');
-  if(gate){gate.scrollIntoView({behavior:'smooth',block:'center'});}
-  hideStickyBar();
-}
-
-function captureEmail(e){
-  e.preventDefault();
-  const fd=new FormData(e.target);
-  const data={};fd.forEach((v,k)=>data[k]=v);
-  const avg=Math.round(attempts.reduce((a,b)=>a+b,0)/attempts.length);
-  data.source='reaction-time-test';
-  data.result_ms=avg;
-  data.attempts=attempts.join(',');
-  data.timestamp=new Date().toISOString();
-  fbq('track','Lead',{content_name:'reaction-time-test'});
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:data.email,first_name:data.name||'',properties:{source:'reaction-time-test',age_range:data.age_range||'',departement:data.departement||''}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'Ta45bZ'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
-  console.log('9MM Lead captured:',data);
-  document.getElementById('email-gate').style.display='none';
-  document.getElementById('success-msg').style.display='block';
-  // Hide sticky CTA since form was submitted
-  hideStickyBar();
-  stickyBarDismissed=true;
-}
-
-function resetGame(){
-  attempts=[];currentAttempt=0;state='idle';
-  zone.style.display='flex';zone.className='idle';
-  gameText.innerHTML='<p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p><p class="text-white/40 text-sm">Clique pour commencer le test</p>';
-  liveResult.style.display='none';attemptsHistory.style.display='none';
-  document.getElementById('results-section').style.display='none';
-  document.getElementById('email-gate').style.display='block';
-  document.getElementById('success-msg').style.display='none';
-  for(let i=0;i<5;i++){document.getElementById('dot-'+i).className='attempt-dot'+(i===0?' active':'');}
-  attemptLabel.textContent='Essai 1/5';
-  // Reset sticky bar
-  stickyBarDismissed=false;
-  hideStickyBar();
-}
-</script>
-<!-- Cookie Consent Bar -->
-<div id="cookie-bar" style="position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:rgba(17,17,17,.97);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-<p style="color:rgba(255,255,255,.6);font-size:13px;margin:0;line-height:1.5;max-width:600px">Ce site utilise des cookies pour mesurer la performance et améliorer ton expérience. <a href="politique-confidentialite.html" style="color:rgba(0,237,239,.7);text-decoration:underline">En savoir plus</a></p>
-<div style="display:flex;gap:10px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:linear-gradient(135deg,#FF1717,#cc1212);color:#fff;font-weight:700;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;white-space:nowrap">Accepter</button>
-<button onclick="refuseCookies()" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:12px;white-space:nowrap">Refuser</button>
-</div>
-</div>
-<script>
-function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none';loadFBPixel()}
-function refuseCookies(){localStorage.setItem('9mm_cookies','refused');document.getElementById('cookie-bar').style.display='none'}
-function loadFBPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','478088670624086');fbq('track','PageView')}
-(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'){document.getElementById('cookie-bar').style.display='none';loadFBPixel()}else if(c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
-</script>
-</body>
+      function resetGame() {
+        attempts = [];
+        currentAttempt = 0;
+        state = "idle";
+        zone.style.display = "flex";
+        zone.className = "idle";
+        gameText.innerHTML =
+          '<p class="font-oswald text-2xl font-bold uppercase mb-2">Prêt ?</p><p class="text-white/40 text-sm">Clique pour commencer le test</p>';
+        liveResult.style.display = "none";
+        attemptsHistory.style.display = "none";
+        document.getElementById("results-section").style.display = "none";
+        document.getElementById("email-gate").style.display = "block";
+        document.getElementById("success-msg").style.display = "none";
+        for (let i = 0; i < 5; i++) {
+          document.getElementById("dot-" + i).className =
+            "attempt-dot" + (i === 0 ? " active" : "");
+        }
+        attemptLabel.textContent = "Essai 1/5";
+        // Reset sticky bar
+        stickyBarDismissed = false;
+        hideStickyBar();
+      }
+    </script>
+    <!-- Cookie Consent Bar -->
+    <div
+      id="cookie-bar"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background: rgba(17, 17, 17, 0.97);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      "
+    >
+      <p
+        style="
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 13px;
+          margin: 0;
+          line-height: 1.5;
+          max-width: 600px;
+        "
+      >
+        Ce site utilise des cookies pour mesurer la performance et améliorer ton
+        expérience.
+        <a
+          href="politique-confidentialite.html"
+          style="color: rgba(0, 237, 239, 0.7); text-decoration: underline"
+          >En savoir plus</a
+        >
+      </p>
+      <div style="display: flex; gap: 10px; flex-shrink: 0">
+        <button
+          onclick="acceptCookies()"
+          style="
+            background: linear-gradient(135deg, #ff1717, #cc1212);
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: &quot;Oswald&quot;, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 13px;
+            white-space: nowrap;
+          "
+        >
+          Accepter
+        </button>
+        <button
+          onclick="refuseCookies()"
+          style="
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+          "
+        >
+          Refuser
+        </button>
+      </div>
+    </div>
+    <script>
+      function acceptCookies() {
+        localStorage.setItem("9mm_cookies", "accepted");
+        document.getElementById("cookie-bar").style.display = "none";
+        loadFBPixel();
+      }
+      function refuseCookies() {
+        localStorage.setItem("9mm_cookies", "refused");
+        document.getElementById("cookie-bar").style.display = "none";
+      }
+      function loadFBPixel() {
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod
+              ? n.callMethod.apply(n, arguments)
+              : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(
+          window,
+          document,
+          "script",
+          "https://connect.facebook.net/en_US/fbevents.js",
+        );
+        fbq("init", "478088670624086");
+        fbq("track", "PageView");
+      }
+      (function () {
+        var c = localStorage.getItem("9mm_cookies");
+        if (c === "accepted") {
+          document.getElementById("cookie-bar").style.display = "none";
+          loadFBPixel();
+        } else if (c === "refused") {
+          document.getElementById("cookie-bar").style.display = "none";
+        }
+      })();
+    </script>
+  </body>
 </html>

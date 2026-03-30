@@ -1,485 +1,1251 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr" class="scroll-smooth">
-<head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>9MM — Challenge Fortnite 7 Jours</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
-body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
-.font-oswald{font-family:'Oswald',sans-serif}
-@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
-@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
-@keyframes flamePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-@keyframes unlockPop{0%{opacity:0;transform:scale(.3) rotate(-20deg)}60%{transform:scale(1.15) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
-@keyframes confettiDrop{0%{opacity:1;transform:translateY(0) rotate(0deg)}100%{opacity:0;transform:translateY(400px) rotate(720deg)}}
-.fade-in{animation:fadeSlideBlurIn .8s cubic-bezier(.16,1,.3,1) both}
-.delay-1{animation-delay:.15s}.delay-2{animation-delay:.3s}.delay-3{animation-delay:.45s}
-*,*::before,*::after{box-sizing:border-box}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.form-group input{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px)}
-.form-group input::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
-.form-group select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s ease;backdrop-filter:blur(6px);-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-.form-group select:focus{border-color:var(--cyan);background-color:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
-.form-group select option{background:#1a1a1a;color:#fff}
-.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%}
-.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
-@media(max-width:640px){.glass-card{border-radius:12px}main{padding-left:16px;padding-right:16px}}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>9MM — Challenge Fortnite 7 Jours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --red: #ff1717;
+        --cyan: #00edef;
+        --black: #0a0a0a;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: #fff;
+        margin: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .font-oswald {
+        font-family: "Oswald", sans-serif;
+      }
+      @keyframes border-beam {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+      @keyframes fadeSlideBlurIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+          filter: blur(8px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+      @keyframes flamePulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.15);
+        }
+      }
+      @keyframes unlockPop {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) rotate(-20deg);
+        }
+        60% {
+          transform: scale(1.15) rotate(5deg);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) rotate(0deg);
+        }
+      }
+      @keyframes confettiDrop {
+        0% {
+          opacity: 1;
+          transform: translateY(0) rotate(0deg);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(400px) rotate(720deg);
+        }
+      }
+      .fade-in {
+        animation: fadeSlideBlurIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .delay-1 {
+        animation-delay: 0.15s;
+      }
+      .delay-2 {
+        animation-delay: 0.3s;
+      }
+      .delay-3 {
+        animation-delay: 0.45s;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .form-group input {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #fff;
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
+      }
+      .form-group input::placeholder {
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .form-group input:focus {
+        border-color: var(--cyan);
+        background: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(0, 237, 239, 0.1);
+      }
+      .form-group select {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 14px 16px;
+        border-radius: 12px;
+        width: 100%;
+        font-size: 16px;
+        outline: none;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(6px);
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,.4)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+        padding-right: 40px;
+      }
+      .form-group select:focus {
+        border-color: var(--cyan);
+        background-color: rgba(255, 255, 255, 0.09);
+        box-shadow: 0 0 0 3px rgba(0, 237, 239, 0.1);
+      }
+      .form-group select option {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+        position: relative;
+      }
+      .btn-cyan {
+        background: linear-gradient(135deg, var(--cyan), #00b8ba);
+        color: #000;
+        font-weight: 700;
+        padding: 16px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        font-size: 1.05rem;
+        transition: all 0.3s;
+        width: 100%;
+      }
+      .btn-cyan:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 237, 239, 0.3);
+      }
+      @media (max-width: 640px) {
+        .glass-card {
+          border-radius: 12px;
+        }
+        main {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+      }
 
-.day-card{border-radius:16px;padding:20px 24px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
-.day-card.locked{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);opacity:.35;cursor:default}
-.day-card.available{background:rgba(0,237,239,.03);border:1px dashed rgba(0,237,239,.15)}
-.day-card.available:hover{background:rgba(0,237,239,.06);border-color:rgba(0,237,239,.3);transform:translateY(-2px)}
-.day-card.completed{background:rgba(0,237,239,.06);border:1px solid rgba(0,237,239,.2)}
-.day-card.active{background:rgba(0,237,239,.08);border:2px solid rgba(0,237,239,.35);box-shadow:0 0 40px rgba(0,237,239,.1)}
+      .day-card {
+        border-radius: 16px;
+        padding: 20px 24px;
+        transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .day-card.locked {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        opacity: 0.35;
+        cursor: default;
+      }
+      .day-card.available {
+        background: rgba(0, 237, 239, 0.03);
+        border: 1px dashed rgba(0, 237, 239, 0.15);
+      }
+      .day-card.available:hover {
+        background: rgba(0, 237, 239, 0.06);
+        border-color: rgba(0, 237, 239, 0.3);
+        transform: translateY(-2px);
+      }
+      .day-card.completed {
+        background: rgba(0, 237, 239, 0.06);
+        border: 1px solid rgba(0, 237, 239, 0.2);
+      }
+      .day-card.active {
+        background: rgba(0, 237, 239, 0.08);
+        border: 2px solid rgba(0, 237, 239, 0.35);
+        box-shadow: 0 0 40px rgba(0, 237, 239, 0.1);
+      }
 
-.bonus-card{background:linear-gradient(135deg,rgba(0,237,239,.04),rgba(0,237,239,.01));border:1px solid rgba(0,237,239,.12);border-radius:12px;padding:14px 18px;margin-top:12px}
+      .bonus-card {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 237, 239, 0.04),
+          rgba(0, 237, 239, 0.01)
+        );
+        border: 1px solid rgba(0, 237, 239, 0.12);
+        border-radius: 12px;
+        padding: 14px 18px;
+        margin-top: 12px;
+      }
 
-.check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:10px;cursor:pointer;transition:all .2s;user-select:none;-webkit-user-select:none}
-.check-item.unchecked{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06)}
-.check-item.unchecked:hover{background:rgba(255,255,255,.04)}
-.check-item.checked{background:rgba(0,237,239,.08);border:1px solid rgba(0,237,239,.15)}
-.check-box{width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;margin-top:2px}
-.check-item.checked .check-box{background:var(--cyan);border-color:var(--cyan)}
+      .check-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .check-item.unchecked {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .check-item.unchecked:hover {
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .check-item.checked {
+        background: rgba(0, 237, 239, 0.08);
+        border: 1px solid rgba(0, 237, 239, 0.15);
+      }
+      .check-box {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.2s;
+        margin-top: 2px;
+      }
+      .check-item.checked .check-box {
+        background: var(--cyan);
+        border-color: var(--cyan);
+      }
 
-.streak-flame{animation:flamePulse 1.5s ease infinite}
-.progress-ring{transition:stroke-dashoffset .8s cubic-bezier(.16,1,.3,1)}
+      .streak-flame {
+        animation: flamePulse 1.5s ease infinite;
+      }
+      .progress-ring {
+        transition: stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
 
-#confetti-container{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;overflow:hidden}
-.confetti-piece{position:absolute;width:10px;height:10px;animation:confettiDrop 2s ease-in forwards}
-</style>
-</head>
-<body>
+      #confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        overflow: hidden;
+      }
+      .confetti-piece {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        animation: confettiDrop 2s ease-in forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Logo header -->
+    <header
+      style="
+        position: relative;
+        z-index: 50;
+        padding: 20px 24px;
+        text-align: center;
+      "
+    >
+      <a href="index.html"
+        ><img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 80px; display: inline-block"
+      /></a>
+    </header>
 
-<!-- Logo header -->
-<header style="position:relative;z-index:50;padding:20px 24px;text-align:center">
-<a href="index.html"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:80px;display:inline-block"></a>
-</header>
+    <div
+      class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between"
+    >
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"
+        ></div>
+      </div>
+      <div
+        class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"
+        ></div>
+      </div>
+      <div class="w-px h-full bg-white/5 relative overflow-hidden">
+        <div
+          class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"
+        ></div>
+      </div>
+    </div>
 
-<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
-<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
-<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
-<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
-</div>
+    <div id="confetti-container"></div>
 
-<div id="confetti-container"></div>
+    <main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
+      <!-- ============ EMAIL GATE ============ -->
+      <div id="gate-screen" class="fade-in">
+        <div class="text-center mb-8">
+          <span
+            class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4"
+            style="
+              background: rgba(0, 237, 239, 0.08);
+              color: var(--cyan);
+              border: 1px solid rgba(0, 237, 239, 0.15);
+            "
+            >CHALLENGE FORTNITE</span
+          >
+          <h1
+            class="font-oswald text-4xl md:text-6xl font-bold uppercase leading-[.85] mb-3"
+          >
+            Challenge Fortnite<br /><span style="color: var(--cyan)"
+              >7 Jours pour Devenir<br />Meilleur</span
+            >
+          </h1>
+          <p class="text-white/45 max-w-lg mx-auto mb-2 text-base">
+            Entraîne-toi comme les meilleurs (<strong class="text-white/70"
+              >Peterbot</strong
+            >, <strong class="text-white/70">Ajerss</strong>,
+            <strong class="text-white/70">Pollo</strong>...)
+          </p>
+          <p class="text-white/25 text-sm">
+            7 jours. 7 missions. Progression garantie.
+          </p>
+        </div>
 
+        <div class="grid sm:grid-cols-3 gap-3 mb-8">
+          <div class="glass-card p-4 text-center fade-in delay-1">
+            <span style="font-size: 28px">🎯</span>
+            <h3 class="font-oswald text-sm font-bold mt-2 uppercase">
+              Build & Edit
+            </h3>
+            <p class="text-white/30 text-[10px] mt-1">
+              Freebuild, triple edits, retakes
+            </p>
+          </div>
+          <div class="glass-card p-4 text-center fade-in delay-2">
+            <span style="font-size: 28px">🔥</span>
+            <h3 class="font-oswald text-sm font-bold mt-2 uppercase">
+              W-Key & Combat
+            </h3>
+            <p class="text-white/30 text-[10px] mt-1">
+              Realistic 1v1, piece control, aim
+            </p>
+          </div>
+          <div class="glass-card p-4 text-center fade-in delay-3">
+            <span style="font-size: 28px">🧠</span>
+            <h3 class="font-oswald text-sm font-bold mt-2 uppercase">
+              VOD & Analyse
+            </h3>
+            <p class="text-white/30 text-[10px] mt-1">
+              Review de replays, mental game
+            </p>
+          </div>
+        </div>
 
-<main class="max-w-3xl mx-auto px-5 pb-16 relative z-10">
+        <!-- Email gate FIRST -->
+        <div
+          class="glass-card p-8 text-center fade-in delay-2"
+          style="
+            border-color: rgba(0, 237, 239, 0.1);
+            box-shadow: 0 0 60px rgba(0, 237, 239, 0.06);
+          "
+        >
+          <p class="font-oswald text-xl font-bold uppercase mb-1">
+            Commence le challenge
+          </p>
+          <p class="text-white/35 text-sm mb-6">
+            Gratuit. Progrès sauvegardés. Pas de spam.
+          </p>
+          <form
+            id="lead-form"
+            onsubmit="captureEmail(event)"
+            class="space-y-4 max-w-xs mx-auto"
+          >
+            <div class="form-group">
+              <label>Ton pseudo / prénom</label
+              ><input
+                type="text"
+                name="name"
+                placeholder="Ton pseudo Fortnite"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Ton email</label
+              ><input
+                type="email"
+                name="email"
+                placeholder="Ton email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label
+                >Tranche d'âge
+                <span style="color: rgba(255, 255, 255, 0.2)"
+                  >(optionnel)</span
+                ></label
+              ><select name="age_range">
+                <option value="">Sélectionner</option>
+                <option value="18-24">18-24 ans</option>
+                <option value="25-34">25-34 ans</option>
+                <option value="35-44">35-44 ans</option>
+                <option value="45-54">45-54 ans</option>
+                <option value="55+">55+ ans</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label
+                >Département
+                <span style="color: rgba(255, 255, 255, 0.2)"
+                  >(optionnel)</span
+                ></label
+              ><input
+                type="text"
+                name="departement"
+                placeholder="Ex: 75"
+                maxlength="3"
+                inputmode="numeric"
+              />
+            </div>
+            <button type="submit" class="btn-cyan">
+              COMMENCER LE CHALLENGE &rarr;
+            </button>
+          </form>
+          <p class="text-white/20 text-[10px] mt-3">
+            100% gratuit &bull; Pas de spam
+          </p>
+        </div>
 
-<!-- ============ EMAIL GATE ============ -->
-<div id="gate-screen" class="fade-in">
-<div class="text-center mb-8">
-<span class="inline-block text-xs tracking-[.3em] uppercase px-3 py-1 rounded-full mb-4" style="background:rgba(0,237,239,.08);color:var(--cyan);border:1px solid rgba(0,237,239,.15)">CHALLENGE FORTNITE</span>
-<h1 class="font-oswald text-4xl md:text-6xl font-bold uppercase leading-[.85] mb-3">Challenge Fortnite<br/><span style="color:var(--cyan)">7 Jours pour Devenir<br/>Meilleur</span></h1>
-<p class="text-white/45 max-w-lg mx-auto mb-2 text-base">Entraîne-toi comme les meilleurs (<strong class="text-white/70">Peterbot</strong>, <strong class="text-white/70">Ajerss</strong>, <strong class="text-white/70">Pollo</strong>...)</p>
-<p class="text-white/25 text-sm">7 jours. 7 missions. Progression garantie.</p>
-</div>
+        <!-- Aperçu du challenge EN DESSOUS du formulaire -->
+        <div class="glass-card p-5 mt-6 fade-in delay-3">
+          <h3
+            class="font-oswald text-sm font-bold uppercase mb-3 text-white/50"
+          >
+            Aperçu du challenge
+          </h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J1</span
+              ><span class="text-white/50"
+                >Fondations et Mécaniques (15 min)</span
+              >
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J2</span
+              ><span class="text-white/50"
+                >Le Grind du Realistic (10 Rounds)</span
+              >
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J3</span
+              ><span class="text-white/50">Agressivité Maximale (3 Games)</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J4</span
+              ><span class="text-white/50">Fluidité et Constance</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J5</span
+              ><span class="text-white/50">Analyse et VOD Review (20 min)</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J6</span
+              ><span class="text-white/50">Maîtrise du Piece Control</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <span class="font-oswald font-bold text-cyan-400 w-8">J7</span
+              ><span class="text-white/50">Le Test Final (Ranked)</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="grid sm:grid-cols-3 gap-3 mb-8">
-<div class="glass-card p-4 text-center fade-in delay-1">
-<span style="font-size:28px">🎯</span>
-<h3 class="font-oswald text-sm font-bold mt-2 uppercase">Build & Edit</h3>
-<p class="text-white/30 text-[10px] mt-1">Freebuild, triple edits, retakes</p>
-</div>
-<div class="glass-card p-4 text-center fade-in delay-2">
-<span style="font-size:28px">🔥</span>
-<h3 class="font-oswald text-sm font-bold mt-2 uppercase">W-Key & Combat</h3>
-<p class="text-white/30 text-[10px] mt-1">Realistic 1v1, piece control, aim</p>
-</div>
-<div class="glass-card p-4 text-center fade-in delay-3">
-<span style="font-size:28px">🧠</span>
-<h3 class="font-oswald text-sm font-bold mt-2 uppercase">VOD & Analyse</h3>
-<p class="text-white/30 text-[10px] mt-1">Review de replays, mental game</p>
-</div>
-</div>
+      <!-- ============ CHALLENGE TRACKER ============ -->
+      <div id="tracker-screen" style="display: none">
+        <!-- Streak header -->
+        <div class="text-center mb-6">
+          <div class="streak-flame" style="font-size: 48px" id="flame-icon">
+            🔥
+          </div>
+          <span
+            class="font-oswald text-5xl font-bold"
+            style="color: var(--cyan)"
+            id="streak-count"
+            >0</span
+          >
+          <span class="text-white/30 text-sm block mt-1">jours complétés</span>
+          <div
+            class="h-1.5 rounded-full bg-white/5 max-w-xs mx-auto mt-3 overflow-hidden"
+          >
+            <div
+              id="streak-bar"
+              class="h-full rounded-full"
+              style="
+                width: 0%;
+                background: linear-gradient(90deg, var(--cyan), #00b8ba);
+                transition: width 0.5s;
+              "
+            ></div>
+          </div>
+          <span class="text-[10px] text-white/20 mt-1 block" id="streak-label"
+            >0 / 7 jours</span
+          >
+        </div>
 
-<!-- Email gate FIRST -->
-<div class="glass-card p-8 text-center fade-in delay-2" style="border-color:rgba(0,237,239,.1);box-shadow:0 0 60px rgba(0,237,239,.06)">
-<p class="font-oswald text-xl font-bold uppercase mb-1">Commence le challenge</p>
-<p class="text-white/35 text-sm mb-6">Gratuit. Progrès sauvegardés. Pas de spam.</p>
-<form id="lead-form" onsubmit="captureEmail(event)" class="space-y-4 max-w-xs mx-auto">
-<div class="form-group"><label>Ton pseudo / prénom</label><input type="text" name="name" placeholder="Ton pseudo Fortnite" required/></div>
-<div class="form-group"><label>Ton email</label><input type="email" name="email" placeholder="Ton email" required/></div>
-<div class="form-group"><label>Tranche d'âge <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><select name="age_range"><option value="">Sélectionner</option><option value="18-24">18-24 ans</option><option value="25-34">25-34 ans</option><option value="35-44">35-44 ans</option><option value="45-54">45-54 ans</option><option value="55+">55+ ans</option></select></div>
-<div class="form-group"><label>Département <span style="color:rgba(255,255,255,.2)">(optionnel)</span></label><input type="text" name="departement" placeholder="Ex: 75" maxlength="3" inputmode="numeric"/></div>
-<button type="submit" class="btn-cyan">COMMENCER LE CHALLENGE &rarr;</button>
-</form>
-<p class="text-white/20 text-[10px] mt-3">100% gratuit &bull; Pas de spam</p>
-</div>
+        <!-- Day cards -->
+        <div class="space-y-3" id="days-container"></div>
 
-<!-- Aperçu du challenge EN DESSOUS du formulaire -->
-<div class="glass-card p-5 mt-6 fade-in delay-3">
-<h3 class="font-oswald text-sm font-bold uppercase mb-3 text-white/50">Aperçu du challenge</h3>
-<div class="space-y-2">
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J1</span><span class="text-white/50">Fondations et Mécaniques (15 min)</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J2</span><span class="text-white/50">Le Grind du Realistic (10 Rounds)</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J3</span><span class="text-white/50">Agressivité Maximale (3 Games)</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J4</span><span class="text-white/50">Fluidité et Constance</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J5</span><span class="text-white/50">Analyse et VOD Review (20 min)</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J6</span><span class="text-white/50">Maîtrise du Piece Control</span></div>
-<div class="flex items-center gap-3 text-sm"><span class="font-oswald font-bold text-cyan-400 w-8">J7</span><span class="text-white/50">Le Test Final (Ranked)</span></div>
-</div>
-</div>
+        <!-- Expanded day detail -->
+        <div id="day-detail" style="display: none" class="mt-6">
+          <div
+            class="glass-card p-6"
+            style="
+              border-color: rgba(0, 237, 239, 0.12);
+              box-shadow: 0 0 40px rgba(0, 237, 239, 0.06);
+            "
+          >
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <span
+                  class="text-[10px] tracking-[.2em] uppercase text-cyan-400 font-semibold"
+                  id="detail-tag"
+                  >JOUR 1</span
+                >
+                <h3
+                  class="font-oswald text-xl font-bold uppercase mt-1"
+                  id="detail-title"
+                >
+                  -
+                </h3>
+              </div>
+              <button
+                onclick="closeDetail()"
+                class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 hover:text-white/60 transition text-sm border-0 cursor-pointer"
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              id="detail-content"
+              class="text-white/55 text-sm leading-relaxed mb-5"
+            ></div>
+            <div
+              id="detail-bonus"
+              class="bonus-card mb-5"
+              style="display: none"
+            >
+              <div class="flex items-start gap-2">
+                <span style="font-size: 18px">🎁</span>
+                <div>
+                  <strong class="text-cyan-400 text-xs uppercase tracking-wider"
+                    >Bonus 9MM</strong
+                  >
+                  <p class="text-white/50 text-sm mt-1" id="bonus-text"></p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2" id="detail-tasks"></div>
+            <div class="mt-4 text-center">
+              <button
+                id="validate-day-btn"
+                onclick="validateDay()"
+                class="btn-cyan"
+                style="max-width: 280px; margin: 0 auto"
+                disabled
+              >
+                VALIDER JOUR <span id="validate-day-num">1</span> &rarr;
+              </button>
+              <p class="text-[10px] text-white/20 mt-2">
+                Complète toutes les tâches pour valider
+              </p>
+            </div>
+          </div>
+        </div>
 
-</div>
+        <!-- Completion screen -->
+        <div
+          id="completion-screen"
+          style="display: none"
+          class="mt-8 text-center"
+        >
+          <div
+            class="glass-card p-10"
+            style="
+              border-color: rgba(0, 237, 239, 0.15);
+              box-shadow: 0 0 60px rgba(0, 237, 239, 0.08);
+            "
+          >
+            <div style="font-size: 72px; margin-bottom: 12px">🏆</div>
+            <h2
+              class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-2"
+              style="color: var(--cyan)"
+            >
+              Challenge Complété !
+            </h2>
+            <p class="text-white/50 mb-6">
+              Tu as terminé les 7 jours. Tes mécaniques, ton aim et ton game
+              sense ont monté d'un cran.
+            </p>
+            <div class="glass-card p-5 text-left max-w-sm mx-auto mb-6">
+              <strong class="text-sm block mb-2">Ton 9MM recommandé</strong>
+              <div class="flex items-center gap-3">
+                <div
+                  class="w-[40px] h-[65px] rounded-lg flex items-center justify-center shrink-0"
+                  style="
+                    background: rgba(0, 237, 239, 0.08);
+                    border: 1px solid rgba(0, 237, 239, 0.12);
+                  "
+                >
+                  <span
+                    class="font-oswald text-sm font-bold"
+                    style="color: var(--cyan)"
+                    >9MM</span
+                  >
+                </div>
+                <div>
+                  <strong class="text-sm" style="color: var(--cyan)"
+                    >Active Mind</strong
+                  >
+                  <p class="text-white/35 text-xs mt-0.5">
+                    Thé vert + Guarana pour des réflexes et une vigilance au top
+                    pendant tes sessions.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://9mm-energy.com"
+              class="btn-cyan inline-block px-8"
+              style="max-width: 300px"
+              >DÉCOUVRIR 9MM ACTIVE MIND &rarr;</a
+            >
+            <!-- Découvre aussi -->
+            <div class="mt-8 text-left">
+              <p
+                class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center"
+              >
+                Découvre aussi
+              </p>
+              <div class="space-y-2">
+                <a
+                  href="reaction-time-test.html"
+                  class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                  style="text-decoration: none"
+                  ><span style="color: var(--cyan)">&#9889;</span> Reaction Time
+                  Test</a
+                >
+                <a
+                  href="focus-score-test.html"
+                  class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                  style="text-decoration: none"
+                  ><span style="color: var(--cyan)">&#127919;</span> Focus Score
+                  Test</a
+                >
+                <a
+                  href="pro-match-quiz.html"
+                  class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                  style="text-decoration: none"
+                  ><span style="color: var(--red)">&#129354;</span> Ton Style de
+                  Boxe</a
+                >
+                <a
+                  href="quiz-military-training.html"
+                  class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70"
+                  style="text-decoration: none"
+                  ><span style="color: var(--red)">&#127894;</span> Challenge
+                  Militaire</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-<!-- ============ CHALLENGE TRACKER ============ -->
-<div id="tracker-screen" style="display:none">
+    <footer class="relative z-10 text-center py-8 mt-8">
+      <div class="max-w-md mx-auto border-t border-white/5 pt-6">
+        <img
+          src="images/BLANC/9MM_LOGO_BLANC.png"
+          alt="9MM Energy"
+          style="height: 50px; opacity: 0.4; display: inline-block"
+        />
+        <p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Europe SAS</p>
+      </div>
+      <div
+        style="
+          margin-top: 12px;
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+        "
+      >
+        <a
+          href="mentions-legales.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Mentions légales</a
+        >
+        <a
+          href="politique-confidentialite.html"
+          style="
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            text-decoration: none;
+          "
+          >Politique de confidentialité</a
+        >
+      </div>
+    </footer>
 
-<!-- Streak header -->
-<div class="text-center mb-6">
-<div class="streak-flame" style="font-size:48px" id="flame-icon">🔥</div>
-<span class="font-oswald text-5xl font-bold" style="color:var(--cyan)" id="streak-count">0</span>
-<span class="text-white/30 text-sm block mt-1">jours complétés</span>
-<div class="h-1.5 rounded-full bg-white/5 max-w-xs mx-auto mt-3 overflow-hidden">
-<div id="streak-bar" class="h-full rounded-full" style="width:0%;background:linear-gradient(90deg,var(--cyan),#00b8ba);transition:width .5s"></div>
-</div>
-<span class="text-[10px] text-white/20 mt-1 block" id="streak-label">0 / 7 jours</span>
-</div>
+    <script>
+      const STORAGE_KEY = "9mm-fortnite-challenge";
 
-<!-- Day cards -->
-<div class="space-y-3" id="days-container"></div>
+      const challenge = [
+        {
+          day: 1,
+          title: "Fondations et Mécaniques",
+          duration: "15 min",
+          content:
+            "Ne construis pas au hasard. Fais 5 min de freebuild (triple edits, retakes) et 10 min de Aim Trainer (tracking et réflexes au pompe) sur une map de Raider464.",
+          bonus:
+            "Pour bien améliorer tes réflexes, tu peux miser sur une boisson comme la 9MM Active Mind : ses extraits de Thé Vert et de Guarana aident à soutenir la vigilance nécessaire pour ne rater aucun edit.",
+          tasks: [
+            "5 min de freebuild (triple edits + retakes)",
+            "10 min de Aim Trainer sur map Raider464",
+            "Focus tracking + réflexes au pompe",
+          ],
+        },
+        {
+          day: 2,
+          title: "Le Grind du Realistic",
+          duration: "10 Rounds",
+          content:
+            "Utilise le mode Realistic 1v1. C'est le meilleur moyen de simuler des combats de fin de partie. Focus sur le gain de hauteur et le placement de tes builds avant l'adversaire.",
+          bonus: null,
+          tasks: [
+            "10 rounds en Realistic 1v1",
+            "Focus gain de hauteur à chaque fight",
+            "Placement de builds AVANT l'adversaire",
+            "Note tes erreurs après chaque round",
+          ],
+        },
+        {
+          day: 3,
+          title: "Agressivité Maximale",
+          duration: "3 Games",
+          content:
+            'Active le mode "W-Key". Ne campe pas, ne farme pas pendant 20 minutes. Dès que tu as un pompe, fonce sur chaque bruit de tir pour t\'habituer à la pression du combat en jeu reel.',
+          bonus:
+            "Pour maintenir une lucidité constante même dans le chaos, les vitamines B (B3, B5, B6, B12) et le magnesium de 9MM Active Mind sont tes alliés pour réduire la fatigue mentale.",
+          tasks: [
+            "3 games en mode W-Key total",
+            "Rush chaque bruit de tir",
+            "Zero camping, zero farm inutile",
+            "Minimum 5 eliminations par game",
+          ],
+        },
+        {
+          day: 4,
+          title: "Fluidité et Constance",
+          duration: "20 min",
+          content:
+            "Travaille ton crosshair placement. Sois régulier dans tes mouvements, évite les gestes inutiles et surtout, arrête de camper dans des box. C'est toi qui dois imposer le rythme.",
+          bonus: null,
+          tasks: [
+            "20 min de crosshair placement drills",
+            "Zero gestes inutiles (mouvement propre)",
+            "Impose ton rythme dans chaque fight",
+            "Pas de box camping",
+          ],
+        },
+        {
+          day: 5,
+          title: "Analyse et VOD Review",
+          duration: "20 min",
+          content:
+            "Regarde tes propres replays ou ceux de pros comme Pollo. Identifie chaque erreur de placement ou chaque décision tardive qui t'a coûté la vie.",
+          bonus: null,
+          tasks: [
+            "Review 2-3 de tes replays récents",
+            "Identifie tes erreurs de placement",
+            "Note chaque décision tardive",
+            "Regarde 1 VOD d'un pro (Pollo, Peterbot)",
+          ],
+        },
+        {
+          day: 6,
+          title: "Maîtrise du Piece Control",
+          duration: "15-20 min",
+          content:
+            "Passe 15 à 20 minutes sur une map de Piece Control. L'objectif est d'automatiser l'enfermement de l'adversaire (murs, cones) avant même de tirer.",
+          bonus: null,
+          tasks: [
+            "15-20 min sur map Piece Control",
+            "Automatise murs + cones autour de l'ennemi",
+            "Enferme AVANT de tirer",
+            "Enchaîne 3 piece controls propres d'affilée",
+          ],
+        },
+        {
+          day: 7,
+          title: "Le Test Final (Ranked)",
+          duration: "5-10 Games",
+          content:
+            "Applique tout ce que tu as appris. Joue 5 à 10 parties en restant calme et méthodique. Analyse si ton tracking est plus propre et si tes prises de décisions sont plus rapides.",
+          bonus: null,
+          tasks: [
+            "5-10 games en Ranked",
+            "Reste calme et méthodique",
+            "Applique TOUT ce que tu as appris (J1-J6)",
+            "Évalue ta progression : tracking + decision-making",
+          ],
+        },
+      ];
 
-<!-- Expanded day detail -->
-<div id="day-detail" style="display:none" class="mt-6">
-<div class="glass-card p-6" style="border-color:rgba(0,237,239,.12);box-shadow:0 0 40px rgba(0,237,239,.06)">
-<div class="flex items-center justify-between mb-4">
-<div>
-<span class="text-[10px] tracking-[.2em] uppercase text-cyan-400 font-semibold" id="detail-tag">JOUR 1</span>
-<h3 class="font-oswald text-xl font-bold uppercase mt-1" id="detail-title">-</h3>
-</div>
-<button onclick="closeDetail()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/30 hover:text-white/60 transition text-sm border-0 cursor-pointer">&times;</button>
-</div>
-<div id="detail-content" class="text-white/55 text-sm leading-relaxed mb-5"></div>
-<div id="detail-bonus" class="bonus-card mb-5" style="display:none">
-<div class="flex items-start gap-2">
-<span style="font-size:18px">🎁</span>
-<div>
-<strong class="text-cyan-400 text-xs uppercase tracking-wider">Bonus 9MM</strong>
-<p class="text-white/50 text-sm mt-1" id="bonus-text"></p>
-</div>
-</div>
-</div>
-<div class="space-y-2" id="detail-tasks"></div>
-<div class="mt-4 text-center">
-<button id="validate-day-btn" onclick="validateDay()" class="btn-cyan" style="max-width:280px;margin:0 auto" disabled>VALIDER JOUR <span id="validate-day-num">1</span> &rarr;</button>
-<p class="text-[10px] text-white/20 mt-2">Complète toutes les tâches pour valider</p>
-</div>
-</div>
-</div>
+      let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+      let currentDetailDay = null;
 
-<!-- Completion screen -->
-<div id="completion-screen" style="display:none" class="mt-8 text-center">
-<div class="glass-card p-10" style="border-color:rgba(0,237,239,.15);box-shadow:0 0 60px rgba(0,237,239,.08)">
-<div style="font-size:72px;margin-bottom:12px">🏆</div>
-<h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-2" style="color:var(--cyan)">Challenge Complété !</h2>
-<p class="text-white/50 mb-6">Tu as terminé les 7 jours. Tes mécaniques, ton aim et ton game sense ont monté d'un cran.</p>
-<div class="glass-card p-5 text-left max-w-sm mx-auto mb-6">
-<strong class="text-sm block mb-2">Ton 9MM recommandé</strong>
-<div class="flex items-center gap-3">
-<div class="w-[40px] h-[65px] rounded-lg flex items-center justify-center shrink-0" style="background:rgba(0,237,239,.08);border:1px solid rgba(0,237,239,.12)"><span class="font-oswald text-sm font-bold" style="color:var(--cyan)">9MM</span></div>
-<div><strong class="text-sm" style="color:var(--cyan)">Active Mind</strong><p class="text-white/35 text-xs mt-0.5">Thé vert + Guarana pour des réflexes et une vigilance au top pendant tes sessions.</p></div>
-</div>
-</div>
-<a href="https://9mm-energy.com" class="btn-cyan inline-block px-8" style="max-width:300px">DÉCOUVRIR 9MM ACTIVE MIND &rarr;</a>
-<!-- Découvre aussi -->
-<div class="mt-8 text-left">
-<p class="text-[10px] text-white/25 uppercase tracking-wider mb-3 text-center">Découvre aussi</p>
-<div class="space-y-2">
-<a href="reaction-time-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#9889;</span> Reaction Time Test</a>
-<a href="focus-score-test.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-cyan-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--cyan)">&#127919;</span> Focus Score Test</a>
-<a href="pro-match-quiz.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#129354;</span> Ton Style de Boxe</a>
-<a href="quiz-military-training.html" class="flex items-center gap-3 p-3 rounded-xl bg-white/3 border border-white/5 hover:border-red-500/20 hover:bg-white/5 transition text-sm text-white/50 hover:text-white/70" style="text-decoration:none"><span style="color:var(--red)">&#127894;</span> Challenge Militaire</a>
-</div>
-</div>
-</div>
-</div>
-</div>
+      function save() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      }
 
-</main>
+      function captureEmail(e) {
+        e.preventDefault();
+        fbq("trackCustom", "StartQuiz", { quiz_name: "challenge-fortnite-7j" });
+        fbq("track", "Lead", { content_name: "challenge-fortnite-7j" });
+        const fd = new FormData(e.target);
+        const d = {};
+        fd.forEach((v, k) => (d[k] = v));
+        d.source = "challenge-fortnite-7j";
+        d.timestamp = new Date().toISOString();
+        console.log("9MM Lead captured:", d);
+        fetch("https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/vnd.api+json",
+            revision: "2026-01-15",
+          },
+          body: JSON.stringify({
+            data: {
+              type: "subscription",
+              attributes: {
+                profile: {
+                  data: {
+                    type: "profile",
+                    attributes: {
+                      email: d.email,
+                      first_name: d.name || "",
+                      properties: {
+                        source: "challenge-fortnite-7j",
+                        age_range: d.age_range || "",
+                        departement: d.departement || "",
+                      },
+                    },
+                    subscriptions: {
+                      email: { marketing: { consent: "SUBSCRIBED" } },
+                    },
+                  },
+                },
+              },
+              relationships: { list: { data: { type: "list", id: "TShCcn" } } },
+            },
+          }),
+        }).catch((err) => console.error("Klaviyo error:", err));
+        if (!data) {
+          data = {
+            startDate: new Date().toISOString().split("T")[0],
+            days: {},
+            name: d.name,
+          };
+        }
+        save();
+        document.getElementById("gate-screen").style.display = "none";
+        document.getElementById("tracker-screen").style.display = "block";
+        render();
+      }
 
-<footer class="relative z-10 text-center py-8 mt-8">
-<div class="max-w-md mx-auto border-t border-white/5 pt-6"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:50px;opacity:.4;display:inline-block"><p class="text-white/20 text-xs mt-2">&copy; 2026 9MM Suisse SA</p></div>
-<div style="margin-top:12px;display:flex;gap:16px;justify-content:center">
-<a href="mentions-legales.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Mentions légales</a>
-<a href="politique-confidentialite.html" style="color:rgba(255,255,255,.2);font-size:10px;text-decoration:none">Politique de confidentialité</a>
-</div>
-</footer>
+      // Check if already started
+      if (data) {
+        document.getElementById("gate-screen").style.display = "none";
+        document.getElementById("tracker-screen").style.display = "block";
+        setTimeout(render, 100);
+      }
 
-<script>
-const STORAGE_KEY = '9mm-fortnite-challenge';
+      function render() {
+        const completedCount = Object.values(data.days).filter(
+          (d) => d.validated,
+        ).length;
 
-const challenge = [
-  {
-    day: 1,
-    title: 'Fondations et Mécaniques',
-    duration: '15 min',
-    content: 'Ne construis pas au hasard. Fais 5 min de freebuild (triple edits, retakes) et 10 min de Aim Trainer (tracking et réflexes au pompe) sur une map de Raider464.',
-    bonus: 'Pour bien améliorer tes réflexes, tu peux miser sur une boisson comme la 9MM Active Mind : ses extraits de Thé Vert et de Guarana aident à soutenir la vigilance nécessaire pour ne rater aucun edit.',
-    tasks: ['5 min de freebuild (triple edits + retakes)', '10 min de Aim Trainer sur map Raider464', 'Focus tracking + réflexes au pompe']
-  },
-  {
-    day: 2,
-    title: 'Le Grind du Realistic',
-    duration: '10 Rounds',
-    content: 'Utilise le mode Realistic 1v1. C\'est le meilleur moyen de simuler des combats de fin de partie. Focus sur le gain de hauteur et le placement de tes builds avant l\'adversaire.',
-    bonus: null,
-    tasks: ['10 rounds en Realistic 1v1', 'Focus gain de hauteur à chaque fight', 'Placement de builds AVANT l\'adversaire', 'Note tes erreurs après chaque round']
-  },
-  {
-    day: 3,
-    title: 'Agressivité Maximale',
-    duration: '3 Games',
-    content: 'Active le mode "W-Key". Ne campe pas, ne farme pas pendant 20 minutes. Dès que tu as un pompe, fonce sur chaque bruit de tir pour t\'habituer à la pression du combat en jeu reel.',
-    bonus: 'Pour maintenir une lucidité constante même dans le chaos, les vitamines B (B3, B5, B6, B12) et le magnesium de 9MM Active Mind sont tes alliés pour réduire la fatigue mentale.',
-    tasks: ['3 games en mode W-Key total', 'Rush chaque bruit de tir', 'Zero camping, zero farm inutile', 'Minimum 5 eliminations par game']
-  },
-  {
-    day: 4,
-    title: 'Fluidité et Constance',
-    duration: '20 min',
-    content: 'Travaille ton crosshair placement. Sois régulier dans tes mouvements, évite les gestes inutiles et surtout, arrête de camper dans des box. C\'est toi qui dois imposer le rythme.',
-    bonus: null,
-    tasks: ['20 min de crosshair placement drills', 'Zero gestes inutiles (mouvement propre)', 'Impose ton rythme dans chaque fight', 'Pas de box camping']
-  },
-  {
-    day: 5,
-    title: 'Analyse et VOD Review',
-    duration: '20 min',
-    content: 'Regarde tes propres replays ou ceux de pros comme Pollo. Identifie chaque erreur de placement ou chaque décision tardive qui t\'a coûté la vie.',
-    bonus: null,
-    tasks: ['Review 2-3 de tes replays récents', 'Identifie tes erreurs de placement', 'Note chaque décision tardive', 'Regarde 1 VOD d\'un pro (Pollo, Peterbot)']
-  },
-  {
-    day: 6,
-    title: 'Maîtrise du Piece Control',
-    duration: '15-20 min',
-    content: 'Passe 15 à 20 minutes sur une map de Piece Control. L\'objectif est d\'automatiser l\'enfermement de l\'adversaire (murs, cones) avant même de tirer.',
-    bonus: null,
-    tasks: ['15-20 min sur map Piece Control', 'Automatise murs + cones autour de l\'ennemi', 'Enferme AVANT de tirer', 'Enchaîne 3 piece controls propres d\'affilée']
-  },
-  {
-    day: 7,
-    title: 'Le Test Final (Ranked)',
-    duration: '5-10 Games',
-    content: 'Applique tout ce que tu as appris. Joue 5 à 10 parties en restant calme et méthodique. Analyse si ton tracking est plus propre et si tes prises de décisions sont plus rapides.',
-    bonus: null,
-    tasks: ['5-10 games en Ranked', 'Reste calme et méthodique', 'Applique TOUT ce que tu as appris (J1-J6)', 'Évalue ta progression : tracking + decision-making']
-  }
-];
+        // Streak
+        document.getElementById("streak-count").textContent = completedCount;
+        document.getElementById("streak-bar").style.width =
+          (completedCount / 7) * 100 + "%";
+        document.getElementById("streak-label").textContent =
+          completedCount + " / 7 jours";
 
-let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
-let currentDetailDay = null;
+        // Flame size
+        const flame = document.getElementById("flame-icon");
+        flame.style.fontSize = Math.max(36, 36 + completedCount * 4) + "px";
 
-function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+        // Day cards
+        const container = document.getElementById("days-container");
+        container.innerHTML = "";
 
-function captureEmail(e) {
-  e.preventDefault();
-  fbq('trackCustom','StartQuiz',{quiz_name:'challenge-fortnite-7j'});
-  fbq('track','Lead',{content_name:'challenge-fortnite-7j'});
-  const fd = new FormData(e.target);
-  const d = {}; fd.forEach((v, k) => d[k] = v);
-  d.source = 'challenge-fortnite-7j';
-  d.timestamp = new Date().toISOString();
-  console.log('9MM Lead captured:', d);
-  fetch('https://a.klaviyo.com/client/subscriptions/?company_id=WUQmhH',{method:'POST',headers:{'Content-Type':'application/vnd.api+json',revision:'2026-01-15'},body:JSON.stringify({data:{type:'subscription',attributes:{profile:{data:{type:'profile',attributes:{email:d.email,first_name:d.name||'',properties:{source:'challenge-fortnite-7j',age_range:d.age_range||'',departement:d.departement||''}},subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}}}},relationships:{list:{data:{type:'list',id:'TShCcn'}}}}})}).catch(err=>console.error('Klaviyo error:',err));
-  if (!data) {
-    data = { startDate: new Date().toISOString().split('T')[0], days: {}, name: d.name };
-  }
-  save();
-  document.getElementById('gate-screen').style.display = 'none';
-  document.getElementById('tracker-screen').style.display = 'block';
-  render();
-}
+        challenge.forEach((ch, i) => {
+          const dayNum = i + 1;
+          const dayKey = "day-" + dayNum;
+          const isCompleted = data.days[dayKey] && data.days[dayKey].validated;
+          const prevCompleted =
+            dayNum === 1 ||
+            (data.days["day-" + (dayNum - 1)] &&
+              data.days["day-" + (dayNum - 1)].validated);
+          const isAvailable = prevCompleted && !isCompleted;
 
-// Check if already started
-if (data) {
-  document.getElementById('gate-screen').style.display = 'none';
-  document.getElementById('tracker-screen').style.display = 'block';
-  setTimeout(render, 100);
-}
-
-function render() {
-  const completedCount = Object.values(data.days).filter(d => d.validated).length;
-
-  // Streak
-  document.getElementById('streak-count').textContent = completedCount;
-  document.getElementById('streak-bar').style.width = (completedCount / 7 * 100) + '%';
-  document.getElementById('streak-label').textContent = completedCount + ' / 7 jours';
-
-  // Flame size
-  const flame = document.getElementById('flame-icon');
-  flame.style.fontSize = Math.max(36, 36 + completedCount * 4) + 'px';
-
-  // Day cards
-  const container = document.getElementById('days-container');
-  container.innerHTML = '';
-
-  challenge.forEach((ch, i) => {
-    const dayNum = i + 1;
-    const dayKey = 'day-' + dayNum;
-    const isCompleted = data.days[dayKey] && data.days[dayKey].validated;
-    const prevCompleted = dayNum === 1 || (data.days['day-' + (dayNum - 1)] && data.days['day-' + (dayNum - 1)].validated);
-    const isAvailable = prevCompleted && !isCompleted;
-
-    const card = document.createElement('div');
-    card.className = 'day-card ' + (isCompleted ? 'completed' : isAvailable ? 'available' : 'locked');
-    card.innerHTML = `
+          const card = document.createElement("div");
+          card.className =
+            "day-card " +
+            (isCompleted ? "completed" : isAvailable ? "available" : "locked");
+          card.innerHTML = `
       <div class="flex items-center gap-4">
         <div class="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 font-oswald text-lg font-bold"
-             style="background:${isCompleted ? 'rgba(0,237,239,.15)' : 'rgba(255,255,255,.04)'};color:${isCompleted ? 'var(--cyan)' : 'rgba(255,255,255,.2)'}">
-          ${isCompleted ? '&#10003;' : 'J' + dayNum}
+             style="background:${isCompleted ? "rgba(0,237,239,.15)" : "rgba(255,255,255,.04)"};color:${isCompleted ? "var(--cyan)" : "rgba(255,255,255,.2)"}">
+          ${isCompleted ? "&#10003;" : "J" + dayNum}
         </div>
         <div class="flex-1 min-w-0">
           <div class="flex items-center gap-2">
             <h3 class="font-oswald text-sm font-bold uppercase truncate">${ch.title}</h3>
             <span class="text-[10px] px-2 py-0.5 rounded-full shrink-0" style="background:rgba(0,237,239,.06);color:var(--cyan);border:1px solid rgba(0,237,239,.1)">${ch.duration}</span>
           </div>
-          <p class="text-white/30 text-xs mt-1 truncate">${isCompleted ? 'Complété &#10003;' : ch.content.substring(0, 60) + '...'}</p>
+          <p class="text-white/30 text-xs mt-1 truncate">${isCompleted ? "Complété &#10003;" : ch.content.substring(0, 60) + "..."}</p>
         </div>
-        ${isAvailable ? '<span class="text-cyan-400 text-sm shrink-0">&rarr;</span>' : ''}
+        ${isAvailable ? '<span class="text-cyan-400 text-sm shrink-0">&rarr;</span>' : ""}
       </div>
     `;
 
-    if (isAvailable) {
-      card.onclick = () => openDetail(dayNum);
-    }
+          if (isAvailable) {
+            card.onclick = () => openDetail(dayNum);
+          }
 
-    container.appendChild(card);
-  });
+          container.appendChild(card);
+        });
 
-  // Check completion
-  if (completedCount >= 7) {
-    fbq('trackCustom','QuizComplete',{quiz_name:'challenge-fortnite-7j'});
-    document.getElementById('completion-screen').style.display = 'block';
-    launchConfetti();
-  }
-}
+        // Check completion
+        if (completedCount >= 7) {
+          fbq("trackCustom", "QuizComplete", {
+            quiz_name: "challenge-fortnite-7j",
+          });
+          document.getElementById("completion-screen").style.display = "block";
+          launchConfetti();
+        }
+      }
 
-function openDetail(dayNum) {
-  currentDetailDay = dayNum;
-  const ch = challenge[dayNum - 1];
-  const detail = document.getElementById('day-detail');
+      function openDetail(dayNum) {
+        currentDetailDay = dayNum;
+        const ch = challenge[dayNum - 1];
+        const detail = document.getElementById("day-detail");
 
-  document.getElementById('detail-tag').textContent = 'JOUR ' + dayNum + ' — ' + ch.duration;
-  document.getElementById('detail-title').textContent = ch.title;
-  document.getElementById('detail-content').textContent = ch.content;
-  document.getElementById('validate-day-num').textContent = dayNum;
+        document.getElementById("detail-tag").textContent =
+          "JOUR " + dayNum + " — " + ch.duration;
+        document.getElementById("detail-title").textContent = ch.title;
+        document.getElementById("detail-content").textContent = ch.content;
+        document.getElementById("validate-day-num").textContent = dayNum;
 
-  // Bonus
-  const bonusEl = document.getElementById('detail-bonus');
-  if (ch.bonus) {
-    bonusEl.style.display = 'block';
-    document.getElementById('bonus-text').textContent = ch.bonus;
-  } else {
-    bonusEl.style.display = 'none';
-  }
+        // Bonus
+        const bonusEl = document.getElementById("detail-bonus");
+        if (ch.bonus) {
+          bonusEl.style.display = "block";
+          document.getElementById("bonus-text").textContent = ch.bonus;
+        } else {
+          bonusEl.style.display = "none";
+        }
 
-  // Tasks
-  const tasksEl = document.getElementById('detail-tasks');
-  tasksEl.innerHTML = '';
-  ch.tasks.forEach((t, i) => {
-    const item = document.createElement('div');
-    item.className = 'check-item unchecked';
-    item.dataset.idx = i;
-    item.onclick = () => toggleTask(item);
-    item.innerHTML = `<div class="check-box"></div><span class="text-sm">${t}</span>`;
-    tasksEl.appendChild(item);
-  });
+        // Tasks
+        const tasksEl = document.getElementById("detail-tasks");
+        tasksEl.innerHTML = "";
+        ch.tasks.forEach((t, i) => {
+          const item = document.createElement("div");
+          item.className = "check-item unchecked";
+          item.dataset.idx = i;
+          item.onclick = () => toggleTask(item);
+          item.innerHTML = `<div class="check-box"></div><span class="text-sm">${t}</span>`;
+          tasksEl.appendChild(item);
+        });
 
-  document.getElementById('validate-day-btn').disabled = true;
-  detail.style.display = 'block';
-  detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+        document.getElementById("validate-day-btn").disabled = true;
+        detail.style.display = "block";
+        detail.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
 
-function closeDetail() {
-  document.getElementById('day-detail').style.display = 'none';
-  currentDetailDay = null;
-}
+      function closeDetail() {
+        document.getElementById("day-detail").style.display = "none";
+        currentDetailDay = null;
+      }
 
-function toggleTask(el) {
-  const isChecked = el.classList.contains('checked');
-  if (isChecked) {
-    el.className = 'check-item unchecked';
-    el.querySelector('.check-box').innerHTML = '';
-  } else {
-    el.className = 'check-item checked';
-    el.querySelector('.check-box').innerHTML = '<span style="color:#000;font-size:12px">&#10003;</span>';
-  }
+      function toggleTask(el) {
+        const isChecked = el.classList.contains("checked");
+        if (isChecked) {
+          el.className = "check-item unchecked";
+          el.querySelector(".check-box").innerHTML = "";
+        } else {
+          el.className = "check-item checked";
+          el.querySelector(".check-box").innerHTML =
+            '<span style="color:#000;font-size:12px">&#10003;</span>';
+        }
 
-  const total = document.querySelectorAll('#detail-tasks .check-item').length;
-  const checked = document.querySelectorAll('#detail-tasks .check-item.checked').length;
-  document.getElementById('validate-day-btn').disabled = checked < total;
-}
+        const total = document.querySelectorAll(
+          "#detail-tasks .check-item",
+        ).length;
+        const checked = document.querySelectorAll(
+          "#detail-tasks .check-item.checked",
+        ).length;
+        document.getElementById("validate-day-btn").disabled = checked < total;
+      }
 
-function validateDay() {
-  if (!currentDetailDay) return;
-  const dayKey = 'day-' + currentDetailDay;
-  data.days[dayKey] = { validated: true, time: new Date().toISOString() };
-  save();
-  closeDetail();
-  render();
-  miniConfetti();
-}
+      function validateDay() {
+        if (!currentDetailDay) return;
+        const dayKey = "day-" + currentDetailDay;
+        data.days[dayKey] = { validated: true, time: new Date().toISOString() };
+        save();
+        closeDetail();
+        render();
+        miniConfetti();
+      }
 
-function launchConfetti() {
-  const container = document.getElementById('confetti-container');
-  const colors = ['#00EDEF', '#FF1717', '#FFD700', '#fff', '#00b8ba'];
-  for (let i = 0; i < 60; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = Math.random() * 100 + '%';
-    piece.style.top = '-10px';
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-    piece.style.width = (6 + Math.random() * 8) + 'px';
-    piece.style.height = (6 + Math.random() * 8) + 'px';
-    piece.style.animationDelay = (Math.random() * 1.5) + 's';
-    piece.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
-    container.appendChild(piece);
-  }
-  setTimeout(() => { container.innerHTML = ''; }, 4000);
-}
+      function launchConfetti() {
+        const container = document.getElementById("confetti-container");
+        const colors = ["#00EDEF", "#FF1717", "#FFD700", "#fff", "#00b8ba"];
+        for (let i = 0; i < 60; i++) {
+          const piece = document.createElement("div");
+          piece.className = "confetti-piece";
+          piece.style.left = Math.random() * 100 + "%";
+          piece.style.top = "-10px";
+          piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          piece.style.borderRadius = Math.random() > 0.5 ? "50%" : "2px";
+          piece.style.width = 6 + Math.random() * 8 + "px";
+          piece.style.height = 6 + Math.random() * 8 + "px";
+          piece.style.animationDelay = Math.random() * 1.5 + "s";
+          piece.style.animationDuration = 1.5 + Math.random() * 1.5 + "s";
+          container.appendChild(piece);
+        }
+        setTimeout(() => {
+          container.innerHTML = "";
+        }, 4000);
+      }
 
-function miniConfetti() {
-  const container = document.getElementById('confetti-container');
-  const colors = ['#00EDEF', '#00b8ba', '#fff'];
-  for (let i = 0; i < 20; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = (30 + Math.random() * 40) + '%';
-    piece.style.top = '-10px';
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.borderRadius = '50%';
-    piece.style.width = (4 + Math.random() * 6) + 'px';
-    piece.style.height = (4 + Math.random() * 6) + 'px';
-    piece.style.animationDelay = (Math.random() * .5) + 's';
-    piece.style.animationDuration = (1 + Math.random() * 1) + 's';
-    container.appendChild(piece);
-  }
-  setTimeout(() => { container.innerHTML = ''; }, 2500);
-}
-</script>
-<!-- Cookie Consent Bar -->
-<div id="cookie-bar" style="position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:rgba(17,17,17,.97);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
-<p style="color:rgba(255,255,255,.6);font-size:13px;margin:0;line-height:1.5;max-width:600px">Ce site utilise des cookies pour mesurer la performance et améliorer ton expérience. <a href="politique-confidentialite.html" style="color:rgba(0,237,239,.7);text-decoration:underline">En savoir plus</a></p>
-<div style="display:flex;gap:10px;flex-shrink:0">
-<button onclick="acceptCookies()" style="background:linear-gradient(135deg,#FF1717,#cc1212);color:#fff;font-weight:700;padding:10px 24px;border-radius:10px;border:none;cursor:pointer;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:13px;white-space:nowrap">Accepter</button>
-<button onclick="refuseCookies()" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);font-weight:600;padding:10px 18px;border-radius:10px;border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:12px;white-space:nowrap">Refuser</button>
-</div>
-</div>
-<script>
-function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none';loadFBPixel()}
-function refuseCookies(){localStorage.setItem('9mm_cookies','refused');document.getElementById('cookie-bar').style.display='none'}
-function loadFBPixel(){!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','478088670624086');fbq('track','PageView')}
-(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'){document.getElementById('cookie-bar').style.display='none';loadFBPixel()}else if(c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
-</script>
-</body>
+      function miniConfetti() {
+        const container = document.getElementById("confetti-container");
+        const colors = ["#00EDEF", "#00b8ba", "#fff"];
+        for (let i = 0; i < 20; i++) {
+          const piece = document.createElement("div");
+          piece.className = "confetti-piece";
+          piece.style.left = 30 + Math.random() * 40 + "%";
+          piece.style.top = "-10px";
+          piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+          piece.style.borderRadius = "50%";
+          piece.style.width = 4 + Math.random() * 6 + "px";
+          piece.style.height = 4 + Math.random() * 6 + "px";
+          piece.style.animationDelay = Math.random() * 0.5 + "s";
+          piece.style.animationDuration = 1 + Math.random() * 1 + "s";
+          container.appendChild(piece);
+        }
+        setTimeout(() => {
+          container.innerHTML = "";
+        }, 2500);
+      }
+    </script>
+    <!-- Cookie Consent Bar -->
+    <div
+      id="cookie-bar"
+      style="
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background: rgba(17, 17, 17, 0.97);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      "
+    >
+      <p
+        style="
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 13px;
+          margin: 0;
+          line-height: 1.5;
+          max-width: 600px;
+        "
+      >
+        Ce site utilise des cookies pour mesurer la performance et améliorer ton
+        expérience.
+        <a
+          href="politique-confidentialite.html"
+          style="color: rgba(0, 237, 239, 0.7); text-decoration: underline"
+          >En savoir plus</a
+        >
+      </p>
+      <div style="display: flex; gap: 10px; flex-shrink: 0">
+        <button
+          onclick="acceptCookies()"
+          style="
+            background: linear-gradient(135deg, #ff1717, #cc1212);
+            color: #fff;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: &quot;Oswald&quot;, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 13px;
+            white-space: nowrap;
+          "
+        >
+          Accepter
+        </button>
+        <button
+          onclick="refuseCookies()"
+          style="
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+          "
+        >
+          Refuser
+        </button>
+      </div>
+    </div>
+    <script>
+      function acceptCookies() {
+        localStorage.setItem("9mm_cookies", "accepted");
+        document.getElementById("cookie-bar").style.display = "none";
+        loadFBPixel();
+      }
+      function refuseCookies() {
+        localStorage.setItem("9mm_cookies", "refused");
+        document.getElementById("cookie-bar").style.display = "none";
+      }
+      function loadFBPixel() {
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () {
+            n.callMethod
+              ? n.callMethod.apply(n, arguments)
+              : n.queue.push(arguments);
+          };
+          if (!f._fbq) f._fbq = n;
+          n.push = n;
+          n.loaded = !0;
+          n.version = "2.0";
+          n.queue = [];
+          t = b.createElement(e);
+          t.async = !0;
+          t.src = v;
+          s = b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t, s);
+        })(
+          window,
+          document,
+          "script",
+          "https://connect.facebook.net/en_US/fbevents.js",
+        );
+        fbq("init", "478088670624086");
+        fbq("track", "PageView");
+      }
+      (function () {
+        var c = localStorage.getItem("9mm_cookies");
+        if (c === "accepted") {
+          document.getElementById("cookie-bar").style.display = "none";
+          loadFBPixel();
+        } else if (c === "refused") {
+          document.getElementById("cookie-bar").style.display = "none";
+        }
+      })();
+    </script>
+  </body>
 </html>
