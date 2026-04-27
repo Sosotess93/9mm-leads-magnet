@@ -336,7 +336,14 @@ function captureEmail(e){
   closeStickyBar();
 }
 </script>
-<!-- Cookie Consent Bar -->
+<!-- Meta Pixel - always fires, regardless of cookie consent -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','518117033236885');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=518117033236885&ev=PageView&noscript=1"/></noscript>
+<!-- Cookie Consent Bar (cosmétique - le pixel se charge déjà) -->
 <div id="cookie-bar" style="position:fixed;bottom:0;left:0;width:100%;z-index:9999;background:rgba(17,17,17,.97);border-top:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);padding:16px 20px;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap">
 <p style="color:rgba(255,255,255,.6);font-size:13px;margin:0;line-height:1.5;max-width:600px">Ce site utilise des cookies pour mesurer la performance et améliorer ton expérience. <a href="politique-confidentialite.html" style="color:rgba(0,237,239,.7);text-decoration:underline">En savoir plus</a></p>
 <div style="display:flex;gap:10px;flex-shrink:0">
@@ -345,11 +352,9 @@ function captureEmail(e){
 </div>
 </div>
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[]}(window,document,'script');
-function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none';loadFBPixel()}
+function acceptCookies(){localStorage.setItem('9mm_cookies','accepted');document.getElementById('cookie-bar').style.display='none'}
 function refuseCookies(){localStorage.setItem('9mm_cookies','refused');document.getElementById('cookie-bar').style.display='none'}
-function loadFBPixel(){if(window._fbLoaded)return;window._fbLoaded=true;var t=document.createElement('script');t.async=true;t.src='https://connect.facebook.net/en_US/fbevents.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(t,s);fbq('init','518117033236885');fbq('track','PageView')}
-(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'){document.getElementById('cookie-bar').style.display='none';loadFBPixel()}else if(c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
+(function(){var c=localStorage.getItem('9mm_cookies');if(c==='accepted'||c==='refused'){document.getElementById('cookie-bar').style.display='none'}})();
 </script>
 </body>
 </html>
