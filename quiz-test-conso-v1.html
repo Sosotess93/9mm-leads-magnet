@@ -360,14 +360,6 @@ function renderWelcome(){
   tag.style.marginBottom = '20px';
   wrap.appendChild(tag);
 
-  // Floating cans visual
-  const cans = el('div','cans-visual');
-  const canRed = el('div','can-pill red','9MM');
-  const canBlue = el('div','can-pill blue','9MM');
-  cans.appendChild(canRed);
-  cans.appendChild(canBlue);
-  wrap.appendChild(cans);
-
   const h1 = el('h1','font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4',"Donne-nous ton avis");
   h1.style.background = 'linear-gradient(90deg,var(--red),var(--cyan))';
   h1.style.webkitBackgroundClip = 'text';
