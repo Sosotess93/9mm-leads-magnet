@@ -1,0 +1,10 @@
+# QR codes (locaux, ne pas push)
+qr-codes/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
