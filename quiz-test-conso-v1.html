@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','518117033236885');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=518117033236885&ev=PageView&noscript=1"/></noscript>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Test Consommateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes checkmarkPop{0%{opacity:0;transform:scale(0.3) rotate(-20deg)}60%{transform:scale(1.15) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+.fade-in{animation:fadeSlideBlurIn .4s cubic-bezier(.16,1,.3,1) both}
+*,*::before,*::after{box-sizing:border-box}
+
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-cyan:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:10px;cursor:pointer;font-size:13px;transition:all .25s;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-ghost:hover{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.3)}
+
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);font-family:inherit;resize:vertical}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+
+.choice-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 22px;cursor:pointer;color:#fff;font-size:16px;text-align:left;transition:all .25s;font-family:inherit;width:100%;display:flex;align-items:center;gap:14px}
+.choice-btn:hover:not(:disabled){background:rgba(0,237,239,.06);border-color:rgba(0,237,239,.3);transform:translateX(6px)}
+.choice-btn.selected{background:rgba(0,237,239,.1);border-color:var(--cyan);box-shadow:0 0 24px rgba(0,237,239,.18)}
+.choice-btn:disabled{opacity:.3;cursor:not-allowed}
+.choice-letter{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);flex-shrink:0;border:1px solid rgba(255,255,255,.1);text-transform:uppercase}
+.choice-btn.selected .choice-letter{background:var(--cyan);color:#000;border-color:transparent}
+
+.scale-9{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-bottom:8px}
+.scale-9-btn{aspect-ratio:1;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.6);font-weight:700;font-size:18px;cursor:pointer;transition:all .2s;font-family:'Oswald',sans-serif;display:flex;align-items:center;justify-content:center}
+.scale-9-btn:hover{background:rgba(255,255,255,.07);transform:translateY(-2px)}
+.scale-9-btn.selected{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,237,239,.3);transform:translateY(-2px)}
+.scale-9-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.product-card{padding:32px 20px;border-radius:16px;cursor:pointer;text-align:center;transition:all .3s;border:2px solid transparent;background:rgba(255,255,255,.03);font-family:inherit;color:#fff}
+.product-card:hover:not(:disabled){transform:translateY(-4px)}
+.product-card:disabled{opacity:.25;cursor:not-allowed}
+.product-card.rouge{border-color:rgba(255,23,23,.2);background:linear-gradient(180deg,rgba(255,23,23,.06),rgba(255,23,23,.02))}
+.product-card.rouge.selected{border-color:var(--red);box-shadow:0 0 30px rgba(255,23,23,.25);background:linear-gradient(180deg,rgba(255,23,23,.18),rgba(255,23,23,.05))}
+.product-card.bleu{border-color:rgba(0,237,239,.2);background:linear-gradient(180deg,rgba(0,237,239,.06),rgba(0,237,239,.02))}
+.product-card.bleu.selected{border-color:var(--cyan);box-shadow:0 0 30px rgba(0,237,239,.25);background:linear-gradient(180deg,rgba(0,237,239,.18),rgba(0,237,239,.05))}
+.product-emoji{font-size:60px;margin-bottom:12px;display:block}
+.product-label{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:22px;margin-bottom:6px}
+.product-tag{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+
+.section-tag{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:99px;margin-bottom:12px;background:rgba(0,237,239,.1);color:var(--cyan);border:1px solid rgba(0,237,239,.2)}
+.section-tag.rouge{background:rgba(255,23,23,.1);color:var(--red);border-color:rgba(255,23,23,.2)}
+
+.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .4s cubic-bezier(.16,1,.3,1)}
+
+.checkmark-circle{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#00b8ba);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:checkmarkPop .8s cubic-bezier(.16,1,.3,1) both;box-shadow:0 8px 40px rgba(0,237,239,.3)}
+.checkmark-circle svg{width:42px;height:42px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+.q-counter{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px;font-family:'Oswald',sans-serif;font-weight:600}
+.q-title{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,30px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15;margin-bottom:24px}
+.q-help{font-size:13px;color:rgba(255,255,255,.45);margin-top:-16px;margin-bottom:20px}
+
+@media(max-width:640px){
+  .glass-card{border-radius:12px}
+  main{padding-left:16px!important;padding-right:16px!important}
+  .scale-9-btn{font-size:14px}
+  .product-emoji{font-size:48px}
+}
+</style>
+</head>
+<body>
+
+<header style="position:relative;z-index:50;padding:20px 24px;text-align:center">
+<a href="index.html"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:80px;display:inline-block"></a>
+</header>
+
+<div class="quiz-progress"><div class="quiz-progress-fill" id="top-progress" style="width:0%"></div></div>
+
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<main class="max-w-xl mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
+<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<div id="step-container" class="flex-1 flex flex-col justify-center py-6"></div>
+
+</main>
+
+<script>
+const ENDPOINT = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';
+const VARIANT = 'v1';
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const answers = {};
+let currentStepIdx = 0;
+
+const OPTS = {
+  age: ['-18', '18-24', '25-34', '35-44', '45-54', '55+'],
+  sexe: ['Femme', 'Homme', 'Autre / préfère ne pas dire'],
+  frequence: [
+    {v:'tous_les_jours', l:'Tous les jours'},
+    {v:'plusieurs_par_semaine', l:'Plusieurs fois par semaine'},
+    {v:'occasionnellement', l:'Occasionnellement'},
+    {v:'rarement', l:'Rarement / jamais'}
+  ],
+  gout: ['Très mauvais','Mauvais','Moyen','Bon','Très bon'],
+  sucre: ['Beaucoup trop faible','Trop faible','Juste comme il faut','Trop élevé','Beaucoup trop élevé'],
+  acidite: ['Trop faible','Correcte','Trop forte'],
+  odeur: ['Très désagréable','Désagréable','Neutre','Agréable','Très agréable'],
+  texture: ['Très désagréable','Désagréable','Acceptable','Agréable','Très agréable'],
+  petillance: ['Trop faible','Correcte','Trop forte'],
+  couleur_visuel: ['Pas du tout attrayante','Peu attrayante','Moyenne','Attrayante','Très attrayante'],
+  intention_achat: [
+    {v:'oui_certainement', l:'Oui, certainement'},
+    {v:'oui_peut_etre', l:'Oui, peut-être'},
+    {v:'non_probablement', l:'Non, probablement pas'},
+    {v:'non_certainement', l:'Non, certainement pas'}
+  ],
+  prix: ['< 1€','1–2€','2–3€','> 3€']
+};
+
+function p2(){ return answers.nb_produits === 2; }
+
+const steps = [
+  {id:'welcome', render:renderWelcome},
+  {id:'nb_produits', q:"Tu testes combien de boissons aujourd'hui ?", section:"Étape 1 · Profil", type:'choice', key:'nb_produits', opts:[{v:1,l:'1 boisson'},{v:2,l:'2 boissons'}]},
+  {id:'age', q:"Quel est ton âge ?", section:"Profil", type:'choice', key:'age', opts:OPTS.age.map(v=>({v,l:v}))},
+  {id:'sexe', q:"Quel est ton sexe ?", section:"Profil", type:'choice', key:'sexe', opts:OPTS.sexe.map(v=>({v,l:v}))},
+  {id:'frequence', q:"À quelle fréquence consommes-tu ce type de boisson ?", section:"Profil", type:'choice', key:'frequence', opts:OPTS.frequence},
+
+  {id:'p1_couleur', q:"Quelle canette tu goûtes en premier ?", section:"Produit 1", type:'product', key:'p1_couleur'},
+  {id:'p1_note_globale', q:"Quelle est ton appréciation globale ?", section:"Produit 1 · Goût", type:'scale9', key:'p1_note_globale', help:"1 = Je déteste · 9 = J'adore"},
+  {id:'p1_gout', q:"Comment évalues-tu le goût ?", section:"Produit 1 · Goût", type:'choice', key:'p1_gout', opts:OPTS.gout.map(v=>({v,l:v}))},
+  {id:'p1_sucre', q:"Le niveau de sucre est…", section:"Produit 1 · Goût", type:'choice', key:'p1_sucre', opts:OPTS.sucre.map(v=>({v,l:v}))},
+  {id:'p1_acidite', q:"L'acidité est…", section:"Produit 1 · Goût", type:'choice', key:'p1_acidite', opts:OPTS.acidite.map(v=>({v,l:v}))},
+  {id:'p1_odeur', q:"L'odeur te semble…", section:"Produit 1 · Sensoriel", type:'choice', key:'p1_odeur', opts:OPTS.odeur.map(v=>({v,l:v}))},
+  {id:'p1_texture', q:"La texture est…", section:"Produit 1 · Sensoriel", type:'choice', key:'p1_texture', opts:OPTS.texture.map(v=>({v,l:v}))},
+  {id:'p1_petillance', q:"Le niveau de pétillance est…", section:"Produit 1 · Sensoriel", type:'choice', key:'p1_petillance', opts:OPTS.petillance.map(v=>({v,l:v}))},
+  {id:'p1_couleur_visuel', q:"La couleur te paraît…", section:"Produit 1 · Aspect", type:'choice', key:'p1_couleur_visuel', opts:OPTS.couleur_visuel.map(v=>({v,l:v}))},
+  {id:'p1_intention_achat', q:"Serais-tu prêt(e) à acheter ce produit ?", section:"Produit 1 · Achat", type:'choice', key:'p1_intention_achat', opts:OPTS.intention_achat},
+  {id:'p1_prix', q:"À quel prix achèterais-tu cette boisson ?", section:"Produit 1 · Achat", type:'choice', key:'p1_prix', opts:OPTS.prix.map(v=>({v,l:v}))},
+
+  {id:'p2_couleur', condition:p2, q:"Quelle est la deuxième canette ?", section:"Produit 2", type:'product', key:'p2_couleur'},
+  {id:'p2_note_globale', condition:p2, q:"Quelle est ton appréciation globale ?", section:"Produit 2 · Goût", type:'scale9', key:'p2_note_globale', help:"1 = Je déteste · 9 = J'adore"},
+  {id:'p2_gout', condition:p2, q:"Comment évalues-tu le goût ?", section:"Produit 2 · Goût", type:'choice', key:'p2_gout', opts:OPTS.gout.map(v=>({v,l:v}))},
+  {id:'p2_sucre', condition:p2, q:"Le niveau de sucre est…", section:"Produit 2 · Goût", type:'choice', key:'p2_sucre', opts:OPTS.sucre.map(v=>({v,l:v}))},
+  {id:'p2_acidite', condition:p2, q:"L'acidité est…", section:"Produit 2 · Goût", type:'choice', key:'p2_acidite', opts:OPTS.acidite.map(v=>({v,l:v}))},
+  {id:'p2_odeur', condition:p2, q:"L'odeur te semble…", section:"Produit 2 · Sensoriel", type:'choice', key:'p2_odeur', opts:OPTS.odeur.map(v=>({v,l:v}))},
+  {id:'p2_texture', condition:p2, q:"La texture est…", section:"Produit 2 · Sensoriel", type:'choice', key:'p2_texture', opts:OPTS.texture.map(v=>({v,l:v}))},
+  {id:'p2_petillance', condition:p2, q:"Le niveau de pétillance est…", section:"Produit 2 · Sensoriel", type:'choice', key:'p2_petillance', opts:OPTS.petillance.map(v=>({v,l:v}))},
+  {id:'p2_couleur_visuel', condition:p2, q:"La couleur te paraît…", section:"Produit 2 · Aspect", type:'choice', key:'p2_couleur_visuel', opts:OPTS.couleur_visuel.map(v=>({v,l:v}))},
+  {id:'p2_intention_achat', condition:p2, q:"Serais-tu prêt(e) à acheter ce produit ?", section:"Produit 2 · Achat", type:'choice', key:'p2_intention_achat', opts:OPTS.intention_achat},
+  {id:'p2_prix', condition:p2, q:"À quel prix achèterais-tu cette boisson ?", section:"Produit 2 · Achat", type:'choice', key:'p2_prix', opts:OPTS.prix.map(v=>({v,l:v}))},
+
+  {id:'compare', condition:p2, q:"Lequel tu préfères ?", section:"Comparaison", type:'choice', key:'prefere', opts:[{v:'body',l:'🔴 Body — canette rouge'},{v:'mind',l:'🔵 Mind — canette bleue'}]},
+
+  {id:'aime', q:"Qu'as-tu aimé dans cette boisson ?", section:"Avis libre · facultatif", type:'text', key:'aime', placeholder:"Le goût, l'effet, la couleur…"},
+  {id:'ameliorer', q:"Qu'améliorerais-tu ?", section:"Avis libre · facultatif", type:'text', key:'ameliorer', placeholder:"Moins sucré, plus pétillant…"},
+  {id:'description', q:"Comment décrirais-tu cette boisson en quelques mots ?", section:"Avis libre · facultatif", type:'text', key:'description', placeholder:"Rafraîchissante, originale, addictive…"},
+  {id:'email', q:"Ton email ?", help:"Facultatif — pour suivre les résultats du test.", section:"Presque fini", type:'email', key:'email', isLast:true},
+
+  {id:'thanks', render:renderThanks}
+];
+
+function clearContainer(){
+  const c = document.getElementById('step-container');
+  while(c.firstChild) c.removeChild(c.firstChild);
+  return c;
+}
+
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(text != null) e.textContent = text;
+  return e;
+}
+
+function getActiveSteps(){ return steps.filter(s=>!s.condition || s.condition()); }
+function updateProgress(){
+  const active = getActiveSteps();
+  const idx = active.findIndex(s=>s.id===steps[currentStepIdx].id);
+  const pct = active.length>1 ? Math.round((idx/(active.length-1))*100) : 0;
+  document.getElementById('top-progress').style.width = pct+'%';
+}
+function goNext(){
+  if(currentStepIdx === 1) fbq('trackCustom','TestConsoStart',{variant:VARIANT});
+  for(let i=currentStepIdx+1; i<steps.length; i++){
+    const s = steps[i];
+    if(!s.condition || s.condition()){
+      currentStepIdx = i;
+      renderStep();
+      return;
+    }
+  }
+}
+function goPrev(){
+  saveCurrentTextField();
+  for(let i=currentStepIdx-1; i>=0; i--){
+    const s = steps[i];
+    if(!s.condition || s.condition()){
+      currentStepIdx = i;
+      renderStep();
+      return;
+    }
+  }
+}
+function saveCurrentTextField(){
+  const s = steps[currentStepIdx];
+  if(!s) return;
+  if(s.type === 'text' || s.type === 'email'){
+    const inp = document.getElementById('field-input');
+    if(inp) answers[s.key] = inp.value.trim();
+  }
+}
+function renderStep(){
+  const s = steps[currentStepIdx];
+  if(s.render){ s.render(); updateProgress(); window.scrollTo({top:0,behavior:'smooth'}); return; }
+  renderQuestion(s);
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function tryNext(){
+  const s = steps[currentStepIdx];
+  if(s.type === 'text'){
+    saveCurrentTextField();
+    goNext();
+    return;
+  }
+  if(s.type === 'email'){
+    saveCurrentTextField();
+    if(s.isLast){ submitQuiz(); return; }
+    goNext();
+    return;
+  }
+  if(!answers[s.key]){
+    const btn = document.getElementById('next-btn');
+    if(btn){ btn.style.animation='shake .4s'; setTimeout(()=>btn.style.animation='',400); }
+    return;
+  }
+  goNext();
+}
+function refreshNextBtn(){
+  const s = steps[currentStepIdx];
+  const btn = document.getElementById('next-btn');
+  if(!btn) return;
+  if(s.type === 'text' || s.type === 'email'){
+    btn.disabled = false;
+  } else {
+    btn.disabled = !answers[s.key];
+  }
+}
+
+function renderWelcome(){
+  const c = clearContainer();
+  const wrap = el('div','fade-in text-center');
+  const tag = el('span','section-tag','Test consommateur · 9MM');
+  tag.style.marginBottom = '24px';
+  wrap.appendChild(tag);
+  const h1 = el('h1','font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4',"Donne-nous ton avis");
+  h1.style.background = 'linear-gradient(90deg,var(--red),var(--cyan))';
+  h1.style.webkitBackgroundClip = 'text';
+  h1.style.webkitTextFillColor = 'transparent';
+  wrap.appendChild(h1);
+  wrap.appendChild(el('p','text-white/60 text-base mb-2 max-w-md mx-auto',"Merci de participer à ce test. Nous te demandons de goûter une ou plusieurs boissons et de répondre aux questions suivantes."));
+  wrap.appendChild(el('p','text-white/40 text-sm mb-8 max-w-md mx-auto italic',"Il n'y a pas de bonne ou mauvaise réponse — seul ton avis compte."));
+  const card = el('div','glass-card p-5 mb-6 max-w-md mx-auto');
+  card.style.borderColor = 'rgba(0,237,239,.15)';
+  const cardP = el('p','text-white/70 text-sm');
+  cardP.appendChild(document.createTextNode('⏱ '));
+  const strong = el('strong', null, '~3 minutes');
+  cardP.appendChild(strong);
+  cardP.appendChild(document.createTextNode(' · 100% anonyme · email facultatif'));
+  card.appendChild(cardP);
+  wrap.appendChild(card);
+  const btnWrap = el('div','max-w-xs mx-auto');
+  const btn = el('button','btn-cyan','Commencer →');
+  btn.onclick = goNext;
+  btnWrap.appendChild(btn);
+  wrap.appendChild(btnWrap);
+  c.appendChild(wrap);
+}
+
+function renderQuestion(s){
+  const c = clearContainer();
+  const wrap = el('div','fade-in');
+
+  const tagCls = 'section-tag' + (s.section && s.section.includes('Produit 1') ? ' rouge' : '');
+  wrap.appendChild(el('span', tagCls, s.section || ''));
+
+  const active = getActiveSteps();
+  const qSteps = active.filter(x=>x.id!=='welcome' && x.id!=='thanks');
+  const myIdx = qSteps.findIndex(x=>x.id===s.id);
+  if(myIdx >= 0){
+    wrap.appendChild(el('div','q-counter',`Question ${myIdx+1} / ${qSteps.length}`));
+  }
+
+  wrap.appendChild(el('h2','q-title', s.q));
+
+  if(s.help){
+    wrap.appendChild(el('p','q-help', s.help));
+  }
+
+  if(s.type === 'choice'){
+    const opts = el('div','flex flex-col gap-2 mb-2');
+    s.opts.forEach((o,i)=>{
+      const b = el('button','choice-btn');
+      b.dataset.key = s.key;
+      b.dataset.val = o.v;
+      const letter = el('span','choice-letter', String.fromCharCode(65+i));
+      b.appendChild(letter);
+      b.appendChild(el('span', null, o.l));
+      b.onclick = ()=>pickChoice(b);
+      opts.appendChild(b);
+    });
+    wrap.appendChild(opts);
+  } else if(s.type === 'product'){
+    const otherKey = s.key === 'p1_couleur' ? 'p2_couleur' : 'p1_couleur';
+    const otherCouleur = answers[otherKey];
+    const grid = el('div','product-grid');
+    const products = [
+      {v:'rouge',cls:'rouge',emoji:'🔴',label:'Body',tag:'Canette rouge'},
+      {v:'bleu',cls:'bleu',emoji:'🔵',label:'Mind',tag:'Canette bleue'}
+    ];
+    products.forEach(prod=>{
+      const btn = el('button','product-card '+prod.cls);
+      btn.dataset.key = s.key;
+      btn.dataset.val = prod.v;
+      if(otherCouleur===prod.v) btn.disabled = true;
+      btn.appendChild(el('span','product-emoji', prod.emoji));
+      btn.appendChild(el('div','product-label', prod.label));
+      btn.appendChild(el('div','product-tag', prod.tag));
+      btn.onclick = ()=>pickChoice(btn);
+      grid.appendChild(btn);
+    });
+    wrap.appendChild(grid);
+  } else if(s.type === 'scale9'){
+    const labels = el('div','scale-9-labels');
+    labels.appendChild(el('span',null,'Je déteste'));
+    labels.appendChild(el('span',null,"J'adore"));
+    wrap.appendChild(labels);
+    const grid = el('div','scale-9');
+    for(let i=1;i<=9;i++){
+      const b = el('button','scale-9-btn', String(i));
+      b.dataset.key = s.key;
+      b.dataset.val = i;
+      b.onclick = ()=>pickChoiceNum(b);
+      grid.appendChild(b);
+    }
+    wrap.appendChild(grid);
+  } else if(s.type === 'text'){
+    const fg = el('div','form-group');
+    const ta = document.createElement('textarea');
+    ta.id = 'field-input';
+    ta.rows = 3;
+    ta.placeholder = s.placeholder || '';
+    ta.value = answers[s.key] || '';
+    fg.appendChild(ta);
+    wrap.appendChild(fg);
+    wrap.appendChild(el('p','text-white/30 text-xs mb-2',"Tu peux laisser vide et passer à la suite."));
+  } else if(s.type === 'email'){
+    const fg = el('div','form-group');
+    const inp = document.createElement('input');
+    inp.id = 'field-input';
+    inp.type = 'email';
+    inp.placeholder = 'ton@email.com';
+    inp.value = answers[s.key] || '';
+    fg.appendChild(inp);
+    wrap.appendChild(fg);
+    wrap.appendChild(el('p','text-white/30 text-xs mb-2',"Tu peux laisser vide et passer directement à la fin."));
+  }
+
+  // Nav
+  const nav = el('div','flex justify-between gap-3 mt-6');
+  const backWrap = el('div');
+  if(currentStepIdx > 1){
+    const back = el('button','btn-ghost','← Retour');
+    back.onclick = goPrev;
+    backWrap.appendChild(back);
+  }
+  nav.appendChild(backWrap);
+  const nextWrap = el('div','flex-1 max-w-[260px]');
+  const nextBtn = el('button','btn-cyan', s.isLast ? 'Envoyer mes réponses ✓' : 'Suivant →');
+  nextBtn.id = 'next-btn';
+  nextBtn.onclick = tryNext;
+  nextWrap.appendChild(nextBtn);
+  nav.appendChild(nextWrap);
+  wrap.appendChild(nav);
+
+  c.appendChild(wrap);
+
+  // Restore selection
+  Object.keys(answers).forEach(key=>{
+    const val = answers[key];
+    document.querySelectorAll('[data-key="'+key+'"]').forEach(b=>{
+      if(String(b.dataset.val)===String(val)) b.classList.add('selected');
+    });
+  });
+  refreshNextBtn();
+}
+
+function pickChoice(btn){
+  const key = btn.dataset.key;
+  const val = btn.dataset.val;
+  document.querySelectorAll('[data-key="'+key+'"].selected').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(key === 'nb_produits') answers[key] = parseInt(val,10);
+  else answers[key] = val;
+  refreshNextBtn();
+}
+function pickChoiceNum(btn){
+  const key = btn.dataset.key;
+  const val = parseInt(btn.dataset.val, 10);
+  document.querySelectorAll('[data-key="'+key+'"].selected').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[key] = val;
+  refreshNextBtn();
+}
+
+async function submitQuiz(){
+  saveCurrentTextField();
+  const payload = {
+    variant: VARIANT,
+    user_agent: navigator.userAgent,
+    timestamp: new Date().toISOString(),
+    nb_produits: answers.nb_produits||1,
+    age: answers.age||'',
+    sexe: answers.sexe||'',
+    frequence: answers.frequence||'',
+    p1_couleur: answers.p1_couleur||'',
+    p1_note_globale: answers.p1_note_globale||'',
+    p1_gout: answers.p1_gout||'',
+    p1_sucre: answers.p1_sucre||'',
+    p1_acidite: answers.p1_acidite||'',
+    p1_odeur: answers.p1_odeur||'',
+    p1_texture: answers.p1_texture||'',
+    p1_petillance: answers.p1_petillance||'',
+    p1_couleur_visuel: answers.p1_couleur_visuel||'',
+    p1_intention_achat: answers.p1_intention_achat||'',
+    p1_prix: answers.p1_prix||'',
+    p2_couleur: answers.p2_couleur||'',
+    p2_note_globale: answers.p2_note_globale||'',
+    p2_gout: answers.p2_gout||'',
+    p2_sucre: answers.p2_sucre||'',
+    p2_acidite: answers.p2_acidite||'',
+    p2_odeur: answers.p2_odeur||'',
+    p2_texture: answers.p2_texture||'',
+    p2_petillance: answers.p2_petillance||'',
+    p2_couleur_visuel: answers.p2_couleur_visuel||'',
+    p2_intention_achat: answers.p2_intention_achat||'',
+    p2_prix: answers.p2_prix||'',
+    prefere: answers.prefere||'',
+    aime: answers.aime||'',
+    ameliorer: answers.ameliorer||'',
+    description: answers.description||'',
+    email: answers.email||''
+  };
+
+  try{ localStorage.setItem('9mm_test_conso_pending', JSON.stringify(payload)); }catch(e){}
+  console.log('[9MM Test Conso] Submitting:', payload);
+
+  const btn = document.getElementById('next-btn');
+  if(btn){ btn.disabled = true; btn.textContent='Envoi…'; }
+
+  try{
+    if(ENDPOINT && !ENDPOINT.startsWith('REPLACE_')){
+      await fetch(ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type':'text/plain;charset=utf-8'}
+      });
+    } else {
+      console.warn('[9MM Test Conso] ENDPOINT not configured. Data logged locally only.');
+    }
+    try{ localStorage.removeItem('9mm_test_conso_pending'); }catch(e){}
+  }catch(err){
+    console.error('[9MM Test Conso] Submit error:', err);
+  }
+
+  fbq('trackCustom','TestConsoComplete',{variant:VARIANT, nb_produits:answers.nb_produits});
+  currentStepIdx = steps.findIndex(s=>s.id==='thanks');
+  renderStep();
+}
+
+function renderThanks(){
+  const c = clearContainer();
+  const wrap = el('div','fade-in text-center');
+  // Checkmark circle with SVG built programmatically
+  const circle = el('div','checkmark-circle');
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox','0 0 50 50');
+  const polyline = document.createElementNS(SVG_NS, 'polyline');
+  polyline.setAttribute('points','12,26 22,36 38,16');
+  svg.appendChild(polyline);
+  circle.appendChild(svg);
+  wrap.appendChild(circle);
+  const h2 = el('h2','font-oswald text-3xl md:text-4xl font-bold uppercase mb-3','Merci !');
+  h2.style.background = 'linear-gradient(90deg,var(--red),var(--cyan))';
+  h2.style.webkitBackgroundClip = 'text';
+  h2.style.webkitTextFillColor = 'transparent';
+  wrap.appendChild(h2);
+  wrap.appendChild(el('p','text-white/70 text-base mb-2 max-w-md mx-auto','Ton avis fait avancer 9MM 🚀'));
+  wrap.appendChild(el('p','text-white/40 text-sm mb-8 max-w-md mx-auto','On prend en compte chaque réponse pour améliorer les boissons.'));
+  const linkWrap = el('div','max-w-xs mx-auto');
+  const link = document.createElement('a');
+  link.href = 'index.html';
+  link.className = 'btn-ghost';
+  link.style.display = 'inline-block';
+  link.style.textDecoration = 'none';
+  link.textContent = '← Retour au site';
+  linkWrap.appendChild(link);
+  wrap.appendChild(linkWrap);
+  c.appendChild(wrap);
+  document.getElementById('top-progress').style.width = '100%';
+}
+
+renderStep();
+</script>
+
+</body>
+</html>

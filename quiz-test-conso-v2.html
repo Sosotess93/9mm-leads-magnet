@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','518117033236885');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=518117033236885&ev=PageView&noscript=1"/></noscript>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>9MM — Test Consommateur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
+.font-oswald{font-family:'Oswald',sans-serif}
+@keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+@keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes pulseDot{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes checkmarkPop{0%{opacity:0;transform:scale(0.3) rotate(-20deg)}60%{transform:scale(1.15) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+.fade-in{animation:fadeSlideBlurIn .5s cubic-bezier(.16,1,.3,1) both}
+*,*::before,*::after{box-sizing:border-box}
+
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1212);color:#fff;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-red:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,23,23,.3)}
+.btn-red:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-cyan:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
+.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
+.btn-ghost{background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:10px;cursor:pointer;font-size:13px;transition:all .25s;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.btn-ghost:hover{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.3)}
+
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.form-group input,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);font-family:inherit;resize:vertical}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+
+.opt-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;cursor:pointer;text-align:left;transition:all .25s;display:flex;align-items:center;gap:12px;width:100%;color:#fff;font-size:14px;font-family:inherit}
+.opt-btn:hover:not(:disabled){background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);transform:translateX(4px)}
+.opt-btn.selected{background:rgba(0,237,239,.08);border-color:rgba(0,237,239,.35);box-shadow:0 0 20px rgba(0,237,239,.08)}
+.opt-btn:disabled{opacity:.3;cursor:not-allowed}
+
+.scale-row{display:grid;gap:8px;width:100%}
+.scale-row.scale-3{grid-template-columns:repeat(3,1fr)}
+.scale-row.scale-4{grid-template-columns:repeat(2,1fr)}
+.scale-row.scale-5{grid-template-columns:repeat(5,1fr)}
+.scale-row.scale-2{grid-template-columns:repeat(2,1fr)}
+@media(min-width:640px){.scale-row.scale-4{grid-template-columns:repeat(4,1fr)}}
+.scale-btn{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 8px;cursor:pointer;color:#fff;font-size:12px;text-align:center;transition:all .2s;font-family:inherit;line-height:1.2;min-height:48px;display:flex;align-items:center;justify-content:center}
+.scale-btn:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15)}
+.scale-btn.selected{background:rgba(0,237,239,.1);border-color:rgba(0,237,239,.4);color:var(--cyan);font-weight:600}
+
+.scale-9{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-bottom:8px}
+.scale-9-btn{aspect-ratio:1;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.6);font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;font-family:'Oswald',sans-serif;display:flex;align-items:center;justify-content:center}
+.scale-9-btn:hover{background:rgba(255,255,255,.07);transform:translateY(-2px)}
+.scale-9-btn.selected{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,237,239,.25);transform:translateY(-2px)}
+.scale-9-labels{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.35);margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase}
+
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.product-card{padding:24px 16px;border-radius:14px;cursor:pointer;text-align:center;transition:all .3s;border:2px solid transparent;background:rgba(255,255,255,.03);font-family:inherit;color:#fff}
+.product-card:hover:not(:disabled){transform:translateY(-3px)}
+.product-card:disabled{opacity:.25;cursor:not-allowed}
+.product-card.rouge{border-color:rgba(255,23,23,.2);background:linear-gradient(180deg,rgba(255,23,23,.06),rgba(255,23,23,.02))}
+.product-card.rouge.selected{border-color:var(--red);box-shadow:0 0 30px rgba(255,23,23,.25);background:linear-gradient(180deg,rgba(255,23,23,.18),rgba(255,23,23,.05))}
+.product-card.bleu{border-color:rgba(0,237,239,.2);background:linear-gradient(180deg,rgba(0,237,239,.06),rgba(0,237,239,.02))}
+.product-card.bleu.selected{border-color:var(--cyan);box-shadow:0 0 30px rgba(0,237,239,.25);background:linear-gradient(180deg,rgba(0,237,239,.18),rgba(0,237,239,.05))}
+.product-emoji{font-size:48px;margin-bottom:8px;display:block}
+.product-label{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:18px;margin-bottom:4px}
+.product-tag{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+
+.rank-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:12px;cursor:pointer;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);transition:all .25s;font-family:inherit;color:#fff;width:100%;text-align:left}
+.rank-card:hover{background:rgba(255,255,255,.06);transform:translateX(4px)}
+.rank-card.selected{background:rgba(0,237,239,.08);border-color:rgba(0,237,239,.35)}
+.rank-badge{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:16px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.4);flex-shrink:0;border:2px solid rgba(255,255,255,.1)}
+.rank-card.selected .rank-badge{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;border-color:transparent}
+
+.section-tag{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:99px;margin-bottom:12px;background:rgba(0,237,239,.1);color:var(--cyan);border:1px solid rgba(0,237,239,.2)}
+.section-tag.rouge{background:rgba(255,23,23,.1);color:var(--red);border-color:rgba(255,23,23,.2)}
+
+.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .5s cubic-bezier(.16,1,.3,1)}
+
+.criterion-block{margin-bottom:22px}
+.criterion-label{font-size:13px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:8px;display:block}
+
+.checkmark-circle{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#00b8ba);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:checkmarkPop .8s cubic-bezier(.16,1,.3,1) both;box-shadow:0 8px 40px rgba(0,237,239,.3)}
+.checkmark-circle svg{width:42px;height:42px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+@media(max-width:640px){
+  .glass-card{border-radius:12px}
+  main{padding-left:16px!important;padding-right:16px!important}
+  .scale-9-btn{font-size:12px}
+}
+</style>
+</head>
+<body>
+
+<header style="position:relative;z-index:50;padding:20px 24px;text-align:center">
+<a href="index.html"><img src="images/BLANC/9MM_LOGO_BLANC.png" alt="9MM Energy" style="height:80px;display:inline-block"></a>
+</header>
+
+<div class="quiz-progress"><div class="quiz-progress-fill" id="top-progress" style="width:0%"></div></div>
+
+<div class="fixed z-0 pointer-events-none flex max-w-6xl border-x border-white/5 mx-auto px-4 top-0 right-0 bottom-0 left-0 justify-between">
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite]"></div></div>
+<div class="w-px h-full bg-white/5 hidden md:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_7s_linear_infinite_2s]"></div></div>
+<div class="w-px h-full bg-white/5 hidden lg:block relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(0,237,239,.4)] to-transparent animate-[border-beam_5s_linear_infinite_4s]"></div></div>
+<div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
+</div>
+
+<main class="max-w-2xl mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
+<div class="fixed top-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
+
+<div id="step-container" class="flex-1 flex flex-col justify-center py-6"></div>
+
+</main>
+
+<script>
+// ===================== CONFIG =====================
+const ENDPOINT = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';
+const VARIANT = 'v2';
+
+// ===================== STATE =====================
+const answers = {};
+let currentStepIdx = 0;
+
+// ===================== OPTIONS =====================
+const OPTS = {
+  age: ['-18', '18-24', '25-34', '35-44', '45-54', '55+'],
+  sexe: ['Femme', 'Homme', 'Autre / préfère ne pas dire'],
+  frequence: [
+    {v:'tous_les_jours', l:'Tous les jours'},
+    {v:'plusieurs_par_semaine', l:'Plusieurs fois par semaine'},
+    {v:'occasionnellement', l:'Occasionnellement'},
+    {v:'rarement', l:'Rarement / jamais'}
+  ],
+  gout: ['Très mauvais','Mauvais','Moyen','Bon','Très bon'],
+  sucre: ['Beaucoup trop faible','Trop faible','Juste comme il faut','Trop élevé','Beaucoup trop élevé'],
+  acidite: ['Trop faible','Correcte','Trop forte'],
+  odeur: ['Très désagréable','Désagréable','Neutre','Agréable','Très agréable'],
+  texture: ['Très désagréable','Désagréable','Acceptable','Agréable','Très agréable'],
+  petillance: ['Trop faible','Correcte','Trop forte'],
+  couleur_visuel: ['Pas du tout attrayante','Peu attrayante','Moyenne','Attrayante','Très attrayante'],
+  intention_achat: [
+    {v:'oui_certainement', l:'Oui, certainement'},
+    {v:'oui_peut_etre', l:'Oui, peut-être'},
+    {v:'non_probablement', l:'Non, probablement pas'},
+    {v:'non_certainement', l:'Non, certainement pas'}
+  ],
+  prix: ['< 1€','1–2€','2–3€','> 3€']
+};
+
+// ===================== STEPS =====================
+const steps = [
+  {id:'welcome', render:renderWelcome},
+  {id:'setup_profil', render:renderSetupProfil, validate:()=>answers.nb_produits && answers.age && answers.sexe && answers.frequence},
+  {id:'p1_taste', render:()=>renderTaste(1), validate:()=>validateTaste(1)},
+  {id:'p1_sensory', render:()=>renderSensory(1), validate:()=>validateSensory(1)},
+  {id:'p1_buy', render:()=>renderBuy(1), validate:()=>validateBuy(1)},
+  {id:'p2_taste', condition:()=>answers.nb_produits===2, render:()=>renderTaste(2), validate:()=>validateTaste(2)},
+  {id:'p2_sensory', condition:()=>answers.nb_produits===2, render:()=>renderSensory(2), validate:()=>validateSensory(2)},
+  {id:'p2_buy', condition:()=>answers.nb_produits===2, render:()=>renderBuy(2), validate:()=>validateBuy(2)},
+  {id:'compare', condition:()=>answers.nb_produits===2, render:renderCompare, validate:()=>!!answers.prefere},
+  {id:'free_email', render:renderFreeEmail, validate:()=>true},
+  {id:'thanks', render:renderThanks}
+];
+
+// ===================== HELPERS =====================
+function getActiveSteps(){
+  return steps.filter(s=>!s.condition || s.condition());
+}
+function updateProgress(){
+  const active = getActiveSteps();
+  const idx = active.findIndex(s=>s.id===steps[currentStepIdx].id);
+  const pct = active.length>1 ? Math.round((idx/(active.length-1))*100) : 0;
+  document.getElementById('top-progress').style.width = pct+'%';
+}
+function goNext(){
+  if(currentStepIdx === 1) fbq('trackCustom','TestConsoStart',{variant:VARIANT});
+  for(let i=currentStepIdx+1; i<steps.length; i++){
+    const s = steps[i];
+    if(!s.condition || s.condition()){
+      currentStepIdx = i;
+      renderStep();
+      return;
+    }
+  }
+}
+function goPrev(){
+  for(let i=currentStepIdx-1; i>=0; i--){
+    const s = steps[i];
+    if(!s.condition || s.condition()){
+      currentStepIdx = i;
+      renderStep();
+      return;
+    }
+  }
+}
+function renderStep(){
+  steps[currentStepIdx].render();
+  updateProgress();
+  syncSelections();
+  refreshNextBtn();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function tryNext(){
+  const s = steps[currentStepIdx];
+  if(s.validate && !s.validate()){
+    const btn = document.getElementById('next-btn');
+    if(btn){btn.style.animation='shake .4s';setTimeout(()=>btn.style.animation='',400);}
+    return;
+  }
+  goNext();
+}
+function refreshNextBtn(){
+  const s = steps[currentStepIdx];
+  const btn = document.getElementById('next-btn');
+  if(btn && s.validate) btn.disabled = !s.validate();
+}
+function navButtons(){
+  return `<div class="flex justify-between gap-3 mt-6"><div><button class="btn-ghost" onclick="goPrev()">← Retour</button></div><div class="flex-1 max-w-[260px]"><button class="btn-cyan" id="next-btn" onclick="tryNext()">Suivant →</button></div></div>`;
+}
+
+// ===================== RENDERERS =====================
+function renderWelcome(){
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in text-center">
+    <span class="section-tag" style="margin-bottom:24px">Test consommateur · 9MM</span>
+    <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4" style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Donne-nous ton avis</h1>
+    <p class="text-white/60 text-base mb-2 max-w-md mx-auto">Merci de participer à ce test. Nous te demandons de goûter une ou plusieurs boissons et de répondre aux questions suivantes.</p>
+    <p class="text-white/40 text-sm mb-8 max-w-md mx-auto italic">Il n'y a pas de bonne ou mauvaise réponse — seul ton avis compte.</p>
+    <div class="glass-card p-5 mb-6 max-w-md mx-auto" style="border-color:rgba(0,237,239,.15)">
+      <p class="text-white/70 text-sm">⏱ <strong>~3 minutes</strong> · 100% anonyme · email facultatif</p>
+    </div>
+    <div class="max-w-xs mx-auto">
+      <button class="btn-cyan" onclick="goNext()">Commencer →</button>
+    </div>
+  </div>`;
+}
+
+function renderSetupProfil(){
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag">Étape 1 · Profil</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Quelques infos rapides</h2>
+    <div class="glass-card p-5 md:p-7 mb-4">
+      <div class="criterion-block">
+        <span class="criterion-label">Tu testes combien de boissons aujourd'hui ?</span>
+        <div class="scale-row scale-2">
+          <button class="scale-btn" data-key="nb_produits" data-val="1" onclick="pickScale(this)">1 boisson</button>
+          <button class="scale-btn" data-key="nb_produits" data-val="2" onclick="pickScale(this)">2 boissons</button>
+        </div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">Ton âge</span>
+        <div class="scale-row scale-3" id="age-row"></div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">Ton sexe</span>
+        <div class="scale-row scale-3" id="sexe-row"></div>
+      </div>
+      <div class="criterion-block" style="margin-bottom:0">
+        <span class="criterion-label">À quelle fréquence consommes-tu ce type de boisson ?</span>
+        <div class="flex flex-col gap-2" id="freq-row"></div>
+      </div>
+    </div>
+    ${navButtons()}
+  </div>`;
+  fillScaleRow('age-row', 'age', OPTS.age.map(v=>({v,l:v})));
+  fillScaleRow('sexe-row', 'sexe', OPTS.sexe.map(v=>({v,l:v})));
+  fillOptRow('freq-row', 'frequence', OPTS.frequence);
+}
+
+function renderTaste(productNum){
+  const p = 'p'+productNum;
+  const otherP = productNum===1?'p2':'p1';
+  const otherCouleur = answers[otherP+'_couleur'];
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag ${productNum===1?'rouge':''}">Produit ${productNum} · Goût</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Quelle canette tu goûtes ?</h2>
+    <div class="product-grid mb-5" id="product-row"></div>
+    <div class="glass-card p-5 md:p-7" id="taste-block" style="display:none">
+      <div class="criterion-block">
+        <span class="criterion-label">Ton appréciation globale</span>
+        <div class="scale-9-labels"><span>Je déteste</span><span>J'adore</span></div>
+        <div class="scale-9" id="note-row"></div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">Comment tu évalues le goût ?</span>
+        <div class="scale-row scale-5" id="gout-row"></div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">Le niveau de sucre est…</span>
+        <div class="scale-row scale-5" id="sucre-row"></div>
+      </div>
+      <div class="criterion-block" style="margin-bottom:0">
+        <span class="criterion-label">L'acidité est…</span>
+        <div class="scale-row scale-3" id="acidite-row"></div>
+      </div>
+    </div>
+    ${navButtons()}
+  </div>`;
+  // Product cards
+  const pRow = document.getElementById('product-row');
+  [{v:'rouge',cls:'rouge',emoji:'🔴',label:'Body',tag:'Canette rouge'},
+   {v:'bleu',cls:'bleu',emoji:'🔵',label:'Mind',tag:'Canette bleue'}].forEach(prod=>{
+    const btn = document.createElement('button');
+    btn.className = 'product-card '+prod.cls;
+    btn.dataset.key = p+'_couleur';
+    btn.dataset.val = prod.v;
+    if(otherCouleur===prod.v) btn.disabled = true;
+    btn.onclick = ()=>pickProduct(btn);
+    const e = document.createElement('span'); e.className='product-emoji'; e.textContent=prod.emoji; btn.appendChild(e);
+    const l = document.createElement('div'); l.className='product-label'; l.textContent=prod.label; btn.appendChild(l);
+    const t = document.createElement('div'); t.className='product-tag'; t.textContent=prod.tag; btn.appendChild(t);
+    pRow.appendChild(btn);
+  });
+  // Show taste-block if already chose
+  if(answers[p+'_couleur']) document.getElementById('taste-block').style.display='block';
+  // Note 1-9
+  const nRow = document.getElementById('note-row');
+  for(let i=1;i<=9;i++){
+    const b = document.createElement('button');
+    b.className='scale-9-btn'; b.dataset.key=p+'_note_globale'; b.dataset.val=i; b.textContent=i;
+    b.onclick=()=>pickScale(b);
+    nRow.appendChild(b);
+  }
+  fillScaleRow('gout-row', p+'_gout', OPTS.gout.map(v=>({v,l:v})));
+  fillScaleRow('sucre-row', p+'_sucre', OPTS.sucre.map(v=>({v,l:v})));
+  fillScaleRow('acidite-row', p+'_acidite', OPTS.acidite.map(v=>({v,l:v})));
+}
+
+function renderSensory(productNum){
+  const p = 'p'+productNum;
+  const couleur = answers[p+'_couleur'];
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag ${couleur==='rouge'?'rouge':''}">Produit ${productNum} · Sensoriel</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Comment elle se présente ?</h2>
+    <div class="glass-card p-5 md:p-7">
+      <div class="criterion-block">
+        <span class="criterion-label">L'odeur te semble…</span>
+        <div class="scale-row scale-5" id="odeur-row"></div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">La texture est…</span>
+        <div class="scale-row scale-5" id="texture-row"></div>
+      </div>
+      <div class="criterion-block">
+        <span class="criterion-label">Le niveau de pétillance est…</span>
+        <div class="scale-row scale-3" id="petillance-row"></div>
+      </div>
+      <div class="criterion-block" style="margin-bottom:0">
+        <span class="criterion-label">La couleur te paraît…</span>
+        <div class="scale-row scale-5" id="couleur-row"></div>
+      </div>
+    </div>
+    ${navButtons()}
+  </div>`;
+  fillScaleRow('odeur-row', p+'_odeur', OPTS.odeur.map(v=>({v,l:v})));
+  fillScaleRow('texture-row', p+'_texture', OPTS.texture.map(v=>({v,l:v})));
+  fillScaleRow('petillance-row', p+'_petillance', OPTS.petillance.map(v=>({v,l:v})));
+  fillScaleRow('couleur-row', p+'_couleur_visuel', OPTS.couleur_visuel.map(v=>({v,l:v})));
+}
+
+function renderBuy(productNum){
+  const p = 'p'+productNum;
+  const couleur = answers[p+'_couleur'];
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag ${couleur==='rouge'?'rouge':''}">Produit ${productNum} · Achat</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Et niveau achat ?</h2>
+    <div class="glass-card p-5 md:p-7">
+      <div class="criterion-block">
+        <span class="criterion-label">Serais-tu prêt(e) à acheter ce produit ?</span>
+        <div class="flex flex-col gap-2" id="achat-row"></div>
+      </div>
+      <div class="criterion-block" style="margin-bottom:0">
+        <span class="criterion-label">À quel prix achèterais-tu cette boisson ?</span>
+        <div class="scale-row scale-4" id="prix-row"></div>
+      </div>
+    </div>
+    ${navButtons()}
+  </div>`;
+  fillOptRow('achat-row', p+'_intention_achat', OPTS.intention_achat);
+  fillScaleRow('prix-row', p+'_prix', OPTS.prix.map(v=>({v,l:v})));
+}
+
+function renderCompare(){
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag">Comparaison</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-3 leading-tight">Lequel tu préfères ?</h2>
+    <p class="text-white/50 text-sm mb-6">Clique sur ton préféré.</p>
+    <div class="flex flex-col gap-3 mb-2" id="rank-row"></div>
+    ${navButtons()}
+  </div>`;
+  const rRow = document.getElementById('rank-row');
+  [{v:'body',label:'Body',color:'var(--red)',emoji:'🔴',tag:'Canette rouge'},
+   {v:'mind',label:'Mind',color:'var(--cyan)',emoji:'🔵',tag:'Canette bleue'}].forEach(r=>{
+    const btn = document.createElement('button');
+    btn.className='rank-card';
+    btn.dataset.key='prefere';
+    btn.dataset.val=r.v;
+    btn.onclick=()=>pickOpt(btn);
+    const badge = document.createElement('span'); badge.className='rank-badge'; badge.textContent='1'; btn.appendChild(badge);
+    const wrap = document.createElement('div');
+    const lbl = document.createElement('div');
+    lbl.className='font-oswald text-lg font-bold uppercase';
+    lbl.style.color=r.color;
+    lbl.textContent = r.emoji+' '+r.label;
+    wrap.appendChild(lbl);
+    const tag = document.createElement('div');
+    tag.className='text-xs text-white/40';
+    tag.textContent = r.tag;
+    wrap.appendChild(tag);
+    btn.appendChild(wrap);
+    rRow.appendChild(btn);
+  });
+}
+
+function renderFreeEmail(){
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in">
+    <span class="section-tag">Avis libre · presque fini</span>
+    <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Une dernière chose…</h2>
+    <p class="text-white/50 text-sm mb-6">Tout est facultatif ici. Tu peux passer directement.</p>
+    <div class="glass-card p-5 md:p-7 mb-4">
+      <div class="form-group">
+        <label>Qu'as-tu aimé dans cette boisson ?</label>
+        <textarea id="aime" rows="2" placeholder="Le goût, l'effet, la couleur…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Qu'améliorerais-tu ?</label>
+        <textarea id="ameliorer" rows="2" placeholder="Moins sucré, plus pétillant…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Comment décrirais-tu cette boisson en quelques mots ?</label>
+        <textarea id="description" rows="2" placeholder="Rafraîchissante, originale, addictive…"></textarea>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Email <span style="text-transform:none;color:rgba(255,255,255,.3)">(facultatif — pour suivre les résultats du test)</span></label>
+        <input type="email" id="email" placeholder="ton@email.com"/>
+      </div>
+    </div>
+    <div class="flex justify-between gap-3 mt-6">
+      <button class="btn-ghost" onclick="captureFreeEmail();goPrev()">← Retour</button>
+      <div class="flex-1 max-w-[260px]"><button class="btn-cyan" id="submit-btn" onclick="submitQuiz()">Envoyer mes réponses ✓</button></div>
+    </div>
+  </div>`;
+  // Restore previously typed values via .value (safe, treated as text)
+  const fields = ['aime','ameliorer','description','email'];
+  fields.forEach(f=>{
+    const el = document.getElementById(f);
+    if(el && answers[f]!=null) el.value = answers[f];
+  });
+}
+
+function captureFreeEmail(){
+  ['aime','ameliorer','description','email'].forEach(f=>{
+    const el = document.getElementById(f);
+    if(el) answers[f] = el.value.trim();
+  });
+}
+
+async function submitQuiz(){
+  captureFreeEmail();
+  const payload = {
+    variant: VARIANT,
+    user_agent: navigator.userAgent,
+    timestamp: new Date().toISOString(),
+    nb_produits: answers.nb_produits||1,
+    age: answers.age||'',
+    sexe: answers.sexe||'',
+    frequence: answers.frequence||'',
+    p1_couleur: answers.p1_couleur||'',
+    p1_note_globale: answers.p1_note_globale||'',
+    p1_gout: answers.p1_gout||'',
+    p1_sucre: answers.p1_sucre||'',
+    p1_acidite: answers.p1_acidite||'',
+    p1_odeur: answers.p1_odeur||'',
+    p1_texture: answers.p1_texture||'',
+    p1_petillance: answers.p1_petillance||'',
+    p1_couleur_visuel: answers.p1_couleur_visuel||'',
+    p1_intention_achat: answers.p1_intention_achat||'',
+    p1_prix: answers.p1_prix||'',
+    p2_couleur: answers.p2_couleur||'',
+    p2_note_globale: answers.p2_note_globale||'',
+    p2_gout: answers.p2_gout||'',
+    p2_sucre: answers.p2_sucre||'',
+    p2_acidite: answers.p2_acidite||'',
+    p2_odeur: answers.p2_odeur||'',
+    p2_texture: answers.p2_texture||'',
+    p2_petillance: answers.p2_petillance||'',
+    p2_couleur_visuel: answers.p2_couleur_visuel||'',
+    p2_intention_achat: answers.p2_intention_achat||'',
+    p2_prix: answers.p2_prix||'',
+    prefere: answers.prefere||'',
+    aime: answers.aime||'',
+    ameliorer: answers.ameliorer||'',
+    description: answers.description||'',
+    email: answers.email||''
+  };
+
+  try{ localStorage.setItem('9mm_test_conso_pending', JSON.stringify(payload)); }catch(e){}
+  console.log('[9MM Test Conso] Submitting:', payload);
+
+  const btn = document.getElementById('submit-btn');
+  if(btn){ btn.disabled = true; btn.textContent='Envoi…'; }
+
+  try{
+    if(ENDPOINT && !ENDPOINT.startsWith('REPLACE_')){
+      await fetch(ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type':'text/plain;charset=utf-8'}
+      });
+    } else {
+      console.warn('[9MM Test Conso] ENDPOINT not configured. Data logged locally only.');
+    }
+    try{ localStorage.removeItem('9mm_test_conso_pending'); }catch(e){}
+  }catch(err){
+    console.error('[9MM Test Conso] Submit error (data may have arrived):', err);
+  }
+
+  fbq('trackCustom','TestConsoComplete',{variant:VARIANT, nb_produits:answers.nb_produits});
+  currentStepIdx = steps.findIndex(s=>s.id==='thanks');
+  renderStep();
+}
+
+function renderThanks(){
+  const c = document.getElementById('step-container');
+  c.innerHTML = `<div class="fade-in text-center">
+    <div class="checkmark-circle"><svg viewBox="0 0 50 50"><polyline points="12,26 22,36 38,16"/></svg></div>
+    <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-3" style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Merci !</h2>
+    <p class="text-white/70 text-base mb-2 max-w-md mx-auto">Ton avis fait avancer 9MM 🚀</p>
+    <p class="text-white/40 text-sm mb-8 max-w-md mx-auto">On prend en compte chaque réponse pour améliorer les boissons.</p>
+    <div class="max-w-xs mx-auto">
+      <a href="index.html" class="btn-ghost" style="display:inline-block;text-decoration:none">← Retour au site</a>
+    </div>
+  </div>`;
+  document.getElementById('top-progress').style.width = '100%';
+}
+
+// ===================== ROW FILLERS (safe DOM creation, no innerHTML for user data) =====================
+function fillScaleRow(containerId, key, opts){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  opts.forEach(o=>{
+    const b = document.createElement('button');
+    b.className = 'scale-btn';
+    b.dataset.key = key;
+    b.dataset.val = o.v;
+    b.textContent = o.l;
+    b.onclick = ()=>pickScale(b);
+    el.appendChild(b);
+  });
+}
+function fillOptRow(containerId, key, opts){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  opts.forEach(o=>{
+    const b = document.createElement('button');
+    b.className = 'opt-btn';
+    b.dataset.key = key;
+    b.dataset.val = o.v;
+    b.textContent = o.l;
+    b.onclick = ()=>pickOpt(b);
+    el.appendChild(b);
+  });
+}
+
+// ===================== INTERACTION HANDLERS =====================
+function pickScale(btn){
+  const key = btn.dataset.key;
+  const val = btn.dataset.val;
+  document.querySelectorAll('[data-key="'+key+'"].selected').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  if(key==='nb_produits' || key.endsWith('_note_globale')) answers[key] = parseInt(val,10);
+  else answers[key] = val;
+  if(key.endsWith('_couleur')){
+    const block = document.getElementById('taste-block');
+    if(block) block.style.display = 'block';
+  }
+  refreshNextBtn();
+}
+function pickOpt(btn){
+  const key = btn.dataset.key;
+  const val = btn.dataset.val;
+  document.querySelectorAll('[data-key="'+key+'"].selected').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[key] = val;
+  refreshNextBtn();
+}
+function pickProduct(btn){
+  if(btn.disabled) return;
+  pickScale(btn);
+}
+function syncSelections(){
+  Object.keys(answers).forEach(key=>{
+    const val = answers[key];
+    document.querySelectorAll('[data-key="'+key+'"]').forEach(b=>{
+      if(String(b.dataset.val)===String(val)) b.classList.add('selected');
+    });
+  });
+}
+
+// ===================== VALIDATORS =====================
+function validateTaste(n){
+  const p = 'p'+n;
+  return !!(answers[p+'_couleur'] && answers[p+'_note_globale'] && answers[p+'_gout'] && answers[p+'_sucre'] && answers[p+'_acidite']);
+}
+function validateSensory(n){
+  const p = 'p'+n;
+  return !!(answers[p+'_odeur'] && answers[p+'_texture'] && answers[p+'_petillance'] && answers[p+'_couleur_visuel']);
+}
+function validateBuy(n){
+  const p = 'p'+n;
+  return !!(answers[p+'_intention_achat'] && answers[p+'_prix']);
+}
+
+// ===================== INIT =====================
+renderStep();
+</script>
+
+</body>
+</html>
