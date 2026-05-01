@@ -258,7 +258,7 @@ function renderWelcome(){
 
 function renderSetupProfil(){
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag">Étape 1 · Profil</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Quelques infos rapides</h2>
     <div class="glass-card p-5 md:p-7 mb-4">
@@ -294,7 +294,7 @@ function renderTaste(productNum){
   const otherP = productNum===1?'p2':'p1';
   const otherCouleur = answers[otherP+'_couleur'];
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag ${productNum===1?'rouge':''}">Produit ${productNum} · Goût</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Quelle canette tu goûtes ?</h2>
     <div class="product-grid mb-5" id="product-row"></div>
@@ -353,7 +353,7 @@ function renderSensory(productNum){
   const p = 'p'+productNum;
   const couleur = answers[p+'_couleur'];
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag ${couleur==='rouge'?'rouge':''}">Produit ${productNum} · Sensoriel</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Comment elle se présente ?</h2>
     <div class="glass-card p-5 md:p-7">
@@ -386,7 +386,7 @@ function renderBuy(productNum){
   const p = 'p'+productNum;
   const couleur = answers[p+'_couleur'];
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag ${couleur==='rouge'?'rouge':''}">Produit ${productNum} · Achat</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Et niveau achat ?</h2>
     <div class="glass-card p-5 md:p-7">
@@ -407,7 +407,7 @@ function renderBuy(productNum){
 
 function renderCompare(){
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag">Comparaison</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-3 leading-tight">Lequel tu préfères ?</h2>
     <p class="text-white/50 text-sm mb-6">Clique sur ton préféré.</p>
@@ -440,7 +440,7 @@ function renderCompare(){
 
 function renderFreeEmail(){
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in">
+  c.innerHTML = `<div class="fade-in text-center sm:text-left">
     <span class="section-tag">Avis libre · presque fini</span>
     <h2 class="font-oswald text-2xl md:text-3xl font-bold uppercase mb-6 leading-tight">Une dernière chose…</h2>
     <p class="text-white/50 text-sm mb-6">Tout est facultatif ici. Tu peux passer directement.</p>

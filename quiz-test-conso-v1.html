@@ -309,7 +309,7 @@ function renderWelcome(){
 
 function renderQuestion(s){
   const c = clearContainer();
-  const wrap = el('div','fade-in');
+  const wrap = el('div','fade-in text-center sm:text-left');
 
   const tagCls = 'section-tag' + (s.section && s.section.includes('Produit 1') ? ' rouge' : '');
   wrap.appendChild(el('span', tagCls, s.section || ''));
