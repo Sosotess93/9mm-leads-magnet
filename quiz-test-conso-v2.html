@@ -117,9 +117,14 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .checkmark-circle{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:checkmarkPop .8s var(--ease-pop) both,glow 2s ease infinite 1s;box-shadow:0 8px 40px rgba(0,237,239,.4)}
 .checkmark-circle svg{width:46px;height:46px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
-/* ============== STICKY BOTTOM BAR (mobile) ============== */
-.sticky-bottom-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,.95) 30%,rgba(10,10,10,1));padding:16px 16px calc(16px + env(safe-area-inset-bottom));z-index:50;display:none;backdrop-filter:blur(8px)}
-@media(max-width:640px){.sticky-bottom-bar{display:flex;gap:10px;align-items:center}.sticky-bottom-bar .btn-back{flex-shrink:0}.sticky-bottom-bar .btn-next{flex:1}body.has-sticky-bar main{padding-bottom:120px!important}}
+/* ============== STICKY BOTTOM BAR (mobile only) ============== */
+.sticky-bottom-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,.95) 30%,rgba(10,10,10,1));padding:16px 16px calc(16px + env(safe-area-inset-bottom));z-index:50;display:none;backdrop-filter:blur(8px);gap:10px;align-items:center}
+.sticky-bottom-bar .btn-back{flex-shrink:0}
+.sticky-bottom-bar .btn-next{flex:1}
+@media(max-width:640px){
+  body.has-sticky-bar .sticky-bottom-bar{display:flex}
+  body.has-sticky-bar main{padding-bottom:120px!important}
+}
 
 /* ============== REAL CAN IMAGES ============== */
 .cans-visual{display:flex;gap:8px;justify-content:center;align-items:flex-end;margin:0 0 24px;perspective:1200px}
@@ -193,8 +198,8 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 
 </main>
 
-<!-- Sticky bottom bar (mobile only, shown on question pages) -->
-<div id="sticky-bar" class="sticky-bottom-bar" style="display:none">
+<!-- Sticky bottom bar (mobile only, controlled via body.has-sticky-bar) -->
+<div id="sticky-bar" class="sticky-bottom-bar">
   <button class="btn-ghost btn-back" onclick="goPrev()">←</button>
   <button class="btn-cyan btn-next" id="sticky-next" onclick="tryNext()">Suivant →</button>
 </div>
@@ -292,19 +297,9 @@ function renderStep(){
 }
 function updateStickyBar(){
   const s = steps[currentStepIdx];
-  const bar = document.getElementById('sticky-bar');
-  const stickyNext = document.getElementById('sticky-next');
-  if(!bar || !stickyNext) return;
-  // Show only on question pages (not welcome / thanks / free_email which has its own submit)
+  // Show sticky bar (mobile only) on question pages, not welcome/thanks/free_email
   const isQuestion = s && s.id !== 'welcome' && s.id !== 'thanks' && s.id !== 'free_email';
-  if(isQuestion){
-    bar.style.display = 'flex';
-    document.body.classList.add('has-sticky-bar');
-    stickyNext.textContent = 'Suivant →';
-  } else {
-    bar.style.display = 'none';
-    document.body.classList.remove('has-sticky-bar');
-  }
+  document.body.classList.toggle('has-sticky-bar', !!isQuestion);
 }
 function tryNext(){
   const s = steps[currentStepIdx];
@@ -763,6 +758,22 @@ function fillOptRow(containerId, key, opts){
 }
 
 // ===================== INTERACTION HANDLERS =====================
+let _autoAdvanceTimer = null;
+function scheduleAutoAdvance(){
+  if(_autoAdvanceTimer) clearTimeout(_autoAdvanceTimer);
+  const s = steps[currentStepIdx];
+  if(!s) return;
+  // Don't auto-advance on free_email (user types text), welcome, thanks
+  if(s.id === 'welcome' || s.id === 'thanks' || s.id === 'free_email') return;
+  if(!s.validate) return;
+  // Only advance if all required fields on this screen are filled
+  if(!s.validate()) return;
+  _autoAdvanceTimer = setTimeout(()=>{
+    // Re-check just in case state changed during the delay
+    if(s.validate && s.validate()) goNext();
+  }, 480);
+}
+
 function pickScale(btn){
   const key = btn.dataset.key;
   const val = btn.dataset.val;
@@ -775,6 +786,7 @@ function pickScale(btn){
     if(block) block.style.display = 'block';
   }
   refreshNextBtn();
+  scheduleAutoAdvance();
 }
 function pickOpt(btn){
   const key = btn.dataset.key;
@@ -783,6 +795,7 @@ function pickOpt(btn){
   btn.classList.add('selected');
   answers[key] = val;
   refreshNextBtn();
+  scheduleAutoAdvance();
 }
 function pickProduct(btn){
   if(btn.disabled) return;
