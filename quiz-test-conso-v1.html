@@ -11,80 +11,146 @@
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-:root{--red:#FF1717;--cyan:#00EDEF;--black:#0a0a0a}
+:root{
+  --red:#FF1717;--red-dark:#cc1212;--cyan:#00EDEF;--cyan-dark:#00b8ba;--black:#0a0a0a;
+  --r-card:14px;--r-btn:12px;--r-pill:99px;
+  --btn-h:54px;
+  --ease-pop:cubic-bezier(.16,1,.3,1);
+}
 body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;min-height:100vh;overflow-x:hidden}
 .font-oswald{font-family:'Oswald',sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+
+/* ============== KEYFRAMES ============== */
 @keyframes border-beam{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
 @keyframes fadeSlideBlurIn{0%{opacity:0;transform:translateY(20px);filter:blur(8px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
 @keyframes checkmarkPop{0%{opacity:0;transform:scale(0.3) rotate(-20deg)}60%{transform:scale(1.15) rotate(5deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
-.fade-in{animation:fadeSlideBlurIn .4s cubic-bezier(.16,1,.3,1) both}
-*,*::before,*::after{box-sizing:border-box}
+@keyframes slideInRight{0%{opacity:0;transform:translateX(40px)}100%{opacity:1;transform:translateX(0)}}
+@keyframes slideInLeft{0%{opacity:0;transform:translateX(-40px)}100%{opacity:1;transform:translateX(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+@keyframes pulseSelect{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(0,237,239,.15)}50%{box-shadow:0 0 40px rgba(0,237,239,.35)}}
 
-.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;backdrop-filter:blur(10px);overflow:hidden;position:relative}
-.btn-cyan{background:linear-gradient(135deg,var(--cyan),#00b8ba);color:#000;font-weight:700;padding:16px;border-radius:12px;border:none;cursor:pointer;font-size:1.05rem;transition:all .3s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
-.btn-cyan:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.3)}
-.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
-.btn-ghost{background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:12px 20px;border-radius:10px;cursor:pointer;font-size:13px;transition:all .25s;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.fade-in{animation:fadeSlideBlurIn .4s var(--ease-pop) both}
+.slide-in-right{animation:slideInRight .35s var(--ease-pop) both}
+.slide-in-left{animation:slideInLeft .35s var(--ease-pop) both}
+.shake{animation:shake .4s ease!important}
+
+/* ============== BUTTONS ============== */
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));color:#000;font-weight:700;padding:0 24px;height:var(--btn-h);border-radius:var(--r-btn);border:none;cursor:pointer;font-size:15px;transition:all .25s;width:100%;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.btn-cyan:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,237,239,.35)}
+.btn-cyan:active:not(:disabled){transform:translateY(0);box-shadow:0 4px 16px rgba(0,237,239,.3)}
+.btn-cyan:disabled{opacity:.35;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+.btn-ghost{background:transparent;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.15);padding:0 18px;height:42px;border-radius:10px;cursor:pointer;font-size:12px;transition:all .25s;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.06em;display:inline-flex;align-items:center;gap:6px}
 .btn-ghost:hover{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.3)}
 
+/* ============== GLASS / CARD ============== */
+.glass-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:var(--r-card);backdrop-filter:blur(10px);overflow:hidden;position:relative}
+
+/* ============== FORM ============== */
 .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
 .form-group label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.form-group input,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:12px;width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);font-family:inherit;resize:vertical}
+.form-group input,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:14px 16px;border-radius:var(--r-btn);width:100%;font-size:16px;outline:none;transition:all .3s;backdrop-filter:blur(6px);font-family:inherit;resize:vertical}
 .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
-.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.1)}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--cyan);background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(0,237,239,.12)}
 
-.choice-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px 22px;cursor:pointer;color:#fff;font-size:16px;text-align:left;transition:all .25s;font-family:inherit;width:100%;display:flex;align-items:center;gap:14px}
-.choice-btn:hover:not(:disabled){background:rgba(0,237,239,.06);border-color:rgba(0,237,239,.3);transform:translateX(6px)}
-.choice-btn.selected{background:rgba(0,237,239,.1);border-color:var(--cyan);box-shadow:0 0 24px rgba(0,237,239,.18)}
+/* ============== CHOICE BUTTONS ============== */
+.choice-btn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-card);padding:0 22px;min-height:60px;cursor:pointer;color:#fff;font-size:15px;text-align:left;transition:all .25s var(--ease-pop);font-family:inherit;width:100%;display:flex;align-items:center;gap:14px;position:relative}
+.choice-btn:hover:not(:disabled):not(.selected){background:rgba(0,237,239,.06);border-color:rgba(0,237,239,.3);transform:translateX(4px)}
+.choice-btn.selected{background:linear-gradient(90deg,rgba(0,237,239,.14),rgba(0,237,239,.06));border-color:var(--cyan);box-shadow:0 0 24px rgba(0,237,239,.22);animation:pulseSelect .35s var(--ease-pop)}
 .choice-btn:disabled{opacity:.3;cursor:not-allowed}
-.choice-letter{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);flex-shrink:0;border:1px solid rgba(255,255,255,.1);text-transform:uppercase}
-.choice-btn.selected .choice-letter{background:var(--cyan);color:#000;border-color:transparent}
+.choice-letter{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.45);flex-shrink:0;border:1px solid rgba(255,255,255,.1);text-transform:uppercase;transition:all .25s}
+.choice-btn.selected .choice-letter{background:var(--cyan);color:#000;border-color:transparent;box-shadow:0 0 12px rgba(0,237,239,.4)}
+.choice-check{width:22px;height:22px;border-radius:50%;background:var(--cyan);display:none;align-items:center;justify-content:center;margin-left:auto;flex-shrink:0}
+.choice-check svg{width:12px;height:12px;stroke:#000;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.choice-btn.selected .choice-check{display:flex;animation:checkmarkPop .4s var(--ease-pop) both}
 
-.scale-9{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-bottom:8px}
-.scale-9-btn{aspect-ratio:1;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.6);font-weight:700;font-size:18px;cursor:pointer;transition:all .2s;font-family:'Oswald',sans-serif;display:flex;align-items:center;justify-content:center}
-.scale-9-btn:hover{background:rgba(255,255,255,.07);transform:translateY(-2px)}
-.scale-9-btn.selected{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,237,239,.3);transform:translateY(-2px)}
-.scale-9-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase}
+/* ============== 1-9 SCALE ============== */
+.scale-9{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-bottom:10px}
+.scale-9-btn{aspect-ratio:1;border-radius:var(--r-btn);border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:rgba(255,255,255,.6);font-weight:700;font-size:18px;cursor:pointer;transition:all .25s var(--ease-pop);font-family:'Oswald',sans-serif;display:flex;align-items:center;justify-content:center;position:relative}
+.scale-9-btn:hover:not(.selected){background:rgba(255,255,255,.07);transform:translateY(-2px);border-color:rgba(255,255,255,.2)}
+.scale-9-btn.selected{background:linear-gradient(135deg,var(--red),var(--cyan));color:#fff;border-color:transparent;box-shadow:0 6px 24px rgba(0,237,239,.4);transform:translateY(-3px) scale(1.05);font-size:20px}
+.scale-9-labels{display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase;padding:0 4px}
+.scale-9-emoji{text-align:center;font-size:28px;margin-top:4px;margin-bottom:8px;height:36px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);transition:all .3s var(--ease-pop)}
 
+/* ============== PRODUCT CARDS ============== */
 .product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.product-card{padding:32px 20px;border-radius:16px;cursor:pointer;text-align:center;transition:all .3s;border:2px solid transparent;background:rgba(255,255,255,.03);font-family:inherit;color:#fff}
-.product-card:hover:not(:disabled){transform:translateY(-4px)}
+.product-card{padding:32px 20px;border-radius:var(--r-card);cursor:pointer;text-align:center;transition:all .3s var(--ease-pop);border:2px solid transparent;background:rgba(255,255,255,.03);font-family:inherit;color:#fff;position:relative;overflow:hidden}
+.product-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.product-card:hover:not(:disabled):not(.selected){transform:translateY(-4px)}
+.product-card:hover::before{opacity:1}
 .product-card:disabled{opacity:.25;cursor:not-allowed}
-.product-card.rouge{border-color:rgba(255,23,23,.2);background:linear-gradient(180deg,rgba(255,23,23,.06),rgba(255,23,23,.02))}
-.product-card.rouge.selected{border-color:var(--red);box-shadow:0 0 30px rgba(255,23,23,.25);background:linear-gradient(180deg,rgba(255,23,23,.18),rgba(255,23,23,.05))}
-.product-card.bleu{border-color:rgba(0,237,239,.2);background:linear-gradient(180deg,rgba(0,237,239,.06),rgba(0,237,239,.02))}
-.product-card.bleu.selected{border-color:var(--cyan);box-shadow:0 0 30px rgba(0,237,239,.25);background:linear-gradient(180deg,rgba(0,237,239,.18),rgba(0,237,239,.05))}
-.product-emoji{font-size:60px;margin-bottom:12px;display:block}
+.product-card.rouge{border-color:rgba(255,23,23,.22);background:linear-gradient(180deg,rgba(255,23,23,.06),rgba(255,23,23,.02))}
+.product-card.rouge::before{background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.product-card.rouge.selected{border-color:var(--red);box-shadow:0 0 36px rgba(255,23,23,.3);background:linear-gradient(180deg,rgba(255,23,23,.2),rgba(255,23,23,.05));animation:pulseSelect .4s var(--ease-pop)}
+.product-card.bleu{border-color:rgba(0,237,239,.22);background:linear-gradient(180deg,rgba(0,237,239,.06),rgba(0,237,239,.02))}
+.product-card.bleu::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+.product-card.bleu.selected{border-color:var(--cyan);box-shadow:0 0 36px rgba(0,237,239,.3);background:linear-gradient(180deg,rgba(0,237,239,.2),rgba(0,237,239,.05));animation:pulseSelect .4s var(--ease-pop)}
+.product-emoji{font-size:64px;margin-bottom:12px;display:block;line-height:1}
 .product-label{font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:22px;margin-bottom:6px}
-.product-tag{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
+.product-tag{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase}
 
-.section-tag{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:5px 11px;border-radius:99px;margin-bottom:12px;background:rgba(0,237,239,.1);color:var(--cyan);border:1px solid rgba(0,237,239,.2)}
+/* ============== TAGS / META ============== */
+.section-tag{display:inline-block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 12px;border-radius:var(--r-pill);margin-bottom:14px;background:rgba(0,237,239,.1);color:var(--cyan);border:1px solid rgba(0,237,239,.2)}
 .section-tag.rouge{background:rgba(255,23,23,.1);color:var(--red);border-color:rgba(255,23,23,.2)}
 
-.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
-.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .4s cubic-bezier(.16,1,.3,1)}
-
-.checkmark-circle{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),#00b8ba);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:checkmarkPop .8s cubic-bezier(.16,1,.3,1) both;box-shadow:0 8px 40px rgba(0,237,239,.3)}
-.checkmark-circle svg{width:42px;height:42px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
-
-.q-counter{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:8px;font-family:'Oswald',sans-serif;font-weight:600}
+.q-counter{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px;font-family:'Oswald',sans-serif;font-weight:600}
 .q-title{font-family:'Oswald',sans-serif;font-size:clamp(22px,4vw,30px);font-weight:700;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15;margin-bottom:24px}
 .q-help{font-size:13px;color:rgba(255,255,255,.45);margin-top:-16px;margin-bottom:20px}
 
+/* ============== TOP PROGRESS ============== */
+.quiz-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;background:rgba(255,255,255,.03)}
+.quiz-progress-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .5s var(--ease-pop);box-shadow:0 0 12px rgba(0,237,239,.5)}
+
+/* ============== CHECKMARK / THANKS ============== */
+.checkmark-circle{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--cyan-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:checkmarkPop .8s var(--ease-pop) both,glow 2s ease infinite 1s;box-shadow:0 8px 40px rgba(0,237,239,.4)}
+.checkmark-circle svg{width:46px;height:46px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============== KEYBOARD HINT ============== */
+.kbd-hint{display:none;font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:16px;letter-spacing:.04em;font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:500}
+.kbd-hint kbd{display:inline-block;padding:2px 7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:5px;font-family:inherit;font-size:10px;color:rgba(255,255,255,.65);margin:0 2px;letter-spacing:.05em}
+@media(min-width:640px){.kbd-hint{display:block}}
+
+/* ============== WELCOME VISUAL (FLOATING CANS) ============== */
+.cans-visual{display:flex;gap:24px;justify-content:center;align-items:center;margin:8px 0 28px;perspective:1000px}
+.can-pill{width:64px;height:128px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:800;color:#fff;font-size:22px;letter-spacing:.05em;position:relative;animation:float 3s ease-in-out infinite}
+.can-pill.red{background:linear-gradient(180deg,#FF3939,#cc1212);box-shadow:0 12px 40px rgba(255,23,23,.4),inset 0 -12px 30px rgba(0,0,0,.25);animation-delay:0s}
+.can-pill.blue{background:linear-gradient(180deg,#1bf5f5,#00b8ba);box-shadow:0 12px 40px rgba(0,237,239,.4),inset 0 -12px 30px rgba(0,0,0,.25);color:#000;animation-delay:1.5s}
+.can-pill::before{content:'';position:absolute;top:8px;left:8px;right:8px;height:18px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.05));pointer-events:none}
+
+/* ============== CONFETTI ============== */
+#confetti-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999}
+
+/* ============== MOBILE ============== */
 @media(max-width:640px){
+  :root{--btn-h:50px}
   .glass-card{border-radius:12px}
   main{padding-left:16px!important;padding-right:16px!important}
   .scale-9-btn{font-size:14px}
-  .product-emoji{font-size:48px}
-  .choice-btn{padding:16px 18px;font-size:15px}
-  .q-title{font-size:22px;line-height:1.2}
+  .scale-9-btn.selected{font-size:16px}
+  .product-emoji{font-size:52px}
+  .product-card{padding:24px 14px}
+  .product-label{font-size:18px}
+  .choice-btn{padding:0 18px;font-size:15px;min-height:58px}
+  .q-title{font-size:22px;line-height:1.2;margin-bottom:20px}
   .q-counter{font-size:10px}
+  .scale-9-emoji{font-size:24px;height:32px}
   header{padding:14px 20px!important}
-  header img{height:56px!important}
+  header img{height:54px!important}
+  .can-pill{width:54px;height:108px;font-size:18px}
+  .cans-visual{gap:18px}
+  .checkmark-circle{width:76px;height:76px}
+  .checkmark-circle svg{width:38px;height:38px}
 }
 @media(max-width:380px){
   .scale-9{gap:4px}
   .scale-9-btn{font-size:12px;border-radius:8px}
+  .product-emoji{font-size:44px}
+  .product-card{padding:18px 10px}
+  .product-label{font-size:15px}
+  .product-tag{font-size:9px}
 }
 </style>
 </head>
@@ -110,6 +176,8 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div id="step-container" class="flex-1 flex flex-col py-4 md:py-8"></div>
 
 </main>
+
+<canvas id="confetti-canvas"></canvas>
 
 <script>
 const ENDPOINT = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';
@@ -199,6 +267,9 @@ function el(tag, cls, text){
   return e;
 }
 
+// Direction: 1 forward, -1 backward — used to slide questions in/out
+let direction = 1;
+
 function getActiveSteps(){ return steps.filter(s=>!s.condition || s.condition()); }
 function updateProgress(){
   const active = getActiveSteps();
@@ -208,6 +279,7 @@ function updateProgress(){
 }
 function goNext(){
   if(currentStepIdx === 1) fbq('trackCustom','TestConsoStart',{variant:VARIANT});
+  direction = 1;
   for(let i=currentStepIdx+1; i<steps.length; i++){
     const s = steps[i];
     if(!s.condition || s.condition()){
@@ -219,6 +291,7 @@ function goNext(){
 }
 function goPrev(){
   saveCurrentTextField();
+  direction = -1;
   for(let i=currentStepIdx-1; i>=0; i--){
     const s = steps[i];
     if(!s.condition || s.condition()){
@@ -259,7 +332,11 @@ function tryNext(){
   }
   if(!answers[s.key]){
     const btn = document.getElementById('next-btn');
-    if(btn){ btn.style.animation='shake .4s'; setTimeout(()=>btn.style.animation='',400); }
+    if(btn){
+      btn.classList.remove('shake');
+      void btn.offsetWidth; // restart animation
+      btn.classList.add('shake');
+    }
     return;
   }
   goNext();
@@ -280,16 +357,25 @@ function renderWelcome(){
   const center = el('div','flex-1 flex items-center justify-center');
   const wrap = el('div','fade-in text-center w-full');
   const tag = el('span','section-tag','Test consommateur · 9MM');
-  tag.style.marginBottom = '24px';
+  tag.style.marginBottom = '20px';
   wrap.appendChild(tag);
+
+  // Floating cans visual
+  const cans = el('div','cans-visual');
+  const canRed = el('div','can-pill red','9MM');
+  const canBlue = el('div','can-pill blue','9MM');
+  cans.appendChild(canRed);
+  cans.appendChild(canBlue);
+  wrap.appendChild(cans);
+
   const h1 = el('h1','font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4',"Donne-nous ton avis");
   h1.style.background = 'linear-gradient(90deg,var(--red),var(--cyan))';
   h1.style.webkitBackgroundClip = 'text';
   h1.style.webkitTextFillColor = 'transparent';
   wrap.appendChild(h1);
   wrap.appendChild(el('p','text-white/60 text-base mb-2 max-w-md mx-auto',"Merci de participer à ce test. Nous te demandons de goûter une ou plusieurs boissons et de répondre aux questions suivantes."));
-  wrap.appendChild(el('p','text-white/40 text-sm mb-8 max-w-md mx-auto italic',"Il n'y a pas de bonne ou mauvaise réponse — seul ton avis compte."));
-  const card = el('div','glass-card p-5 mb-6 max-w-md mx-auto');
+  wrap.appendChild(el('p','text-white/40 text-sm mb-7 max-w-md mx-auto italic',"Il n'y a pas de bonne ou mauvaise réponse — seul ton avis compte."));
+  const card = el('div','glass-card p-4 mb-7 max-w-md mx-auto');
   card.style.borderColor = 'rgba(0,237,239,.15)';
   const cardP = el('p','text-white/70 text-sm');
   cardP.appendChild(document.createTextNode('⏱ '));
@@ -303,13 +389,21 @@ function renderWelcome(){
   btn.onclick = goNext;
   btnWrap.appendChild(btn);
   wrap.appendChild(btnWrap);
+  // Keyboard hint
+  const hint = el('div','kbd-hint');
+  hint.appendChild(document.createTextNode('Appuie sur '));
+  const kbd = el('kbd', null, 'Entrée');
+  hint.appendChild(kbd);
+  hint.appendChild(document.createTextNode(' pour commencer'));
+  wrap.appendChild(hint);
   center.appendChild(wrap);
   c.appendChild(center);
 }
 
 function renderQuestion(s){
   const c = clearContainer();
-  const wrap = el('div','fade-in text-center sm:text-left');
+  const animClass = direction >= 0 ? 'slide-in-right' : 'slide-in-left';
+  const wrap = el('div', animClass + ' text-center sm:text-left');
 
   const tagCls = 'section-tag' + (s.section && s.section.includes('Produit 1') ? ' rouge' : '');
   wrap.appendChild(el('span', tagCls, s.section || ''));
@@ -335,7 +429,16 @@ function renderQuestion(s){
       b.dataset.val = o.v;
       const letter = el('span','choice-letter', String.fromCharCode(65+i));
       b.appendChild(letter);
-      b.appendChild(el('span', null, o.l));
+      b.appendChild(el('span','flex-1', o.l));
+      // Checkmark visible when selected
+      const check = el('span','choice-check');
+      const csvg = document.createElementNS(SVG_NS, 'svg');
+      csvg.setAttribute('viewBox','0 0 50 50');
+      const cpoly = document.createElementNS(SVG_NS, 'polyline');
+      cpoly.setAttribute('points','12,26 22,36 38,16');
+      csvg.appendChild(cpoly);
+      check.appendChild(csvg);
+      b.appendChild(check);
       b.onclick = ()=>pickChoice(b);
       opts.appendChild(b);
     });
@@ -374,6 +477,12 @@ function renderQuestion(s){
       grid.appendChild(b);
     }
     wrap.appendChild(grid);
+    // Emoji feedback
+    const emojiBox = el('div','scale-9-emoji');
+    emojiBox.id = 'scale9-emoji';
+    const cur = answers[s.key];
+    emojiBox.textContent = cur ? scale9Emoji(cur) : '';
+    wrap.appendChild(emojiBox);
   } else if(s.type === 'text'){
     const fg = el('div','form-group');
     const ta = document.createElement('textarea');
@@ -413,6 +522,47 @@ function renderQuestion(s){
   nav.appendChild(nextWrap);
   wrap.appendChild(nav);
 
+  // Keyboard hint (desktop only, hidden on mobile via CSS)
+  const hint = el('div','kbd-hint');
+  if(s.type === 'choice'){
+    hint.appendChild(document.createTextNode('Touches '));
+    const k1 = el('kbd', null, 'A');
+    hint.appendChild(k1);
+    hint.appendChild(document.createTextNode('-'));
+    const k2 = el('kbd', null, String.fromCharCode(64+s.opts.length));
+    hint.appendChild(k2);
+    hint.appendChild(document.createTextNode(' ou '));
+    const k3 = el('kbd', null, '↵');
+    hint.appendChild(k3);
+    hint.appendChild(document.createTextNode(' pour valider'));
+  } else if(s.type === 'scale9'){
+    hint.appendChild(document.createTextNode('Touches '));
+    const k1 = el('kbd', null, '1');
+    hint.appendChild(k1);
+    hint.appendChild(document.createTextNode('-'));
+    const k2 = el('kbd', null, '9');
+    hint.appendChild(k2);
+    hint.appendChild(document.createTextNode(' ou '));
+    const k3 = el('kbd', null, '↵');
+    hint.appendChild(k3);
+    hint.appendChild(document.createTextNode(' pour valider'));
+  } else if(s.type === 'product'){
+    hint.appendChild(document.createTextNode('Touches '));
+    const k1 = el('kbd', null, 'A');
+    hint.appendChild(k1);
+    hint.appendChild(document.createTextNode(' / '));
+    const k2 = el('kbd', null, 'B');
+    hint.appendChild(k2);
+    hint.appendChild(document.createTextNode(' ou '));
+    const k3 = el('kbd', null, '↵');
+    hint.appendChild(k3);
+    hint.appendChild(document.createTextNode(' pour valider'));
+  } else {
+    hint.appendChild(el('kbd', null, '↵'));
+    hint.appendChild(document.createTextNode(' pour passer à la suite'));
+  }
+  wrap.appendChild(hint);
+
   c.appendChild(wrap);
 
   // Restore selection
@@ -423,6 +573,19 @@ function renderQuestion(s){
     });
   });
   refreshNextBtn();
+  // Focus first input on text/email steps
+  if(s.type === 'text' || s.type === 'email'){
+    const inp = document.getElementById('field-input');
+    if(inp) setTimeout(()=>inp.focus(), 200);
+  }
+}
+
+function scale9Emoji(n){
+  if(n<=2) return '😞 Bof';
+  if(n<=4) return '😐 Mitigé';
+  if(n===5) return '🙂 Correct';
+  if(n<=7) return '😊 J\'aime';
+  return '🤩 J\'adore';
 }
 
 function pickChoice(btn){
@@ -433,6 +596,8 @@ function pickChoice(btn){
   if(key === 'nb_produits') answers[key] = parseInt(val,10);
   else answers[key] = val;
   refreshNextBtn();
+  // Auto-advance after a short visual feedback
+  scheduleAutoAdvance();
 }
 function pickChoiceNum(btn){
   const key = btn.dataset.key;
@@ -440,7 +605,22 @@ function pickChoiceNum(btn){
   document.querySelectorAll('[data-key="'+key+'"].selected').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   answers[key] = val;
+  // Update emoji feedback live
+  const eb = document.getElementById('scale9-emoji');
+  if(eb) eb.textContent = scale9Emoji(val);
   refreshNextBtn();
+  scheduleAutoAdvance();
+}
+
+let _autoAdvanceTimer = null;
+function scheduleAutoAdvance(){
+  if(_autoAdvanceTimer) clearTimeout(_autoAdvanceTimer);
+  _autoAdvanceTimer = setTimeout(()=>{
+    const s = steps[currentStepIdx];
+    // Don't auto-advance on email step (last) - let user submit explicitly
+    if(s && s.isLast) return;
+    if(s && answers[s.key]) goNext();
+  }, 420);
 }
 
 async function submitQuiz(){
@@ -512,7 +692,6 @@ function renderThanks(){
   const c = clearContainer();
   const center = el('div','flex-1 flex items-center justify-center');
   const wrap = el('div','fade-in text-center w-full');
-  // Checkmark circle with SVG built programmatically
   const circle = el('div','checkmark-circle');
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox','0 0 50 50');
@@ -540,7 +719,135 @@ function renderThanks(){
   center.appendChild(wrap);
   c.appendChild(center);
   document.getElementById('top-progress').style.width = '100%';
+  // Trigger confetti burst
+  setTimeout(launchConfetti, 200);
 }
+
+// ===================== CONFETTI =====================
+function launchConfetti(){
+  const canvas = document.getElementById('confetti-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = window.innerWidth + 'px';
+  canvas.style.height = window.innerHeight + 'px';
+  ctx.scale(dpr, dpr);
+  const colors = ['#FF1717','#00EDEF','#FFFFFF','#FF6B6B','#5CFFFD'];
+  const particles = [];
+  const N = 140;
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2 - 100;
+  for(let i=0;i<N;i++){
+    const angle = (Math.PI * 2 * i) / N + (Math.random()-0.5)*0.5;
+    const speed = 5 + Math.random() * 8;
+    particles.push({
+      x: cx,
+      y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 4,
+      g: 0.18 + Math.random() * 0.08,
+      r: 4 + Math.random() * 5,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      rot: Math.random() * Math.PI * 2,
+      vr: (Math.random()-0.5) * 0.3,
+      life: 0,
+      maxLife: 120 + Math.random() * 40,
+      shape: Math.random() < 0.5 ? 'rect' : 'circle'
+    });
+  }
+  let frame = 0;
+  function tick(){
+    ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+    let alive = 0;
+    particles.forEach(p=>{
+      if(p.life >= p.maxLife) return;
+      alive++;
+      p.life++;
+      p.vy += p.g;
+      p.vx *= 0.99;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      const opacity = Math.max(0, 1 - p.life/p.maxLife);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = opacity;
+      if(p.shape === 'rect'){
+        ctx.fillRect(-p.r, -p.r/2, p.r*2, p.r);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0,0,p.r,0,Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+    frame++;
+    if(alive > 0 && frame < 300){
+      requestAnimationFrame(tick);
+    } else {
+      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+// ===================== KEYBOARD =====================
+document.addEventListener('keydown', (e)=>{
+  const s = steps[currentStepIdx];
+  if(!s) return;
+  // Skip when modifier keys held (so Cmd+R, Cmd+C etc work normally)
+  if(e.metaKey || e.ctrlKey || e.altKey) return;
+
+  // Inside text/email inputs, only handle Enter, Backspace navigation should NOT trigger
+  const isInInput = ['INPUT','TEXTAREA'].includes(document.activeElement.tagName);
+
+  if(e.key === 'Enter'){
+    e.preventDefault();
+    if(s.id === 'welcome'){ goNext(); return; }
+    if(s.id === 'thanks') return;
+    tryNext();
+    return;
+  }
+  if(e.key === 'Backspace' && !isInInput){
+    if(s.id === 'welcome' || s.id === 'thanks') return;
+    e.preventDefault();
+    goPrev();
+    return;
+  }
+  if(isInInput) return;
+  if(s.id === 'welcome' || s.id === 'thanks') return;
+
+  // Choice keyboard shortcuts
+  if(s.type === 'choice' && /^[a-zA-Z]$/.test(e.key)){
+    const idx = e.key.toUpperCase().charCodeAt(0) - 65;
+    if(idx >= 0 && idx < s.opts.length){
+      e.preventDefault();
+      const btn = document.querySelector('[data-key="'+s.key+'"][data-val="'+s.opts[idx].v+'"]');
+      if(btn && !btn.disabled) pickChoice(btn);
+    }
+  }
+  // Scale 1-9
+  if(s.type === 'scale9' && /^[1-9]$/.test(e.key)){
+    e.preventDefault();
+    const btn = document.querySelector('[data-key="'+s.key+'"][data-val="'+e.key+'"]');
+    if(btn) pickChoiceNum(btn);
+  }
+  // Product: A=Body(rouge), B=Mind(bleu)
+  if(s.type === 'product'){
+    let val = null;
+    if(e.key.toLowerCase() === 'a') val = 'rouge';
+    else if(e.key.toLowerCase() === 'b') val = 'bleu';
+    if(val){
+      e.preventDefault();
+      const btn = document.querySelector('[data-key="'+s.key+'"][data-val="'+val+'"]');
+      if(btn && !btn.disabled) pickChoice(btn);
+    }
+  }
+});
 
 renderStep();
 </script>
