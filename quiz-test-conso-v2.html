@@ -121,12 +121,21 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .sticky-bottom-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(180deg,rgba(10,10,10,0),rgba(10,10,10,.95) 30%,rgba(10,10,10,1));padding:16px 16px calc(16px + env(safe-area-inset-bottom));z-index:50;display:none;backdrop-filter:blur(8px)}
 @media(max-width:640px){.sticky-bottom-bar{display:flex;gap:10px;align-items:center}.sticky-bottom-bar .btn-back{flex-shrink:0}.sticky-bottom-bar .btn-next{flex:1}body.has-sticky-bar main{padding-bottom:120px!important}}
 
-/* ============== WELCOME VISUAL ============== */
-.cans-visual{display:flex;gap:24px;justify-content:center;align-items:center;margin:8px 0 28px;perspective:1000px}
-.can-pill{width:64px;height:128px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-weight:800;color:#fff;font-size:22px;letter-spacing:.05em;position:relative;animation:float 3s ease-in-out infinite}
-.can-pill.red{background:linear-gradient(180deg,#FF3939,#cc1212);box-shadow:0 12px 40px rgba(255,23,23,.4),inset 0 -12px 30px rgba(0,0,0,.25);animation-delay:0s}
-.can-pill.blue{background:linear-gradient(180deg,#1bf5f5,#00b8ba);box-shadow:0 12px 40px rgba(0,237,239,.4),inset 0 -12px 30px rgba(0,0,0,.25);color:#000;animation-delay:1.5s}
-.can-pill::before{content:'';position:absolute;top:8px;left:8px;right:8px;height:18px;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.35),rgba(255,255,255,.05));pointer-events:none}
+/* ============== REAL CAN IMAGES ============== */
+.cans-visual{display:flex;gap:8px;justify-content:center;align-items:flex-end;margin:0 0 24px;perspective:1200px}
+.can-wrap{position:relative;width:140px;height:200px;display:flex;align-items:center;justify-content:center;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 18px 24px rgba(0,0,0,.6))}
+.can-wrap.red{animation-delay:0s}
+.can-wrap.blue{animation-delay:2s}
+.can-wrap::before{content:'';position:absolute;inset:-20% -10%;border-radius:50%;filter:blur(40px);z-index:-1;opacity:.55}
+.can-wrap.red::before{background:radial-gradient(circle,rgba(255,23,23,.6),transparent 65%)}
+.can-wrap.blue::before{background:radial-gradient(circle,rgba(0,237,239,.55),transparent 65%)}
+.can-img{width:100%;height:100%;object-fit:contain;display:block}
+
+.product-card .can-img-card{width:100%;height:120px;object-fit:contain;display:block;margin-bottom:10px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.5));transition:transform .35s var(--ease-pop)}
+.product-card:hover:not(:disabled):not(.selected) .can-img-card{transform:translateY(-4px) rotate(-2deg)}
+.product-card.selected .can-img-card{transform:scale(1.05)}
+
+.can-img-mini{width:48px;height:64px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 4px 10px rgba(0,0,0,.4))}
 
 /* ============== CONFETTI ============== */
 #confetti-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999}
@@ -147,8 +156,10 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
   .product-emoji{font-size:42px}
   .product-label{font-size:16px}
   .product-tag{font-size:10px}
-  .can-pill{width:54px;height:108px;font-size:18px}
-  .cans-visual{gap:18px}
+  .can-wrap{width:108px;height:160px}
+  .cans-visual{gap:4px;margin-bottom:18px}
+  .product-card .can-img-card{height:100px}
+  .can-img-mini{width:38px;height:50px}
   .checkmark-circle{width:76px;height:76px}
   .checkmark-circle svg{width:38px;height:38px}
 }
@@ -324,6 +335,10 @@ function renderWelcome(){
   const c = document.getElementById('step-container');
   c.innerHTML = `<div class="flex-1 flex items-center justify-center"><div class="fade-in text-center w-full">
     <span class="section-tag" style="margin-bottom:20px">Test consommateur · 9MM</span>
+    <div class="cans-visual">
+      <div class="can-wrap red"><img class="can-img" src="images/canettes/body.png" alt="9MM Body — canette rouge" loading="eager"/></div>
+      <div class="can-wrap blue"><img class="can-img" src="images/canettes/mind.png" alt="9MM Mind — canette bleue" loading="eager"/></div>
+    </div>
     <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4" style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Donne-nous ton avis</h1>
     <p class="text-white/60 text-base mb-2 max-w-md mx-auto">Merci de participer à ce test. Nous te demandons de goûter une ou plusieurs boissons et de répondre aux questions suivantes.</p>
     <p class="text-white/40 text-sm mb-7 max-w-md mx-auto italic">Il n'y a pas de bonne ou mauvaise réponse — seul ton avis compte.</p>
@@ -399,17 +414,21 @@ function renderTaste(productNum){
     </div>
     ${navButtons()}
   </div>`;
-  // Product cards
+  // Product cards with real can images
   const pRow = document.getElementById('product-row');
-  [{v:'rouge',cls:'rouge',emoji:'🔴',label:'Body',tag:'Canette rouge'},
-   {v:'bleu',cls:'bleu',emoji:'🔵',label:'Mind',tag:'Canette bleue'}].forEach(prod=>{
+  [{v:'rouge',cls:'rouge',img:'images/canettes/body.png',label:'Body',tag:'Canette rouge'},
+   {v:'bleu',cls:'bleu',img:'images/canettes/mind.png',label:'Mind',tag:'Canette bleue'}].forEach(prod=>{
     const btn = document.createElement('button');
     btn.className = 'product-card '+prod.cls;
     btn.dataset.key = p+'_couleur';
     btn.dataset.val = prod.v;
     if(otherCouleur===prod.v) btn.disabled = true;
     btn.onclick = ()=>pickProduct(btn);
-    const e = document.createElement('span'); e.className='product-emoji'; e.textContent=prod.emoji; btn.appendChild(e);
+    const img = document.createElement('img');
+    img.className = 'can-img-card';
+    img.src = prod.img;
+    img.alt = '9MM '+prod.label+' — '+prod.tag;
+    btn.appendChild(img);
     const l = document.createElement('div'); l.className='product-label'; l.textContent=prod.label; btn.appendChild(l);
     const t = document.createElement('div'); t.className='product-tag'; t.textContent=prod.tag; btn.appendChild(t);
     pRow.appendChild(btn);
@@ -495,19 +514,24 @@ function renderCompare(){
     ${navButtons()}
   </div>`;
   const rRow = document.getElementById('rank-row');
-  [{v:'body',label:'Body',color:'var(--red)',emoji:'🔴',tag:'Canette rouge'},
-   {v:'mind',label:'Mind',color:'var(--cyan)',emoji:'🔵',tag:'Canette bleue'}].forEach(r=>{
+  [{v:'body',label:'Body',color:'var(--red)',img:'images/canettes/body.png',tag:'Canette rouge'},
+   {v:'mind',label:'Mind',color:'var(--cyan)',img:'images/canettes/mind.png',tag:'Canette bleue'}].forEach(r=>{
     const btn = document.createElement('button');
     btn.className='rank-card';
     btn.dataset.key='prefere';
     btn.dataset.val=r.v;
     btn.onclick=()=>pickOpt(btn);
     const badge = document.createElement('span'); badge.className='rank-badge'; badge.textContent='1'; btn.appendChild(badge);
+    const img = document.createElement('img');
+    img.className = 'can-img-mini';
+    img.src = r.img;
+    img.alt = '9MM '+r.label+' — '+r.tag;
+    btn.appendChild(img);
     const wrap = document.createElement('div');
     const lbl = document.createElement('div');
     lbl.className='font-oswald text-lg font-bold uppercase';
     lbl.style.color=r.color;
-    lbl.textContent = r.emoji+' '+r.label;
+    lbl.textContent = r.label;
     wrap.appendChild(lbl);
     const tag = document.createElement('div');
     tag.className='text-xs text-white/40';
