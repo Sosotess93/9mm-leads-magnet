@@ -76,6 +76,15 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
   main{padding-left:16px!important;padding-right:16px!important}
   .scale-9-btn{font-size:14px}
   .product-emoji{font-size:48px}
+  .choice-btn{padding:16px 18px;font-size:15px}
+  .q-title{font-size:22px;line-height:1.2}
+  .q-counter{font-size:10px}
+  header{padding:14px 20px!important}
+  header img{height:56px!important}
+}
+@media(max-width:380px){
+  .scale-9{gap:4px}
+  .scale-9-btn{font-size:12px;border-radius:8px}
 }
 </style>
 </head>
@@ -94,11 +103,11 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
 </div>
 
-<main class="max-w-xl mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
+<main class="max-w-xl mx-auto px-5 pb-24 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 130px)">
 <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 
-<div id="step-container" class="flex-1 flex flex-col justify-center py-6"></div>
+<div id="step-container" class="flex-1 flex flex-col py-4 md:py-8"></div>
 
 </main>
 
@@ -268,7 +277,8 @@ function refreshNextBtn(){
 
 function renderWelcome(){
   const c = clearContainer();
-  const wrap = el('div','fade-in text-center');
+  const center = el('div','flex-1 flex items-center justify-center');
+  const wrap = el('div','fade-in text-center w-full');
   const tag = el('span','section-tag','Test consommateur · 9MM');
   tag.style.marginBottom = '24px';
   wrap.appendChild(tag);
@@ -293,7 +303,8 @@ function renderWelcome(){
   btn.onclick = goNext;
   btnWrap.appendChild(btn);
   wrap.appendChild(btnWrap);
-  c.appendChild(wrap);
+  center.appendChild(wrap);
+  c.appendChild(center);
 }
 
 function renderQuestion(s){
@@ -385,16 +396,16 @@ function renderQuestion(s){
     wrap.appendChild(el('p','text-white/30 text-xs mb-2',"Tu peux laisser vide et passer directement à la fin."));
   }
 
-  // Nav
-  const nav = el('div','flex justify-between gap-3 mt-6');
-  const backWrap = el('div');
+  // Nav: full-width next on mobile, side-by-side on desktop
+  const nav = el('div','flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3 mt-8');
+  const backWrap = el('div','sm:flex-shrink-0 text-center sm:text-left');
   if(currentStepIdx > 1){
     const back = el('button','btn-ghost','← Retour');
     back.onclick = goPrev;
     backWrap.appendChild(back);
   }
   nav.appendChild(backWrap);
-  const nextWrap = el('div','flex-1 max-w-[260px]');
+  const nextWrap = el('div','w-full sm:w-auto sm:flex-1 sm:max-w-[280px]');
   const nextBtn = el('button','btn-cyan', s.isLast ? 'Envoyer mes réponses ✓' : 'Suivant →');
   nextBtn.id = 'next-btn';
   nextBtn.onclick = tryNext;
@@ -499,7 +510,8 @@ async function submitQuiz(){
 
 function renderThanks(){
   const c = clearContainer();
-  const wrap = el('div','fade-in text-center');
+  const center = el('div','flex-1 flex items-center justify-center');
+  const wrap = el('div','fade-in text-center w-full');
   // Checkmark circle with SVG built programmatically
   const circle = el('div','checkmark-circle');
   const svg = document.createElementNS(SVG_NS, 'svg');
@@ -525,7 +537,8 @@ function renderThanks(){
   link.textContent = '← Retour au site';
   linkWrap.appendChild(link);
   wrap.appendChild(linkWrap);
-  c.appendChild(wrap);
+  center.appendChild(wrap);
+  c.appendChild(center);
   document.getElementById('top-progress').style.width = '100%';
 }
 

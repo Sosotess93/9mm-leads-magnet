@@ -89,9 +89,24 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 .checkmark-circle svg{width:42px;height:42px;stroke:#000;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 
 @media(max-width:640px){
-  .glass-card{border-radius:12px}
+  .glass-card{border-radius:12px;padding:16px!important}
   main{padding-left:16px!important;padding-right:16px!important}
   .scale-9-btn{font-size:12px}
+  .scale-btn{padding:10px 6px;font-size:11px;min-height:44px}
+  .opt-btn{padding:13px 14px;font-size:14px}
+  .criterion-block{margin-bottom:18px}
+  .criterion-label{font-size:12px}
+  header{padding:14px 20px!important}
+  header img{height:56px!important}
+  .product-card{padding:18px 12px}
+  .product-emoji{font-size:42px}
+  .product-label{font-size:16px}
+  .product-tag{font-size:10px}
+}
+@media(max-width:380px){
+  .scale-9{gap:3px}
+  .scale-9-btn{font-size:11px;border-radius:8px}
+  .scale-row.scale-5{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -110,11 +125,11 @@ body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;margin:0;
 <div class="w-px h-full bg-white/5 relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-[200px] bg-gradient-to-b from-transparent via-[rgba(255,23,23,.4)] to-transparent animate-[border-beam_8s_linear_infinite_1s]"></div></div>
 </div>
 
-<main class="max-w-2xl mx-auto px-5 pb-16 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 120px)">
+<main class="max-w-2xl mx-auto px-5 pb-24 relative z-10 flex flex-col" id="main" style="min-height:calc(100vh - 130px)">
 <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none"></div>
 
-<div id="step-container" class="flex-1 flex flex-col justify-center py-6"></div>
+<div id="step-container" class="flex-1 flex flex-col py-4 md:py-8"></div>
 
 </main>
 
@@ -221,13 +236,13 @@ function refreshNextBtn(){
   if(btn && s.validate) btn.disabled = !s.validate();
 }
 function navButtons(){
-  return `<div class="flex justify-between gap-3 mt-6"><div><button class="btn-ghost" onclick="goPrev()">← Retour</button></div><div class="flex-1 max-w-[260px]"><button class="btn-cyan" id="next-btn" onclick="tryNext()">Suivant →</button></div></div>`;
+  return `<div class="flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-3 mt-8"><div class="sm:flex-shrink-0 text-center sm:text-left"><button class="btn-ghost" onclick="goPrev()">← Retour</button></div><div class="w-full sm:w-auto sm:flex-1 sm:max-w-[280px]"><button class="btn-cyan" id="next-btn" onclick="tryNext()">Suivant →</button></div></div>`;
 }
 
 // ===================== RENDERERS =====================
 function renderWelcome(){
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in text-center">
+  c.innerHTML = `<div class="flex-1 flex items-center justify-center"><div class="fade-in text-center w-full">
     <span class="section-tag" style="margin-bottom:24px">Test consommateur · 9MM</span>
     <h1 class="font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight mb-4" style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Donne-nous ton avis</h1>
     <p class="text-white/60 text-base mb-2 max-w-md mx-auto">Merci de participer à ce test. Nous te demandons de goûter une ou plusieurs boissons et de répondre aux questions suivantes.</p>
@@ -238,7 +253,7 @@ function renderWelcome(){
     <div class="max-w-xs mx-auto">
       <button class="btn-cyan" onclick="goNext()">Commencer →</button>
     </div>
-  </div>`;
+  </div></div>`;
 }
 
 function renderSetupProfil(){
@@ -534,7 +549,7 @@ async function submitQuiz(){
 
 function renderThanks(){
   const c = document.getElementById('step-container');
-  c.innerHTML = `<div class="fade-in text-center">
+  c.innerHTML = `<div class="flex-1 flex items-center justify-center"><div class="fade-in text-center w-full">
     <div class="checkmark-circle"><svg viewBox="0 0 50 50"><polyline points="12,26 22,36 38,16"/></svg></div>
     <h2 class="font-oswald text-3xl md:text-4xl font-bold uppercase mb-3" style="background:linear-gradient(90deg,var(--red),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Merci !</h2>
     <p class="text-white/70 text-base mb-2 max-w-md mx-auto">Ton avis fait avancer 9MM 🚀</p>
@@ -542,7 +557,7 @@ function renderThanks(){
     <div class="max-w-xs mx-auto">
       <a href="index.html" class="btn-ghost" style="display:inline-block;text-decoration:none">← Retour au site</a>
     </div>
-  </div>`;
+  </div></div>`;
   document.getElementById('top-progress').style.width = '100%';
 }
 
