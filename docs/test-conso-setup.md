@@ -49,7 +49,7 @@ Si tu vois ce message, le backend est OK.
 
 ## Étape 6 — Connecter les fichiers HTML
 
-Dans `quiz-test-conso-v1.html` ET `quiz-test-conso-v2.html`, remplacer la ligne :
+Dans `quizz.html`, remplacer la ligne :
 
 ```js
 const ENDPOINT = 'REPLACE_WITH_GOOGLE_APPS_SCRIPT_URL';
@@ -65,7 +65,7 @@ Puis push sur Vercel et c'est bon.
 
 ## Étape 7 — Test end-to-end
 
-1. Ouvre `https://challenge.9mm-energy.com/quiz-test-conso-v1.html`
+1. Ouvre `https://challenge.9mm-energy.com/quizz.html`
 2. Remplis le quiz jusqu'au bout
 3. Vérifier dans le Google Sheet → une nouvelle ligne doit être apparue
 4. Vérifier la boîte mail `9mm.questionnaire@gmail.com` → un email "[9MM Test Conso] Nouvelle réponse..." doit être arrivé
